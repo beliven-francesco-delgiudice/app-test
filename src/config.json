@@ -1,0 +1,12 @@
+{
+  "mode": "prod",
+  "oneSignal": {
+    "appId": "37d62964-2eba-418c-9ae7-db84cbb01af2",
+    "firebaseId": "517810307555"
+  },
+  "userDataBlacklist": [
+    "token",
+    "champs",
+    "username"
+  ]
+}

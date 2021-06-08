@@ -1,0 +1,94 @@
+.bg-white {
+  background-color: white;
+}
+.bg-black {
+  background-color: #1C1C1B;
+}
+
+.text-black {
+  color: #1C1C1B;
+}
+
+.flex {
+  display: flex
+}
+.flex-row {
+  flex-direction: row;
+}
+.flex-col {
+  flex-direction: column;
+}
+.justify-center {
+  justify-content: center;
+}
+.items-center {
+  align-items: center;
+}
+
+.opacity-50 {
+  opacity: 0.5;
+}
+
+.w-10\/12 {
+  width: 83.333333%;
+}
+.w-11\/12	{
+  width: 91.666667%;
+}
+.w-full	{
+  width: 100%;
+}
+.w-screen{
+  width: 100vw;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.border-none {
+  border: none
+}
+
+.transition-all	{
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+.transition-opacity	{
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.pt-6 {
+  padding-top:1.5rem;
+}
+.pb-2 {
+  padding-bottom: 0.5rem;
+}
+
+
+.z-0 {
+  z-index: 0;
+}
+.z-10 {
+  z-index: 10;
+}
+.z-20 {
+  z-index: 20;
+}
+.z-30 {
+  z-index: 30;
+}
+.z-40 {
+  z-index: 40;
+}
+.z-50 {
+  z-index: 50;
+}
+.z-auto {
+  z-index: auto;
+}
+
+

@@ -1,0 +1,24 @@
+{
+  "loginSuccessful": "Login successful",
+  "messageSent": "Reply sent",
+  "recoverMailSent": "Recover mail sent successfully",
+  "newPasswordSet": "New password set",
+  "userAdded": "User added to team",
+  "errors": {
+    "missingMailPassword": "Insert email and password",
+    "cannotPerform": "Cannot perform operation",
+    "cannotLogin": "Login failed",
+    "cannotGetRounds": "Failed to get rounds",
+    "cannotGetMessages": "Failed to get messages",
+    "cannotGetUserData": "Failed to get user data",
+    "cannotResetPassword": "Failed to reset password",
+    "cannotEnableNotifs": "Failed to enable notifications service",
+    "cannotChangePassword": "Failed to change password",
+    "failedUserRegistration": "Failed to register new user to team",
+    "cannotGetUserTypes": "Failed to fetch user types",
+    "notifError": {
+      "title": "Missing notification permissions",
+      "message": "Please reinstall app or go to settings and accept notification permissions"
+    }
+  }
+}

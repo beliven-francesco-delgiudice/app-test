@@ -1,0 +1,20 @@
+{
+  "baseUrl": {
+    "dev": "https://localhost:8082/api",
+    "prod": "https://messagingcenter.perugiatiming.com/api"
+  },
+  "list": {
+    "login": "/authentication",
+    "validate": "/authentication/validatetoken",
+    "resetpw": "/authentication/resetpassword",
+    "changepw": "/authentication/changepassword",
+    "user": "/authentication/userinfo",
+    "userTypes": "/messagetoteam/usertypes",
+    "addUserToTeam": "/messagetoteam/registerteamuser",
+    "rounds": "/messagetoteam/rounds",
+    "onesignal": "/messagetoteam/onesignal",
+    "messages": "/messagetoteam",
+    "pdf": "/messagetoteam/downloadpdf",
+    "reply": "/messagetoteam/replytomessage"
+  }
+}

@@ -1,0 +1,25 @@
+import { loadingController } from '@ionic/vue'
+
+export default {
+  install: (app, options) => {
+    let loading = false
+    let index = 0
+
+    app.config.globalProperties.$loading = {
+      async show () {
+        index++
+        console.log('Showing spinner', index)
+        if (index !== 1) return
+        loading = await loadingController.create(options)
+        return loading.present()
+      },
+      async hide () {
+        index--
+        console.log('Hiding spinner', index)
+
+        if (loading === false && index > 0) console.warn('Have you awaited the show function?')
+        if (index === 0 && loading) await loading.dismiss()
+      }
+    }
+  }
+}

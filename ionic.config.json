@@ -1,0 +1,7 @@
+{
+  "name": "Superbike",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
