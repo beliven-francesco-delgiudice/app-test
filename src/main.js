@@ -26,6 +26,7 @@ import '@ionic/vue/css/display.css'
 import './theme/variables.css'
 import './theme/tailwind.css'
 import './theme/utils.css'
+import './theme/fonts.css'
 
 import masterStore from './store'
 

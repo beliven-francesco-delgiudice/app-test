@@ -1,0 +1,129 @@
+/* @import must be at top of file, otherwise CSS will not work */
+@import url("https://hello.myfonts.net/count/3cdd61");
+
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/assets/fonts-online/HelveticaNeueLTPro-UltLt/font.woff2")
+      format("woff2"),
+    url("/assets/fonts-online/HelveticaNeueLTPro-UltLt/font.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/assets/fonts-online/HelveticaNeueLTPro-Roman/font.woff2")
+      format("woff2"),
+    url("/assets/fonts-online/HelveticaNeueLTPro-Roman/font.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/assets/fonts-online/HelveticaNeueLTPro-Md/font.woff2")
+      format("woff2"),
+    url("/assets/fonts-online/HelveticaNeueLTPro-Md/font.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/assets/fonts-online/HelveticaNeueLTPro-Bd/font.woff2")
+      format("woff2"),
+    url("/assets/fonts-online/HelveticaNeueLTPro-Bd/font.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Helvetica Neue Roman";
+  src: url("/assets/fonts-online/HelveticaNeue-Roman/HelveticaNeue-Roman.woff2")
+      format("woff2"),
+    url("/assets/fonts-online/HelveticaNeue-Roman/HelveticaNeue-Roman.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+/*
+@font-face {
+  font-family: "HelveticaNeueLTPro-BdIt";
+  src: url("/assets/fonts-online/HelveticaNeueLTPro-BdIt/font.woff2")
+      format("woff2"),
+    url("/assets/fonts-online/HelveticaNeueLTPro-BdIt/font.woff") format("woff");
+}
+/*
+@font-face {
+  font-family: "HelveticaNeueLTPro-MdIt";
+  src: url("/assets/fonts-online/HelveticaNeueLTPro-MdIt/font.woff2")
+      format("woff2"),
+    url("/assets/fonts-online/HelveticaNeueLTPro-MdIt/font.woff") format("woff");
+}
+/*
+@font-face {
+  font-family: "HelveticaNeueLTPro-It";
+  src: url("/assets/fonts-online/HelveticaNeueLTPro-It/font.woff2")
+      format("woff2"),
+    url("/assets/fonts-online/HelveticaNeueLTPro-It/font.woff") format("woff");
+}
+*/
+@font-face {
+  font-family: "Futura Std";
+  src: url("/assets/fonts-online/FuturaLTPro-Book/font.woff2") format("woff2"),
+    url("/assets/fonts-online/FuturaLTPro-Book/font.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Futura Std";
+  src: url("/assets/fonts-online/FuturaLTPro-Heavy/font.woff2") format("woff2"),
+    url("/assets/fonts-online/FuturaLTPro-Heavy/font.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+/*
+@font-face {
+  font-family: "FuturaLTPro-HeavyOblique";
+  src: url("/assets/fonts-online/FuturaLTPro-HeavyOblique/font.woff2")
+      format("woff2"),
+    url("/assets/fonts-online/FuturaLTPro-HeavyOblique/font.woff") format("woff");
+}
+*/
+
+.font-futura-book {
+  font-family: "Futura Std", sans-serif;
+  font-weight: normal;
+}
+.font-futura-heavy {
+  font-family: "Futura Std", sans-serif;
+  font-weight: 900;
+}
+.font-helvetica {
+  font-family: "Helvetica Neue", sans-serif;
+  font-weight: normal;
+  letter-spacing: 0.025em;
+}
+.font-helvetica-medium {
+  font-family: "Helvetica Neue", sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+}
+.font-helvetica-bold {
+  font-family: "Helvetica Neue", sans-serif;
+  font-weight: bold;
+}
+.font-helvetica-ultralight {
+  font-family: "Helvetica Neue", sans-serif;
+  font-weight: 100;
+}
+.font-helvetica b {
+  font-family: "Helvetica Neue", sans-serif;
+  font-weight: bold;
+}
+
+.text-28 {
+  font-size: 28px;
+}

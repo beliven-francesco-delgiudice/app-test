@@ -1,6 +1,6 @@
 <template>
-  <Page>
-    Menu
+  <Page :label="$route.name">
+    prova
   </Page>
 </template>
 

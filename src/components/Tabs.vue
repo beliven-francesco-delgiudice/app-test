@@ -1,6 +1,6 @@
 <template>
   <ion-tabs color="primary">
-    <ion-tab-bar slot="bottom" class="tabs-bar bg-black border-none">
+    <ion-tab-bar slot="bottom" class="tabs-bar bg-black border-none px-8">
       <ion-tab-button
         class="bg-black"
         v-for="(tab, i) in routingTabs"

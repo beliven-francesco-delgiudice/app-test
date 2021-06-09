@@ -1,6 +1,6 @@
 <template>
   <ion-page>
-    <ion-header>
+    <ion-header class="ion-no-border">
       <ion-toolbar>
         <ion-buttons v-if="showBack" slot="start">
           <ion-button @click="backButton">
@@ -11,12 +11,22 @@
           </ion-button>
         </ion-buttons>
         <ion-buttons slot="end">
-          <ion-button @click="openWizard">
+          <shadow-button
+            square
+            styles="position:relative; right:2rem;margin:0;"
+            @onClick="openWizard"
+          >
             <IonImg
               src="/assets/button-icons/info.svg"
               className="pointer-events-none"
             />
-          </ion-button>
+          </shadow-button>
+          <!-- <ion-button @click="openWizard">
+            <IonImg
+              src="/assets/button-icons/info.svg"
+              className="pointer-events-none"
+            />
+          </ion-button> -->
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
@@ -28,9 +38,6 @@
       >
         <ion-refresher-content />
       </ion-refresher>
-      <!-- <Title titleClass="pt-6 pb-2 text-black">
-        {{ $route.name }}
-      </Title> -->
       <div id="container">
         <router-view />
       </div>
@@ -41,7 +48,6 @@
 
 <script>
 import Tabs from '../components/Tabs'
-import Title from '../components/Title'
 import {
   IonContent,
   IonHeader,
@@ -54,6 +60,7 @@ import {
   IonRefresherContent
 } from '@ionic/vue'
 import icons from '@/mixins/icons'
+import ShadowButton from '../components/buttons/ShadowButton.vue'
 
 export default {
   mixins: [icons],
@@ -83,8 +90,8 @@ export default {
     IonImg,
     IonRefresher,
     IonRefresherContent,
-    Title,
-    Tabs
+    Tabs,
+    ShadowButton
   }
 }
 </script>
@@ -95,5 +102,8 @@ ion-header {
   --background: transparent;
   --border-width: 0;
   --border-color: transparent;
+}
+ion-toolbar {
+  --min-height: 100px !important;
 }
 </style>
