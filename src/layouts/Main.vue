@@ -104,6 +104,6 @@ ion-header {
   --border-color: transparent;
 }
 ion-toolbar {
-  --min-height: 100px !important;
+  --min-height: 90px !important;
 }
 </style>

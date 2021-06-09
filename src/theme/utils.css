@@ -6,6 +6,10 @@
   border-radius: 8px !important;
   --border-radius: 8px !important;
 }
+.rounded-6 {
+  border-radius: 6px !important;
+  --border-radius: 6px !important;
+}
 .elevated-shadow {
   box-shadow: 0 10px 25px 0 rgba(106,115,119,0.15);
 }

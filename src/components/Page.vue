@@ -1,8 +1,16 @@
 <template>
-  <div class="min-h-screen gradient-background pt-24">
+  <div
+    :class="[
+      withMargin ? 'px-8' : '',
+      'min-h-screen gradient-background pt-20'
+    ]"
+  >
     <Title
       v-if="label"
-      titleClass="pb-4 text-black font-helvetica-bold text-28 block px-8"
+      :titleClass="[
+        withMargin ? '' : 'px-8',
+        'pb-4 text-black font-helvetica-bold text-28 block'
+      ]"
     >
       {{ label }}
     </Title>
@@ -17,7 +25,8 @@ export default {
     Title
   },
   props: {
-    label: String
+    label: String,
+    withMargin: Boolean
   }
 }
 </script>
