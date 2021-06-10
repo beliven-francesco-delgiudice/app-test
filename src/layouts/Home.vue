@@ -2,31 +2,17 @@
   <ion-page>
     <ion-header class="ion-no-border">
       <ion-toolbar>
-        <ion-buttons v-if="showBack" slot="start">
-          <ion-button @click="backButton">
-            <ion-img
-              src="/assets/button-icons/back.svg"
-              className="pointer-events-none"
-            />
-          </ion-button>
-        </ion-buttons>
         <ion-buttons slot="end">
           <shadow-button
             square
             styles="position:relative; right:2rem;margin:0;"
-            @onClick="openWizard"
+            @onClick="openUpdates"
           >
             <ion-img
-              src="/assets/button-icons/info.svg"
+              src="/assets/menu/notifications.svg"
               className="pointer-events-none"
             />
           </shadow-button>
-          <!-- <ion-button @click="openWizard">
-            <ion-img
-              src="/assets/button-icons/info.svg"
-              className="pointer-events-none"
-            />
-          </ion-button> -->
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
@@ -54,19 +40,16 @@ import {
   IonPage,
   IonToolbar,
   IonButtons,
-  IonButton,
   IonImg,
   IonRefresher,
   IonRefresherContent
 } from '@ionic/vue'
-import icons from '@/mixins/icons'
 import ShadowButton from '../components/buttons/ShadowButton.vue'
 
 export default {
-  mixins: [icons],
   methods: {
-    openWizard () {
-      this.$router.push('/wizard')
+    openUpdates () {
+      this.$router.push('/updates')
     },
     backButton () {
       this.$router.push('/home')
@@ -86,7 +69,6 @@ export default {
     IonPage,
     IonToolbar,
     IonButtons,
-    IonButton,
     IonImg,
     IonRefresher,
     IonRefresherContent,

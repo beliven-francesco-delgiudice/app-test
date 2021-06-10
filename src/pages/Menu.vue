@@ -33,7 +33,7 @@
           </square-container>
         </div>
       </ion-list>
-      <hr class="w-full border border-black" />
+      <hr class="w-full border-t border-grey" />
       <div @click="logout" class="py-2 flex">
         <span class="font-helvetica-medium text-black text-14">Logout</span>
       </div>

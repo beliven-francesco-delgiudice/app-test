@@ -6,7 +6,8 @@ import {
 import { isPlatform } from '@ionic/vue'
 
 import MainLayout from '../layouts/Main'
-import NoHeaderLayout from '../layouts/NoHeader'
+import HomeLayout from '../layouts/Home.vue'
+// import NoHeaderLayout from '../layouts/NoHeader'
 
 import Home from '../pages/Home'
 import Menu from '../pages/Menu'
@@ -37,7 +38,7 @@ const routes = [
   // },
   {
     path: '/home',
-    component: NoHeaderLayout,
+    component: HomeLayout,
     children: [
       {
         path: '',

@@ -8,16 +8,23 @@
         :tab="tab.name"
         @click="$router.push(tab.href)"
       >
-        <IonImg :src="tab.icon" :class="tab.active ? '' : 'opacity-50'" />
+        <ion-img :src="tab.icon" :class="tab.active ? '' : 'opacity-50'" />
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>
 </template>
 
 <script>
-import { IonTabBar, IonTabButton, IonTabs, IonImg } from '@ionic/vue'
+import {
+  IonTabBar,
+  IonTabButton,
+  IonTabs,
+  IonImg,
+  useKeyboard
+} from '@ionic/vue'
 
 export default {
+  components: { IonTabBar, IonTabButton, IonTabs, IonImg },
   data () {
     return {
       tabs: [
@@ -57,8 +64,7 @@ export default {
         active: currentRoute.includes(route.href)
       }))
     }
-  },
-  components: { IonTabBar, IonTabButton, IonTabs, IonImg }
+  }
 }
 </script>
 

@@ -2,7 +2,8 @@
   <div
     :class="[
       withMargin ? 'px-8' : '',
-      'min-h-screen gradient-background pt-20'
+      noTopSpace ? '' : 'pt-20',
+      'min-h-screen gradient-background'
     ]"
   >
     <Title
@@ -11,8 +12,8 @@
         withMargin ? '' : 'px-8',
         'pb-4 text-black font-helvetica-bold text-28 block'
       ]"
+      v-html="label"
     >
-      {{ label }}
     </Title>
     <slot></slot>
   </div>
@@ -26,7 +27,8 @@ export default {
   },
   props: {
     label: String,
-    withMargin: Boolean
+    withMargin: Boolean,
+    noTopSpace: Boolean
   }
 }
 </script>

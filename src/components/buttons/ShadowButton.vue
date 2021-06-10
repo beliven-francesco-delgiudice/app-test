@@ -1,7 +1,7 @@
 <template>
   <ion-button
     @click="emitClick"
-    :class="[bgClass || 'bg-white', 'elevated-shadow rounded-8']"
+    :class="[bgClass || 'bg-white', 'elevated-shadow rounded-8 p-0']"
     :style="computedStyle"
   >
     <slot></slot>
