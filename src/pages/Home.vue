@@ -1,6 +1,25 @@
 <template>
-  <div class="min-h-screen gradient-background relative">
-    <div class="w-full relative pb-20">
+  <div
+    class="min-h-screen gradient-background relative max-h-screen overflow-y-auto pb-20"
+  >
+    <!-- Hero -->
+    <div class="w-full relative">
+      <div
+        class="bg-transparent absolute top-0 flex px-8 w-full z-10"
+        style="height:90px"
+      >
+        <shadow-button
+          square
+          styles="position:relative;"
+          bgClass="bg-white ml-auto my-auto"
+          @onClick="openUpdates"
+        >
+          <ion-img
+            src="/assets/menu/notifications.svg"
+            className="pointer-events-none"
+          />
+        </shadow-button>
+      </div>
       <ion-img src="/assets/hero.png" class="w-full z-0" />
       <div class="absolute top-0 z-10 w-full h-full">
         <Title
@@ -13,22 +32,117 @@
         <searchbar classes="mt-4" />
       </div>
     </div>
-    <div class="w-full relative pt-8">
-      <carousel>
-        <grey-container
+    <!-- Products -->
+    <div class="w-full relative pt-4 overflow-y-visible">
+      <carousel height="h-24">
+        <!-- <ion-slide
           v-for="(prod, i) in products"
           :key="i"
-          :classes="[i === 0 ? 'ml-8 ' : '', ' p-4 mr-4 overflow-visible']"
+          class="w-auto-important"
+        > -->
+        <div
+          v-for="(prod, i) in products"
+          :key="i"
+          class="w-auto-important flex"
         >
-          <div class="relative mr-2 width-40">
-            <ion-img :src="prod.img" class="absolute bottom-0" />
-          </div>
-          <span class="font-helvetica-medium text-black text-16">{{
-            prod.name
-          }}</span>
-        </grey-container>
+          <grey-container
+            :classes="[
+              i === 0 ? 'ml-8 ' : '',
+              ' p-6 mr-4 overflow-y-visible mt-auto'
+            ]"
+          >
+            <div class="relative mr-2 width-44 overflow-y-visible">
+              <ion-img :src="prod.img" class="absolute bottom-0" />
+            </div>
+            <span class="font-helvetica-medium text-black text-16">{{
+              prod.name
+            }}</span>
+          </grey-container>
+        </div>
+        <!-- </ion-slide> -->
       </carousel>
     </div>
+
+    <!-- Documents -->
+    <home-titled-container label="Documents" path="/documents">
+      <carousel>
+        <!-- <ion-slide
+          v-for="(prod, i) in products"
+          :key="i"
+          class="w-auto-important"
+        > -->
+        <div
+          v-for="(prod, i) in products"
+          :key="i"
+          class="w-auto-important flex"
+        >
+          <grey-container
+            :classes="[
+              i === 0 ? 'ml-8 ' : '',
+              ' p-6 mr-4 overflow-y-visible mt-auto'
+            ]"
+          >
+            <div class="relative mr-2 width-44 overflow-y-visible">
+              <ion-img :src="prod.img" class="absolute bottom-0" />
+            </div>
+            <span class="font-helvetica-medium text-black text-16">{{
+              prod.name
+            }}</span>
+          </grey-container>
+        </div>
+        <!-- </ion-slide> -->
+      </carousel>
+    </home-titled-container>
+
+    <!-- Medical Education -->
+    <home-titled-container label="Medical Education" path="/meded">
+      <carousel>
+        <!-- <ion-slide
+          v-for="(prod, i) in products"
+          :key="i"
+          class="w-auto-important"
+        > -->
+        <div
+          v-for="(prod, i) in products"
+          :key="i"
+          class="w-auto-important flex"
+        >
+          <grey-container
+            :classes="[
+              i === 0 ? 'ml-8 ' : '',
+              ' p-6 mr-4 overflow-y-visible mt-auto'
+            ]"
+          >
+            <div class="relative mr-2 width-44 overflow-y-visible">
+              <ion-img :src="prod.img" class="absolute bottom-0" />
+            </div>
+            <span class="font-helvetica-medium text-black text-16">{{
+              prod.name
+            }}</span>
+          </grey-container>
+        </div>
+        <!-- </ion-slide> -->
+      </carousel>
+    </home-titled-container>
+
+    <!-- News -->
+    <home-titled-container label="News" path="/news">
+      <carousel>
+        <!-- <ion-slide
+          v-for="(prod, i) in products"
+          :key="i"
+          class="w-auto-important"
+        > -->
+        <home-news
+          v-for="(singleNews, i) in news"
+          :key="i"
+          :news="singleNews"
+        />
+
+        <!-- </ion-slide> -->
+      </carousel>
+    </home-titled-container>
+
     <slot></slot>
   </div>
 </template>
@@ -39,13 +153,20 @@ import Title from '../components/Title.vue'
 import Searchbar from '../components/Searchbar.vue'
 import Carousel from '../components/Carousel.vue'
 import GreyContainer from '../components/containers/GreyContainer.vue'
+import HomeTitledContainer from '../components/home/HomeTitledContainer.vue'
+import HomeNews from '../components/home/HomeNews.vue'
+import ShadowButton from '../components/containers/ShadowButton.vue'
 export default {
   components: {
     IonImg,
+    // IonSlide,
     Title,
     Searchbar,
     Carousel,
-    GreyContainer
+    GreyContainer,
+    HomeTitledContainer,
+    ShadowButton,
+    HomeNews
   },
   data () {
     return {
@@ -62,6 +183,18 @@ export default {
           name: 'Shoulder',
           img: '/assets/test/product-vertical-home.svg'
         }
+      ],
+      news: [
+        {
+          id: 1,
+          img: '/assets/test/news.jpg',
+          text: '1st Surgery using the Trabecular Titanium™ Tibial Plate'
+        },
+        {
+          id: 2,
+          img: '/assets/test/news.jpg',
+          text: '1st Surgery using the Trabecular Titanium™ Tibial Plate'
+        }
       ]
     }
   },
@@ -72,3 +205,9 @@ export default {
   }
 }
 </script>
+<style scoped>
+.home-container {
+  width: 240px;
+  min-width: 240px;
+}
+</style>

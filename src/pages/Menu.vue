@@ -12,7 +12,7 @@
             <square-container
               bgClass="bg-light-grey"
               classes="mr-2"
-              squareSize="40"
+              squareSize="44"
             >
               <ion-img :src="'/assets/menu/' + item.img" />
             </square-container>
@@ -69,6 +69,11 @@ export default {
           name: 'Medical Education',
           href: '/meded',
           img: 'meded.svg'
+        },
+        {
+          name: 'News',
+          href: '/news',
+          img: 'news.svg'
         },
         {
           name: 'Congresses',

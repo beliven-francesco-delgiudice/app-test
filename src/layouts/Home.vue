@@ -1,7 +1,7 @@
 <template>
-  <ion-page>
-    <ion-header class="ion-no-border">
-      <ion-toolbar>
+  <ion-page class="relative">
+    <!-- <ion-header class="ion-no-border">
+        <ion-toolbar>
         <ion-buttons slot="end">
           <shadow-button
             square
@@ -15,7 +15,7 @@
           </shadow-button>
         </ion-buttons>
       </ion-toolbar>
-    </ion-header>
+    </ion-header> -->
     <ion-content :fullscreen="true" id="content">
       <ion-refresher
         v-if="refreshAction"
@@ -36,15 +36,15 @@
 import Tabs from '../components/Tabs'
 import {
   IonContent,
-  IonHeader,
+  // IonHeader,
   IonPage,
-  IonToolbar,
-  IonButtons,
-  IonImg,
+  // IonToolbar,
+  // IonButtons,
+  // IonImg,
   IonRefresher,
   IonRefresherContent
 } from '@ionic/vue'
-import ShadowButton from '../components/containers/ShadowButton.vue'
+// import ShadowButton from '../components/containers/ShadowButton.vue'
 
 export default {
   methods: {
@@ -65,15 +65,15 @@ export default {
   },
   components: {
     IonContent,
-    IonHeader,
+    // IonHeader,
     IonPage,
-    IonToolbar,
-    IonButtons,
-    IonImg,
+    // IonToolbar,
+    // IonButtons,
+    // IonImg,
     IonRefresher,
     IonRefresherContent,
-    Tabs,
-    ShadowButton
+    Tabs
+    // ShadowButton
   }
 }
 </script>

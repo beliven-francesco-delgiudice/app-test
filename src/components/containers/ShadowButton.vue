@@ -1,19 +1,15 @@
 <template>
-  <ion-button
+  <div
     @click="emitClick"
     :class="[bgClass || 'bg-white', 'elevated-shadow rounded-8 p-0']"
     :style="computedStyle"
   >
     <slot></slot>
-  </ion-button>
+  </div>
 </template>
 <script>
-import { IonButton } from '@ionic/vue'
-
 export default {
-  components: {
-    IonButton
-  },
+  components: {},
   props: {
     bgClass: String,
     styles: String,
@@ -26,7 +22,7 @@ export default {
         style += this.styles + ' '
       }
       if (this.square) {
-        style += 'width:40px;height:40px; '
+        style += 'width:44px;height:44px; '
       }
       return style
     }
