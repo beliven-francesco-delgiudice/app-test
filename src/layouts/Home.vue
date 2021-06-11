@@ -44,7 +44,7 @@ import {
   IonRefresher,
   IonRefresherContent
 } from '@ionic/vue'
-import ShadowButton from '../components/buttons/ShadowButton.vue'
+import ShadowButton from '../components/containers/ShadowButton.vue'
 
 export default {
   methods: {

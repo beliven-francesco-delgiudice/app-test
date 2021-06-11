@@ -18,6 +18,20 @@
 }
 
 
+@media only screen and (max-height: 600px) and (max-width: 700px) and (orientation: portrait) {
+  /* mobile  portrait */
+  .hide-on-keyboard-open {
+    display: none;
+  }
+}
+
+@media only screen and (max-height: 700px) and (min-width: 701px) and (orientation: portrait) {
+  /* tablet portrait  */
+  .hide-on-keyboard-open {
+    display: none;
+  }
+}
+
 .margin-center {
   margin: 0px auto;
 }

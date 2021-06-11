@@ -1,18 +1,18 @@
 {
-  "appId": "com.softpi.superbike",
-  "appName": "Messaging Center SBK",
+  "appId": "com.softpi.limAPP",
+  "appName": "LimAPP",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "dist",
   "android": {
     "allowMixedContent": true
   },
-  "backgroundColor": "#121212",
+  "backgroundColor": "#1C1C1B",
   "plugins": {
     "SplashScreen": {
       "launchShowDuration": 6000,
       "androidScaleType": "CENTER_CROP",
-      "backgroundColor": "#121212"
+      "backgroundColor": "#1C1C1B"
     }
   },
   "cordova": {}

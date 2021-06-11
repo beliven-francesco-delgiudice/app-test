@@ -15,13 +15,7 @@
 </template>
 
 <script>
-import {
-  IonTabBar,
-  IonTabButton,
-  IonTabs,
-  IonImg,
-  useKeyboard
-} from '@ionic/vue'
+import { IonTabBar, IonTabButton, IonTabs, IonImg } from '@ionic/vue'
 
 export default {
   components: { IonTabBar, IonTabButton, IonTabs, IonImg },

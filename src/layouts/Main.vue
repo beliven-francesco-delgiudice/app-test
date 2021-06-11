@@ -60,7 +60,7 @@ import {
   IonRefresherContent
 } from '@ionic/vue'
 import icons from '@/mixins/icons'
-import ShadowButton from '../components/buttons/ShadowButton.vue'
+import ShadowButton from '../components/containers/ShadowButton.vue'
 
 export default {
   mixins: [icons],

@@ -43,7 +43,7 @@
 
 <script>
 import Page from '../components/Page.vue'
-import SquareContainer from '../components/SquareContainer.vue'
+import SquareContainer from '../components/containers/SquareContainer.vue'
 import { IonList, IonImg } from '@ionic/vue'
 export default {
   components: {
