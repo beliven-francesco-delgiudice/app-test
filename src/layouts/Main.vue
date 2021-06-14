@@ -39,10 +39,9 @@
         <ion-refresher-content />
       </ion-refresher>
       <div id="container">
-        <router-view />
+        <Tabs />
       </div>
     </ion-content>
-    <Tabs />
   </ion-page>
 </template>
 
