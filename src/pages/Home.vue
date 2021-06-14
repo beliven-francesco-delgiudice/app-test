@@ -65,69 +65,49 @@
 
     <!-- Documents -->
     <home-titled-container label="Documents" path="/documents">
-      <carousel>
-        <!-- <ion-slide
-          v-for="(prod, i) in products"
-          :key="i"
-          class="w-auto-important"
-        > -->
-        <div
-          v-for="(prod, i) in products"
-          :key="i"
-          class="w-auto-important flex"
-        >
-          <grey-container
-            :classes="[
-              i === 0 ? 'ml-8 ' : '',
-              ' p-6 mr-4 overflow-y-visible mt-auto'
-            ]"
-          >
-            <div class="relative mr-2 width-44 overflow-y-visible">
-              <ion-img :src="prod.img" class="absolute bottom-0" />
-            </div>
-            <span class="font-helvetica-medium text-black text-16">{{
-              prod.name
-            }}</span>
-          </grey-container>
-        </div>
-        <!-- </ion-slide> -->
+      <carousel classes="py-4 -my-4">
+        <home-documents
+          title="Last saved"
+          :docs="documents.last_saved"
+          classes="ml-8"
+        />
+        <home-documents title="Other" :docs="documents.other" />
       </carousel>
     </home-titled-container>
 
     <!-- Medical Education -->
     <home-titled-container label="Medical Education" path="/meded">
       <carousel>
-        <!-- <ion-slide
-          v-for="(prod, i) in products"
-          :key="i"
-          class="w-auto-important"
-        > -->
         <home-meded
           v-for="(singleMed, i) in meded"
           :key="i"
           :index="i"
           :data="singleMed"
         />
-        <!-- </ion-slide> -->
       </carousel>
     </home-titled-container>
 
     <!-- News -->
     <home-titled-container label="News" path="/news">
       <carousel>
-        <!-- <ion-slide
-          v-for="(prod, i) in products"
-          :key="i"
-          class="w-auto-important"
-        > -->
         <home-news
           v-for="(singleNews, i) in news"
           :key="i"
           :index="i"
           :news="singleNews"
         />
+      </carousel>
+    </home-titled-container>
 
-        <!-- </ion-slide> -->
+    <!-- Congresses -->
+    <home-titled-container label="Congresses" path="/congresses">
+      <carousel classes="py-4 -mt-4">
+        <home-congress
+          v-for="(congress, i) in congresses"
+          :key="i"
+          :index="i"
+          :congress="congress"
+        />
       </carousel>
     </home-titled-container>
 
@@ -144,6 +124,8 @@ import GreyContainer from '../components/containers/GreyContainer.vue'
 import HomeTitledContainer from '../components/home/HomeTitledContainer.vue'
 import HomeNews from '../components/home/HomeNews.vue'
 import HomeMeded from '../components/home/HomeMeded.vue'
+import HomeCongress from '../components/home/HomeCongress.vue'
+import HomeDocuments from '../components/home/HomeDocuments.vue'
 import ShadowButton from '../components/containers/ShadowButton.vue'
 export default {
   components: {
@@ -156,7 +138,9 @@ export default {
     HomeTitledContainer,
     ShadowButton,
     HomeNews,
-    HomeMeded
+    HomeMeded,
+    HomeCongress,
+    HomeDocuments
   },
   data () {
     return {
@@ -174,6 +158,68 @@ export default {
           img: '/assets/test/product-vertical-home.svg'
         }
       ],
+      documents: {
+        last_saved: [
+          {
+            image: '/assets/test/folder.jpg',
+            type: 'folder',
+            label: 'Lorem ipsum',
+            size: '3.6MB',
+            link: 'link'
+          },
+          {
+            image: '/assets/test/file.jpg',
+            type: 'file',
+            label: 'Lorem ipsum',
+            size: '3.6MB',
+            link: 'link'
+          },
+          {
+            image: '/assets/test/folder.jpg',
+            type: 'folder',
+            label: 'Lorem ipsum',
+            size: '3.6MB',
+            link: 'link'
+          },
+          {
+            image: '/assets/test/file.jpg',
+            type: 'file',
+            label: 'Lorem ipsum',
+            size: '3.6MB',
+            link: 'link'
+          }
+        ],
+        other: [
+          {
+            image: '/assets/test/folder.jpg',
+            type: 'folder',
+            label: 'Lorem ipsum',
+            size: '3.6MB',
+            link: 'link'
+          },
+          {
+            image: '/assets/test/file.jpg',
+            type: 'file',
+            label: 'Lorem ipsum',
+            size: '3.6MB',
+            link: 'link'
+          },
+          {
+            image: '/assets/test/folder.jpg',
+            type: 'folder',
+            label: 'Lorem ipsum',
+            size: '3.6MB',
+            link: 'link'
+          },
+          {
+            image: '/assets/test/file.jpg',
+            type: 'file',
+            label: 'Lorem ipsum',
+            size: '3.6MB',
+            link: 'link'
+          }
+        ]
+      },
       news: [
         {
           id: 1,
@@ -239,6 +285,13 @@ export default {
             }
           ]
         }
+      ],
+      congresses: [
+        {
+          title: 'AAOS | 2021 Annual Meeting',
+          location: 'San Diego, California - USA',
+          date: '31 Aug - 4 Sep'
+        }
       ]
     }
   },
@@ -253,5 +306,9 @@ export default {
 .home-container {
   width: 240px;
   min-width: 240px;
+}
+.home-big-container {
+  width: 308px;
+  min-width: 308px;
 }
 </style>

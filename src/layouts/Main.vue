@@ -18,7 +18,7 @@
           >
             <ion-img
               src="/assets/button-icons/info.svg"
-              className="pointer-events-none"
+              className="width-24 height-24 pointer-events-none m-auto"
             />
           </shadow-button>
           <!-- <ion-button @click="openWizard">

@@ -43,6 +43,7 @@ const routes = [
       {
         path: '',
         name: 'Home',
+        meta: { refreshAction: 'getHome', backAction: 'exit' },
         component: Home
       }
     ]

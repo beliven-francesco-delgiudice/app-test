@@ -1,7 +1,7 @@
 <template>
   <div
     @click="emitClick"
-    :class="[bgClass || 'bg-white', 'elevated-shadow rounded-8 p-0']"
+    :class="[bgClass || 'bg-white', 'elevated-shadow rounded-8 p-0 flex']"
     :style="computedStyle"
   >
     <slot></slot>

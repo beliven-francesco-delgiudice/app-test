@@ -2,6 +2,7 @@
   <div
     :class="[
       height || '',
+      classes || '',
       'flex w-full max-w-full overflow-x-auto carousel overflow-y-visible'
     ]"
   >
@@ -13,7 +14,8 @@
 export default {
   components: {},
   props: {
-    height: [Number, String]
+    height: [Number, String],
+    classes: [String, Array]
   }
 }
 </script>

@@ -7,6 +7,9 @@
 .bg-light-grey {
   background: #F5F4F4;
 }
+.bg-light-grey2 {
+  background: #F7F6F6;
+}
 .bg-red {
   background: #E30513;
 }
@@ -23,8 +26,14 @@
 .text-white {
   color: #FFFFFF;
 }
+.text-dark-grey {
+  color: #545453;
+}
 .text-grey {
   color: #969899;
+}
+.text-red {
+  color: #E30513;
 }
 
 .block {
@@ -62,12 +71,21 @@
 .absolute {
   position: absolute;
 }
+.fixed {
+  position: fixed;
+}
 
 .top-0 {
   top: 0;
 }
 .bottom-0 {
   bottom: 0;
+}
+.right-0 {
+  right: 0;
+}
+.left-0 {
+  left: 0;
 }
 
 
@@ -82,6 +100,9 @@
 .w-auto-important {
   width: auto !important;
 }
+.width-4 {
+  width:4px
+}
 .width-12 {
   width:12px
 }
@@ -94,7 +115,6 @@
 .width-44 {
   width: 44px
 }
-
 .w-10\/12 {
   width: 83.333333%;
 }
@@ -114,6 +134,9 @@
 
 .height-12 {
   height:12px
+}
+.height-18 {
+  height:18px
 }
 .height-24 {
   height:24px
@@ -242,6 +265,10 @@
 .ml-auto {
   margin-left: auto
 }
+.mx-auto {
+  margin-right:auto;
+  margin-left: auto;
+}
 .mx-8 {
   margin-left: 2rem;
   margin-right: 2rem;
@@ -275,11 +302,18 @@
 .mt-auto {
   margin-top: auto;
 }
+.-my-4 {
+  margin-top: -1rem;
+  margin-bottom: -1rem;
+}
 .mt-2 {
   margin-top:0.5rem;
 }
 .mt-4 {
   margin-top:1rem;
+}
+.-mt-4 {
+  margin-top:-1rem;
 }
 .mb-2 {
   margin-bottom: 0.5rem;

@@ -1,21 +1,5 @@
 <template>
   <ion-page>
-    <!-- <ion-header class="ion-no-border">
-        <ion-toolbar>
-        <ion-buttons slot="end">
-          <shadow-button
-            square
-            styles="position:relative; right:2rem;margin:0;"
-            @onClick="openUpdates"
-          >
-            <ion-img
-              src="/assets/menu/notifications.svg"
-              className="pointer-events-none"
-            />
-          </shadow-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header> -->
     <ion-content :fullscreen="true" id="content">
       <ion-refresher
         slot="fixed"
@@ -25,24 +9,23 @@
         <ion-refresher-content />
       </ion-refresher>
       <div id="container">
-        <router-view />
+        <Tabs />
       </div>
     </ion-content>
-    <Tabs />
   </ion-page>
 </template>
 
 <script>
 import Tabs from '../components/Tabs'
 import {
-  IonContent,
+  // IonContent,
   // IonHeader,
-  IonPage,
+  IonPage
   // IonToolbar,
   // IonButtons,
   // IonImg,
-  IonRefresher,
-  IonRefresherContent
+  // IonRefresher,
+  // IonRefresherContent
 } from '@ionic/vue'
 // import ShadowButton from '../components/containers/ShadowButton.vue'
 
@@ -64,14 +47,14 @@ export default {
     }
   },
   components: {
-    IonContent,
+    // IonContent,
     // IonHeader,
     IonPage,
     // IonToolbar,
     // IonButtons,
     // IonImg,
-    IonRefresher,
-    IonRefresherContent,
+    // IonRefresher,
+    // IonRefresherContent,
     Tabs
     // ShadowButton
   }
