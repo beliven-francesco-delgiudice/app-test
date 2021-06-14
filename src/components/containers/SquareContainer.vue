@@ -10,7 +10,7 @@ export default {
     bgClass: String,
     squareSize: String,
     rounded: String,
-    classes: String
+    classes: [String, Array]
   },
   computed: {
     divClass () {

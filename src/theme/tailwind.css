@@ -13,12 +13,18 @@
 .bg-transparent {
   background: transparent !important;
 }
+.bg-light-red {
+  background: rgba(227,5,19,0.05);
+}
 
 .text-black {
   color: #1C1C1B;
 }
 .text-white {
   color: #FFFFFF;
+}
+.text-grey {
+  color: #969899;
 }
 
 .block {
@@ -160,6 +166,9 @@
   --padding-end: 0 !important;
 }
 
+.p-1 {
+  padding: 0.25rem;
+}
 .p-4 {
   padding: 1rem;
 }
@@ -224,6 +233,12 @@
 }
 
 
+.m-auto {
+  margin:auto;
+}
+.mr-auto {
+  margin-right:auto
+}
 .ml-auto {
   margin-left: auto
 }
@@ -260,8 +275,14 @@
 .mt-auto {
   margin-top: auto;
 }
+.mt-2 {
+  margin-top:0.5rem;
+}
 .mt-4 {
   margin-top:1rem;
+}
+.mb-2 {
+  margin-bottom: 0.5rem;
 }
 .mb-4 {
   margin-bottom: 1rem;

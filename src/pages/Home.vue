@@ -102,25 +102,12 @@
           :key="i"
           class="w-auto-important"
         > -->
-        <div
-          v-for="(prod, i) in products"
+        <home-meded
+          v-for="(singleMed, i) in meded"
           :key="i"
-          class="w-auto-important flex"
-        >
-          <grey-container
-            :classes="[
-              i === 0 ? 'ml-8 ' : '',
-              ' p-6 mr-4 overflow-y-visible mt-auto'
-            ]"
-          >
-            <div class="relative mr-2 width-44 overflow-y-visible">
-              <ion-img :src="prod.img" class="absolute bottom-0" />
-            </div>
-            <span class="font-helvetica-medium text-black text-16">{{
-              prod.name
-            }}</span>
-          </grey-container>
-        </div>
+          :index="i"
+          :data="singleMed"
+        />
         <!-- </ion-slide> -->
       </carousel>
     </home-titled-container>
@@ -136,6 +123,7 @@
         <home-news
           v-for="(singleNews, i) in news"
           :key="i"
+          :index="i"
           :news="singleNews"
         />
 
@@ -155,6 +143,7 @@ import Carousel from '../components/Carousel.vue'
 import GreyContainer from '../components/containers/GreyContainer.vue'
 import HomeTitledContainer from '../components/home/HomeTitledContainer.vue'
 import HomeNews from '../components/home/HomeNews.vue'
+import HomeMeded from '../components/home/HomeMeded.vue'
 import ShadowButton from '../components/containers/ShadowButton.vue'
 export default {
   components: {
@@ -166,7 +155,8 @@ export default {
     GreyContainer,
     HomeTitledContainer,
     ShadowButton,
-    HomeNews
+    HomeNews,
+    HomeMeded
   },
   data () {
     return {
@@ -194,6 +184,60 @@ export default {
           id: 2,
           img: '/assets/test/news.jpg',
           text: '1st Surgery using the Trabecular Titanium™ Tibial Plate'
+        }
+      ],
+      meded: [
+        {
+          course_id: 12,
+          date: '14-15 June',
+          title: 'Smart SPACE: your digital companion from pre-op planning to…',
+          category: 'course',
+          pillar: {
+            image: '/assets/test/shoulder.jpg',
+            name: 'Shoulder'
+          },
+          faculties: [
+            {
+              name: 'A',
+              image: '/assets/test/faculty1.jpg'
+            },
+            {
+              name: 'B',
+              image: '/assets/test/faculty2.jpg'
+            },
+            {
+              name: 'C',
+              image: '/assets/test/faculty3.jpg'
+            }
+          ]
+        },
+        {
+          course_id: 13,
+          date: '17-18 June',
+          title: 'Smart SPACE: your digital companion from pre-op planning to…',
+          category: 'limaonlineeducation',
+          pillar: {
+            image: '/assets/test/shoulder.jpg',
+            name: 'Shoulder'
+          },
+          faculties: [
+            {
+              name: 'A',
+              image: '/assets/test/faculty1.jpg'
+            },
+            {
+              name: 'B',
+              image: '/assets/test/faculty2.jpg'
+            },
+            {
+              name: 'C',
+              image: '/assets/test/faculty3.jpg'
+            },
+            {
+              name: 'D',
+              image: '/assets/test/faculty2.jpg'
+            }
+          ]
         }
       ]
     }

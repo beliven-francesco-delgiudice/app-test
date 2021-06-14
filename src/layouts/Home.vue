@@ -1,5 +1,5 @@
 <template>
-  <ion-page class="relative">
+  <ion-page>
     <!-- <ion-header class="ion-no-border">
         <ion-toolbar>
         <ion-buttons slot="end">
@@ -18,8 +18,8 @@
     </ion-header> -->
     <ion-content :fullscreen="true" id="content">
       <ion-refresher
-        v-if="refreshAction"
         slot="fixed"
+        v-if="refreshAction"
         @ionRefresh="$store.dispatch(refreshAction, $event)"
       >
         <ion-refresher-content />

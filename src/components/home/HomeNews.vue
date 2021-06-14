@@ -1,7 +1,7 @@
 <template>
   <div
     @click="routeToNews"
-    :class="[i === 0 ? 'ml-8 ' : '', 'flex flex-col home-container mr-4']"
+    :class="[index === 0 ? 'ml-8 ' : '', 'flex flex-col home-container mr-4']"
   >
     <div
       class="news-image w-full overflow-hidden rounded-12 mb-4 container-shadow"
