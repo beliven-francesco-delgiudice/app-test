@@ -307,7 +307,7 @@ export default {
   methods: {
     routeToSegment (segment) {
       const link = `products/${segment.id}`
-      this.$router.go({ path: link })
+      this.$router.push({ path: link })
     }
   }
 }
