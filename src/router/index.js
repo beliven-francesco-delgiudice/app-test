@@ -12,6 +12,10 @@ import HomeLayout from '../layouts/Home.vue'
 import Home from '../pages/Home'
 import Menu from '../pages/Menu'
 
+import ProductsIndex from '../pages/products/ProductsIndex.vue'
+import ProductsSegment from '../pages/products/ProductsSegment.vue'
+import ProductsCategory from '../pages/products/ProductsCategory.vue'
+
 // import masterStore from '../store'
 
 const routes = [
@@ -55,7 +59,45 @@ const routes = [
       {
         path: '',
         name: 'LimApp',
-        component: Menu
+        component: Menu,
+        meta: {
+          showWizard: true
+        }
+      }
+    ]
+  },
+  {
+    path: '/products',
+    component: MainLayout,
+    children: [
+      {
+        path: '/products/:segment/category/:category',
+        name: 'ProductCategory',
+        component: ProductsCategory,
+        meta: {
+          showBack: true
+        }
+      },
+      {
+        path: '/products/detail/:id',
+        name: 'ProductCategory',
+        component: ProductsCategory,
+        meta: {
+          showBack: true
+        }
+      },
+      {
+        path: '/products/:segment',
+        name: 'ProductSegment',
+        component: ProductsSegment,
+        meta: {
+          showBack: true
+        }
+      },
+      {
+        path: '',
+        name: 'Products',
+        component: ProductsIndex
       }
     ]
   }
@@ -68,12 +110,13 @@ const router = createRouter({
   routes
 })
 
-// router.beforeEach((to, from, next) => {
-//   if (to.meta.noAuth === true) return next()
+router.beforeEach((to, from, next) => {
+  // if (to.meta.noAuth === true) return next()
 
-//   if (!masterStore.getters.loggedIn) return next('/login')
+  // if (!masterStore.getters.loggedIn) return next('/login')
+  console.log('to:', to, ' from:', from)
 
-//   next()
-// })
+  next()
+})
 
 export default router

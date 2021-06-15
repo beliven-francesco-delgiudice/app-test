@@ -1,4 +1,18 @@
 <template>
+  <!-- <ion-page>
+    <ion-content :fullscreen="true" id="content">
+      <ion-refresher
+        slot="fixed"
+        v-if="refreshAction"
+        @ionRefresh="$store.dispatch(refreshAction, $event)"
+      >
+        <ion-refresher-content />
+      </ion-refresher>
+      <div id="container">
+        <Tabs home />
+      </div>
+    </ion-content>
+  </ion-page> -->
   <ion-page>
     <ion-content :fullscreen="true" id="content">
       <ion-refresher
@@ -9,25 +23,21 @@
         <ion-refresher-content />
       </ion-refresher>
       <div id="container">
-        <Tabs />
+        <router-view />
       </div>
     </ion-content>
+    <Tabs />
   </ion-page>
 </template>
 
 <script>
 import Tabs from '../components/Tabs'
 import {
-  // IonContent,
-  // IonHeader,
-  IonPage
-  // IonToolbar,
-  // IonButtons,
-  // IonImg,
-  // IonRefresher,
-  // IonRefresherContent
+  IonContent,
+  IonPage,
+  IonRefresher,
+  IonRefresherContent
 } from '@ionic/vue'
-// import ShadowButton from '../components/containers/ShadowButton.vue'
 
 export default {
   methods: {
@@ -47,16 +57,11 @@ export default {
     }
   },
   components: {
-    // IonContent,
-    // IonHeader,
+    IonContent,
     IonPage,
-    // IonToolbar,
-    // IonButtons,
-    // IonImg,
-    // IonRefresher,
-    // IonRefresherContent,
+    IonRefresher,
+    IonRefresherContent,
     Tabs
-    // ShadowButton
   }
 }
 </script>

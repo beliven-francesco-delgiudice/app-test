@@ -30,7 +30,7 @@
 
 <script>
 import SquareContainer from './containers/SquareContainer.vue'
-import { IonImg } from '@ionic/vue'
+import { IonImg, actionSheetController } from '@ionic/vue'
 
 export default {
   components: { SquareContainer, IonImg },
@@ -64,9 +64,76 @@ export default {
       //open document through plugin
       alert(this.document.link)
     },
-    openDocumentMenu () {
-      alert('document menu')
+    async openDocumentMenu () {
+      const actionMenu = await actionSheetController.create({
+        header: this.document.label,
+        animated: true,
+        cssClass: 'document-action-menu',
+        buttons: [
+          {
+            text: 'Open',
+            handler: () => {
+              console.log('open')
+            }
+          },
+          {
+            text: 'Download',
+            handler: () => {
+              console.log('download')
+            }
+          },
+          {
+            text: 'Share',
+            handler: () => {
+              console.log('Share clicked')
+            }
+          }
+        ]
+      })
+      await actionMenu.present()
+      const { role } = await actionMenu.onDidDismiss()
+      console.log('onDidDismiss resolved with role', role)
     }
   }
 }
 </script>
+
+<style>
+.document-action-menu {
+  --background: white;
+}
+.document-action-menu .action-sheet-group {
+  border-radius: 24px 24px 0 0;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.document-action-menu .action-sheet-title {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: normal;
+  letter-spacing: 0.025em;
+  color: #707273;
+  font-size: 16px;
+  border-bottom: 1px solid #ededed;
+  padding: 1.5rem 0 1.5rem 0;
+  height: auto;
+  line-height: 16px;
+  margin-bottom: 1rem;
+}
+
+.document-action-menu button {
+  padding: 1.5rem 0 1.5rem 0 !important;
+  margin-bottom: 0.5rem !important;
+  height: auto !important;
+}
+.document-action-menu .action-sheet-group > button:last-child {
+  margin-bottom: 1.5rem !important;
+}
+.document-action-menu button > span {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+  font-size: 16px;
+  color: #1c1c1b;
+}
+</style>

@@ -41,14 +41,15 @@
           class="w-auto-important"
         > -->
         <div
+          class="w-auto-important flex"
           v-for="(prod, i) in products"
           :key="i"
-          class="w-auto-important flex"
+          @click="routeToSegment(prod)"
         >
           <grey-container
             :classes="[
               i === 0 ? 'ml-8 ' : '',
-              ' p-6 mr-4 overflow-y-visible mt-auto'
+              ' p-6 mr-4 overflow-y-visible mt-auto pointer-events-none'
             ]"
           >
             <div class="relative mr-2 width-44 overflow-y-visible">
@@ -146,14 +147,17 @@ export default {
     return {
       products: [
         {
+          id: 2,
           name: 'Hip',
           img: '/assets/test/product-vertical-home.svg'
         },
         {
+          id: 3,
           name: 'Knee',
           img: '/assets/test/product-square-home.svg'
         },
         {
+          id: 4,
           name: 'Shoulder',
           img: '/assets/test/product-vertical-home.svg'
         }
@@ -298,6 +302,12 @@ export default {
   computed: {
     userName () {
       return 'Astrid'
+    }
+  },
+  methods: {
+    routeToSegment (segment) {
+      const link = `products/${segment.id}`
+      this.$router.go({ path: link })
     }
   }
 }

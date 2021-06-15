@@ -24,6 +24,10 @@
   box-shadow: 0 8px 21px 0 rgba(106,115,119,0.15);
 }
 
+.main-layout ion-tabs > .tabs-inner:first-child {
+  display: none !important;
+}
+
 @media only screen and (max-height: 600px) and (max-width: 700px) and (orientation: portrait) {
   /* mobile  portrait */
   .hide-on-keyboard-open {

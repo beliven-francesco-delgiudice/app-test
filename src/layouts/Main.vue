@@ -1,5 +1,5 @@
 <template>
-  <ion-page>
+  <!-- <ion-page class="main-layout">
     <ion-header class="ion-no-border">
       <ion-toolbar>
         <ion-buttons v-if="showBack" slot="start">
@@ -12,6 +12,7 @@
         </ion-buttons>
         <ion-buttons slot="end">
           <shadow-button
+            v-if="showWizard"
             square
             styles="position:relative; right:2rem;margin:0;"
             @onClick="openWizard"
@@ -21,12 +22,6 @@
               className="width-24 height-24 pointer-events-none m-auto"
             />
           </shadow-button>
-          <!-- <ion-button @click="openWizard">
-            <ion-img
-              src="/assets/button-icons/info.svg"
-              className="pointer-events-none"
-            />
-          </ion-button> -->
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
@@ -39,9 +34,25 @@
         <ion-refresher-content />
       </ion-refresher>
       <div id="container">
-        <Tabs />
+        <router-view />
       </div>
     </ion-content>
+    <Tabs />
+  </ion-page> -->
+  <ion-page>
+    <ion-content :fullscreen="true" id="content">
+      <ion-refresher
+        slot="fixed"
+        v-if="refreshAction"
+        @ionRefresh="$store.dispatch(refreshAction, $event)"
+      >
+        <ion-refresher-content />
+      </ion-refresher>
+      <div id="container">
+        <router-view />
+      </div>
+    </ion-content>
+    <Tabs />
   </ion-page>
 </template>
 
@@ -49,20 +60,18 @@
 import Tabs from '../components/Tabs'
 import {
   IonContent,
-  IonHeader,
+  // IonHeader,
   IonPage,
-  IonToolbar,
-  IonButtons,
-  IonButton,
-  IonImg,
+  // IonToolbar,
+  // IonButtons,
+  // IonButton,
+  // IonImg,
   IonRefresher,
   IonRefresherContent
 } from '@ionic/vue'
-import icons from '@/mixins/icons'
-import ShadowButton from '../components/containers/ShadowButton.vue'
+// import ShadowButton from '../components/containers/ShadowButton.vue'
 
 export default {
-  mixins: [icons],
   methods: {
     openWizard () {
       this.$router.push('/wizard')
@@ -75,22 +84,25 @@ export default {
     showBack () {
       return this.$route.meta.showBack
     },
+    showWizard () {
+      return this.$route.meta.showWizard
+    },
     refreshAction () {
       return this.$route.meta.refreshAction || false
     }
   },
   components: {
     IonContent,
-    IonHeader,
+    // IonHeader,
     IonPage,
-    IonToolbar,
-    IonButtons,
-    IonButton,
-    IonImg,
+    // IonToolbar,
+    // IonButtons,
+    // IonButton,
+    // IonImg,
     IonRefresher,
     IonRefresherContent,
-    Tabs,
-    ShadowButton
+    Tabs
+    // ShadowButton
   }
 }
 </script>

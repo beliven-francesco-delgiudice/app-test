@@ -1,5 +1,14 @@
 <template>
-  <ion-tabs color="primary">
+  <!-- <ion-tabs color="primary">
+    <div
+      v-if="!home"
+      class="tabs-inner"
+      style="position: relative; flex: 1 1 0%; contain: size layout style;"
+    >
+      <ion-router-outlet tabs="true" class="hydrated"
+        ><router-view
+      /></ion-router-outlet>
+    </div>
     <ion-tab-bar
       slot="bottom"
       class="tabs-bar bg-black border-none px-8 fixed bottom-0 left-0 right-0"
@@ -14,14 +23,30 @@
         <ion-img :src="tab.icon" :class="tab.active ? '' : 'opacity-50'" />
       </ion-tab-button>
     </ion-tab-bar>
-  </ion-tabs>
+  </ion-tabs> -->
+  <div
+    class="w-full fixed bottom-0 left-0 bg-transparent"
+    style="height: 72px;"
+  >
+    <div class="h-full h-full flex tabs-bar bg-black px-8">
+      <div
+        v-for="(tab, i) in routingTabs"
+        :key="i"
+        :tab="tab.name"
+        @click="$router.push(tab.href)"
+        class="flex flex-grow justify-center items-center"
+      >
+        <ion-img :src="tab.icon" :class="tab.active ? '' : 'opacity-50'" />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import { IonTabBar, IonTabButton, IonTabs, IonImg } from '@ionic/vue'
+import { IonImg } from '@ionic/vue'
 
 export default {
-  components: { IonTabBar, IonTabButton, IonTabs, IonImg },
+  components: { IonImg },
   data () {
     return {
       tabs: [
@@ -52,6 +77,9 @@ export default {
         }
       ]
     }
+  },
+  props: {
+    home: Boolean
   },
   computed: {
     routingTabs () {

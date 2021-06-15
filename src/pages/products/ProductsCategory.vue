@@ -1,12 +1,13 @@
 <template>
-  <Page :label="$route.name" withMargin info>
-    <div class="flex flex-col">
+  <Page :label="$route.name" withMargin>
+    category
+    <!-- <div class="flex flex-col">
       <ion-list class="bg-transparent">
         <div
           class="flex flex-row justify-between items-center bg-transparent py-2"
           v-for="(item, i) in updatedList"
           :key="i"
-          @click="routeTo(item.href)"
+          @click="$router.push(item.href)"
         >
           <div class="flex flex-start items-center pointer-events-none">
             <square-container
@@ -37,20 +38,15 @@
       <div @click="logout" class="py-2 flex">
         <span class="font-helvetica-medium text-black text-14">Logout</span>
       </div>
-    </div>
+    </div> -->
   </Page>
 </template>
 
 <script>
-import Page from '../components/Page.vue'
-import SquareContainer from '../components/containers/SquareContainer.vue'
-import { IonList, IonImg } from '@ionic/vue'
+import Page from '../../components/Page.vue'
 export default {
   components: {
-    Page,
-    SquareContainer,
-    IonList,
-    IonImg
+    Page
   },
   data () {
     return {
@@ -111,9 +107,6 @@ export default {
     }
   },
   methods: {
-    routeTo (href) {
-      this.$router.push(href)
-    },
     logout () {
       console.log('logout')
       this.$router.push('/home')
