@@ -6,42 +6,13 @@
       'min-h-screen gradient-background relative max-h-screen overflow-y-auto pb-20'
     ]"
   >
-    <div
+    <filters-modal
       v-if="filters"
-      :class="[
-        isFiltersOpened
-          ? 'actual-h-screen opacity-1 pt-20'
-          : 'h-0 opacity-0 pointer-events-none',
-        'gradient-background absolute top-0 left-0 z-20 transition-all duration-700 w-full elevated-shadow'
-      ]"
-    >
-      <div
-        class="bg-transparent absolute top-0 left-0 flex px-8 w-full z-10"
-        style="height:90px"
-      >
-        <!-- close button -->
-        <ion-button
-          type="button"
-          class="relative mr-auto my-auto back-button"
-          @click="closeFilters"
-        >
-          <ion-img
-            src="/assets/button-icons/close.svg"
-            className="pointer-events-none"
-          />
-        </ion-button>
-      </div>
-      <div class="flex h-full flex-col justify-between">
-        <Title
-          titleClass="px-8 pb-4 text-black font-helvetica-bold text-28 block"
-        >
-          Filters
-        </Title>
-        <div class="w-full px-8 pb-4">
-          <big-button label="Done" />
-        </div>
-      </div>
-    </div>
+      :filtersState="computedFilters"
+      :open="isFiltersOpened"
+      @onClose="closeFilters"
+      @onSubmit="onSubmit"
+    />
     <div
       v-if="isHeaderNecessary"
       class="bg-transparent absolute top-0 left-0 flex px-8 w-full z-10"
@@ -103,12 +74,14 @@
 <script>
 import Title from '../components/Title'
 import ShadowButton from '../components/containers/ShadowButton.vue'
-import BigButton from './containers/BigButton.vue'
+import { IonImg } from '@ionic/vue'
+import FiltersModal from './FiltersModal.vue'
 export default {
   components: {
     Title,
     ShadowButton,
-    BigButton
+    IonImg,
+    FiltersModal
   },
   data () {
     return {
@@ -121,7 +94,7 @@ export default {
     noTopSpace: Boolean,
     info: Boolean,
     back: [Boolean, String, Object],
-    filters: Boolean
+    filters: [Boolean, Object]
   },
   computed: {
     isHeaderNecessary () {
@@ -129,11 +102,14 @@ export default {
         return true
       }
       return false
+    },
+    computedFilters () {
+      // here with have a Proxy with the ofull object
+      return this.filters
     }
   },
   methods: {
     onBack () {
-      console.log(this.back)
       if (this.back && this.back.length) {
         this.$router.push(this.back)
       }
@@ -147,6 +123,10 @@ export default {
     },
     closeFilters () {
       this.isFiltersOpened = false
+    },
+    onSubmit (payload) {
+      this.$emit('onFiltersChange', payload)
+      this.closeFilters()
     }
   }
 }

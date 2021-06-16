@@ -3,7 +3,7 @@
     :label="category.name"
     :back="segmentPath"
     :filters="filters"
-    @onFilterChange="updateFilters"
+    @onFiltersChange="updateFilters"
   >
     <ion-list class="bg-transparent">
       <div
@@ -70,7 +70,9 @@ export default {
           }
         ]
       },
-      filters: {}
+      filters: {
+        order_by: 'name:desc'
+      }
     }
   },
   computed: {
@@ -84,7 +86,8 @@ export default {
       this.$router.push(link)
     },
     updateFilters (filterObj) {
-      console.log(filterObj)
+      this.filters = Object.assign({}, filterObj)
+      console.log('products categ', filterObj)
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <button
+  <ion-button
     :type="type || 'button'"
     :class="[
       bgClass || 'bg-black',
@@ -14,11 +14,14 @@
       >{{ label }}</span
     >
     <slot></slot>
-  </button>
+  </ion-button>
 </template>
 <script>
+import { IonButton } from '@ionic/vue'
 export default {
-  components: {},
+  components: {
+    IonButton
+  },
   props: {
     bgClass: String,
     styles: String,

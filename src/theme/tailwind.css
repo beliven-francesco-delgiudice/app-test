@@ -1,8 +1,10 @@
 .bg-white {
   background-color: white;
+  --background: white;
 }
 .bg-black {
   background-color: #1C1C1B;
+  --background: #1C1C1B;
 }
 .bg-light-grey {
   background: #F5F4F4;
@@ -167,6 +169,9 @@
 }
 .height-44 {
   height: 44px
+}
+.height-56 {
+  height: 56px;
 }
 .height-64 {
   height: 64px
@@ -372,6 +377,10 @@
 
 .border-t {
   border-top: 1px solid;
+}
+
+.border-b {
+  border-bottom: 1px solid;
 }
 
 .border-black {
