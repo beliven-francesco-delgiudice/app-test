@@ -7,15 +7,52 @@
     ]"
   >
     <div
+      v-if="filters"
+      :class="[
+        isFiltersOpened
+          ? 'actual-h-screen opacity-1 pt-20'
+          : 'h-0 opacity-0 pointer-events-none',
+        'gradient-background absolute top-0 left-0 z-20 transition-all duration-700 w-full elevated-shadow'
+      ]"
+    >
+      <div
+        class="bg-transparent absolute top-0 left-0 flex px-8 w-full z-10"
+        style="height:90px"
+      >
+        <!-- close button -->
+        <ion-button
+          type="button"
+          class="relative mr-auto my-auto back-button"
+          @click="closeFilters"
+        >
+          <ion-img
+            src="/assets/button-icons/close.svg"
+            className="pointer-events-none"
+          />
+        </ion-button>
+      </div>
+      <div class="flex h-full flex-col justify-between">
+        <Title
+          titleClass="px-8 pb-4 text-black font-helvetica-bold text-28 block"
+        >
+          Filters
+        </Title>
+        <div class="w-full px-8 pb-4">
+          <big-button label="Done" />
+        </div>
+      </div>
+    </div>
+    <div
       v-if="isHeaderNecessary"
       class="bg-transparent absolute top-0 left-0 flex px-8 w-full z-10"
       style="height:90px"
     >
       <!-- back button -->
       <ion-button
-        v-if="back"
-        @click="backButton"
+        type="button"
         class="relative mr-auto my-auto back-button"
+        v-if="back"
+        @click="onBack"
       >
         <ion-img
           src="/assets/button-icons/back.svg"
@@ -25,11 +62,11 @@
 
       <!-- Wizard button -->
       <shadow-button
-        v-if="info"
         square
         styles="position:relative;"
         bgClass="bg-white ml-auto my-auto"
-        @onClick="openUpdates"
+        v-if="info"
+        @onClick="routeToWizard"
       >
         <ion-img
           src="/assets/button-icons/info.svg"
@@ -39,11 +76,11 @@
 
       <!-- Filters button -->
       <shadow-button
-        v-if="filters"
         square
         styles="position:relative;"
         bgClass="bg-white ml-auto my-auto"
-        @onClick="openUpdates"
+        v-if="filters"
+        @onClick="openFilters"
       >
         <ion-img
           src="/assets/button-icons/filters.svg"
@@ -65,17 +102,25 @@
 </template>
 <script>
 import Title from '../components/Title'
-
+import ShadowButton from '../components/containers/ShadowButton.vue'
+import BigButton from './containers/BigButton.vue'
 export default {
   components: {
-    Title
+    Title,
+    ShadowButton,
+    BigButton
+  },
+  data () {
+    return {
+      isFiltersOpened: false
+    }
   },
   props: {
     label: String,
     withMargin: Boolean,
     noTopSpace: Boolean,
     info: Boolean,
-    back: Boolean,
+    back: [Boolean, String, Object],
     filters: Boolean
   },
   computed: {
@@ -84,6 +129,24 @@ export default {
         return true
       }
       return false
+    }
+  },
+  methods: {
+    onBack () {
+      console.log(this.back)
+      if (this.back && this.back.length) {
+        this.$router.push(this.back)
+      }
+      this.$router.push('/home')
+    },
+    routeToWizard () {
+      this.$router.push('/wizard')
+    },
+    openFilters () {
+      this.isFiltersOpened = true
+    },
+    closeFilters () {
+      this.isFiltersOpened = false
     }
   }
 }

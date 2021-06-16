@@ -26,6 +26,11 @@ export default {
       }
       return style
     }
+  },
+  methods: {
+    emitClick () {
+      this.$emit('onClick')
+    }
   }
 }
 </script>

@@ -1,27 +1,6 @@
-.gradient-background {
-  background-image: linear-gradient(180deg, #F7F6F6 0%, #FFFFFF 39%);
-}
-
-.rounded-12 {
-  border-radius: 12px !important;
-  --border-radius: 12px !important;
-}
-.rounded-8 {
-  border-radius: 8px !important;
-  --border-radius: 8px !important;
-}
-.rounded-6 {
-  border-radius: 6px !important;
-  --border-radius: 6px !important;
-}
-.elevated-shadow {
-  box-shadow: 0 10px 25px 0 rgba(106,115,119,0.15);
-}
-.small-shadow {
-  box-shadow: 0 9px 24px -8px rgba(106,115,119,0.15);
-}
-.container-shadow {
-  box-shadow: 0 8px 21px 0 rgba(106,115,119,0.15);
+.actual-h-screen {
+  /* Height without tabs */
+  height: calc(100vh - 72px)
 }
 
 .main-layout ion-tabs > .tabs-inner:first-child {

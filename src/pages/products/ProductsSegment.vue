@@ -1,5 +1,5 @@
 <template>
-  <Page :label="segment.name" back>
+  <Page :label="segment.name" back="/products">
     <ion-list class="bg-transparent">
       <div
         class="flex flex-row justify-between items-center bg-transparent pb-4 mb-4"
@@ -13,6 +13,7 @@
           <square-container
             bgClass="bg-white"
             squareSize="64"
+            rounded="12"
             classes="elevated-shadow mr-4 p-2"
           >
             <ion-img :src="item.image" />
@@ -66,11 +67,11 @@ export default {
   methods: {
     routeTo (item) {
       // if category push to category
-      let link = '/products/' + this.segment.id
+      let link = '/products/'
       if (this.isCategory) {
-        link += '/category/' + item.id
+        link += 'category/' + item.id
       } else {
-        link += '/detail/' + item.id
+        link += 'detail/' + item.id
       }
       this.$router.push(link)
     }

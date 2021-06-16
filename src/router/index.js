@@ -15,6 +15,7 @@ import Menu from '../pages/Menu'
 import ProductsIndex from '../pages/products/ProductsIndex.vue'
 import ProductsSegment from '../pages/products/ProductsSegment.vue'
 import ProductsCategory from '../pages/products/ProductsCategory.vue'
+import ProductsDetail from '../pages/products/ProductsDetail.vue'
 
 // import masterStore from '../store'
 
@@ -71,15 +72,15 @@ const routes = [
     component: MainLayout,
     children: [
       {
-        path: '/products/:segment/category/:category',
-        name: 'ProductCategory',
-        component: ProductsCategory,
+        path: '/products/detail/:id',
+        name: 'ProductsDetail',
+        component: ProductsDetail,
         meta: {
           showBack: true
         }
       },
       {
-        path: '/products/detail/:id',
+        path: '/products/category/:category',
         name: 'ProductCategory',
         component: ProductsCategory,
         meta: {
@@ -114,8 +115,7 @@ router.beforeEach((to, from, next) => {
   // if (to.meta.noAuth === true) return next()
 
   // if (!masterStore.getters.loggedIn) return next('/login')
-  console.log('to:', to, ' from:', from)
-
+  console.log('from: ', from, ' to: ', to)
   next()
 })
 

@@ -1,115 +1,90 @@
 <template>
-  <Page :label="$route.name" withMargin>
-    category
-    <!-- <div class="flex flex-col">
-      <ion-list class="bg-transparent">
+  <Page
+    :label="category.name"
+    :back="segmentPath"
+    :filters="filters"
+    @onFilterChange="updateFilters"
+  >
+    <ion-list class="bg-transparent">
+      <div
+        class="flex flex-row justify-between items-center bg-transparent pb-4 mb-4"
+        v-for="(item, i) in category.list"
+        :key="i"
+        @click="routeTo(item)"
+      >
         <div
-          class="flex flex-row justify-between items-center bg-transparent py-2"
-          v-for="(item, i) in updatedList"
-          :key="i"
-          @click="$router.push(item.href)"
+          class="flex flex-start items-center pointer-events-none px-8 w-full"
         >
-          <div class="flex flex-start items-center pointer-events-none">
-            <square-container
-              bgClass="bg-light-grey"
-              classes="mr-2"
-              squareSize="44"
+          <square-container
+            bgClass="bg-white"
+            squareSize="64"
+            rounded="12"
+            classes="elevated-shadow mr-4 p-2"
+          >
+            <ion-img :src="item.image" />
+          </square-container>
+          <div class="flex flex-col justify-between py-2">
+            <span
+              class="font-helvetica-medium text-black text-16 spacing-5 line-28"
+              >{{ item.name }}</span
             >
-              <ion-img :src="'/assets/menu/' + item.img" />
-            </square-container>
-            <span class="font-helvetica-medium text-black text-16">{{
-              item.name
+            <span class="font-helvetica text-grey text-14 spacing-44 line-24">{{
+              item.category
             }}</span>
           </div>
-          <square-container
-            v-if="item.notifications && item.notifications > 0"
-            bgClass="bg-red"
-            squareSize="24"
-            rounded="6"
-            classes="flex text-center justify-center items-center"
-          >
-            <span class="font-helvetica-bold text-white text-12">{{
-              item.notifications
-            }}</span>
-          </square-container>
         </div>
-      </ion-list>
-      <hr class="w-full border-t border-grey" />
-      <div @click="logout" class="py-2 flex">
-        <span class="font-helvetica-medium text-black text-14">Logout</span>
       </div>
-    </div> -->
+    </ion-list>
   </Page>
 </template>
 
 <script>
 import Page from '../../components/Page.vue'
+import { IonList, IonImg } from '@ionic/vue'
+import SquareContainer from '../../components/containers/SquareContainer.vue'
 export default {
   components: {
-    Page
+    Page,
+    IonList,
+    IonImg,
+    SquareContainer
   },
   data () {
     return {
-      list: [
-        {
-          name: 'Products',
-          href: '/products',
-          img: 'products.svg'
-        },
-        {
-          name: 'Documents',
-          href: '/documents',
-          img: 'documents.svg'
-        },
-        {
-          name: 'Medical Education',
-          href: '/meded',
-          img: 'meded.svg'
-        },
-        {
-          name: 'News',
-          href: '/news',
-          img: 'news.svg'
-        },
-        {
-          name: 'Congresses',
-          href: '/congresses',
-          img: 'congresses.svg'
-        },
-        {
-          name: 'Updates',
-          href: '/updates',
-          img: 'notifications.svg'
-        },
-        {
-          name: 'Useful Links',
-          href: '/useful',
-          img: 'useful.svg'
-        },
-        {
-          name: 'Multimedia',
-          href: '/multimedia',
-          img: 'multimedia.svg'
-        },
-        {
-          name: 'Contact',
-          href: '/contact',
-          img: 'contact.svg'
-        }
-      ]
+      category: {
+        id: 2,
+        segment_id: 3,
+        name: 'Acetabular Cups',
+        list: [
+          {
+            id: 3,
+            name: 'DELTA TT',
+            category: 'DELTA System primary',
+            image: '/assets/test/delta.svg'
+          },
+          {
+            id: 4,
+            name: 'Delta PF',
+            category: 'DELTA System primary',
+            image: '/assets/test/delta.svg'
+          }
+        ]
+      },
+      filters: {}
     }
   },
   computed: {
-    updatedList () {
-      const newList = this.list.map(i => i)
-      newList[6].notifications = 2
-      return newList
+    segmentPath () {
+      return this.category.segment_id
     }
   },
   methods: {
-    logout () {
-      console.log('logout')
-      this.$router.push('/home')
+    routeTo (item) {
+      const link = `/products/detail/${item.id}`
+      this.$router.push(link)
+    },
+    updateFilters (filterObj) {
+      console.log(filterObj)
     }
   }
 }
