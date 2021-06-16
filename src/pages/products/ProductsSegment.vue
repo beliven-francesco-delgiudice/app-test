@@ -66,7 +66,7 @@ export default {
   methods: {
     routeTo (item) {
       // if category push to category
-      let link = 'products/' + this.segment.id
+      let link = '/products/' + this.segment.id
       if (this.isCategory) {
         link += '/category/' + item.id
       } else {

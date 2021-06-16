@@ -86,7 +86,7 @@ export default {
   computed: {},
   methods: {
     routeToSegment (segment) {
-      const link = 'products/' + segment.id
+      const link = `/products/${segment.id}`
       this.$router.push(link)
     }
   }
