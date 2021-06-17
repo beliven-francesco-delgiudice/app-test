@@ -140,8 +140,14 @@
   font-size: 12px;
 }
 
+.spacing-1 {
+  letter-spacing: 0.1px;
+}
 .spacing-22 {
   letter-spacing: 0.22px;
+}
+.spacing-38 {
+  letter-spacing: 0.38px;
 }
 .spacing-44 {
   letter-spacing: 0.44px;
@@ -154,4 +160,7 @@
 }
 .line-28 {
   line-height: 28px;
+}
+.line-30 {
+  line-height: 30px;
 }

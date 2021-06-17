@@ -73,6 +73,7 @@
           classes="ml-8"
         />
         <home-documents title="Other" :docs="documents.other" />
+        <div>&nbsp;</div>
       </carousel>
     </home-titled-container>
 
@@ -85,6 +86,7 @@
           :index="i"
           :data="singleMed"
         />
+        <div>&nbsp;</div>
       </carousel>
     </home-titled-container>
 
@@ -97,6 +99,7 @@
           :index="i"
           :news="singleNews"
         />
+        <div>&nbsp;</div>
       </carousel>
     </home-titled-container>
 
@@ -109,6 +112,7 @@
           :index="i"
           :congress="congress"
         />
+        <div>&nbsp;</div>
       </carousel>
     </home-titled-container>
 

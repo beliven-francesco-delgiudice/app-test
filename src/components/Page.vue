@@ -113,7 +113,8 @@ export default {
       if (this.back && this.back.length) {
         this.$router.push(this.back)
       }
-      this.$router.push('/home')
+      // this.$router.push('/home')
+      this.$router.back()
     },
     routeToWizard () {
       this.$router.push('/wizard')

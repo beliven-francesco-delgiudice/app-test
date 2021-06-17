@@ -16,6 +16,7 @@ import ProductsIndex from '../pages/products/ProductsIndex.vue'
 import ProductsSegment from '../pages/products/ProductsSegment.vue'
 import ProductsCategory from '../pages/products/ProductsCategory.vue'
 import ProductsDetail from '../pages/products/ProductsDetail.vue'
+import ComponentDetail from '../pages/products/ComponentDetail.vue'
 
 // import masterStore from '../store'
 
@@ -71,6 +72,25 @@ const routes = [
     path: '/products',
     component: MainLayout,
     children: [
+      // products detail (details, components, documents)
+      {
+        path: '/products/detail/:id/components',
+        name: 'ProductsDetailComponents',
+        component: ProductsDetail,
+        meta: {
+          showBack: true,
+          section: 'components'
+        }
+      },
+      {
+        path: '/products/detail/:id/documents',
+        name: 'ProductsDetailDocuments',
+        component: ProductsDetail,
+        meta: {
+          showBack: true,
+          section: 'documents'
+        }
+      },
       {
         path: '/products/detail/:id',
         name: 'ProductsDetail',
@@ -79,6 +99,16 @@ const routes = [
           showBack: true
         }
       },
+      // component detail
+      {
+        path: '/products/detail/component/:id',
+        name: 'ComponentDetail',
+        component: ComponentDetail,
+        meta: {
+          showBack: true
+        }
+      },
+      // products category (products list)
       {
         path: '/products/category/:category',
         name: 'ProductCategory',
@@ -87,6 +117,7 @@ const routes = [
           showBack: true
         }
       },
+      // products segment (categories/products list)
       {
         path: '/products/:segment',
         name: 'ProductSegment',
@@ -95,6 +126,7 @@ const routes = [
           showBack: true
         }
       },
+      // products (segments list)
       {
         path: '',
         name: 'Products',
