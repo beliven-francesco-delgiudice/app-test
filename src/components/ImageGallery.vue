@@ -8,10 +8,10 @@
         'bg-white rounded-12 relative mr-4 gallery-container elevated-shadow overflow-hidden'
       ]"
     >
-      <ion-img :src="image.image" class="h-full w-auto" />
+      <ion-img :src="image.image" class="h-full w-auto pointer-events-none" />
       <div
         v-if="gallery.length && gallery.length > 1"
-        class="absolute bottom-0 right-0 mb-4 mr-4 px-2 py-1 rounded-6 flex justify-center items-center bg-black-50"
+        class="absolute bottom-0 right-0 mb-4 mr-4 px-2 py-1 rounded-6 flex justify-center items-center bg-black-50 pointer-events-none"
       >
         <span
           class="font-helvetica-medium text-12 text-white spacing-38 line-24"
