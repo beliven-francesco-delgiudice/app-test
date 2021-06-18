@@ -1,22 +1,23 @@
 <template>
-  <Details v-if="section === 'details'" />
-  <Components v-if="section === 'components'" />
-  <Documents v-if="section === 'documents'" />
+  <Info v-if="section === 'info'" />
+  <!-- <Details v-if="section === 'details'" /> -->
+  <!-- <DayByDay v-if="section === 'components'" />
+  <Activities v-if="section === 'documents'" />
+  <Hotels v-if="section === 'documents'" />
+  <KeyMessages v-if="section === 'documents'" />-->
 </template>
 
 <script>
-import Components from '../../components/productdetails/Components.vue'
-import Details from '../../components/productdetails/Details.vue'
-import Documents from '../../components/productdetails/Documents.vue'
+import Info from '../../components/congressdetails/Info.vue'
+// import Details from '../../components/congressdetails/Details.vue'
 export default {
   components: {
-    Details,
-    Components,
-    Documents
+    Info
+    // Details
   },
   data () {
     return {
-      initSection: 'details'
+      initSection: 'info'
     }
   },
   computed: {

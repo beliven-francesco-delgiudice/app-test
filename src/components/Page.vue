@@ -58,6 +58,19 @@
           className="width-24 height-24 pointer-events-none m-auto"
         />
       </shadow-button>
+
+      <!-- More button -->
+      <shadow-button
+        square
+        styles="position:relative;"
+        bgClass="bg-white ml-auto my-auto"
+        v-if="more"
+      >
+        <ion-img
+          src="/assets/button-icons/threedots.svg"
+          class="width-4 height-18 m-auto pointer-events-none"
+        />
+      </shadow-button>
     </div>
     <Title
       v-if="label"
@@ -100,11 +113,12 @@ export default {
     noTopSpace: Boolean,
     info: Boolean,
     back: [Boolean, String, Object],
-    filters: [Boolean, Object]
+    filters: [Boolean, Object],
+    more: [Boolean, Object]
   },
   computed: {
     isHeaderNecessary () {
-      if (this.info || this.back || this.filters) {
+      if (this.info || this.back || this.filters || this.more) {
         return true
       }
       return false
