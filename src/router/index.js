@@ -18,6 +18,9 @@ import ProductsCategory from '../pages/products/ProductsCategory.vue'
 import ProductsDetail from '../pages/products/ProductsDetail.vue'
 import ComponentDetail from '../pages/products/ComponentDetail.vue'
 
+import CongressesIndex from '../pages/congresses/Congresses.vue'
+import CongressDetail from '../pages/congresses/CongressDetail.vue'
+import ActivityDetail from '../pages/congresses/ActivityDetail.vue'
 // import masterStore from '../store'
 
 const routes = [
@@ -131,6 +134,82 @@ const routes = [
         path: '',
         name: 'Products',
         component: ProductsIndex
+      }
+    ]
+  },
+  {
+    path: '/congresses',
+    component: MainLayout,
+    children: [
+      // activity detail
+      {
+        path: '/congresses/activities/:id',
+        name: 'Activity Detail',
+        component: ActivityDetail,
+        meta: {
+          showBack: true
+        }
+      },
+      // congress detail (details, components, documents)
+      {
+        path: '/congresses/:id/details',
+        name: 'CongressDetail',
+        component: CongressDetail,
+        meta: {
+          showBack: true,
+          section: 'details'
+        }
+      },
+      {
+        path: '/congresses/:id/daybyday',
+        name: 'CongressDetail',
+        component: CongressDetail,
+        meta: {
+          showBack: true,
+          section: 'daybyday'
+        }
+      },
+      {
+        path: '/congresses/:id/hotel',
+        name: 'CongressDetail',
+        component: CongressDetail,
+        meta: {
+          showBack: true,
+          section: 'hotel'
+        }
+      },
+      {
+        path: '/congresses/:id/activities',
+        name: 'CongressDetail',
+        component: CongressDetail,
+        meta: {
+          showBack: true,
+          section: 'activities'
+        }
+      },
+      {
+        path: '/congresses/:id/info',
+        name: 'CongressDetail',
+        component: CongressDetail,
+        meta: {
+          showBack: true,
+          section: 'info'
+        }
+      },
+      {
+        path: '/congresses/:id/',
+        name: 'CongressDetail',
+        component: CongressDetail,
+        meta: {
+          showBack: true,
+          section: 'info'
+        }
+      },
+      // congresses list
+      {
+        path: '',
+        name: 'Congresses',
+        component: CongressesIndex
       }
     ]
   }
