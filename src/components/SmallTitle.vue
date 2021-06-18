@@ -2,7 +2,8 @@
   <Title
     :titleClass="[
       classes || '',
-      ' px-8 text-black font-helvetica-bold text-20 block'
+      noPadding ? '' : 'px-8',
+      ' text-black font-helvetica-bold text-20 block'
     ]"
   >
     {{ label }}
@@ -14,7 +15,8 @@ import Title from '../components/Title'
 export default {
   props: {
     label: String,
-    classes: String
+    classes: String,
+    noPadding: Boolean
   },
   components: {
     Title

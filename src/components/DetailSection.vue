@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col">
-    <small-title :label="label" classes="pb-4 mt-8" />
+    <small-title :label="label" classes="pb-4 mt-8" :noPadding="noPadding" />
     <slot></slot>
     <separator v-if="!noSeparator" withMargin topMargin />
   </div>
@@ -15,7 +15,8 @@ export default {
   },
   props: {
     noSeparator: Boolean,
-    label: String
+    label: String,
+    noPadding: Boolean
   }
 }
 </script>

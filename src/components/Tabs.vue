@@ -83,11 +83,22 @@ export default {
   },
   computed: {
     routingTabs () {
-      let currentRoute = this.$route.path
+      const currentRoute = this.$route.path
+      const activePath = this.getActivePath(currentRoute)
       return this.tabs.map(route => ({
         ...route,
-        active: currentRoute.includes(route.href)
+        active: route.href === activePath
       }))
+    }
+  },
+  methods: {
+    getActivePath (route) {
+      for (let i = 0; i < this.tabs.length; i++) {
+        const path = this.tabs[i].href
+        if (route.includes(path)) {
+          return path
+        }
+      }
     }
   }
 }

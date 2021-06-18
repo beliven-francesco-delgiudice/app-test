@@ -143,17 +143,29 @@
 .spacing-1 {
   letter-spacing: 0.1px;
 }
+.spacing-2 {
+  letter-spacing: 0.2px;
+}
 .spacing-22 {
   letter-spacing: 0.22px;
 }
 .spacing-38 {
   letter-spacing: 0.38px;
 }
+.spacing-4 {
+  letter-spacing: 0.4px;
+}
 .spacing-44 {
   letter-spacing: 0.44px;
 }
 .spacing-5 {
   letter-spacing: 0.5px;
+}
+.spacing-8 {
+  letter-spacing: 0.8px;
+}
+.line-20 {
+  line-height: 20px;
 }
 .line-24 {
   line-height: 24px;

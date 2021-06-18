@@ -65,8 +65,13 @@
         withMargin ? '' : 'px-8',
         'pb-4 text-black font-helvetica-bold text-28 block'
       ]"
-      v-html="label"
     >
+      <span
+        v-if="aboveTitle"
+        class="font-helvetica text-14 text-grey spacing-44 line-24 pb-2"
+        >{{ aboveTitle }} </span
+      ><br />
+      {{ label }}
     </Title>
     <slot></slot>
   </div>
@@ -90,6 +95,7 @@ export default {
   },
   props: {
     label: String,
+    aboveTitle: String,
     withMargin: Boolean,
     noTopSpace: Boolean,
     info: Boolean,

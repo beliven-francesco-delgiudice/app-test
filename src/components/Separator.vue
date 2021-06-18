@@ -1,10 +1,6 @@
 <template>
   <div
-    :class="[
-      withMargin ? 'mx-8' : '',
-      topMargin ? 'mt-8' : 'my-8',
-      ' border-b border-grey'
-    ]"
+    :class="[withMargin ? 'mx-8' : '', margin, ' border-b border-grey']"
   ></div>
 </template>
 
@@ -12,7 +8,22 @@
 export default {
   props: {
     withMargin: Boolean,
-    topMargin: Boolean
+    topMargin: Boolean,
+    bottomMargin: Boolean,
+    noYMargin: Boolean
+  },
+  computed: {
+    margin () {
+      if (this.topMargin) {
+        return 'mt-8'
+      } else if (this.bottomMargin) {
+        return 'mb-8'
+      } else if (this.noYMargin) {
+        return ''
+      } else {
+        return 'my-8'
+      }
+    }
   }
 }
 </script>
