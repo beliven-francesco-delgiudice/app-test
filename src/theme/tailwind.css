@@ -516,6 +516,12 @@
   opacity: 0;
 }
 
+.normal-case {
+  text-transform: none;
+}
+.uppercase	{
+  text-transform: uppercase;
+}
 .blend-mode-darken {
   mix-blend-mode: darken;
 }

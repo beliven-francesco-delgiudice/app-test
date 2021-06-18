@@ -114,7 +114,7 @@ export default {
       if (this.updatedReadMore) {
         return this.updatedProduct.description
       }
-      return this.updatedProduct.description.substring(0, 290)
+      return this.updatedProduct.description_short
     }
   },
   methods: {

@@ -7,7 +7,7 @@
         :active="section === theSection.path"
         :classes="[i === 0 ? 'ml-8' : '', ' mr-4']"
         :label="theSection.label"
-        @onClick="routeToSection(theSection.path)"
+        @onClick="changeSection(theSection.path)"
       />
       <div>&nbsp;</div>
     </carousel>
@@ -27,45 +27,15 @@ export default {
   props: {
     title: String,
     congressID: Number,
-    section: String
+    section: String,
+    sections: Array
   },
   data () {
-    return {
-      sections: [
-        {
-          label: 'Info',
-          path: 'info'
-        },
-        {
-          label: 'Details',
-          path: 'details'
-        },
-        {
-          label: 'Day by day',
-          path: 'daybyday'
-        },
-        {
-          label: 'Activities',
-          path: 'activities'
-        },
-        {
-          label: 'Hotel & Transfer',
-          path: 'hotels'
-        },
-        {
-          label: 'Key messages',
-          path: 'keymessages'
-        }
-      ]
-    }
+    return {}
   },
   methods: {
-    routeToSection (path) {
-      let link = `/congresses/${this.congressID}/`
-      if (path) {
-        link += path
-      }
-      this.$router.push(link)
+    changeSection (path) {
+      this.$emit('changeSection', path)
     }
   }
 }

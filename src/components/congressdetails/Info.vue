@@ -1,64 +1,95 @@
 <template>
-  <congress-layout
-    section="info"
-    :title="updatedCongress.title"
-    :productID="updatedCongress.id"
-  >
+  <div class="flex flex-col">
     <div
       class="ml-8 bg-white rounded-12 relative mr-4 gallery-container elevated-shadow overflow-hidden"
     >
       <ion-img
-        :src="updatedCongress.gallery[0].image"
+        :src="updatedCongress.image"
         class="w-full pointer-events-none"
       />
     </div>
-    <detail-section label="Description">
+    <detail-section :label="updatedCongress.name">
+      <div class="flex flex-col justify-start items-start mb-8 px-8">
+        <span class="font-helvetica text-14 text-grey spacing-44 line-20"
+          >Location</span
+        >
+        <span
+          class="font-helvetica text-16 text-mid-dark-grey spacing-2 line-26"
+          >{{ updatedCongress.subtitle }}</span
+        >
+      </div>
+
+      <div class="flex flex-col bg-light-red rounded-12 p-6 mx-8">
+        <div class="flex justify-between items-start mb-4">
+          <div class="flex flex-col">
+            <span
+              class="font-helvetica text-14 text-grey spacing-44 line-28 mb-4"
+              >From</span
+            >
+            <span
+              class="font-helvetica-medium text-16 text-red spacing-23 line-24 mb-2"
+              >{{ updatedCongress.first_date }}</span
+            >
+            <span class="font-helvetica text-14 text-red spacing-2 line-24"
+              >{{ updatedCongress.first_date_time }} UTC</span
+            >
+          </div>
+          <div class="flex flex-col">
+            <span
+              class="font-helvetica text-14 text-grey spacing-44 line-28 mb-4"
+              >To</span
+            >
+            <span
+              class="font-helvetica-medium text-16 text-red spacing-23 line-24 mb-2"
+              >{{ updatedCongress.last_date }}</span
+            >
+            <span class="font-helvetica text-14 text-red spacing-2 line-24"
+              >{{ updatedCongress.last_date_time }} UTC</span
+            >
+          </div>
+        </div>
+        <big-button label="Save in calendar" />
+      </div>
+    </detail-section>
+    <detail-section label="Description" noSeparator>
       <p
         class="px-8 font-helvetica text-mid-dark-grey text-16 spacing-1 line-24 mb-4 mt-0"
         v-html="formattedDescription"
       />
-      <div class="mx-8 mt-4 flex justify-start">
+      <div class="mx-8 flex justify-start">
         <section-button
           :label="updatedReadMore ? 'Read less' : 'Read more'"
           @onClick="readMore"
         />
       </div>
     </detail-section>
-  </congress-layout>
+  </div>
 </template>
 <script>
 import SectionButton from '../containers/SectionButton.vue'
 import DetailSection from '../DetailSection.vue'
-import CongressLayout from './CongressLayout.vue'
 import { IonImg } from '@ionic/vue'
+import BigButton from '../containers/BigButton.vue'
 export default {
   components: {
-    CongressLayout,
     SectionButton,
     DetailSection,
-    IonImg
+    IonImg,
+    BigButton
+  },
+  props: {
+    congress: Object
   },
   data () {
     return {
-      isReadMore: false,
-      congress: {
-        id: 1,
-        title: 'ESSKA Congress',
-        location: 'Virtual event',
-        description:
-          'The LimaCorporate DELTA TT is a hemispherical cementless acetabular cup manufactured in Trabecular Titanium through the process of additive manufacturing. Breaking new ground in orthopedic technology, it combines the unique features of the DELTA System with the Trabecular Titanium structure. More: The LimaCorporate DELTA TT is a hemispherical cementless acetabular cup manufactured in Trabecular Titanium through the process of additive manufacturing. Breaking new ground in orthopedic technology, it combines the unique features of the DELTA System with the Trabecular Titanium structure.',
-        gallery: [
-          {
-            preview: '',
-            image: '/assets/test/congress.jpg'
-          }
-        ]
-      }
+      isReadMore: false
     }
   },
   computed: {
     updatedCongress () {
-      return this.congress
+      const congress = Object.assign({}, this.congress.content)
+      console.log('content', congress)
+      return congress
     },
     updatedReadMore () {
       return this.isReadMore
@@ -67,7 +98,7 @@ export default {
       if (this.updatedReadMore) {
         return this.updatedCongress.description
       }
-      return this.updatedCongress.description.substring(0, 290)
+      return this.updatedCongress.description_short
     }
   },
   methods: {

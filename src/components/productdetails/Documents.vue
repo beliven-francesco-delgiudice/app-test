@@ -4,7 +4,7 @@
     :title="updatedProduct.title"
     :productID="updatedProduct.id"
   >
-    <accordions-list classes="mt-4 px-8" :list="updatedProduct.documents">
+    <accordions-list classes="mt-4 px-8" :list="updatedProduct.attachments">
       <template v-slot="{ item }">
         <document-list-item :document="item" />
       </template>
@@ -26,7 +26,7 @@ export default {
       product: {
         id: 1,
         title: 'Delta TT',
-        documents: [
+        attachments: [
           {
             count: 2,
             name: 'Folderino Documentino',

@@ -3,14 +3,14 @@
     :type="type || 'button'"
     :class="[
       bgClass || 'bg-black',
-      'small-shadow rounded-12 flex justify-center items-center height-56 w-full'
+      'small-shadow rounded-12 flex justify-center items-center height-56 w-full normal-case'
     ]"
     :style="styles || ''"
     @click="emitClick"
   >
     <span
       v-if="label && label.length"
-      class="font-helvetica-medium text-white text-16 spacing-5 line-24 m-auto"
+      class="font-helvetica-medium text-white text-16 spacing-5 line-24 m-auto normal-case"
       >{{ label }}</span
     >
     <slot></slot>

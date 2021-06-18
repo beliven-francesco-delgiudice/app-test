@@ -150,59 +150,13 @@ const routes = [
           showBack: true
         }
       },
-      // congress detail (details, components, documents)
-      {
-        path: '/congresses/:id/details',
-        name: 'CongressDetail',
-        component: CongressDetail,
-        meta: {
-          showBack: true,
-          section: 'details'
-        }
-      },
-      {
-        path: '/congresses/:id/daybyday',
-        name: 'CongressDetail',
-        component: CongressDetail,
-        meta: {
-          showBack: true,
-          section: 'daybyday'
-        }
-      },
-      {
-        path: '/congresses/:id/hotel',
-        name: 'CongressDetail',
-        component: CongressDetail,
-        meta: {
-          showBack: true,
-          section: 'hotel'
-        }
-      },
-      {
-        path: '/congresses/:id/activities',
-        name: 'CongressDetail',
-        component: CongressDetail,
-        meta: {
-          showBack: true,
-          section: 'activities'
-        }
-      },
-      {
-        path: '/congresses/:id/info',
-        name: 'CongressDetail',
-        component: CongressDetail,
-        meta: {
-          showBack: true,
-          section: 'info'
-        }
-      },
+      // congress detail
       {
         path: '/congresses/:id/',
         name: 'CongressDetail',
         component: CongressDetail,
         meta: {
-          showBack: true,
-          section: 'info'
+          showBack: true
         }
       },
       // congresses list
