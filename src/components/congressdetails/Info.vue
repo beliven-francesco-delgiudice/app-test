@@ -50,12 +50,29 @@
         </div>
         <big-button label="Save in calendar" />
       </div>
+      <div
+        v-if="updatedCongress.link && updatedCongress.link.length"
+        class="flex mt-4 items-center relative mx-8"
+      >
+        <square-container
+          bgClass="bg-light-grey"
+          squareSize="44"
+          classes="pointer-events-none flex"
+        >
+          <ion-img src="/assets/button-icons/open-link.svg" class="m-auto" />
+        </square-container>
+        <span
+          class="pointer-events-none ml-2 font-helvetica-medium text-black text-16 spacing-5 line-28"
+        >
+          {{ updatedCongress.link }}
+        </span>
+      </div>
     </detail-section>
     <detail-section label="Description" noSeparator>
       <p
         class="px-8 font-helvetica text-mid-dark-grey text-16 spacing-1 line-24 mb-4 mt-0"
         v-html="formattedDescription"
-      />
+      ></p>
       <div class="mx-8 flex justify-start">
         <section-button
           :label="updatedReadMore ? 'Read less' : 'Read more'"
@@ -70,12 +87,14 @@ import SectionButton from '../containers/SectionButton.vue'
 import DetailSection from '../DetailSection.vue'
 import { IonImg } from '@ionic/vue'
 import BigButton from '../containers/BigButton.vue'
+import SquareContainer from '../containers/SquareContainer.vue'
 export default {
   components: {
     SectionButton,
     DetailSection,
     IonImg,
-    BigButton
+    BigButton,
+    SquareContainer
   },
   props: {
     congress: Object

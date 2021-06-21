@@ -5,11 +5,19 @@
     :title="title"
     @changeSection="selectSection"
   >
-    <Info v-if="section === 'info'" :congress="updatedCongress.info" />
-    <Details v-if="section === 'details'" :congress="updatedCongress.details" />
-    <!-- <DayByDay v-if="section === 'components'" />
+    <Info v-if="updatedSection === 'info'" :congress="updatedCongress.info" />
+    <Details
+      v-if="updatedSection === 'details'"
+      :congress="updatedCongress.details"
+    />
+    <Hotels
+      v-if="updatedSection === 'hotel'"
+      :congress="updatedCongress.hotel"
+    />
+    <DayByDay v-if="section === 'day'" :congress="updatedCongress.day" />
+
+    <!--
     <Activities v-if="section === 'documents'" />
-    <Hotels v-if="section === 'documents'" />
     <KeyMessages v-if="section === 'documents'" />-->
   </congress-layout>
 </template>
@@ -18,11 +26,15 @@
 import CongressLayout from '../../components/congressdetails/CongressLayout.vue'
 import Info from '../../components/congressdetails/Info.vue'
 import Details from '../../components/congressdetails/Details.vue'
+import Hotels from '../../components/congressdetails/Hotels.vue'
+import DayByDay from '../../components/congressdetails/DayByDay.vue'
 export default {
   components: {
     CongressLayout,
     Info,
-    Details
+    Details,
+    Hotels,
+    DayByDay
   },
   data () {
     return {
@@ -105,8 +117,7 @@ export default {
             title: 'Hotel & Transfer',
             content: {
               hotel: {
-                image:
-                  'https://limacorporate.com/repo/conferences-users/356a192b7913b04c54574d18c28d46e6395428ab/o_1f8f8ik1b1bku1uat1pfj1es4181e7_mob.jpg',
+                image: '/assets/test/congress.jpg',
                 name: 'Prova hotel',
                 address: '<p>Indirizzo hotel</p>',
                 googlemaps: 'mappa',
@@ -247,6 +258,7 @@ export default {
           path: newSections[i]
         })
       }
+      console.log(array)
       return array
     }
   },
