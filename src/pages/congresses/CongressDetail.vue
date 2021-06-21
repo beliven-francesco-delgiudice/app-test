@@ -1,12 +1,12 @@
 <template>
   <congress-layout
-    section="info"
+    :section="updatedSection"
     :sections="sectionsList"
-    :title="updatedCongress.info.content.name"
+    :title="title"
     @changeSection="selectSection"
   >
     <Info v-if="section === 'info'" :congress="updatedCongress.info" />
-    <!-- <Details v-if="section === 'details'" /> -->
+    <Details v-if="section === 'details'" :congress="updatedCongress.details" />
     <!-- <DayByDay v-if="section === 'components'" />
     <Activities v-if="section === 'documents'" />
     <Hotels v-if="section === 'documents'" />
@@ -17,12 +17,12 @@
 <script>
 import CongressLayout from '../../components/congressdetails/CongressLayout.vue'
 import Info from '../../components/congressdetails/Info.vue'
-// import Details from '../../components/congressdetails/Details.vue'
+import Details from '../../components/congressdetails/Details.vue'
 export default {
   components: {
     CongressLayout,
-    Info
-    // Details
+    Info,
+    Details
   },
   data () {
     return {
@@ -35,7 +35,8 @@ export default {
               image: '/assets/test/congress.jpg',
               name: 'Nome evento',
               subtitle: 'Virtual tour',
-              description: '<p>Descrizione evento</p>',
+              description_short: '<p>Descrizione corta</p>',
+              description: '<p>Descrizione evento 1 2 3 4</p>',
               first_date: 'Tue, 01 Jun',
               last_date: 'Sat, 26 Jun',
               first_date_time: '15:00 pm',
@@ -52,16 +53,12 @@ export default {
               congress_venue: {
                 gallery: [
                   {
-                    preview:
-                      'https://limacorporate.com/repo/conferences-congress-gallery/356a192b7913b04c54574d18c28d46e6395428ab/o_1f6kfe9jhevl1i0f1k1j1f6hh5qr_mob.jpg',
-                    hd:
-                      'https://limacorporate.com/repo/conferences-congress-gallery/356a192b7913b04c54574d18c28d46e6395428ab/o_1f6kfe9jhevl1i0f1k1j1f6hh5qr_web.jpg'
+                    preview: '/assets/test/congress-gallery.jpg',
+                    hd: '/assets/test/congress-gallery.jpg'
                   },
                   {
-                    preview:
-                      'https://limacorporate.com/repo/conferences-congress-gallery/356a192b7913b04c54574d18c28d46e6395428ab/o_1f84tq9ib1lc39h9or3bj71br91u_mob.jpg',
-                    hd:
-                      'https://limacorporate.com/repo/conferences-congress-gallery/356a192b7913b04c54574d18c28d46e6395428ab/o_1f84tq9ib1lc39h9or3bj71br91u_web.jpg'
+                    preview: '/assets/test/congress-gallery.jpg',
+                    hd: '/assets/test/congress-gallery.jpg'
                   }
                 ],
                 title: 'Congress title',
@@ -74,7 +71,8 @@ export default {
               },
               timing_dates: {
                 title: 'Timing title',
-                description: '<p>Timing description</p>',
+                description: '<p>Timing description long long long</p>',
+                description_short: '<p>Timing description short</p>',
                 from_date: 'Tue, 01 Jun',
                 from_time: '15:00 pm',
                 to_date: 'Sat, 26 Jun',
@@ -84,13 +82,16 @@ export default {
               },
               lima_booth: {
                 title: 'Lima booth Title',
-                description: '<p>Prova</p>',
+                description_short: '<p>Prova</p>',
+                description: '<p>Prova lung lung lung</p>',
                 gallery: [
                   {
-                    preview:
-                      'https://limacorporate.com/repo/conferences-gallery/356a192b7913b04c54574d18c28d46e6395428ab/o_1f6elnl9f185t1dji1laqoh310goj_mob.jpg',
-                    hd:
-                      'https://limacorporate.com/repo/conferences-gallery/356a192b7913b04c54574d18c28d46e6395428ab/o_1f6elnl9f185t1dji1laqoh310goj_web.jpg'
+                    preview: '/assets/test/congress-gallery.jpg',
+                    hd: '/assets/test/congress-gallery.jpg'
+                  },
+                  {
+                    preview: '/assets/test/congress-gallery.jpg',
+                    hd: '/assets/test/congress-gallery.jpg'
                   }
                 ]
               },
@@ -218,6 +219,17 @@ export default {
     }
   },
   computed: {
+    title () {
+      if (
+        this.updatedCongress &&
+        this.updatedCongress.info &&
+        this.updatedCongress.info.content &&
+        this.updatedCongress.info.content.name
+      ) {
+        return this.updatedCongress.info.content.name
+      }
+      return 'Congress details'
+    },
     updatedCongress () {
       const obj = Object.assign({}, this.congress.tabs)
       return obj
@@ -230,11 +242,6 @@ export default {
       const array = []
 
       for (let i = 0; i < newSections.length; i++) {
-        console.log(
-          newSections[i],
-          this.updatedCongress[newSections[i]],
-          this.updatedCongress
-        )
         array.push({
           label: this.updatedCongress[newSections[i]].title,
           path: newSections[i]
