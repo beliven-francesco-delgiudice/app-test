@@ -15,10 +15,12 @@
       :congress="updatedCongress.hotel"
     />
     <DayByDay v-if="section === 'day'" :congress="updatedCongress.day" />
+    <Activities
+      v-if="section === 'activities'"
+      :congress="updatedCongress.activities"
+    />
 
-    <!--
-    <Activities v-if="section === 'documents'" />
-    <KeyMessages v-if="section === 'documents'" />-->
+    <!-- <KeyMessages v-if="section === 'documents'" />-->
   </congress-layout>
 </template>
 
@@ -28,13 +30,15 @@ import Info from '../../components/congressdetails/Info.vue'
 import Details from '../../components/congressdetails/Details.vue'
 import Hotels from '../../components/congressdetails/Hotels.vue'
 import DayByDay from '../../components/congressdetails/DayByDay.vue'
+import Activities from '../../components/congressdetails/Activities.vue'
 export default {
   components: {
     CongressLayout,
     Info,
     Details,
     Hotels,
-    DayByDay
+    DayByDay,
+    Activities
   },
   data () {
     return {
@@ -193,12 +197,11 @@ export default {
                     experts: [
                       {
                         id: 1,
-                        image:
-                          'https://limacorporate.com/images/experts-preview/356a192b7913b04c54574d18c28d46e6395428ab/o_1e1ef8ptg1vn1d071tmidhl1vtb9t_tmb.jpg'
+                        image: '/assets/test/faculty1.jpg'
                       },
                       {
                         id: 2,
-                        image: 'https://limacorporate.com/images/'
+                        image: '/assets/test/faculty2.jpg'
                       }
                     ],
                     date: '26 May'
@@ -216,7 +219,7 @@ export default {
                     experts: [
                       {
                         id: 2,
-                        image: 'https://limacorporate.com/images/'
+                        image: '/assets/test/faculty1.jpg'
                       }
                     ],
                     date: '26 May'
