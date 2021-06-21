@@ -7,6 +7,7 @@
         i === 0 ? 'ml-8' : '',
         'bg-white rounded-12 relative mr-4 gallery-container elevated-shadow overflow-hidden'
       ]"
+      @click="openImage(image)"
     >
       <ion-img
         :src="image.image ? image.image : image.preview"
@@ -26,17 +27,44 @@
       &nbsp;
     </div>
   </carousel>
+  <image-modal :open="isOpenImage" :image="image" @onClose="closeImage" />
 </template>
 <script>
 import Carousel from './Carousel.vue'
 import { IonImg } from '@ionic/vue'
+import ImageModal from './ImageModal.vue'
 export default {
   components: {
     Carousel,
-    IonImg
+    IonImg,
+    ImageModal
   },
   props: {
     gallery: Array
+  },
+  data () {
+    return {
+      image: '',
+      isOpenImage: false
+    }
+  },
+  methods: {
+    openImage (imageObject) {
+      if (imageObject) {
+        if (imageObject.hd) {
+          this.image = imageObject.hd
+        } else if (imageObject.image) {
+          this.image = imageObject.image
+        } else if (imageObject.preview) {
+          this.image = imageObject.preview
+        }
+      }
+      this.isOpenImage = true
+    },
+    closeImage () {
+      this.isOpenImage = false
+      this.image = ''
+    }
   }
 }
 </script>
