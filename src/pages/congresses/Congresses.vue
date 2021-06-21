@@ -13,7 +13,7 @@
         @click="routeToCongress(item)"
       >
         <div
-          class="flex flex-start items-center pointer-events-none px-8 w-full"
+          class="flex flex-start items-start pointer-events-none px-8 w-full"
         >
           <square-container
             bgClass="bg-white"
