@@ -3,7 +3,7 @@
     <template v-slot="{ item }">
       <div
         class="flex flex-col justify-between items-start bg-white rounded-12 elevated-shadow px-6 py-4"
-        @click="routeToComponent(item)"
+        @click="routeToActivity(item)"
       >
         <span
           class="font-helvetica-medium text-black text-16 spacing-5 line-28"
