@@ -37,9 +37,6 @@ export default {
       selectValue: this.value
     }
   },
-  mounted () {
-    console.log('mounted', this.value)
-  },
   computed: {
     isDisabled () {
       return this.disabled || false
@@ -57,7 +54,6 @@ export default {
   },
   watch: {
     value: function (newValue) {
-      console.log('value in select', newValue)
       if (this.selectValue !== newValue) {
         this.selectValue = newValue
       }

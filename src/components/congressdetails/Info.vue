@@ -88,7 +88,6 @@ export default {
   computed: {
     updatedCongress () {
       const congress = Object.assign({}, this.congress.content)
-      console.log('content', congress)
       return congress
     },
     updatedReadMore () {

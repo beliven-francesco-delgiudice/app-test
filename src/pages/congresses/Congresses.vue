@@ -97,7 +97,7 @@ export default {
     },
     updateFilters (filterObj) {
       this.filters = Object.assign({}, filterObj)
-      console.log('products categ', filterObj)
+      console.log('congresses filters', filterObj)
     }
   }
 }

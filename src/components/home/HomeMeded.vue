@@ -70,7 +70,6 @@ export default {
       ) {
         const array = [this.data.faculties[0], this.data.faculties[1]]
         array.push({ text: this.data.faculties.length - 2 })
-        console.log(array)
         return array
       }
       return this.data.faculties
