@@ -26,7 +26,7 @@
       <form class="flex h-full flex-col justify-between" @submit="onSubmit">
         <div class="flex flex-col px-8">
           <Title titleClass="pb-4 text-black font-helvetica-bold text-28 block">
-            Filters
+            Filters & Sort
           </Title>
 
           <div
@@ -54,10 +54,10 @@
   </ion-modal>
 </template>
 <script>
-import Title from '../components/Title'
-import BigButton from './containers/BigButton.vue'
+import Title from '../Title.vue'
+import BigButton from '../containers/BigButton.vue'
 import { IonImg, IonModal } from '@ionic/vue'
-import CustomSelect from './CustomSelect.vue'
+import CustomSelect from '../CustomSelect.vue'
 export default {
   components: {
     Title,

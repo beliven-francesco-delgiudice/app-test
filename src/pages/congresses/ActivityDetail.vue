@@ -1,7 +1,7 @@
 <template>
   <Page
     withMargin
-    :label="updatedProduct.title"
+    :label="updatedActivity.title"
     :aboveTitle="aboveTitle"
     :back="backPath"
   >
@@ -9,88 +9,111 @@
       class="bg-white rounded-12 relative mr-4 gallery-container elevated-shadow overflow-hidden"
     >
       <ion-img
-        :src="updatedProduct.gallery[0].big"
+        :src="updatedActivity.preview"
         class="h-full w-auto pointer-events-none"
       />
     </div>
 
-    <div class="flex my-8 justify-between items-start">
-      <div class="flex flex-col">
-        <span class="font-helvetica text-14 text-grey spacing-44 line-20"
-          >Material</span
-        >
-        <span
-          class="font-helvetica text-16 text-mid-dark-grey spacing-2 line-26"
-          >{{ updatedProduct.material }}</span
-        >
-      </div>
-      <div class="flex flex-col">
-        <span class="font-helvetica text-14 text-grey spacing-44 line-20"
-          >Sterile</span
-        >
-        <span
-          class="font-helvetica text-16 text-mid-dark-grey spacing-2 line-26"
-          >{{
-            updatedProduct.sterile ? 'Sterile component' : 'Not sterile'
-          }}</span
-        >
-      </div>
-    </div>
-    <div
-      v-if="updatedProduct.notes && updatedProduct.notes.length"
-      class="bg-light-grey rounded-12 p-4 flex flex-col mb-8"
-    >
+    <div class="flex flex-col my-8 ">
+      <span
+        class="font-helvetica-bold text-20 spacing-2 line-28 text-black mb-2"
+        >{{ updatedActivity.subtitle1 }}
+      </span>
+      <span
+        class="font-helvetica-medium text-16 spacing-4 line-24 text-dark-grey mb-4"
+        >{{ updatedActivity.subtitle2 }}
+      </span>
       <span class="font-helvetica text-14 text-grey spacing-44 line-20"
-        >Notes</span
+        >Location</span
       >
-      <p
-        class="m-0 pt-4 font-helvetica text-16 text-mid-dark-grey spacing-1 line-24"
+      <span
+        class="font-helvetica text-16 text-mid-dark-grey spacing-2 line-26 mb-8"
+        >{{ updatedActivity.location }}</span
       >
-        {{ updatedProduct.notes }}
-      </p>
+
+      <div class="flex flex-col bg-light-red rounded-12 p-6">
+        <div class="flex justify-between items-start mb-4">
+          <div class="flex flex-col">
+            <span
+              class="font-helvetica text-14 text-grey spacing-44 line-28 mb-4"
+              >From</span
+            >
+            <span
+              class="font-helvetica-medium text-16 text-red spacing-23 line-24 mb-2"
+              >{{ updatedActivity.start_date_date }}</span
+            >
+            <span class="font-helvetica text-14 text-red spacing-2 line-24"
+              >{{ updatedActivity.start_date_time }} UTC</span
+            >
+          </div>
+          <div class="flex flex-col">
+            <span
+              class="font-helvetica text-14 text-grey spacing-44 line-28 mb-4"
+              >To</span
+            >
+            <span
+              class="font-helvetica-medium text-16 text-red spacing-23 line-24 mb-2"
+              >{{ updatedActivity.end_date_date }}</span
+            >
+            <span class="font-helvetica text-14 text-red spacing-2 line-24"
+              >{{ updatedActivity.end_date_time }} UTC</span
+            >
+          </div>
+        </div>
+        <big-button label="Save in calendar" />
+      </div>
     </div>
 
     <separator noYMargin />
 
-    <detail-section
-      v-for="(group, i) in updatedProduct.variants"
-      :key="i"
-      :label="group.title"
-      noPadding
-    >
+    <detail-section label="Description" noPadding>
+      <p
+        class="p-children font-helvetica text-mid-dark-grey text-16 spacing-1 line-24 mb-4 mt-0"
+        v-html="formattedDescription"
+      />
+      <div class="flex justify-start">
+        <section-button
+          :label="updatedReadMore ? 'Read less' : 'Read more'"
+          @onClick="readMore"
+        />
+      </div>
+    </detail-section>
+    <detail-section label="Faculties" noPadding>
       <div
-        v-for="(variant, j) in group.variants"
-        :key="j"
-        class="flex mb-8 justify-between items-center"
+        :key="i"
+        v-for="(faculty, i) in updatedActivity.experts"
+        :class="[i > 0 ? 'mt-4' : '', ' flex justify-start items-center']"
+        @click="openFaculty(faculty)"
       >
-        <div class="flex justify-start items-stretch">
-          <div
-            :class="[
-              variant.upon_request ? 'bg-red' : 'bg-light-grey',
-              ' width-4 rounded-2 mr-4'
-            ]"
-          ></div>
-          <div class="flex flex-col justify-between items-start">
-            <span
-              class="font-helvetica-medium text-dark-grey text-16 spacing-4 line-24"
-              >{{ variant.attribute }}</span
-            >
-            <span class="font-helvetica text-grey text-14 spacing-44 line-24">{{
-              variant.code
-            }}</span>
-          </div>
-        </div>
+        <square-container
+          bgClass="bg-white"
+          squareSize="64"
+          classes="mr-4 pointer-events-none"
+        >
+          <ion-img :src="faculty.preview" />
+        </square-container>
         <div
-          v-if="variant.upon_request"
-          class="bg-light-red rounded-6 px-2 ml-auto"
+          class="flex flex-col justify-between items-start pointer-events-none"
         >
           <span
-            class="font-helvetica-medium text-12 text-red spacing-8 line-30 pointer-events-none"
-            >upon request</span
+            class="font-helvetica-medium text-16 spacing-5 line-28 text-black"
+            >{{ faculty.name }}</span
           >
+          <span class="font-helvetica text-14 spacing-44 line-24 text-grey">{{
+            faculty.subtitle
+          }}</span>
         </div>
       </div>
     </detail-section>
+    <detail-section label="Download" noPadding>
+      <document-list-item
+        bgClass="bg-transparent"
+        v-for="(file, j) in files"
+        :key="j"
+        :document="file"
+      />
+    </detail-section>
+    <faculty-modal :faculty="faculty" @onClose="closeFaculty" />
   </Page>
 </template>
 
@@ -99,88 +122,100 @@ import { IonImg } from '@ionic/vue'
 import Page from '../../components/Page.vue'
 import Separator from '../../components/Separator.vue'
 import DetailSection from '../../components/DetailSection.vue'
+import SquareContainer from '../../components/containers/SquareContainer.vue'
+import DocumentListItem from '../../components/DocumentListItem.vue'
+import SectionButton from '../../components/containers/SectionButton.vue'
+import BigButton from '../../components/containers/BigButton.vue'
+import FacultyModal from '../../components/modals/FacultyModal.vue'
 export default {
   components: {
     IonImg,
     Page,
     Separator,
-    DetailSection
+    DetailSection,
+    SquareContainer,
+    DocumentListItem,
+    SectionButton,
+    BigButton,
+    FacultyModal
   },
   data () {
     return {
-      component: {
-        id: 678,
-        sterile: true,
-        notes: 'These are the components notes',
-        title: 'Glenoids - Bone Screws',
-        parent_name: 'Glenoids - Bone Screws',
-        material: 'Ti6Al4V',
-        gallery: [
+      isReadMore: false,
+      faculty: null,
+      activity: {
+        id: 1,
+        parent_id: 1,
+        type: 'Innovation Theatre',
+        title: 'Attività 1',
+        subtitle1: 'Prima riga sotto',
+        subtitle2: 'Seconda riga sotto',
+        location: 'Stanza 1',
+        description: '<p>Descrizione attività</p>',
+        preview: 'https://limacorporate.com/repo/',
+        experts: [
           {
-            preview: '/assets/test/component-small.jpg',
-            big: '/assets/test/component.png'
+            id: 1,
+            name: 'Prof. Alessandro Castagna',
+            subtitle: 'Prova Mario',
+            preview:
+              'https://limacorporate.com/images/experts-preview/356a192b7913b04c54574d18c28d46e6395428ab/o_1e1ef8ptg1vn1d071tmidhl1vtb9t_tmb.jpg',
+            description:
+              "<p></p><p><b>Prof. Alessandro Castagna </b>is specialized in Shoulder Surgery and he is Director of the 'Shoulder and Elbow Unit at Humanitas Hospital', Milan. <span>He is the former President of the European Shoulder </span><span>and Elbow Society and of the Italian Shoulder and Elbow Society, Member of the ICSES, International corresponding Member of the American and Australian Shoulder and Elbow Societies, of the DVSE (German society of Shoulder and Elbow Surgery), of the KSES (Korean Shoulder and Elbow Society) and a honorary Member of several scientific societies worldwide. </span><span>He is the author of over 100 articles published in peer reviewed journals.</span></p><p><br/></p>"
+          },
+          {
+            id: 2,
+            name: 'TechMah Team',
+            subtitle: null,
+            preview: 'https://limacorporate.com/images/',
+            description:
+              "<p>TechMah Medical is a technology company focused on delivering orthopedic solutions, founded by Dr. Mohamed Mahfouz, Professor of Biomedical Engineering at the University of Tennessee, since 2014. TechMah builds innovative applications designed to improve patient and clinician experience throughout the joint replacement process. Based in Knoxville, Tennessee, our TechMah's team of scientists and engineers are driven to improve quality and efficiency through customization. <br/></p>"
           }
         ],
-        variants: [
-          {
-            title: 'Ø6.5',
-            variants: [
-              {
-                id: 5579,
-                code: '8420.15.010',
-                upon_request: false,
-                size: 'H. 20 mm',
-                attribute: 'Ø6.5',
-                files: []
-              },
-              {
-                id: 5580,
-                code: '8420.15.020',
-                upon_request: true,
-                size: 'H. 25 mm',
-                attribute: 'Ø6.5',
-                files: []
-              },
-              {
-                id: 5581,
-                code: '8420.15.030',
-                upon_request: false,
-                size: 'H. 30 mm',
-                attribute: 'Ø6.5',
-                files: []
-              },
-              {
-                id: 5582,
-                code: '8420.15.040',
-                upon_request: false,
-                size: 'H. 35 mm',
-                attribute: 'Ø6.5',
-                files: []
-              },
-              {
-                id: 5583,
-                code: '8420.15.050',
-                upon_request: false,
-                size: 'H. 40 mm',
-                attribute: 'Ø6.5',
-                files: []
-              }
-            ]
-          }
-        ]
+        description_short: 'Descrizione attività',
+        start_date_time: '11:00 am',
+        start_date_date: 'Wed, 26 May',
+        end_date_time: '12:00 pm',
+        end_date_date: 'Wed, 26 May',
+        save_event:
+          'https://lima-app-api.lndo.site/api/congresses/save-activity/1',
+        files: []
       }
     }
   },
   computed: {
-    updatedProduct () {
-      return this.component
+    updatedActivity () {
+      return this.activity
+    },
+    updatedReadMore () {
+      return this.isReadMore
     },
     aboveTitle () {
-      return this.updatedProduct.parent_name + ' /'
+      return this.updatedActivity.type + ' /'
+    },
+    formattedDescription () {
+      if (this.updatedReadMore) {
+        return this.updatedActivity.description
+      }
+      return this.updatedActivity.description_short
     },
     backPath () {
-      const id = this.updatedProduct.parent_id
-      return `/products/detail/${id}/components`
+      const id = this.updatedActivity.parent_id
+      return `/congresses/${id}?section=activities`
+    },
+    isFaculty () {
+      return this.faculty
+    }
+  },
+  methods: {
+    readMore () {
+      this.isReadMore = !this.isReadMore
+    },
+    openFaculty (faculty) {
+      this.faculty = Object.assign({}, faculty)
+    },
+    closeFaculty () {
+      this.faculty = null
     }
   }
 }
@@ -190,5 +225,12 @@ export default {
   width: calc(100vw - 4rem);
   min-width: calc(100vw - 4rem);
   height: 221px;
+}
+p {
+  margin: 0;
+}
+.p-children > p,
+.p-children p {
+  margin: 0;
 }
 </style>

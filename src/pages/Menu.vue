@@ -71,18 +71,13 @@ export default {
           img: 'meded.svg'
         },
         {
-          name: 'News',
-          href: '/news',
-          img: 'news.svg'
-        },
-        {
           name: 'Congresses',
           href: '/congresses',
           img: 'congresses.svg'
         },
         {
-          name: 'Updates',
-          href: '/updates',
+          name: "What's New",
+          href: '/new',
           img: 'notifications.svg'
         },
         {

@@ -362,6 +362,10 @@
   margin-left: 2rem;
   margin-right: 2rem;
 }
+.mx-16 {
+  margin-left: 4rem;
+  margin-right: 4rem;
+}
 .mr-2 {
   margin-right: 0.5rem;
 }
@@ -382,6 +386,9 @@
 }
 .ml-8 {
   margin-left:2rem;
+}
+.ml-16 {
+  margin-left: 4rem;
 }
 
 .my-auto {
@@ -438,6 +445,9 @@
 }
 .mb-8 {
   margin-bottom: 2rem;
+}
+.mb-16 {
+  margin-bottom: 4rem;
 }
 .mb-20 {
   margin-bottom: 5rem;

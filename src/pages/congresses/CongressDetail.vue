@@ -19,8 +19,11 @@
       v-if="section === 'activities'"
       :congress="updatedCongress.activities"
     />
-
-    <!-- <KeyMessages v-if="section === 'documents'" />-->
+    <KeyMessages v-if="section === 'key'" :congress="updatedCongress.key" />
+    <Downloads
+      v-if="section === 'downloads'"
+      :congress="updatedCongress.downloads"
+    />
   </congress-layout>
 </template>
 
@@ -31,6 +34,9 @@ import Details from '../../components/congressdetails/Details.vue'
 import Hotels from '../../components/congressdetails/Hotels.vue'
 import DayByDay from '../../components/congressdetails/DayByDay.vue'
 import Activities from '../../components/congressdetails/Activities.vue'
+import KeyMessages from '../../components/congressdetails/KeyMessages.vue'
+import Downloads from '../../components/congressdetails/Downloads.vue'
+
 export default {
   components: {
     CongressLayout,
@@ -38,7 +44,9 @@ export default {
     Details,
     Hotels,
     DayByDay,
-    Activities
+    Activities,
+    KeyMessages,
+    Downloads
   },
   data () {
     return {
@@ -227,6 +235,71 @@ export default {
                 ]
               }
             ]
+          },
+          key: {
+            title: 'Key messages',
+            content: [
+              {
+                id: 2,
+                title: 'Lorem ipsum dolor sic amet nuqmuam',
+                text:
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+                gallery: [
+                  {
+                    preview: '/assets/test/congress-gallery.jpg',
+                    hd: '/assets/test/congress-gallery.jpg'
+                  },
+                  {
+                    preview: '/assets/test/congress-gallery.jpg',
+                    hd: '/assets/test/congress-gallery.jpg'
+                  }
+                ]
+              },
+              {
+                id: 3,
+                title: 'Lorem ipsum dolor sic ',
+                text:
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.'
+              },
+              {
+                id: 4,
+                title: 'Lorem ipsum dolor sic amet nuqmuam nuqmuam',
+                text:
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                gallery: [
+                  {
+                    preview: '/assets/test/congress-gallery.jpg',
+                    hd: '/assets/test/congress-gallery.jpg'
+                  }
+                ]
+              }
+            ]
+          },
+          downloads: {
+            title: 'Downloads',
+            content: [
+              {
+                image: '/assets/test/file.jpg',
+                type: 'file',
+                label: 'Lorem ipsum',
+                size: '3.6MB',
+                link: 'link'
+              },
+              {
+                image: '/assets/test/folder.jpg',
+                type: 'folder',
+                label: 'Lorem ipsum',
+                size: '3.6MB',
+                link: 'link'
+              },
+              {
+                image: '/assets/test/file.jpg',
+                type: 'file',
+                label: 'Lorem ipsum',
+                size: '3.6MB',
+                link: 'link'
+              }
+            ]
           }
         }
       }
@@ -261,7 +334,6 @@ export default {
           path: newSections[i]
         })
       }
-      console.log(array)
       return array
     }
   },

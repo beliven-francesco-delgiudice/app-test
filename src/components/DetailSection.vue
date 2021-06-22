@@ -2,7 +2,7 @@
   <div class="flex flex-col">
     <small-title :label="label" classes="pb-4 mt-8" :noPadding="noPadding" />
     <slot></slot>
-    <separator v-if="!noSeparator" withMargin topMargin />
+    <separator v-if="!noSeparator" :withMargin="!noPadding" topMargin />
   </div>
 </template>
 <script>

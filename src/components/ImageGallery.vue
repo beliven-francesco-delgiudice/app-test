@@ -4,7 +4,7 @@
       v-for="(image, i) in gallery"
       :key="i"
       :class="[
-        i === 0 ? 'ml-8' : '',
+        i === 0 ? margin : '',
         'bg-white rounded-12 relative mr-4 gallery-container elevated-shadow overflow-hidden'
       ]"
       @click="openImage(image)"
@@ -32,7 +32,7 @@
 <script>
 import Carousel from './Carousel.vue'
 import { IonImg } from '@ionic/vue'
-import ImageModal from './ImageModal.vue'
+import ImageModal from './modals/ImageModal.vue'
 export default {
   components: {
     Carousel,
@@ -40,12 +40,18 @@ export default {
     ImageModal
   },
   props: {
-    gallery: Array
+    gallery: Array,
+    initMargin: String
   },
   data () {
     return {
       image: '',
       isOpenImage: false
+    }
+  },
+  computed: {
+    margin () {
+      return this.initMargin || 'ml-8'
     }
   },
   methods: {
