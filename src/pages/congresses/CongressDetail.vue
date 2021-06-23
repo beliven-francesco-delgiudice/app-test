@@ -24,6 +24,10 @@
       v-if="section === 'downloads'"
       :congress="updatedCongress.downloads"
     />
+    <Contacts
+      v-if="section === 'contacts'"
+      :congress="updatedCongress.contacts"
+    />
   </congress-layout>
 </template>
 
@@ -36,7 +40,7 @@ import DayByDay from '../../components/congressdetails/DayByDay.vue'
 import Activities from '../../components/congressdetails/Activities.vue'
 import KeyMessages from '../../components/congressdetails/KeyMessages.vue'
 import Downloads from '../../components/congressdetails/Downloads.vue'
-
+import Contacts from '../../components/congressdetails/Contacts.vue'
 export default {
   components: {
     CongressLayout,
@@ -46,7 +50,8 @@ export default {
     DayByDay,
     Activities,
     KeyMessages,
-    Downloads
+    Downloads,
+    Contacts
   },
   data () {
     return {
@@ -300,6 +305,39 @@ export default {
                 link: 'link'
               }
             ]
+          },
+          contacts: {
+            title: 'Contacts',
+            content: {
+              phone: '+49 (0) 30 246 03 250',
+              mail: 'esska-congress@kit-group.org',
+              link: 'esska-congress.org',
+              hotel: {
+                text: 'Lorem ipsum dolor sit amet consectetur adipiscing elit',
+                phone: 'T. +49 (0) 30 246 03 250',
+                mail: 'grandpalacehotel@info.it'
+              },
+              venue: {
+                text: 'Lorem ipsum dolor sit amet consectetur adipiscing elit',
+                phone: 'T. +49 (0) 30 246 03 250',
+                mail: 'grandpalacehotel@info.it'
+              },
+              staff: {
+                text: 'Lorem ipsum dolor sit amet consectetur adipiscing elit',
+                employees: [
+                  {
+                    name: 'Name Surname',
+                    phone: 'T. 347 8888888',
+                    mail: 'namesurname@limacorporate.it'
+                  },
+                  {
+                    name: 'Name Surname',
+                    phone: 'T. 347 8888888',
+                    mail: 'namesurname@limacorporate.it'
+                  }
+                ]
+              }
+            }
           }
         }
       }

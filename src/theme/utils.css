@@ -3,6 +3,11 @@
   height: calc(100vh - 72px)
 }
 
+p {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
 .main-layout ion-tabs > .tabs-inner:first-child {
   display: none !important;
 }

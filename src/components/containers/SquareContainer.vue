@@ -14,11 +14,14 @@ export default {
   },
   computed: {
     divClass () {
-      return `rounded-${this.rounded || '8'} ${this.bgClass || 'bg-white'} ${
-        this.squareSize
-          ? 'width-' + this.squareSize + ' height-' + this.squareSize
-          : ''
-      } ${this.classes || ''}`
+      const propsClass = this.classes
+      return (
+        `rounded-${this.rounded || '8'} ${this.bgClass || 'bg-white'} ${
+          this.squareSize
+            ? 'width-' + this.squareSize + ' height-' + this.squareSize
+            : ''
+        } ` + propsClass
+      )
     }
   }
 }

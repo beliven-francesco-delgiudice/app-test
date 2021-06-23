@@ -14,6 +14,7 @@
         :key="i"
         :classes="i > 0 ? 'mt-4' : ''"
         :document="doc"
+        small
       />
     </div>
   </div>

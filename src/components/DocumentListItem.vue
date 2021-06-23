@@ -5,7 +5,7 @@
         rounded="8"
         :bgClass="imageBackround"
         squareSize="44"
-        classes="pointer-events-none mr-2 flex"
+        :classes="[small ? 'mr-2 ' : 'mr-4 ', ' pointer-events-none flex']"
       >
         <ion-img :src="image" class="m-auto" />
       </square-container>
