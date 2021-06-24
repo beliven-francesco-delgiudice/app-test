@@ -33,10 +33,16 @@
         v-for="(tab, i) in routingTabs"
         :key="i"
         :tab="tab.name"
+        :class="[
+          tab.disabled ? 'pointer-events-none' : '',
+          ' flex flex-grow justify-center items-center'
+        ]"
         @click="$router.push(tab.href)"
-        class="flex flex-grow justify-center items-center"
       >
-        <ion-img :src="tab.icon" :class="tab.active ? '' : 'opacity-50'" />
+        <ion-img
+          :src="tab.icon"
+          :class="tab.active ? '' : tab.disabled ? 'opacity-25' : 'opacity-50'"
+        />
       </div>
     </div>
   </div>
@@ -63,6 +69,7 @@ export default {
         {
           name: 'documents',
           href: '/documents',
+          disabled: true,
           icon: '/assets/button-icons/documents.svg'
         },
         {

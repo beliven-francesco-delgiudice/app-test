@@ -83,12 +83,6 @@ export default {
 }
 </script>
 <style scoped>
-.back-button {
-  --background: transparent;
-  --border: none;
-  --box-shadow: none;
-  left: -1rem;
-}
 p > p {
   font-family: inherit;
   font-size: inherit;

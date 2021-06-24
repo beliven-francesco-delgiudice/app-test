@@ -114,11 +114,4 @@ export default {
   }
 }
 </script>
-<style scoped>
-.back-button {
-  --background: transparent;
-  --border: none;
-  --box-shadow: none;
-  left: -1rem;
-}
-</style>
+<style scoped></style>

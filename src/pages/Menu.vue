@@ -3,7 +3,10 @@
     <div class="flex flex-col">
       <ion-list class="bg-transparent">
         <div
-          class="flex flex-row justify-between items-center bg-transparent py-2"
+          :class="[
+            item.disabled ? 'opacity-50 pointer-events-none' : '',
+            ' flex flex-row justify-between items-center bg-transparent py-2'
+          ]"
           v-for="(item, i) in updatedList"
           :key="i"
           @click="routeTo(item.href)"
@@ -63,12 +66,14 @@ export default {
         {
           name: 'Documents',
           href: '/documents',
-          img: 'documents.svg'
+          img: 'documents.svg',
+          disabled: true
         },
         {
           name: 'Medical Education',
           href: '/meded',
-          img: 'meded.svg'
+          img: 'meded.svg',
+          disabled: true
         },
         {
           name: 'Congresses',
@@ -78,22 +83,26 @@ export default {
         {
           name: "What's New",
           href: '/new',
-          img: 'notifications.svg'
+          img: 'notifications.svg',
+          disabled: true
         },
         {
           name: 'Useful Links',
           href: '/useful',
-          img: 'useful.svg'
+          img: 'useful.svg',
+          disabled: true
         },
         {
           name: 'Multimedia',
           href: '/multimedia',
-          img: 'multimedia.svg'
+          img: 'multimedia.svg',
+          disabled: true
         },
         {
           name: 'Contact',
           href: '/contact',
-          img: 'contact.svg'
+          img: 'contact.svg',
+          disabled: true
         }
       ]
     }

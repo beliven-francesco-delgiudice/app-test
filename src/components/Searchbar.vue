@@ -1,8 +1,9 @@
 <template>
   <form
-    @submit="submitSearch"
+    @submit.prevent="submitSearch"
     :class="
-      `bg-white small-shadow rounded-8 flex items-center mx-8 z-10 relative px-2 ${classes}`
+      `bg-white small-shadow rounded-8 flex items-center z-10 relative px-2 ${classes ||
+        ''}`
     "
   >
     <ion-img
@@ -12,9 +13,13 @@
     <ion-input
       placeholder="Search"
       v-model="search"
-      class="ml-2"
+      @keydown.enter.prevent="submitSearch"
+      class="mx-2"
       required
     ></ion-input>
+    <div v-if="search && search.length" @click="cancelValue" class="flex">
+      <ion-img src="/assets/button-icons/close.svg" class="my-auto" />
+    </div>
   </form>
 </template>
 <script>
@@ -32,10 +37,19 @@ export default {
       search: ''
     }
   },
+  created () {
+    if (this.$route.query.string && this.$route.query.string.length) {
+      this.search = this.$route.query.string
+      //search
+    }
+  },
   methods: {
-    submitSearch (e) {
-      e.preventDefault()
-      this.$router.push(`/search${this.search ? '?string=' + this.search : ''}`)
+    cancelValue () {
+      this.search = ''
+      this.$emit('cancel')
+    },
+    submitSearch () {
+      this.$emit('submit', this.search)
     }
   }
 }

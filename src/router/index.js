@@ -7,10 +7,10 @@ import { isPlatform } from '@ionic/vue'
 
 import MainLayout from '../layouts/Main'
 import HomeLayout from '../layouts/Home.vue'
-// import NoHeaderLayout from '../layouts/NoHeader'
 
 import Home from '../pages/Home'
 import Menu from '../pages/Menu'
+import Search from '../pages/Search'
 
 import ProductsIndex from '../pages/products/ProductsIndex.vue'
 import ProductsSegment from '../pages/products/ProductsSegment.vue'
@@ -48,11 +48,11 @@ const routes = [
   {
     path: '/home',
     component: HomeLayout,
+    meta: { refreshAction: 'getHome' },
     children: [
       {
         path: '',
         name: 'Home',
-        meta: { refreshAction: 'getHome', backAction: 'exit' },
         component: Home
       }
     ]
@@ -68,6 +68,17 @@ const routes = [
         meta: {
           showWizard: true
         }
+      }
+    ]
+  },
+  {
+    path: '/search',
+    component: MainLayout,
+    children: [
+      {
+        path: '',
+        name: 'Search',
+        component: Search
       }
     ]
   },

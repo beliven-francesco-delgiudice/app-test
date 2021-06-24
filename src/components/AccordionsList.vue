@@ -3,8 +3,8 @@
     <div @click="expandAll" class="bg-black rounded-6 px-2 mb-8 mr-auto">
       <span
         class="font-helvetica-medium text-12 text-white spacing-8 line-30 pointer-events-none"
-        >{{ isAllExpanded ? 'Close all' : 'Expand all' }}</span
-      >
+        >{{ isAllExpanded ? 'Close all' : 'Expand all' }}
+      </span>
     </div>
 
     <div v-for="(item, i) in updatedList" :key="i" class="flex flex-col">

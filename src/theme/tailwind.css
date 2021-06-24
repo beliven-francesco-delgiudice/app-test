@@ -112,11 +112,6 @@
 }
 
 
-
-.opacity-50 {
-  opacity: 0.5;
-}
-
 .w-auto {
   width: auto;
 }
@@ -350,6 +345,10 @@
   margin-right:auto;
   margin-left: auto;
 }
+.mx-2 {
+  margin-right:0.5rem;
+  margin-left: 0.5rem;
+}
 .mx-4 {
   margin-right:1rem;
   margin-left: 1rem;
@@ -374,6 +373,9 @@
 }
 .mr-6 {
   margin-right:1.5rem;
+}
+.mr-8 {
+  margin-right: 2rem;
 }
 .ml-2 {
   margin-left: 0.5rem;
@@ -531,6 +533,12 @@
 
 .opacity-1 {
   opacity: 1;
+}
+.opacity-50 {
+  opacity: 0.5;
+}
+.opacity-25 {
+  opacity: 0.25;
 }
 .opacity-0 {
   opacity: 0;

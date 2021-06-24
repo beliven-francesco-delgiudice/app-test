@@ -29,7 +29,7 @@
             >Hi {{ userName }}, <br /></span
           >Welcome Back
         </Title>
-        <searchbar classes="mt-4" />
+        <searchbar classes="mx-8 mt-4" @submit="routeToSearch" />
       </div>
     </div>
     <!-- Products -->
@@ -312,6 +312,10 @@ export default {
     routeToSegment (segment) {
       const link = `/products/${segment.id}`
       this.$router.push({ path: link })
+    },
+    routeToSearch (searchText) {
+      const text = searchText ? '?string=' + searchText : ''
+      this.$router.push('/search' + text)
     }
   }
 }

@@ -12,7 +12,7 @@
       <div class="flex flex-col justify-between items-start">
         <span
           class="font-helvetica-medium text-16 text-black spacing-5 line-28"
-          >{{ document.label }}</span
+          >{{ document.label || document.name }}</span
         >
         <span class="font-helvetica text-14 text-grey spacing-44 line-24">{{
           document.size
