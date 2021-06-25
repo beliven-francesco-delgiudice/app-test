@@ -1,8 +1,8 @@
 <template>
   <product-layout
     section="documents"
-    :title="updatedProduct.title"
-    :productID="updatedProduct.id"
+    :title="updatedProduct.name"
+    :productID="$route.params.id"
   >
     <accordions-list classes="mt-4 px-8" :list="updatedProduct.attachments">
       <template v-slot="{ item }">
@@ -23,52 +23,38 @@ export default {
   },
   data () {
     return {
-      product: {
-        id: 1,
-        title: 'Delta TT',
-        attachments: [
-          {
-            count: 2,
-            name: 'Folderino Documentino',
-            childs: [
-              {
-                image: '/assets/test/folder.jpg',
-                type: 'folder',
-                label: 'Lorem ipsum',
-                size: '3.6MB',
-                link: 'link'
-              },
-              {
-                image: '/assets/test/file.jpg',
-                type: 'file',
-                label: 'Lorem ipsum',
-                size: '3.6MB',
-                link: 'link'
-              }
-            ]
-          },
-          {
-            image: '/assets/test/folder.jpg',
-            type: 'folder',
-            label: 'Lorem ipsum',
-            size: '3.6MB',
-            link: 'link'
-          },
-          {
-            image: '/assets/test/file.jpg',
-            type: 'file',
-            label: 'Lorem ipsum',
-            size: '3.6MB',
-            link: 'link'
-          }
-        ]
-      }
+      product: {}
     }
   },
   computed: {
     updatedProduct () {
       return this.product
     }
-  }
+  },
+  created () {
+    if (this.$route.params.id) {
+      try {
+        const resProduct = await this.$app.$http({
+          method: 'GET',
+          url: urls.products.product  + '/' + this.$route.params.id + '/attachments',
+          parameters: {}
+        })
+        this.product = resProduct
+      } catch (e) {
+        console.error(e)
+        this.$app.$toast({
+          message: messages.errors.productDetail,
+          color: 'danger'
+        })
+      }
+    } else {
+      console.error('No product id in route')
+      this.$app.$toast({
+        message: messages.errors.productDetail,
+        color: 'danger'
+      })
+      this.$router.back()
+    }
+  },
 }
 </script>

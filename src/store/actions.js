@@ -42,8 +42,6 @@ export async function getHome (context) {
   let products = []
   let congresses = []
 
-  console.log('dispatched getHome')
-
   try {
     // get products
     const prod = await this.$app.$http({

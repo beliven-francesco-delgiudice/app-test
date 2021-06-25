@@ -23,6 +23,8 @@
         </grey-container>
       </div>
     </div>
+    <separator />
+    <document-list-item v-if="catalogue" :document="catalogue" />
   </Page>
 </template>
 
@@ -30,60 +32,46 @@
 import { IonImg } from '@ionic/vue'
 import Page from '../../components/Page.vue'
 import GreyContainer from '../../components/containers/GreyContainer.vue'
+import Separator from '../../components/Separator.vue'
+import DocumentListItem from '../../components/DocumentListItem.vue'
 export default {
   components: {
     Page,
     GreyContainer,
-    IonImg
+    IonImg,
+    Separator,
+    DocumentListItem
   },
   data () {
     return {
-      segments: [
-        {
-          name: 'Hip',
-          id: 1,
-          image: '/assets/test/hip.svg'
-        },
-        {
-          name: 'Knee',
-          id: 2,
-          image: '/assets/test/knee.svg'
-        },
-        {
-          name: 'Shoulder',
-          id: 3,
-          image: '/assets/test/shoulder.svg'
-        },
-        {
-          name: 'Elbow',
-          id: 4,
-          image: '/assets/test/shoulder.svg'
-        },
-        {
-          name: 'Fixation',
-          id: 5,
-          image: '/assets/test/hip.svg'
-        }
-      ],
-      documents: [
-        {
-          image: '/assets/test/folder.jpg',
-          type: 'folder',
-          label: 'Lorem ipsum',
-          size: '3.6MB',
-          link: 'link'
-        },
-        {
-          image: '/assets/test/file.jpg',
-          type: 'file',
-          label: 'Lorem ipsum',
-          size: '3.6MB',
-          link: 'link'
-        }
-      ]
+      segments: [],
+      catalogue: {}
     }
   },
   computed: {},
+  created () {
+    try {
+      const prod = await this.$app.$http({
+        method: 'GET',
+        url: urls.products.segments,
+        parameters: {}
+      })
+      if (prod) {
+        if (prod.categories) {
+          this.segments = prod.categories
+        }
+        if (prod.catalogue) {
+          this.catalogue = prod.catalogue
+        }
+      }
+    } catch (e) {
+      console.error(e)
+      this.$app.$toast({
+        message: messages.errors.segments,
+        color: 'danger'
+      })
+    }
+  },
   methods: {
     routeToSegment (segment) {
       const link = `/products/${segment.id}`

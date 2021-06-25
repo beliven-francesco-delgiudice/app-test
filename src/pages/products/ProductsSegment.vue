@@ -3,7 +3,7 @@
     <ion-list class="bg-transparent">
       <div
         class="flex flex-row justify-between items-center bg-transparent pb-4 mb-4"
-        v-for="(item, i) in segment.list"
+        v-for="(item, i) in list"
         :key="i"
         @click="routeTo(item)"
       >
@@ -16,7 +16,7 @@
             rounded="12"
             classes="elevated-shadow mr-4 p-2"
           >
-            <ion-img :src="item.image" />
+            <ion-img :src="item.preview" />
           </square-container>
           <span
             class="font-helvetica-medium text-black text-16 spacing-5 line-28"
@@ -41,39 +41,56 @@ export default {
   },
   data () {
     return {
+      list: [],
       segment: {
         id: 2,
-        name: 'Hip',
-        list: [
-          {
-            id: 3,
-            name: 'Acetabular Cups',
-            image: '/assets/test/acetabular.svg'
-          },
-          {
-            id: 4,
-            name: 'Femoral Stems',
-            image: '/assets/test/stems.svg'
-          }
-        ]
+        name: 'None',
+        list: []
       }
     }
   },
-  computed: {
-    isCategory () {
-      return true
+
+  created () {
+    if (this.$route.params.segment) {
+      try {
+        const list = await this.$app.$http({
+          method: 'GET',
+          url: urls.products.segments  + '/' + this.$route.params.segment,
+          parameters: {}
+        })
+        this.list = list
+      } catch (e) {
+        console.error(e)
+        this.$app.$toast({
+          message: messages.errors.segmentProducts,
+          color: 'danger'
+        })
+      }
+    } else {
+      console.error('No segment id in route')
+      this.$app.$toast({
+        message: messages.errors.segmentProducts,
+        color: 'danger'
+      })
+      this.$router.push('/products')
     }
   },
   methods: {
     routeTo (item) {
       // if category push to category
       let link = '/products/'
-      if (this.isCategory) {
+      if (this.isCategory(item)) {
         link += 'category/' + item.id
       } else {
         link += 'detail/' + item.id
       }
       this.$router.push(link)
+    },
+    isCategory (item) {
+      if (item && item.type === 'category') {
+        return true
+      }
+      return false
     }
   }
 }

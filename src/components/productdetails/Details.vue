@@ -1,8 +1,8 @@
 <template>
   <product-layout
     section="details"
-    :title="updatedProduct.title"
-    :productID="updatedProduct.id"
+    :title="updatedProduct.name"
+    :productID="$route.params.id"
   >
     <image-gallery :gallery="updatedProduct.gallery" />
     <detail-section label="Description">
@@ -62,45 +62,7 @@ export default {
   data () {
     return {
       isReadMore: false,
-      product: {
-        id: 1,
-        title: 'Delta TT',
-        description:
-          'The LimaCorporate DELTA TT is a hemispherical cementless acetabular cup manufactured in Trabecular Titanium through the process of additive manufacturing. Breaking new ground in orthopedic technology, it combines the unique features of the DELTA System with the Trabecular Titanium structure. More: The LimaCorporate DELTA TT is a hemispherical cementless acetabular cup manufactured in Trabecular Titanium through the process of additive manufacturing. Breaking new ground in orthopedic technology, it combines the unique features of the DELTA System with the Trabecular Titanium structure.',
-        gallery: [
-          {
-            id: 12,
-            image: '/assets/test/gallery.jpg'
-          },
-          {
-            id: 13,
-            image: '/assets/test/gallery.jpg'
-          },
-          {
-            id: 14,
-            image: '/assets/test/gallery.jpg'
-          }
-        ],
-        benefits: [
-          'TT Trabecular Titanium ingrowths surface',
-          'Full hemispherical profile',
-          'State of the art bearing options including DELTA Dual Mobility'
-        ],
-        videos: [
-          {
-            id: 4,
-            image: '/assets/test/video_thumb.jpg',
-            link: 'https://www.youtube.com/watch?v=wMre5C_gWwM&t=3s',
-            description: 'Lorem ipsum dolor sic amet numquam'
-          },
-          {
-            id: 4,
-            image: '/assets/test/video_thumb.jpg',
-            link: 'https://www.youtube.com/watch?v=wMre5C_gWwM&t=3s',
-            description: 'Lorem ipsum dolor sic amet numquam'
-          }
-        ]
-      }
+      product: {}
     }
   },
   computed: {
@@ -115,6 +77,31 @@ export default {
         return this.updatedProduct.description
       }
       return this.updatedProduct.description_short
+    }
+  },
+  created () {
+    if (this.$route.params.id) {
+      try {
+        const resProduct = await this.$app.$http({
+          method: 'GET',
+          url: urls.products.product  + '/' + this.$route.params.id + '/details',
+          parameters: {}
+        })
+        this.product = resProduct
+      } catch (e) {
+        console.error(e)
+        this.$app.$toast({
+          message: messages.errors.productDetail,
+          color: 'danger'
+        })
+      }
+    } else {
+      console.error('No product id in route')
+      this.$app.$toast({
+        message: messages.errors.productDetail,
+        color: 'danger'
+      })
+      this.$router.back()
     }
   },
   methods: {

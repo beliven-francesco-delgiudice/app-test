@@ -316,7 +316,6 @@ export default {
   },
   methods: {
     updateState (payload) {
-      console.log(payload)
       const { products, documents, news, meded, congresses } = payload
       this.products = products || []
       this.news = news || []

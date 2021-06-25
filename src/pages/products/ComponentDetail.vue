@@ -108,67 +108,7 @@ export default {
   },
   data () {
     return {
-      component: {
-        id: 678,
-        sterile: true,
-        notes: 'These are the components notes',
-        title: 'Glenoids - Bone Screws',
-        parent_name: 'Glenoids - Bone Screws',
-        material: 'Ti6Al4V',
-        gallery: [
-          {
-            preview: '/assets/test/component-small.jpg',
-            big: '/assets/test/component.png'
-          }
-        ],
-        variants: [
-          {
-            title: 'Ø6.5',
-            variants: [
-              {
-                id: 5579,
-                code: '8420.15.010',
-                upon_request: false,
-                size: 'H. 20 mm',
-                attribute: 'Ø6.5',
-                files: []
-              },
-              {
-                id: 5580,
-                code: '8420.15.020',
-                upon_request: true,
-                size: 'H. 25 mm',
-                attribute: 'Ø6.5',
-                files: []
-              },
-              {
-                id: 5581,
-                code: '8420.15.030',
-                upon_request: false,
-                size: 'H. 30 mm',
-                attribute: 'Ø6.5',
-                files: []
-              },
-              {
-                id: 5582,
-                code: '8420.15.040',
-                upon_request: false,
-                size: 'H. 35 mm',
-                attribute: 'Ø6.5',
-                files: []
-              },
-              {
-                id: 5583,
-                code: '8420.15.050',
-                upon_request: false,
-                size: 'H. 40 mm',
-                attribute: 'Ø6.5',
-                files: []
-              }
-            ]
-          }
-        ]
-      }
+      component: {}
     }
   },
   computed: {
@@ -182,7 +122,32 @@ export default {
       const id = this.updatedProduct.parent_id
       return `/products/detail/${id}/components`
     }
-  }
+  },
+  created () {
+    if (this.$route.params.id) {
+      try {
+        const resProduct = await this.$app.$http({
+          method: 'GET',
+          url: urls.products.component  + '/' + this.$route.params.id,
+          parameters: {}
+        })
+        this.product = resProduct
+      } catch (e) {
+        console.error(e)
+        this.$app.$toast({
+          message: messages.errors.componentDetail,
+          color: 'danger'
+        })
+      }
+    } else {
+      console.error('No product id in route')
+      this.$app.$toast({
+        message: messages.errors.componentDetail,
+        color: 'danger'
+      })
+      this.$router.back()
+    }
+  },
 }
 </script>
 <style scoped>

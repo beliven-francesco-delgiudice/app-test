@@ -5,7 +5,7 @@
   },
   "auth" : {
     "login" : "/users/login",
-    "azureLogin": ""
+    "azureLogin": "/users/login-azure"
   },
   "products": {
     "segments": "/products/categories",

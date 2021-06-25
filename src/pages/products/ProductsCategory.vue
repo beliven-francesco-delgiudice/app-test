@@ -51,6 +51,7 @@ export default {
   },
   data () {
     return {
+      categoryID: null,
       category: {
         id: 2,
         segment_id: 3,
@@ -70,9 +71,23 @@ export default {
           }
         ]
       },
+      list: [],
       filters: {
         order_by: 'name:desc'
       }
+    }
+  },
+  created () {
+    if (this.$route.params.category) {
+      this.categoryID = this.$route.params.category
+      this.getCategoryProducts()
+    } else {
+      console.error('No category id in route')
+      this.$app.$toast({
+        message: messages.errors.categoryProducts,
+        color: 'danger'
+      })
+      this.$router.push('/products')
     }
   },
   computed: {
@@ -87,7 +102,28 @@ export default {
     },
     updateFilters (filterObj) {
       this.filters = Object.assign({}, filterObj)
-      console.log('products categ', filterObj)
+    },
+    getCategoryProducts () {
+      try {
+        const id = this.categoryID || this.$route.params.category
+        const list = await this.$app.$http({
+          method: 'GET',
+          url: urls.products.products  + '/' + id,
+          parameters: this.filters
+        })
+        this.list = list
+      } catch (e) {
+        console.error(e)
+        this.$app.$toast({
+          message: messages.errors.categoryProducts,
+          color: 'danger'
+        })
+      }
+    }
+  },
+  watch: {
+    filters: function (newFilters) {
+      this.getCategoryProducts(newFilters);
     }
   }
 }

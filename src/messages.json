@@ -5,7 +5,11 @@
   "newPasswordSet": "New password set",
   "userAdded": "User added to team",
   "errors": {
-    "home": "An error occurred while getting all the informations.",
+    "home": "An error occurred while getting all the informations",
+    "segments": "An error occurred while obtaining the segments",
+    "segmentProducts": "An error occurred while obtaining the products of this segment",
+    "productDetail":"An error occurred while getting the product",
+    "categoryProducts": "An error occurred while obtaining the products of this category",
     "missingMailPassword": "Insert email and password",
     "cannotPerform": "Cannot perform operation",
     "cannotLogin": "Login failed",

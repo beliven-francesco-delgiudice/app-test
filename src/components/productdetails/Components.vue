@@ -1,8 +1,8 @@
 <template>
   <product-layout
     section="components"
-    :title="updatedProduct.title"
-    :productID="updatedProduct.id"
+    :title="updatedProduct.name"
+    :productID="$route.params.id"
   >
     <accordions-list classes="mt-4 px-8" :list="updatedProduct.components">
       <template v-slot="{ item }">
@@ -47,59 +47,37 @@ export default {
   },
   data () {
     return {
-      product: {
-        id: 1,
-        title: 'Delta TT',
-        components: [
-          {
-            count: 2,
-            name: 'Acetabular Cups',
-            childs: [
-              {
-                id: 4,
-                title: 'Acetabularino Cupsino',
-                subtitle: 'Ti6Al4V',
-                preview: '/assets/test/component-small.jpg'
-              },
-              {
-                id: 4,
-                title: 'Acetabularato Cupsato',
-                subtitle: 'Ti6Al4V',
-                preview: '/assets/test/component-small.jpg'
-              }
-            ]
-          },
-          {
-            count: 2,
-            name: 'Lorem Ipsum',
-            childs: [
-              {
-                id: 4,
-                title: 'Acetabularino Cupsino',
-                subtitle: 'Ti6Al4V',
-                preview: '/assets/test/component-small.jpg'
-              },
-              {
-                id: 4,
-                title: 'Acetabularato Cupsato',
-                subtitle: 'Ti6Al4V',
-                preview: '/assets/test/component-small.jpg'
-              }
-            ]
-          },
-          {
-            id: 4,
-            title: 'Componentino',
-            subtitle: 'Ti6Al4V',
-            preview: '/assets/test/component-small.jpg'
-          }
-        ]
-      }
+      product: {}
     }
   },
   computed: {
     updatedProduct () {
       return this.product
+    }
+  },
+    created () {
+    if (this.$route.params.id) {
+      try {
+        const resProduct = await this.$app.$http({
+          method: 'GET',
+          url: urls.products.product  + '/' + this.$route.params.id + '/components',
+          parameters: {}
+        })
+        this.product = resProduct
+      } catch (e) {
+        console.error(e)
+        this.$app.$toast({
+          message: messages.errors.productDetail,
+          color: 'danger'
+        })
+      }
+    } else {
+      console.error('No product id in route')
+      this.$app.$toast({
+        message: messages.errors.productDetail,
+        color: 'danger'
+      })
+      this.$router.back()
     }
   },
   methods: {
