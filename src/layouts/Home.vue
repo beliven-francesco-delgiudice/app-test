@@ -56,6 +56,9 @@ export default {
       return this.$route.meta.refreshAction || false
     }
   },
+  created () {
+    this.$store.dispatch('getHome')
+  },
   components: {
     IonContent,
     IonPage,

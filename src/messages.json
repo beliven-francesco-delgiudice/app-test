@@ -5,6 +5,7 @@
   "newPasswordSet": "New password set",
   "userAdded": "User added to team",
   "errors": {
+    "home": "An error occurred while getting all the informations.",
     "missingMailPassword": "Insert email and password",
     "cannotPerform": "Cannot perform operation",
     "cannotLogin": "Login failed",

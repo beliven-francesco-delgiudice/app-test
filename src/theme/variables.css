@@ -3,6 +3,8 @@ http://ionicframework.com/docs/theming/ */
 
 :root {
 
+  --spinner-color: #ffffff;
+
 }
 
 /** Ionic CSS Variables **/
@@ -76,6 +78,8 @@ http://ionicframework.com/docs/theming/ */
     --ion-color-light-tint: #383a3e;
 
     --ion-text-color: #1C1C1B;
+
+    --spinner-color: #ffffff;
   }
 
   /*
@@ -115,6 +119,7 @@ http://ionicframework.com/docs/theming/ */
     --ion-item-background: #000000;
 
     --ion-card-background: #1c1c1d;
+    --spinner-color: #ffffff;
   }
 
 
@@ -159,4 +164,5 @@ http://ionicframework.com/docs/theming/ */
     --ion-tab-bar-background: #1C1C1B;
 
     --ion-card-background: #1e1e1e;
+    --spinner-color: #ffffff;
   }

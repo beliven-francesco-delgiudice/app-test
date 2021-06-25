@@ -1,20 +1,21 @@
 {
   "baseUrl": {
-    "dev": "https://localhost:8082/api",
+    "dev": "https://lima-app-api.heply.run/api",
     "prod": "https://messagingcenter.perugiatiming.com/api"
   },
-  "list": {
-    "login": "/authentication",
-    "validate": "/authentication/validatetoken",
-    "resetpw": "/authentication/resetpassword",
-    "changepw": "/authentication/changepassword",
-    "user": "/authentication/userinfo",
-    "userTypes": "/messagetoteam/usertypes",
-    "addUserToTeam": "/messagetoteam/registerteamuser",
-    "rounds": "/messagetoteam/rounds",
-    "onesignal": "/messagetoteam/onesignal",
-    "messages": "/messagetoteam",
-    "pdf": "/messagetoteam/downloadpdf",
-    "reply": "/messagetoteam/replytomessage"
+  "auth" : {
+    "login" : "/users/login",
+    "azureLogin": ""
+  },
+  "products": {
+    "segments": "/products/categories",
+    "products": "/products",
+    "product": "/product",
+    "component": "/product/component"
+  },
+  "congresses": {
+    "home":"/congresses/home",
+    "list":"/congresses",
+    "activity": "congresses/activity"
   }
 }

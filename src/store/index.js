@@ -11,9 +11,12 @@ const master = {
       types: [],
       notificationsAllowed: 'unknown'
     },
-    rounds: {
-      id: false,
-      list: []
+    home: {
+      products: [],
+      documents: {},
+      meded: [],
+      congresses: [],
+      news: []
     },
     messages: []
   },
@@ -39,17 +42,14 @@ const master = {
 
       window.localStorage.setItem('userData', JSON.stringify(store.user.data))
     },
-    setUserTypes (store, userData) {
-      store.user.types = userData
-    },
-    setRounds (store, rounds) {
-      store.rounds.list = rounds
-    },
+
     setMessages (store, messages) {
       store.messages.list = messages
     },
-    setRoundId (store, roundId = false) {
-      store.rounds.id = roundId
+
+    setHome (store, homeData) {
+      console.log('store setHome', homeData)
+      store.home = homeData
     },
 
     // Android does not need any check for notifications, are allowed by default
@@ -59,12 +59,10 @@ const master = {
 
       console.log('Notification state: ', subscriptionData)
 
-      const hasPermissions = subscriptionData &&
+      const hasPermissions =
+        subscriptionData &&
         subscriptionData.hasPrompted === true &&
-        (
-          subscriptionData.status > 1 ||
-          subscriptionData.state > 1
-        )
+        (subscriptionData.status > 1 || subscriptionData.state > 1)
 
       if (
         (this.$app.$device.getPlatform('ios') && hasPermissions) ||
@@ -90,6 +88,26 @@ const master = {
       }
 
       return data
+    },
+    homeData: state =>
+      state.home || {
+        products: [],
+        documents: {},
+        meded: [],
+        congresses: [],
+        news: []
+      },
+    homeProducts: state => {
+      if (state && state.home && state.home.products) {
+        return state.home.products
+      }
+      return []
+    },
+    homeCongresses: state => {
+      if (state && state.home && state.home.congresses) {
+        return state.home.congresses
+      }
+      return []
     },
     username: state => state.user.data.username || '',
     userTypes: state => state.user.types || [],

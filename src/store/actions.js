@@ -11,7 +11,7 @@ export async function login (context, data) {
 
     const loggedData = await this.$app.$http({
       method: 'POST',
-      url: urls.list.login,
+      url: urls.auth.login,
       data
     })
 
@@ -38,6 +38,42 @@ export async function login (context, data) {
   }
 }
 
-export async function getHome () {
-  console.log('Refreshing home')
+export async function getHome (context) {
+  let products = []
+  let congresses = []
+
+  console.log('dispatched getHome')
+
+  try {
+    // get products
+    const prod = await this.$app.$http({
+      method: 'GET',
+      url: urls.products.segments,
+      parameters: {}
+    })
+
+    if (prod && prod.categories) {
+      products = prod.categories
+    }
+
+    // get congresses
+    const congressesList = await this.$app.$http({
+      method: 'GET',
+      url: urls.congresses.home,
+      parameters: {}
+    })
+    congresses = congressesList
+  } catch (e) {
+    this.$app.$toast({
+      message: messages.errors.home,
+      color: 'danger'
+    })
+  }
+
+  const homeObject = {
+    products,
+    congresses
+  }
+
+  context.commit('setHome', homeObject)
 }

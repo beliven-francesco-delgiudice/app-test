@@ -3,18 +3,18 @@ import urls from '@/urls'
 import messages from '@/messages'
 
 export const getJWT = () => {
-  return window.localStorage.getItem('JWT') || false
+  return (
+    window.localStorage.getItem('JWT') ||
+    'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjI3NTIsImlhdCI6MTYyNDYxNjI3MSwibmJmIjoxNjI0NjE2MjcxLCJleHAiOjE2MjcyMDgyNzF9.D6avez71QlGkYNz6PtMVviGTX6NqdQk-2jNxmUpsJbk'
+  )
 }
 
-export const setJWT = (jwt) => {
+export const setJWT = jwt => {
   return window.localStorage.setItem('JWT', jwt)
 }
 
 export default {
-  install: function (app, {
-    mode = 'dev',
-    ...defaults
-  }) {
+  install: function (app, { mode = 'dev', ...defaults }) {
     const $http = async function ({
       auth = true, // Choose to send bearer if available
       loader = true, // Show loading spinner
@@ -62,9 +62,8 @@ export default {
         }
         throw e
       }
-
-      if (loader) await this.$loading.hide()
-      return data
+      await this.$loading.hide()
+      return data.data
     }
 
     app.config.globalProperties.$http = $http

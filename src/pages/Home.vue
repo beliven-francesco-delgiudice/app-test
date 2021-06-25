@@ -42,7 +42,7 @@
         > -->
         <div
           class="w-auto-important flex"
-          v-for="(prod, i) in products"
+          v-for="(prod, i) in $store.getters.homeProducts"
           :key="i"
           @click="routeToSegment(prod)"
         >
@@ -53,7 +53,7 @@
             ]"
           >
             <div class="relative mr-2 width-44 overflow-y-visible">
-              <ion-img :src="prod.img" class="absolute bottom-0" />
+              <ion-img :src="prod.preview" class="absolute bottom-0" />
             </div>
             <span class="font-helvetica-medium text-black text-16">{{
               prod.name
@@ -65,7 +65,7 @@
     </div>
 
     <!-- Documents -->
-    <home-titled-container label="Documents" path="/documents">
+    <!-- <home-titled-container label="Documents" path="/documents">
       <carousel classes="py-4 -my-4">
         <home-documents
           title="Last saved"
@@ -75,10 +75,10 @@
         <home-documents title="Other" :docs="documents.other" />
         <div>&nbsp;</div>
       </carousel>
-    </home-titled-container>
+    </home-titled-container> -->
 
     <!-- Medical Education -->
-    <home-titled-container label="Medical Education" path="/meded">
+    <!-- <home-titled-container label="Medical Education" path="/meded">
       <carousel>
         <home-meded
           v-for="(singleMed, i) in meded"
@@ -88,10 +88,10 @@
         />
         <div>&nbsp;</div>
       </carousel>
-    </home-titled-container>
+    </home-titled-container> -->
 
     <!-- News -->
-    <home-titled-container label="News" path="/news">
+    <!-- <home-titled-container label="News" path="/news">
       <carousel>
         <home-news
           v-for="(singleNews, i) in news"
@@ -101,13 +101,19 @@
         />
         <div>&nbsp;</div>
       </carousel>
-    </home-titled-container>
+    </home-titled-container> -->
 
     <!-- Congresses -->
-    <home-titled-container label="Congresses" path="/congresses">
+    <home-titled-container
+      v-if="
+        $store.getters.homeCongresses && $store.getters.homeCongresses.length
+      "
+      label="Congresses"
+      path="/congresses"
+    >
       <carousel classes="py-4 -mt-4">
         <home-congress
-          v-for="(congress, i) in congresses"
+          v-for="(congress, i) in $store.getters.homeCongresses"
           :key="i"
           :index="i"
           :congress="congress"
@@ -127,10 +133,10 @@ import Searchbar from '../components/Searchbar.vue'
 import Carousel from '../components/Carousel.vue'
 import GreyContainer from '../components/containers/GreyContainer.vue'
 import HomeTitledContainer from '../components/home/HomeTitledContainer.vue'
-import HomeNews from '../components/home/HomeNews.vue'
-import HomeMeded from '../components/home/HomeMeded.vue'
+// import HomeNews from '../components/home/HomeNews.vue'
+// import HomeMeded from '../components/home/HomeMeded.vue'
 import HomeCongress from '../components/home/HomeCongress.vue'
-import HomeDocuments from '../components/home/HomeDocuments.vue'
+// import HomeDocuments from '../components/home/HomeDocuments.vue'
 import ShadowButton from '../components/containers/ShadowButton.vue'
 export default {
   components: {
@@ -142,10 +148,10 @@ export default {
     GreyContainer,
     HomeTitledContainer,
     ShadowButton,
-    HomeNews,
-    HomeMeded,
-    HomeCongress,
-    HomeDocuments
+    // HomeNews,
+    // HomeMeded,
+    HomeCongress
+    // HomeDocuments
   },
   data () {
     return {
@@ -309,6 +315,15 @@ export default {
     }
   },
   methods: {
+    updateState (payload) {
+      console.log(payload)
+      const { products, documents, news, meded, congresses } = payload
+      this.products = products || []
+      this.news = news || []
+      this.meded = meded || []
+      this.documents = documents || {}
+      this.congresses = congresses || []
+    },
     routeToSegment (segment) {
       const link = `/products/${segment.id}`
       this.$router.push({ path: link })
