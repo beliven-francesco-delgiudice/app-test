@@ -1,6 +1,6 @@
 <template>
   <div
-    class="min-h-screen gradient-background relative max-h-screen overflow-y-auto pb-20"
+    class="min-h-screen gradient-background relative max-h-screen overflow-y-auto pb-20 flex flex-col"
   >
     <div class="bg-transparent flex px-8 z-10" style="height:90px">
       <ion-button
@@ -19,7 +19,10 @@
       </div>
     </div>
 
-    <div v-if="formattedResultsLength > 0" class="flex flex-col">
+    <div
+      v-if="isSearched && isSearched.length && formattedResultsLength > 0"
+      class="flex flex-col"
+    >
       <Title
         :titleClass="[
           withMargin ? '' : 'px-8',
@@ -41,81 +44,97 @@
         <div>&nbsp;</div>
       </carousel>
 
-      <div class="flex flex-col px-8">
-        <accordions-list classes="mt-4" :list="formattedResults">
-          <template v-slot="{ item }">
-            <div>
+      <div class="flex flex-col px-8 mt-4">
+        <detail-section
+          v-for="(section, i) in formattedResults"
+          :key="i"
+          :label="section.name"
+          :count="section.count"
+          noPadding
+        >
+          <div v-for="(item, j) in section.childs" :key="j" class="mb-4">
+            <div
+              v-if="item.type === 'products'"
+              class="flex flex-row justify-between items-center bg-transparent"
+              @click="route(item, 'products')"
+            >
               <div
-                v-if="item.type === 'products'"
-                class="flex flex-row justify-between items-center bg-transparent"
-                @click="route(item, 'products')"
+                class="flex flex-start items-center pointer-events-none w-full"
               >
-                <div
-                  class="flex flex-start items-center pointer-events-none w-full"
+                <square-container
+                  bgClass="bg-white"
+                  squareSize="64"
+                  rounded="12"
+                  classes="elevated-shadow mr-4 p-2"
                 >
-                  <square-container
-                    bgClass="bg-white"
-                    squareSize="64"
-                    rounded="12"
-                    classes="elevated-shadow mr-4 p-2"
+                  <ion-img :src="item.preview" />
+                </square-container>
+                <div class="flex flex-col justify-between py-2">
+                  <span
+                    class="font-helvetica-medium text-black text-16 spacing-5 line-28"
+                    >{{ item.name }}</span
                   >
-                    <ion-img :src="item.preview" />
-                  </square-container>
-                  <div class="flex flex-col justify-between py-2">
-                    <span
-                      class="font-helvetica-medium text-black text-16 spacing-5 line-28"
-                      >{{ item.name }}</span
-                    >
-                    <span
-                      class="font-helvetica text-grey text-14 spacing-44 line-24"
-                      >{{ item.subtitle }}</span
-                    >
-                  </div>
+                  <span
+                    class="font-helvetica text-grey text-14 spacing-44 line-24"
+                    >{{ item.subtitle }}</span
+                  >
                 </div>
               </div>
-              <document-list-item
-                v-if="item.type === 'documents'"
-                :document="item"
-              />
+            </div>
+            <document-list-item
+              v-if="item.type === 'documents'"
+              :document="item"
+            />
+            <div
+              class="flex flex-row justify-between items-center bg-transparent pb-4 mb-4"
+              v-if="item.type === 'congress'"
+              @click="route(item, 'congress')"
+            >
               <div
-                class="flex flex-row justify-between items-center bg-transparent pb-4 mb-4"
-                v-if="item.type === 'congress'"
-                @click="route(item, 'congress')"
+                class="flex flex-start items-start pointer-events-none px-8 w-full"
               >
-                <div
-                  class="flex flex-start items-start pointer-events-none px-8 w-full"
+                <square-container
+                  bgClass="bg-white"
+                  squareSize="64"
+                  rounded="12"
+                  classes="elevated-shadow mr-4 overflow-hidden"
                 >
-                  <square-container
-                    bgClass="bg-white"
-                    squareSize="64"
-                    rounded="12"
-                    classes="elevated-shadow mr-4 overflow-hidden"
+                  <ion-img :src="item.image" class="h-full w-auto" />
+                </square-container>
+                <div class="flex flex-col justify-between py-2">
+                  <span
+                    class="font-helvetica-medium text-black text-16 spacing-5 line-28"
+                    >{{ item.title }}
+                  </span>
+                  <span
+                    class="font-helvetica text-grey text-14 spacing-44 line-24"
                   >
-                    <ion-img :src="item.image" class="h-full w-auto" />
-                  </square-container>
-                  <div class="flex flex-col justify-between py-2">
+                    {{ item.location }}
+                  </span>
+                  <div class="bg-light-red rounded-6 px-2 mr-auto">
                     <span
-                      class="font-helvetica-medium text-black text-16 spacing-5 line-28"
-                      >{{ item.title }}
+                      class="font-helvetica-medium text-12 text-red spacing-8 line-30 pointer-events-none"
+                      >{{ item.date }}
                     </span>
-                    <span
-                      class="font-helvetica text-grey text-14 spacing-44 line-24"
-                    >
-                      {{ item.location }}
-                    </span>
-                    <div class="bg-light-red rounded-6 px-2 mr-auto">
-                      <span
-                        class="font-helvetica-medium text-12 text-red spacing-8 line-30 pointer-events-none"
-                        >{{ item.date }}
-                      </span>
-                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </template>
-        </accordions-list>
+          </div>
+        </detail-section>
       </div>
+    </div>
+    <div
+      v-else-if="isSearched && isSearched.length && formattedResultsLength <= 0"
+      class="flex-grow flex flex-col justify-center items-center"
+    >
+      <span class="font-helvetica-bold text-20 spacing-2 line-28 mb-2 -mt-8"
+        >Sorry, no results found :(</span
+      >
+      <span class="font-helvetica text-16 spacing-1 line-24 text-center"
+        >We couldn’t find any matches for "{{ isSearched }}". <br />Please try
+        with another keyword.</span
+      >
     </div>
   </div>
 </template>
@@ -124,59 +143,27 @@
 import { IonImg } from '@ionic/vue'
 import Searchbar from '../components/Searchbar.vue'
 import Title from '../components/Title.vue'
-import AccordionsList from '../components/AccordionsList.vue'
 import DocumentListItem from '../components/DocumentListItem.vue'
 import Carousel from '../components/Carousel.vue'
 import SquareContainer from '../components/containers/SquareContainer.vue'
 import SectionButton from '../components/containers/SectionButton.vue'
+import DetailSection from '../components/DetailSection.vue'
 export default {
   components: {
     IonImg,
     Searchbar,
     Title,
-    AccordionsList,
     DocumentListItem,
     SquareContainer,
     SectionButton,
-    Carousel
+    Carousel,
+    DetailSection
   },
   data () {
     return {
       filter: '*',
-      results: {
-        products: [
-          {
-            id: 146,
-            name: 'DELTA Fins',
-            subtitle: 'DELTA system Primary',
-            preview:
-              'https://limacorporate.com/repo/product-preview/3fcfb99ec010d4a8ba364f43169465d91ca39ada/o_1aae19p253i6iu5bhjcit1h8p49_tmb.jpg'
-          },
-          {
-            id: 258,
-            name: 'Delta Liners and Accessories',
-            subtitle: null,
-            preview:
-              'https://limacorporate.com/repo/product-preview/982fd8b711279888a3b54f5af24f185041d22ee6/o_1bg5qktme17usr7418jh1q2ng836k_tmb.jpg'
-          }
-        ],
-        documents: [
-          {
-            id: 439,
-            name: '9055-21-000 - Delta-ST-C Cups',
-            link:
-              'https://limacorporate.com/repo/storage/439/file/9055-21-000_B-5521-52-010-1_071100.pdf',
-            size: ''
-          },
-          {
-            id: 446,
-            name: '9055-33-000 - Delta-One-TT, Delta-Revision',
-            link:
-              'https://limacorporate.com/repo/storage/446/file/9055-33-000_B-5533-52-010-1_061300.pdf',
-            size: ''
-          }
-        ]
-      }
+      isSearched: null, //should be false at beginning
+      results: {}
     }
   },
   computed: {
@@ -229,10 +216,12 @@ export default {
   },
   methods: {
     search (searchText) {
+      this.isSearched = searchText
       alert(searchText)
     },
     cancelResults () {
       this.$refs.searchbar.cancelValue()
+      this.isSearched = null
       this.results = []
     },
     changeSection (value) {

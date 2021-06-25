@@ -40,7 +40,7 @@ export default {
   created () {
     if (this.$route.query.string && this.$route.query.string.length) {
       this.search = this.$route.query.string
-      //search
+      this.$emit('submit', this.search)
     }
   },
   methods: {

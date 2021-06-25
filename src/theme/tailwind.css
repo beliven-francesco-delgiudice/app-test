@@ -138,7 +138,8 @@
   width: 40px
 }
 .width-44 {
-  width: 44px
+  width: 44px;
+  min-width: 44px
 }
 .width-64 {
   width:64px
@@ -179,7 +180,8 @@
   height: 40px
 }
 .height-44 {
-  height: 44px
+  height: 44px;
+  min-height: 44px;
 }
 .height-56 {
   height: 56px;
@@ -432,6 +434,9 @@
 }
 .-mt-4 {
   margin-top: -1rem;
+}
+.-mt-8 {
+  margin-top: -2rem;
 }
 .-mt-12 {
   margin-top: -3rem;
