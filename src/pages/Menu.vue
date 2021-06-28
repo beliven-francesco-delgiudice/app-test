@@ -119,7 +119,7 @@ export default {
       this.$router.push(href)
     },
     logout () {
-      console.log('logout')
+      alert('logout')
       this.$router.push('/home')
     }
   }

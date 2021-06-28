@@ -37,10 +37,12 @@
   </accordions-list>
 </template>
 <script>
+import SquareContainer from '../containers/SquareContainer.vue'
 import AccordionsList from '../AccordionsList.vue'
 export default {
   components: {
-    AccordionsList
+    AccordionsList,
+    SquareContainer
   },
   props: {
     congress: Object
@@ -57,7 +59,6 @@ export default {
           childs: a.events.map(i => i),
           count: a.events.length
         }))
-        console.log(array)
         return array
       }
       return []

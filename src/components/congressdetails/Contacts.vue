@@ -45,7 +45,7 @@
         >
           <span
             class="font-helvetica-medium text-16 text-black spacing-5 line-28"
-            >{{ updatedCongress.mail }}</span
+            >{{ updatedCongress.email }}</span
           >
           <span class="font-helvetica text-14 text-grey spacing-44 line-24">
             E-mail
@@ -74,7 +74,7 @@
         >
           <span
             class="font-helvetica-medium text-16 text-black spacing-5 line-28"
-            >{{ updatedCongress.link }}</span
+            >{{ updatedCongress.website }}</span
           >
           <span class="font-helvetica text-14 text-grey spacing-44 line-24">
             Website
@@ -85,68 +85,20 @@
     <detail-section noPadding label="Congress Venue">
       <p
         class="font-helvetica text-16 text-mid-dark-grey spacing-1 line-24 mb-4"
-        v-html="updatedVenue.text"
+        v-html="updatedVenue"
       ></p>
-      <a
-        :href="'phone:' + updatedVenue.phone"
-        title="phone venue"
-        class="font-helvetica text-16 text-mid-dark-grey spacing-1 line-24 mb-2"
-        >T. {{ updatedVenue.phone }}</a
-      >
-      <a
-        :href="'mailto:' + updatedVenue.mail"
-        title="mail venue"
-        class="font-helvetica-medium text-16 text-black spacing-1 line-24"
-        >{{ updatedVenue.mail }}</a
-      >
     </detail-section>
     <detail-section noPadding label="Hotel">
       <p
         class="font-helvetica text-16 text-mid-dark-grey spacing-1 line-24 mb-4"
-        v-html="updatedHotel.text"
+        v-html="updatedHotel"
       ></p>
-      <a
-        :href="'phone:' + updatedHotel.phone"
-        title="phone hotel"
-        class="font-helvetica text-16 text-mid-dark-grey spacing-1 line-24 mb-2"
-        >T. {{ updatedHotel.phone }}</a
-      >
-      <a
-        :href="'mailto:' + updatedHotel.mail"
-        title="mail hotel"
-        class="font-helvetica-medium text-16 text-black spacing-1 line-24"
-        >{{ updatedHotel.mail }}</a
-      >
     </detail-section>
     <detail-section noPadding label="Staff" noSeparator>
       <p
         class="font-helvetica text-16 text-mid-dark-grey spacing-1 line-24 mb-4"
-        v-html="updatedStaff.text"
+        v-html="updatedStaff"
       ></p>
-
-      <div
-        v-for="(member, j) in updatedStaff.employees"
-        :key="j"
-        class="flex flex-col mb-4"
-      >
-        <span
-          class="font-helvetica text-16 text-mid-dark-grey spacing-1 line-24 mb-2"
-        >
-          {{ member.name }}
-        </span>
-        <a
-          :href="'phone:' + member.phone"
-          title="phone staff"
-          class="font-helvetica text-16 text-mid-dark-grey spacing-1 line-24 mb-2"
-          >T. {{ member.phone }}</a
-        >
-        <a
-          :href="'mailto:' + member.mail"
-          title="mail staff"
-          class="font-helvetica-medium text-16 text-black spacing-1 line-24"
-          >{{ member.mail }}</a
-        >
-      </div>
     </detail-section>
   </div>
 </template>
@@ -169,8 +121,8 @@ export default {
       return newCongress
     },
     updatedVenue () {
-      if (this.updatedCongress && this.updatedCongress.venue) {
-        return this.updatedCongress.venue
+      if (this.updatedCongress && this.updatedCongress.congress_venue) {
+        return this.updatedCongress.congress_venue
       }
       return {}
     },

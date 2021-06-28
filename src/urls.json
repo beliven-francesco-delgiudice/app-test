@@ -16,6 +16,6 @@
   "congresses": {
     "home":"/congresses/home",
     "list":"/congresses",
-    "activity": "congresses/activity"
+    "activity": "/congresses/activity"
   }
 }

@@ -21,12 +21,11 @@
         >
         <p
           class="m-0 font-helvetica text-16 text-mid-dark-grey spacing-1 line-24"
-        >
-          {{ msg.text }}
-        </p>
+          v-html="msg.description"
+        ></p>
       </div>
-      <div v-if="msg.gallery && msg.gallery.length" class="mt-8">
-        <image-gallery :gallery="msg.gallery" initMargin="ml-16" />
+      <div v-if="msg.images && msg.images.length" class="mt-8">
+        <image-gallery :gallery="msg.images" initMargin="ml-16" />
       </div>
     </div>
   </div>

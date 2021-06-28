@@ -11,17 +11,17 @@
     >
       <span
         class="w-full text-black font-helvetica-medium text-16 mb-1 spacing-5 line-28"
-        >{{ congress.title }}</span
+        >{{ congress.name }}</span
       >
       <span
         class="w-full text-grey font-helvetica text-14 mb-2 spacing-44 line-24"
-        >{{ congress.location }}</span
+        >{{ congress.subtitle }}</span
       >
       <div class="mr-auto">
         <div
           class="p-1 bg-light-red rounded-6 font-helvetica-medium text-12 text-red"
         >
-          {{ congress.date }}
+          {{ congress.dates }}
         </div>
       </div>
     </div>

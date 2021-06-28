@@ -159,7 +159,6 @@ export default {
   computed: {
     updatedCongress () {
       const newCongress = Object.assign({}, this.congress.content)
-      console.log(newCongress)
       return newCongress
     },
     updatedHotel () {

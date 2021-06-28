@@ -82,7 +82,7 @@ export default {
   },
   methods: {
     saveEvent (event) {
-      console.log(event)
+      alert(event)
     }
   }
 }

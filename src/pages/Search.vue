@@ -203,14 +203,12 @@ export default {
           value: '*'
         }
       ]
-      console.log(keys)
       for (let i = 0; i < keys.length; i++) {
         array.push({
           label: this.getLabel(keys[i]),
           value: keys[i]
         })
       }
-      console.log(array)
       return array
     }
   },

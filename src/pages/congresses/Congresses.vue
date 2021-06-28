@@ -3,6 +3,7 @@
     label="Congresses"
     back="/menu"
     :filters="filters"
+    :filtersOptions="options"
     @onFiltersChange="updateFilters"
   >
     <ion-list class="bg-transparent">
@@ -21,20 +22,20 @@
             rounded="12"
             classes="mr-4 overflow-hidden"
           >
-            <ion-img :src="item.image" class="h-full w-auto" />
+            <ion-img :src="item.preview" class="h-full w-auto" />
           </square-container>
           <div class="flex flex-col justify-between py-2">
             <span
               class="font-helvetica-medium text-black text-16 spacing-5 line-28"
-              >{{ item.title }}
+              >{{ item.name }}
             </span>
             <span class="font-helvetica text-grey text-14 spacing-44 line-24">
-              {{ item.location }}
+              {{ item.subtitle }}
             </span>
             <div class="bg-light-red rounded-6 px-2 mr-auto">
               <span
                 class="font-helvetica-medium text-12 text-red spacing-8 line-30 pointer-events-none"
-                >{{ item.date }}
+                >{{ item.dates }}
               </span>
             </div>
           </div>
@@ -48,6 +49,8 @@
 import Page from '../../components/Page.vue'
 import { IonList, IonImg } from '@ionic/vue'
 import SquareContainer from '../../components/containers/SquareContainer.vue'
+import messages from '@/messages'
+import urls from '@/urls'
 export default {
   components: {
     Page,
@@ -80,15 +83,22 @@ export default {
           date: '11 - 15 May'
         }
       ],
+      filtersOptions: {},
       filters: {
-        order_by: 'name:desc'
+        year: '2021'
       }
     }
   },
   computed: {
     segmentPath () {
       return this.category.segment_id
+    },
+    options () {
+      return this.filtersOptions
     }
+  },
+  created () {
+    this.getCongressesList()
   },
   methods: {
     routeToCongress (item) {
@@ -97,7 +107,28 @@ export default {
     },
     updateFilters (filterObj) {
       this.filters = Object.assign({}, filterObj)
-      console.log('congresses filters', filterObj)
+    },
+    async getCongressesList () {
+      try {
+        const results = await this.$http({
+          method: 'GET',
+          url: urls.congresses.list,
+          params: this.filters
+        })
+        this.congresses = results
+        this.filtersOptions = results.filters || {}
+      } catch (e) {
+        console.error(e)
+        this.$toast({
+          message: messages.errors.congresses,
+          color: 'danger'
+        })
+      }
+    }
+  },
+  watch: {
+    filters: function (newFilters) {
+      this.getCongressesList(newFilters)
     }
   }
 }

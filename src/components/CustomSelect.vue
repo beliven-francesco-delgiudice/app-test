@@ -55,7 +55,6 @@ export default {
   },
   watch: {
     value: function (newValue) {
-      console.log('watcher value', newValue, this.selectValue)
       if (this.selectValue !== newValue) {
         this.selectValue = newValue
       }

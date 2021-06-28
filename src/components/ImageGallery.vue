@@ -67,7 +67,6 @@ export default {
             }
           })
         : []
-      console.log(array)
       return array
     }
   },

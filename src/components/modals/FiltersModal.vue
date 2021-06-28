@@ -66,6 +66,23 @@
               @onChange="updateFilters($event, 'subcategory')"
             />
           </div>
+          <div
+            v-if="filtersOptions.year && filtersOptions.year.length"
+            class="flex pt-2 pb-1 border-grey border-b w-full justify-between items-center"
+          >
+            <span
+              class="w-1/2 font-helvetica text-16 spacing-5 line-28
+            text-dark-grey"
+              >Year</span
+            >
+            <custom-select
+              name="order"
+              placeholder="Select year"
+              :options="filtersOptions.year"
+              :value="computedFilters.year"
+              @onChange="updateFilters($event, 'year')"
+            />
+          </div>
         </div>
         <div class="w-full px-8 pb-4">
           <big-button type="submit" label="Done" />

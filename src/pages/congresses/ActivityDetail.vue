@@ -127,6 +127,8 @@ import DocumentListItem from '../../components/DocumentListItem.vue'
 import SectionButton from '../../components/containers/SectionButton.vue'
 import BigButton from '../../components/containers/BigButton.vue'
 import FacultyModal from '../../components/modals/FacultyModal.vue'
+import messages from '@/messages'
+import urls from '@/urls'
 export default {
   components: {
     IonImg,
@@ -146,39 +148,20 @@ export default {
       activity: {
         id: 1,
         parent_id: 1,
-        type: 'Innovation Theatre',
-        title: 'Attività 1',
-        subtitle1: 'Prima riga sotto',
-        subtitle2: 'Seconda riga sotto',
-        location: 'Stanza 1',
-        description: '<p>Descrizione attività</p>',
-        preview: 'https://limacorporate.com/repo/',
-        experts: [
-          {
-            id: 1,
-            name: 'Prof. Alessandro Castagna',
-            subtitle: 'Prova Mario',
-            preview:
-              'https://limacorporate.com/images/experts-preview/356a192b7913b04c54574d18c28d46e6395428ab/o_1e1ef8ptg1vn1d071tmidhl1vtb9t_tmb.jpg',
-            description:
-              "<p></p><p><b>Prof. Alessandro Castagna </b>is specialized in Shoulder Surgery and he is Director of the 'Shoulder and Elbow Unit at Humanitas Hospital', Milan. <span>He is the former President of the European Shoulder </span><span>and Elbow Society and of the Italian Shoulder and Elbow Society, Member of the ICSES, International corresponding Member of the American and Australian Shoulder and Elbow Societies, of the DVSE (German society of Shoulder and Elbow Surgery), of the KSES (Korean Shoulder and Elbow Society) and a honorary Member of several scientific societies worldwide. </span><span>He is the author of over 100 articles published in peer reviewed journals.</span></p><p><br/></p>"
-          },
-          {
-            id: 2,
-            name: 'TechMah Team',
-            subtitle: null,
-            preview: 'https://limacorporate.com/images/',
-            description:
-              "<p>TechMah Medical is a technology company focused on delivering orthopedic solutions, founded by Dr. Mohamed Mahfouz, Professor of Biomedical Engineering at the University of Tennessee, since 2014. TechMah builds innovative applications designed to improve patient and clinician experience throughout the joint replacement process. Based in Knoxville, Tennessee, our TechMah's team of scientists and engineers are driven to improve quality and efficiency through customization. <br/></p>"
-          }
-        ],
-        description_short: 'Descrizione attività',
-        start_date_time: '11:00 am',
-        start_date_date: 'Wed, 26 May',
-        end_date_time: '12:00 pm',
-        end_date_date: 'Wed, 26 May',
-        save_event:
-          'https://lima-app-api.lndo.site/api/congresses/save-activity/1',
+        type: '',
+        title: '',
+        subtitle1: '',
+        subtitle2: '',
+        location: '',
+        description: '',
+        preview: '',
+        experts: [],
+        description_short: '',
+        start_date_time: '',
+        start_date_date: '',
+        end_date_time: '',
+        end_date_date: '',
+        save_event: '',
         files: []
       }
     }
@@ -216,6 +199,32 @@ export default {
     },
     closeFaculty () {
       this.faculty = null
+    }
+  },
+  async created () {
+    if (this.$route.params.id) {
+      const activityID = this.$route.params.id
+      try {
+        const results = await this.$http({
+          method: 'GET',
+          url: urls.congresses.activity + '/' + activityID,
+          params: {}
+        })
+        this.activity = results
+      } catch (e) {
+        console.error(e)
+        this.$toast({
+          message: messages.errors.activityDetail,
+          color: 'danger'
+        })
+      }
+    } else {
+      console.error('No congress id in route')
+      this.$toast({
+        message: messages.errors.activityDetail,
+        color: 'danger'
+      })
+      this.$router.push('/congresses')
     }
   }
 }

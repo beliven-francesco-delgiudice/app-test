@@ -191,7 +191,6 @@ router.beforeEach((to, from, next) => {
   // if (to.meta.noAuth === true) return next()
 
   // if (!masterStore.getters.loggedIn) return next('/login')
-  console.log('from: ', from, ' to: ', to)
   next()
 })
 
