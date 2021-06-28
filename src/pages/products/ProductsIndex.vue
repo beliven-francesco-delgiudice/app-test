@@ -34,6 +34,9 @@ import Page from '../../components/Page.vue'
 import GreyContainer from '../../components/containers/GreyContainer.vue'
 import Separator from '../../components/Separator.vue'
 import DocumentListItem from '../../components/DocumentListItem.vue'
+import messages from '@/messages'
+import urls from '@/urls'
+
 export default {
   components: {
     Page,
@@ -50,32 +53,35 @@ export default {
   },
   computed: {},
   created () {
-    try {
-      const prod = await this.$app.$http({
-        method: 'GET',
-        url: urls.products.segments,
-        parameters: {}
-      })
-      if (prod) {
-        if (prod.categories) {
-          this.segments = prod.categories
-        }
-        if (prod.catalogue) {
-          this.catalogue = prod.catalogue
-        }
-      }
-    } catch (e) {
-      console.error(e)
-      this.$app.$toast({
-        message: messages.errors.segments,
-        color: 'danger'
-      })
-    }
+    this.getProducts()
   },
   methods: {
     routeToSegment (segment) {
       const link = `/products/${segment.id}`
       this.$router.push(link)
+    },
+    async getProducts () {
+      try {
+        const prod = await this.$http({
+          method: 'GET',
+          url: urls.products.segments,
+          params: {}
+        })
+        if (prod) {
+          if (prod.categories) {
+            this.segments = prod.categories
+          }
+          if (prod.catalogue) {
+            this.catalogue = prod.catalogue
+          }
+        }
+      } catch (e) {
+        console.error(e)
+        this.$toast({
+          message: messages.errors.segments,
+          color: 'danger'
+        })
+      }
     }
   }
 }

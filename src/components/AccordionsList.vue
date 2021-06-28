@@ -1,6 +1,12 @@
 <template>
   <div :class="[classes || '', ' flex flex-col']">
-    <div @click="expandAll" class="bg-black rounded-6 px-2 mb-8 mr-auto">
+    <div
+      @click="expandAll"
+      :class="[
+        isExpandable ? '' : 'pointer-events-none opacity-50',
+        ' bg-black rounded-6 px-2 mb-8 mr-auto'
+      ]"
+    >
       <span
         class="font-helvetica-medium text-12 text-white spacing-8 line-30 pointer-events-none"
         >{{ isAllExpanded ? 'Close all' : 'Expand all' }}
@@ -82,11 +88,27 @@ export default {
     }
   },
   computed: {
+    isExpandable () {
+      for (let i = 0; i < this.updatedList.length; i++) {
+        if (
+          this.updatedList[i] &&
+          this.updatedList[i].childs &&
+          this.updatedList[i].childs.length
+        ) {
+          return true
+        }
+      }
+      return false
+    },
     updatedList () {
-      return this.list.map((item, i) => ({
-        ...item,
-        expanded: this.expanded[i]
-      }))
+      if (this.list && this.list.length) {
+        return this.list.map((item, i) => ({
+          ...item,
+          expanded: this.expanded[i]
+        }))
+      } else {
+        return []
+      }
     },
     isAllExpanded () {
       for (let i = 0; i < this.updatedList.length; i++) {

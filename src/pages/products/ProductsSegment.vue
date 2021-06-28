@@ -1,9 +1,9 @@
 <template>
-  <Page :label="segment.name" back="/products">
+  <Page :label="updatedSegment.category_name" back="/products">
     <ion-list class="bg-transparent">
       <div
         class="flex flex-row justify-between items-center bg-transparent pb-4 mb-4"
-        v-for="(item, i) in list"
+        v-for="(item, i) in updatedSegment.categories"
         :key="i"
         @click="routeTo(item)"
       >
@@ -32,6 +32,8 @@
 import Page from '../../components/Page.vue'
 import { IonList, IonImg } from '@ionic/vue'
 import SquareContainer from '../../components/containers/SquareContainer.vue'
+import messages from '@/messages'
+import urls from '@/urls'
 export default {
   components: {
     Page,
@@ -41,34 +43,36 @@ export default {
   },
   data () {
     return {
-      list: [],
       segment: {
-        id: 2,
-        name: 'None',
-        list: []
+        category_name: 'Segment',
+        categories: []
       }
     }
   },
-
-  created () {
+  computed: {
+    updatedSegment () {
+      return this.segment
+    }
+  },
+  async created () {
     if (this.$route.params.segment) {
       try {
-        const list = await this.$app.$http({
+        const results = await this.$http({
           method: 'GET',
-          url: urls.products.segments  + '/' + this.$route.params.segment,
-          parameters: {}
+          url: urls.products.segments + '/' + this.$route.params.segment,
+          params: {}
         })
-        this.list = list
+        this.segment = results
       } catch (e) {
         console.error(e)
-        this.$app.$toast({
+        this.$toast({
           message: messages.errors.segmentProducts,
           color: 'danger'
         })
       }
     } else {
       console.error('No segment id in route')
-      this.$app.$toast({
+      this.$toast({
         message: messages.errors.segmentProducts,
         color: 'danger'
       })

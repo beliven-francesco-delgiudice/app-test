@@ -8,7 +8,7 @@
   >
     <filters-modal
       v-if="filters"
-      :options="filtersOptions"
+      :options="options"
       :filtersState="computedFilters"
       :open="isFiltersOpened"
       @onClose="closeFilters"
@@ -115,7 +115,7 @@ export default {
     info: Boolean,
     back: [Boolean, String, Object],
     filters: [Boolean, Object],
-    options: Object,
+    filtersOptions: Object,
     more: [Boolean, Object]
   },
   computed: {
@@ -128,8 +128,8 @@ export default {
     computedFilters () {
       return this.filters
     },
-    filtersOptions () {
-      return this.options
+    options () {
+      return this.filtersOptions
     }
   },
   methods: {

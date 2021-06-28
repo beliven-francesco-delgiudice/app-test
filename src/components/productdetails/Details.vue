@@ -4,7 +4,7 @@
     :title="updatedProduct.name"
     :productID="$route.params.id"
   >
-    <image-gallery :gallery="updatedProduct.gallery" />
+    <image-gallery :gallery="updatedProduct.images" />
     <detail-section label="Description">
       <p
         class="px-8 font-helvetica text-mid-dark-grey text-16 spacing-1 line-24 mb-4"
@@ -17,7 +17,10 @@
         />
       </div>
     </detail-section>
-    <detail-section label="Benefits">
+    <detail-section
+      v-if="updatedProduct.benefits && updatedProduct.benefits.length"
+      label="Benefits"
+    >
       <div
         class="mx-8 rounded-12 pt-8 relative bg-light-grey flex flex-col overflow-hidden"
       >
@@ -38,7 +41,11 @@
         />
       </div>
     </detail-section>
-    <detail-section label="Videos" noSeparator>
+    <detail-section
+      v-if="updatedProduct.videos && updatedProduct.videos.length"
+      label="Videos"
+      noSeparator
+    >
       <video-gallery :gallery="updatedProduct.videos" />
     </detail-section>
   </product-layout>
@@ -50,6 +57,8 @@ import ImageGallery from '../ImageGallery.vue'
 import ProductLayout from './ProductLayout.vue'
 import { IonImg } from '@ionic/vue'
 import VideoGallery from '../VideoGallery.vue'
+import messages from '@/messages'
+import urls from '@/urls'
 export default {
   components: {
     ProductLayout,
@@ -79,25 +88,25 @@ export default {
       return this.updatedProduct.description_short
     }
   },
-  created () {
+  async created () {
     if (this.$route.params.id) {
       try {
-        const resProduct = await this.$app.$http({
+        const resProduct = await this.$http({
           method: 'GET',
-          url: urls.products.product  + '/' + this.$route.params.id + '/details',
-          parameters: {}
+          url: urls.products.product + '/' + this.$route.params.id + '/details',
+          params: {}
         })
         this.product = resProduct
       } catch (e) {
         console.error(e)
-        this.$app.$toast({
+        this.$toast({
           message: messages.errors.productDetail,
           color: 'danger'
         })
       }
     } else {
       console.error('No product id in route')
-      this.$app.$toast({
+      this.$toast({
         message: messages.errors.productDetail,
         color: 'danger'
       })

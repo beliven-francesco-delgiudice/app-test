@@ -20,7 +20,9 @@ export default {
           this.squareSize
             ? 'width-' + this.squareSize + ' height-' + this.squareSize
             : ''
-        } ` + propsClass
+        } ` +
+        ' flex justify-center items-center ' +
+        propsClass
       )
     }
   }

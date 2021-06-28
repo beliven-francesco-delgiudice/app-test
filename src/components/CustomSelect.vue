@@ -3,14 +3,14 @@
     interface="action-sheet"
     class="custom-select"
     cssClass="custom-select-sheet"
-    :value="selectValue"
+    :v-model="selectValue"
     :name="name"
     :disabled="isDisabled"
     :placeholder="placeholder"
     @ionChange="onChange"
   >
     <ion-select-option
-      v-for="(option, i) in options"
+      v-for="(option, i) in selectOptions"
       :key="i"
       :value="option.value"
     >
@@ -40,20 +40,22 @@ export default {
   computed: {
     isDisabled () {
       return this.disabled || false
+    },
+    selectOptions () {
+      return this.options.map(opt => ({
+        value: opt.value || opt.id,
+        label: opt.label || opt.name
+      }))
     }
   },
   methods: {
-    onChange (event) {
-      const { target } = event
-      const { value } = target
-      if (value !== this.selectValue) {
-        this.selectValue = value
-        this.$emit('onChange', value)
-      }
+    onChange (e) {
+      this.$emit('onChange', e.target.value)
     }
   },
   watch: {
     value: function (newValue) {
+      console.log('watcher value', newValue, this.selectValue)
       if (this.selectValue !== newValue) {
         this.selectValue = newValue
       }

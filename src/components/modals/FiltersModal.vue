@@ -31,7 +31,7 @@
 
           <div
             v-if="filtersOptions.order && filtersOptions.order.length"
-            class="flex pb-4 border-grey border-b w-full justify-between items-center"
+            class="flex pt-2 pb-1 border-grey border-b w-full justify-between items-center"
           >
             <span
               class="w-1/2 font-helvetica text-16 spacing-5 line-28
@@ -43,7 +43,7 @@
               placeholder="Select order"
               :options="filtersOptions.order"
               :value="computedFilters.order"
-              @onChange="updateFilters($event, 'order_by')"
+              @onChange="updateFilters($event, 'order')"
             />
           </div>
           <div
@@ -51,19 +51,19 @@
               filtersOptions.subcategories &&
                 filtersOptions.subcategories.length
             "
-            class="flex pb-4 border-grey border-b w-full justify-between items-center"
+            class="flex pt-2 pb-1 border-grey border-b w-full justify-between items-center"
           >
             <span
               class="w-1/2 font-helvetica text-16 spacing-5 line-28
             text-dark-grey"
-              >Order by</span
+              >Subcategories</span
             >
             <custom-select
               name="subcategory"
               placeholder="Select subcategory"
               :options="filtersOptions.subcategories"
               :value="computedFilters.subcategory"
-              @onChange="updateFilters($event, 'order_by')"
+              @onChange="updateFilters($event, 'subcategory')"
             />
           </div>
         </div>

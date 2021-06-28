@@ -142,7 +142,8 @@
   min-width: 44px
 }
 .width-64 {
-  width:64px
+  width: 64px;
+  min-width: 64px;
 }
 .w-1\/2 {
   width: 50%;

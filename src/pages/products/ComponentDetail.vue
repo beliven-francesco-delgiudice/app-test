@@ -9,7 +9,11 @@
       class="bg-white rounded-12 relative mr-4 gallery-container elevated-shadow overflow-hidden"
     >
       <ion-img
-        :src="updatedProduct.gallery[0].big"
+        :src="
+          updatedProduct.gallery && updatedProduct.gallery[0]
+            ? updatedProduct.gallery[0].big
+            : ''
+        "
         class="h-full w-auto pointer-events-none"
       />
     </div>
@@ -30,9 +34,7 @@
         >
         <span
           class="font-helvetica text-16 text-mid-dark-grey spacing-2 line-26"
-          >{{
-            updatedProduct.sterile ? 'Sterile component' : 'Not sterile'
-          }}</span
+          >{{ updatedProduct.sterile ? 'Sterile' : 'Not sterile' }}</span
         >
       </div>
     </div>
@@ -99,6 +101,8 @@ import { IonImg } from '@ionic/vue'
 import Page from '../../components/Page.vue'
 import Separator from '../../components/Separator.vue'
 import DetailSection from '../../components/DetailSection.vue'
+import messages from '@/messages'
+import urls from '@/urls'
 export default {
   components: {
     IonImg,
@@ -108,46 +112,49 @@ export default {
   },
   data () {
     return {
-      component: {}
+      product: {}
     }
   },
   computed: {
     updatedProduct () {
-      return this.component
+      return this.product
     },
     aboveTitle () {
-      return this.updatedProduct.parent_name + ' /'
+      return this.updatedProduct.parent_name &&
+        this.updatedProduct.parent_name.length
+        ? this.updatedProduct.parent_name + ' /'
+        : null
     },
     backPath () {
       const id = this.updatedProduct.parent_id
       return `/products/detail/${id}/components`
     }
   },
-  created () {
+  async created () {
     if (this.$route.params.id) {
       try {
-        const resProduct = await this.$app.$http({
+        const resProduct = await this.$http({
           method: 'GET',
-          url: urls.products.component  + '/' + this.$route.params.id,
-          parameters: {}
+          url: urls.products.component + '/' + this.$route.params.id,
+          params: {}
         })
         this.product = resProduct
       } catch (e) {
         console.error(e)
-        this.$app.$toast({
+        this.$toast({
           message: messages.errors.componentDetail,
           color: 'danger'
         })
       }
     } else {
       console.error('No product id in route')
-      this.$app.$toast({
+      this.$toast({
         message: messages.errors.componentDetail,
         color: 'danger'
       })
       this.$router.back()
     }
-  },
+  }
 }
 </script>
 <style scoped>

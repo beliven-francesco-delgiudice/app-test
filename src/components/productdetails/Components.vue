@@ -39,6 +39,8 @@
 import AccordionsList from '../AccordionsList.vue'
 import SquareContainer from '../containers/SquareContainer.vue'
 import ProductLayout from './ProductLayout.vue'
+import messages from '@/messages'
+import urls from '@/urls'
 export default {
   components: {
     ProductLayout,
@@ -55,25 +57,26 @@ export default {
       return this.product
     }
   },
-    created () {
+  async created () {
     if (this.$route.params.id) {
       try {
-        const resProduct = await this.$app.$http({
+        const resProduct = await this.$http({
           method: 'GET',
-          url: urls.products.product  + '/' + this.$route.params.id + '/components',
-          parameters: {}
+          url:
+            urls.products.product + '/' + this.$route.params.id + '/components',
+          params: {}
         })
         this.product = resProduct
       } catch (e) {
         console.error(e)
-        this.$app.$toast({
+        this.$toast({
           message: messages.errors.productDetail,
           color: 'danger'
         })
       }
     } else {
       console.error('No product id in route')
-      this.$app.$toast({
+      this.$toast({
         message: messages.errors.productDetail,
         color: 'danger'
       })

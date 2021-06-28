@@ -47,7 +47,7 @@ export async function getHome (context) {
     const prod = await this.$app.$http({
       method: 'GET',
       url: urls.products.segments,
-      parameters: {}
+      params: {}
     })
 
     if (prod && prod.categories) {
@@ -58,7 +58,7 @@ export async function getHome (context) {
     const congressesList = await this.$app.$http({
       method: 'GET',
       url: urls.congresses.home,
-      parameters: {}
+      params: {}
     })
     congresses = congressesList
   } catch (e) {

@@ -1,7 +1,7 @@
 <template>
   <carousel classes="-my-8 py-8">
     <div
-      v-for="(image, i) in gallery"
+      v-for="(image, i) in updatedGallery"
       :key="i"
       :class="[
         i === 0 ? margin : '',
@@ -52,6 +52,23 @@ export default {
   computed: {
     margin () {
       return this.initMargin || 'ml-8'
+    },
+    updatedGallery () {
+      const array = this.gallery
+        ? this.gallery.map(galleryItem => {
+            if (typeof galleryItem === 'string') {
+              return {
+                image: galleryItem
+              }
+            } else {
+              return {
+                image: galleryItem.image || galleryItem.preview
+              }
+            }
+          })
+        : []
+      console.log(array)
+      return array
     }
   },
   methods: {
