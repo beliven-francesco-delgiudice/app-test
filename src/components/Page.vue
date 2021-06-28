@@ -8,6 +8,7 @@
   >
     <filters-modal
       v-if="filters"
+      :options="filtersOptions"
       :filtersState="computedFilters"
       :open="isFiltersOpened"
       @onClose="closeFilters"
@@ -114,6 +115,7 @@ export default {
     info: Boolean,
     back: [Boolean, String, Object],
     filters: [Boolean, Object],
+    options: Object,
     more: [Boolean, Object]
   },
   computed: {
@@ -124,8 +126,10 @@ export default {
       return false
     },
     computedFilters () {
-      // here with have a Proxy with the ofull object
       return this.filters
+    },
+    filtersOptions () {
+      return this.options
     }
   },
   methods: {

@@ -65,7 +65,7 @@
                   bgClass="bg-white"
                   squareSize="64"
                   rounded="12"
-                  classes="elevated-shadow mr-4 p-2"
+                  classes="mr-4 p-2"
                 >
                   <ion-img :src="item.preview" />
                 </square-container>
@@ -97,7 +97,7 @@
                   bgClass="bg-white"
                   squareSize="64"
                   rounded="12"
-                  classes="elevated-shadow mr-4 overflow-hidden"
+                  classes="mr-4 overflow-hidden"
                 >
                   <ion-img :src="item.image" class="h-full w-auto" />
                 </square-container>

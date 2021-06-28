@@ -3,6 +3,7 @@
     :label="category.name"
     :back="segmentPath"
     :filters="filters"
+    :filtersOptions="options"
     @onFiltersChange="updateFilters"
   >
     <ion-list class="bg-transparent">
@@ -19,7 +20,7 @@
             bgClass="bg-white"
             squareSize="64"
             rounded="12"
-            classes="elevated-shadow mr-4 p-2"
+            classes="mr-4 p-2"
           >
             <ion-img :src="item.image" />
           </square-container>
@@ -72,8 +73,22 @@ export default {
         ]
       },
       list: [],
+      filtersOptions: {
+        subcategories: [
+          {
+            id: 12,
+            label: "Delta system primary"
+          },
+        ],
+        order: [
+          {
+            id: 'nameASC',
+            label: "Name (A - Z)"
+          },
+        ]
+      },
       filters: {
-        order_by: 'name:desc'
+        order: 'name:desc'
       }
     }
   },
@@ -93,6 +108,9 @@ export default {
   computed: {
     segmentPath () {
       return this.category.segment_id
+    },
+    options () {
+      return this.filtersOptions
     }
   },
   methods: {

@@ -30,6 +30,7 @@
           </Title>
 
           <div
+            v-if="filtersOptions.order && filtersOptions.order.length"
             class="flex pb-4 border-grey border-b w-full justify-between items-center"
           >
             <span
@@ -38,10 +39,30 @@
               >Order by</span
             >
             <custom-select
-              name="order_by"
+              name="order"
               placeholder="Select order"
-              :options="orderOptions"
-              :value="computedFilters.order_by"
+              :options="filtersOptions.order"
+              :value="computedFilters.order"
+              @onChange="updateFilters($event, 'order_by')"
+            />
+          </div>
+          <div
+            v-if="
+              filtersOptions.subcategories &&
+                filtersOptions.subcategories.length
+            "
+            class="flex pb-4 border-grey border-b w-full justify-between items-center"
+          >
+            <span
+              class="w-1/2 font-helvetica text-16 spacing-5 line-28
+            text-dark-grey"
+              >Order by</span
+            >
+            <custom-select
+              name="subcategory"
+              placeholder="Select subcategory"
+              :options="filtersOptions.subcategories"
+              :value="computedFilters.subcategory"
               @onChange="updateFilters($event, 'order_by')"
             />
           </div>
@@ -68,27 +89,21 @@ export default {
   },
   props: {
     filtersState: Object,
-    open: Boolean
+    open: Boolean,
+    options: Object
   },
   data () {
     return {
       isOpened: false,
-      filters: {},
-      orderOptions: [
-        {
-          value: 'name:desc',
-          label: 'Name (A-Z)'
-        },
-        {
-          value: 'name:asc',
-          label: 'Name (Z-A)'
-        }
-      ]
+      filters: {}
     }
   },
   computed: {
     computedFilters () {
       return this.filters
+    },
+    filtersOptions () {
+      return this.options
     }
   },
   methods: {

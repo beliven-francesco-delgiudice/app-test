@@ -5,7 +5,7 @@
       :key="i"
       :class="[
         i === 0 ? margin : '',
-        'bg-white rounded-12 relative mr-4 gallery-container elevated-shadow overflow-hidden'
+        'bg-white rounded-12 relative mr-4 gallery-container overflow-hidden'
       ]"
       @click="openImage(image)"
     >

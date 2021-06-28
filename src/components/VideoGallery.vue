@@ -5,7 +5,7 @@
       :key="i"
       :class="[
         i === 0 ? 'ml-8' : '',
-        'bg-white rounded-12 relative mr-4 videogallery-container elevated-shadow overflow-hidden'
+        'bg-white rounded-12 relative mr-4 videogallery-container overflow-hidden'
       ]"
     >
       <div
