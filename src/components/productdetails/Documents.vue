@@ -33,11 +33,13 @@ export default {
       return this.product
     },
     computedAttachments () {
-      return this.updatedProduct.attachments.map(docCategory => ({
-        name: docCategory.name,
-        childs: docCategory.files,
-        count: docCategory.files.length
-      }))
+      return this.updatedProduct && this.updatedProduct.attachments
+        ? this.updatedProduct.attachments.map(docCategory => ({
+            name: docCategory.name,
+            childs: docCategory.files,
+            count: docCategory.files.length
+          }))
+        : []
     }
   },
   async created () {

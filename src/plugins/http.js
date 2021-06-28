@@ -43,7 +43,6 @@ export default {
       let data
 
       try {
-        console.log(config)
         data = await axios({
           ...defaults,
           ...base,

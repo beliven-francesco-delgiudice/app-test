@@ -12,7 +12,11 @@
       <div class="flex flex-col justify-between items-start">
         <span
           class="font-helvetica-medium text-16 text-black spacing-5 line-28"
-          >{{ updatedDocument.label || updatedDocument.name }}</span
+          >{{
+            updatedDocument.label ||
+              updatedDocument.name ||
+              updatedDocument.title
+          }}</span
         >
         <span class="font-helvetica text-14 text-grey spacing-44 line-24">{{
           updatedDocument.size
