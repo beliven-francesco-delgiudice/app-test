@@ -2,7 +2,10 @@
   <div
     class="min-h-screen gradient-background relative max-h-screen overflow-y-auto pb-20 flex flex-col"
   >
-    <div class="bg-transparent flex px-8 z-10" style="height:90px">
+    <div
+      class="bg-transparent flex px-8 z-10"
+      style="height:90px;min-height:90px;"
+    >
       <ion-button
         v-if="formattedResultsLength > 0"
         type="button"
@@ -148,6 +151,8 @@ import Carousel from '../components/Carousel.vue'
 import SquareContainer from '../components/containers/SquareContainer.vue'
 import SectionButton from '../components/containers/SectionButton.vue'
 import DetailSection from '../components/DetailSection.vue'
+import messages from '@/messages'
+import urls from '@/urls'
 export default {
   components: {
     IonImg,
@@ -162,7 +167,7 @@ export default {
   data () {
     return {
       filter: '*',
-      isSearched: null, //should be false at beginning
+      isSearched: null,
       results: {}
     }
   },
@@ -213,9 +218,24 @@ export default {
     }
   },
   methods: {
-    search (searchText) {
-      this.isSearched = searchText
-      alert(searchText)
+    async search (searchText) {
+      try {
+        const results = await this.$http({
+          method: 'GET',
+          url: urls.search,
+          params: {
+            term: searchText
+          }
+        })
+        this.results = results
+        this.isSearched = searchText
+      } catch (e) {
+        console.error(e)
+        this.$toast({
+          message: messages.errors.search,
+          color: 'danger'
+        })
+      }
     },
     cancelResults () {
       this.$refs.searchbar.cancelValue()

@@ -3,7 +3,7 @@
     <detail-section noPadding label="Congress">
       <div class="relative flex mb-4">
         <a
-          :href="'phone:' + updatedCongress.phone"
+          :href="'tel:' + updatedCongress.phone"
           title="phone"
           class="absolute top-0 left-0 w-full h-full"
         ></a>

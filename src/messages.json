@@ -16,6 +16,8 @@
     "congressDetail": "An error occurred while obtaining the congress information",
     "activityDetail": "An error occurred while obtaining the activity information",
 
+    "search": "An error occurred while searching",
+
     "missingMailPassword": "Insert email and password",
     "cannotPerform": "Cannot perform operation",
     "cannotLogin": "Login failed",
