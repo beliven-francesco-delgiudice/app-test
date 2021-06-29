@@ -18,7 +18,7 @@
       <ion-refresher
         slot="fixed"
         v-if="refreshAction"
-        @ionRefresh="$store.dispatch(refreshAction, $event)"
+        @ionRefresh="onRefresh(refreshAction, $event)"
       >
         <ion-refresher-content />
       </ion-refresher>
@@ -46,6 +46,10 @@ export default {
     },
     backButton () {
       this.$router.push('/home')
+    },
+    onRefresh (refreshAction, $event) {
+      this.$store.dispatch(refreshAction, $event)
+      $event.target.complete()
     }
   },
   computed: {

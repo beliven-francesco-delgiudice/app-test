@@ -32,7 +32,6 @@ export async function login (context, data) {
 
     this.$app.$router.push('/home')
   } catch (e) {
-    console.log(e, typeof e, Object.keys(e))
     this.$app.$toast({
       message: messages.errors.cannotLogin,
       color: 'danger'

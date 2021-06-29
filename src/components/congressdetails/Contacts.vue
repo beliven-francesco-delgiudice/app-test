@@ -53,12 +53,10 @@
         </div>
       </div>
 
-      <div class="relative flex mb-4">
-        <a
-          :href="updatedCongress.link"
-          title="open link"
-          class="absolute top-0 left-0 w-full h-full"
-        ></a>
+      <div
+        @click="openLink(updatedCongress.website)"
+        class="relative flex mb-4"
+      >
         <square-container
           bgClass="bg-black"
           squareSize="44"
@@ -117,8 +115,11 @@ export default {
   },
   computed: {
     updatedCongress () {
-      const newCongress = Object.assign({}, this.congress.content)
-      return newCongress
+      if (this.congress && this.congress.content) {
+        const newCongress = Object.assign({}, this.congress.content)
+        return newCongress
+      }
+      return {}
     },
     updatedVenue () {
       if (this.updatedCongress && this.updatedCongress.congress_venue) {
@@ -137,6 +138,11 @@ export default {
         return this.updatedCongress.staff
       }
       return {}
+    }
+  },
+  methods: {
+    openLink (url) {
+      window.open(url)
     }
   }
 }

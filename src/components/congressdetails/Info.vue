@@ -106,8 +106,11 @@ export default {
   },
   computed: {
     updatedCongress () {
-      const congress = Object.assign({}, this.congress.content)
-      return congress
+      if (this.congress && this.congress.content) {
+        const congress = Object.assign({}, this.congress.content)
+        return congress
+      }
+      return {}
     },
     updatedReadMore () {
       return this.isReadMore

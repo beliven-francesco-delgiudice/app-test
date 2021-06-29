@@ -59,14 +59,14 @@
       <ion-button
         type="button"
         class="relative bg-azure small-shadow rounded-12 flex justify-center items-center height-56 w-full normal-case"
-        @click="loginWithAzurre"
+        @click="loginWithAzure"
       >
         <ion-img
           src="/assets/button-icons/azure.svg"
-          class="absolute left-0 ml-4"
+          class="absolute left-0 ml-4 pointer-events-none"
         />
         <span
-          class="font-helvetica-medium text-white text-16 spacing-5 line-24 m-auto normal-case"
+          class="font-helvetica-medium text-white text-16 spacing-5 line-24 m-auto normal-case pointer-events-none"
         >
           Login with Azure
         </span>
@@ -76,10 +76,12 @@
       <div
         class="bg-white small-shadow rounded-8 flex items-center z-10 relative px-2 mb-4"
       >
-        <ion-img
-          src="/assets/button-icons/lock.svg"
-          class="width-24 height-24"
-        />
+        <div class="width-44 height-44 flex justify-center items-center">
+          <ion-img
+            src="/assets/button-icons/lock.svg"
+            class="width-24 height-24"
+          />
+        </div>
         <ion-input
           type="password"
           placeholder="Password"
@@ -137,7 +139,11 @@ export default {
       })
     },
     loginWithAzure () {
-      alert('login con azure ' + this.email)
+      // FIXME: change "dev" in "prod"
+      const url = urls.baseUrl.dev + urls.auth.azureLogin
+      window.open(url)
+
+      // onAppForeground event in which I can check if user is authorized / logged in (maybe localStorage)?
     },
     async next () {
       if (this.email && this.email.length) {

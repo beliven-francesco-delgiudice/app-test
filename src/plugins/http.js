@@ -49,9 +49,20 @@ export default {
 
         if (data.data && data.data.jwt) setJWT(data.data.jwt)
       } catch (e) {
+        if (e.request && e.request.status === 401) {
+          this.$store.dispatch('logout')
+          this.$toast({
+            message: messages.errors.loginNecessary,
+            color: 'danger'
+          })
+          if (loader) await this.$loading.hide()
+          // FIXME: pay attention, it is possible to break stuff by returning an object
+          return {}
+        }
+
         if (loader) await this.$loading.hide()
         if (notifyErrors) {
-          app.$toast({
+          this.$toast({
             message: messages.errors.cannotPerform,
             color: 'error'
           })

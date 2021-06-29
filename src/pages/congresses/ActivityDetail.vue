@@ -149,7 +149,7 @@ export default {
         id: 1,
         parent_id: 1,
         type: '',
-        title: '',
+        title: 'Activity',
         subtitle1: '',
         subtitle2: '',
         location: '',
@@ -210,7 +210,9 @@ export default {
           url: urls.congresses.activity + '/' + activityID,
           params: {}
         })
-        this.activity = results
+        if (this.results && Object.keys(this.results).length) {
+          this.activity = results
+        }
       } catch (e) {
         console.error(e)
         this.$toast({
