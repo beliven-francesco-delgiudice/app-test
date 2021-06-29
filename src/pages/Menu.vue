@@ -119,8 +119,7 @@ export default {
       this.$router.push(href)
     },
     logout () {
-      alert('logout')
-      this.$router.push('/home')
+      this.$store.dispatch('logout')
     }
   }
 }

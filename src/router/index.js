@@ -7,10 +7,12 @@ import { isPlatform } from '@ionic/vue'
 
 import MainLayout from '../layouts/Main'
 import HomeLayout from '../layouts/Home.vue'
+import CleanLayout from '../layouts/Clean.vue'
 
 import Home from '../pages/Home'
 import Menu from '../pages/Menu'
 import Search from '../pages/Search'
+import Login from '../pages/Login'
 
 import ProductsIndex from '../pages/products/ProductsIndex.vue'
 import ProductsSegment from '../pages/products/ProductsSegment.vue'
@@ -21,30 +23,24 @@ import ComponentDetail from '../pages/products/ComponentDetail.vue'
 import CongressesIndex from '../pages/congresses/Congresses.vue'
 import CongressDetail from '../pages/congresses/CongressDetail.vue'
 import ActivityDetail from '../pages/congresses/ActivityDetail.vue'
-// import masterStore from '../store'
+import masterStore from '../store'
 
 const routes = [
   {
     path: '',
-    redirect: '/home'
+    redirect: '/login'
   },
-  // {
-  //   path: '/',
-  //   component: CleanLayout,
-  //   children: [
-  //     {
-  //       name: 'login',
-  //       path: '',
-  //       redirect: 'login'
-  //     },
-  //     {
-  //       path: 'login',
-  //       name: 'Login',
-  //       meta: { noAuth: true, backAction: 'exit' },
-  //       component: Login
-  //     }
-  //   ]
-  // },
+  {
+    path: '/login',
+    component: CleanLayout,
+    children: [
+      {
+        path: '',
+        name: 'Login',
+        component: Login
+      }
+    ]
+  },
   {
     path: '/home',
     component: HomeLayout,
@@ -188,10 +184,13 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  // if (to.meta.noAuth === true) return next()
-
-  // if (!masterStore.getters.loggedIn) return next('/login')
+  if (to.path !== '/login' && !masterStore.getters.loggedIn) {
+    masterStore.dispatch('logout')
+  }
   next()
+  // if (!masterStore.getters.loggedIn) {
+  //   next('/login')
+  // }
 })
 
 export default router

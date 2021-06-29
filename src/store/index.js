@@ -48,7 +48,6 @@ const master = {
     },
 
     setHome (store, homeData) {
-      console.log('store setHome', homeData)
       store.home = homeData
     },
 

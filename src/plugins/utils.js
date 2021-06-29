@@ -1,12 +1,5 @@
-
 export function capitalizeFirstLetter (string) {
   return string.charAt(0).toUpperCase() + string.slice(1)
-}
-
-// If year is not inserted at the start of username it will be added automatically
-export function parseEmail (email) {
-  if (email && !/^\d{4,5}_\w+/.test(email)) return `${(new Date().getFullYear())}_${email}`
-  return email
 }
 
 /**
@@ -20,7 +13,7 @@ export function ticksToString (timestamp) {
   try {
     const myDate = new Date(timestamp / 10000)
     const originDate = new Date(3939, 0, 1)
-    const dateDifference = (myDate.getTime() - originDate.getTime())
+    const dateDifference = myDate.getTime() - originDate.getTime()
     const date = new Date(dateDifference)
 
     return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`

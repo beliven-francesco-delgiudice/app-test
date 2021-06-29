@@ -3,10 +3,7 @@ import urls from '@/urls'
 import messages from '@/messages'
 
 export const getJWT = () => {
-  return (
-    window.localStorage.getItem('JWT') ||
-    'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjI3NTIsImlhdCI6MTYyNDYxNjI3MSwibmJmIjoxNjI0NjE2MjcxLCJleHAiOjE2MjcyMDgyNzF9.D6avez71QlGkYNz6PtMVviGTX6NqdQk-2jNxmUpsJbk'
-  )
+  return window.localStorage.getItem('JWT') || false
 }
 
 export const setJWT = jwt => {
@@ -50,7 +47,7 @@ export default {
           url: `${baseUrl}${url}`
         })
 
-        if (data.data && data.data.token) setJWT(data.data.token)
+        if (data.data && data.data.jwt) setJWT(data.data.jwt)
       } catch (e) {
         if (loader) await this.$loading.hide()
         if (notifyErrors) {

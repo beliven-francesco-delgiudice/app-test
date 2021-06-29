@@ -1,0 +1,170 @@
+<template>
+  <div
+    class="px-8 pt-20 min-h-screen gradient-background relative max-h-screen overflow-y-auto pb-24"
+  >
+    <ion-img
+      src="/assets/login-bg.png"
+      class="fixed bottom-0 left-0 z-0 w-full"
+    />
+    <div
+      class="bg-transparent absolute top-0 left-0 flex px-8 w-full z-10"
+      style="height:90px"
+    >
+      <ion-button
+        v-if="backAction"
+        type="button"
+        class="relative mr-auto my-auto back-button"
+        @click="onBack"
+      >
+        <ion-img
+          src="/assets/button-icons/back.svg"
+          className="pointer-events-none"
+        />
+      </ion-button>
+      <div v-else class="relative mr-auto my-auto">
+        <ion-img src="/assets/limapp.svg" />
+      </div>
+    </div>
+    <div class="relative flex justify-between items-baseline my-4">
+      <Title titleClass="pb-4 text-black font-helvetica-bold text-28 block">
+        Sign in
+      </Title>
+      <span class="font-helvetica text-12 spacing-38 line-24 text-grey">
+        Step {{ step }}/2
+      </span>
+    </div>
+    <div v-if="step === 1" class="flex flex-col">
+      <div
+        class="bg-white small-shadow rounded-8 flex items-center z-10 relative px-2 mb-4"
+      >
+        <ion-img src="/assets/menu/contact.svg" class="" />
+        <ion-input
+          type="email"
+          placeholder="Email"
+          v-model="email"
+          class="mx-2"
+          required
+        ></ion-input>
+      </div>
+      <big-button label="Next" @onClick="next" />
+    </div>
+    <div v-if="step === 2 && isAzureMail" class="flex flex-col">
+      <div class="flex z-10 relative mb-4">
+        <span
+          class="font-helvetica text-16 text-mid-dark-grey spacing-1 line-24"
+          >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor</span
+        >
+      </div>
+      <ion-button
+        type="button"
+        class="relative bg-azure small-shadow rounded-12 flex justify-center items-center height-56 w-full normal-case"
+        @click="loginWithAzurre"
+      >
+        <ion-img
+          src="/assets/button-icons/azure.svg"
+          class="absolute left-0 ml-4"
+        />
+        <span
+          class="font-helvetica-medium text-white text-16 spacing-5 line-24 m-auto normal-case"
+        >
+          Login with Azure
+        </span>
+      </ion-button>
+    </div>
+    <div v-if="step === 2 && !isAzureMail" class="flex flex-col">
+      <div
+        class="bg-white small-shadow rounded-8 flex items-center z-10 relative px-2 mb-4"
+      >
+        <ion-img
+          src="/assets/button-icons/lock.svg"
+          class="width-24 height-24"
+        />
+        <ion-input
+          type="password"
+          placeholder="Password"
+          v-model="password"
+          class="mx-2"
+          required
+        ></ion-input>
+      </div>
+      <big-button label="Sign in" @onClick="loginWithPassword" />
+      <a
+        class="mt-4 font-helvetica-medium text-14 text-black spacing-44 line-28 mx-auto"
+        >Forgot your password?</a
+      >
+    </div>
+  </div>
+</template>
+
+<script>
+import { IonInput, IonImg } from '@ionic/vue'
+import Title from '../components/Title.vue'
+import BigButton from '../components/containers/BigButton.vue'
+import messages from '@/messages'
+import urls from '@/urls'
+export default {
+  components: {
+    IonInput,
+    IonImg,
+    Title,
+    BigButton
+  },
+  data () {
+    return {
+      email: '',
+      password: '',
+      step: 1,
+      isAzureMail: false
+    }
+  },
+  computed: {
+    backAction () {
+      if (this.step > 1) {
+        return true
+      }
+      return false
+    }
+  },
+  methods: {
+    onBack () {
+      this.step = 1
+    },
+    loginWithPassword () {
+      this.$store.dispatch('login', {
+        username: this.email,
+        password: this.password
+      })
+    },
+    loginWithAzure () {
+      alert('login con azure ' + this.email)
+    },
+    async next () {
+      if (this.email && this.email.length) {
+        try {
+          const azureFlag = await this.$http({
+            method: 'GET',
+            url: urls.auth.loginCheck,
+            params: {
+              email: this.email
+            }
+          })
+          this.isAzureMail = azureFlag
+          this.step = 2
+        } catch (e) {
+          console.error(e)
+          this.$toast({
+            message: messages.errors.checkEmail,
+            color: 'danger'
+          })
+        }
+      } else {
+        this.$toast({
+          message: messages.errors.noEmail,
+          color: 'danger'
+        })
+      }
+    }
+  }
+}
+</script>

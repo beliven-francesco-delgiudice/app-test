@@ -1,13 +1,14 @@
 import urls from '@/urls'
 import messages from '@/messages'
-import { parseEmail } from '@/plugins/utils'
 
+export async function logout (context) {
+  context.commit('setUserData', false)
+  this.$app.$router.push('/login')
+}
 export async function login (context, data) {
   try {
     // Decouple data from Vue as we will do modifications that user should not see
     data = { ...data }
-
-    data.username = parseEmail(data.username)
 
     const loggedData = await this.$app.$http({
       method: 'POST',
@@ -15,21 +16,23 @@ export async function login (context, data) {
       data
     })
 
-    const userData = {
-      username: data.username,
-      ...loggedData.data
-    }
+    const userData = Object.assign({}, loggedData.user)
 
     context.commit('setUserData', userData)
     console.log('Logged in, user data: ', userData)
 
+    window.localStorage.setItem('JWT', loggedData.jwt)
+
     // Now that we have user id we can proceed wit OneSignal sync with server
-    context.dispatch('syncOneSignal', userData.id)
+    // context.dispatch('syncOneSignal', userData.id)
 
     // Check OneSignal permissions status
-    const subscriptionData = await this.$app.$onesignal.getPermissionState()
-    await context.dispatch('newNotificationsState', subscriptionData)
+    // const subscriptionData = await this.$app.$onesignal.getPermissionState()
+    // await context.dispatch('newNotificationsState', subscriptionData)
+
+    this.$app.$router.push('/home')
   } catch (e) {
+    console.log(e, typeof e, Object.keys(e))
     this.$app.$toast({
       message: messages.errors.cannotLogin,
       color: 'danger'

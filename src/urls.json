@@ -4,6 +4,7 @@
     "prod": "https://messagingcenter.perugiatiming.com/api"
   },
   "auth" : {
+    "loginCheck": "/users/check-domain",
     "login" : "/users/login",
     "azureLogin": "/users/login-azure"
   },

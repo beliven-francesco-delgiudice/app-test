@@ -5,6 +5,9 @@
   "newPasswordSet": "New password set",
   "userAdded": "User added to team",
   "errors": {
+    "checkEmail": "An error occurred while checking the email domain. Retry later",
+    "cannotLogin": "Login failed",
+
     "home": "An error occurred while getting all the informations",
 
     "segments": "An error occurred while obtaining the segments",
@@ -20,7 +23,7 @@
 
     "missingMailPassword": "Insert email and password",
     "cannotPerform": "Cannot perform operation",
-    "cannotLogin": "Login failed",
+
     "cannotGetRounds": "Failed to get rounds",
     "cannotGetMessages": "Failed to get messages",
     "cannotGetUserData": "Failed to get user data",

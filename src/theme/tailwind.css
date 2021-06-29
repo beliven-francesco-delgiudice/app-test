@@ -15,6 +15,10 @@
 .bg-red {
   background: #E30513;
 }
+.bg-azure {
+  background: #0078D4;
+  --background: #0078d4;
+}
 .bg-transparent {
   background: transparent !important;
 }
@@ -405,6 +409,10 @@
 }
 .mb-auto {
   margin-bottom: auto;
+}
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 .my-8 {
   margin-top: 2rem;

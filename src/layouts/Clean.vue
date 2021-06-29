@@ -1,6 +1,6 @@
 <template>
-  <ion-page>  
-    <ion-content :fullscreen="true">
+  <ion-page>
+    <ion-content :fullscreen="true" id="content">
       <div id="container">
         <router-view />
       </div>
@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { IonContent, IonPage } from '@ionic/vue';
+import { IonContent, IonPage } from '@ionic/vue'
 
 export default {
   components: {
@@ -18,9 +18,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-  #container {
-    padding: 10px;
-  }
-</style>

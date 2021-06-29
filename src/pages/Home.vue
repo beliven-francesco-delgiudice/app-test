@@ -26,7 +26,7 @@
           titleClass="relative pb-4 text-black font-helvetica-bold text-28 block px-8 pt-20 z-10"
         >
           <span class="text-black font-helvetica-bold text-20"
-            >Hi {{ userName }}, <br /></span
+            >Hi {{ $store.getters.userData.first_name }}, <br /></span
           >Welcome Back
         </Title>
         <searchbar classes="mx-8 mt-4" @submit="routeToSearch" />
@@ -307,11 +307,6 @@ export default {
           date: '31 Aug - 4 Sep'
         }
       ]
-    }
-  },
-  computed: {
-    userName () {
-      return 'Astrid'
     }
   },
   methods: {
