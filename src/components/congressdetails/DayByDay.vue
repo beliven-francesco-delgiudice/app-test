@@ -35,7 +35,15 @@
               >
             </div>
             <div class="flex ml-2">
-              <div @click="saveEvent(event)" class="mb-auto">
+              <div
+                @click="saveEvent(event)"
+                :class="[
+                  event.save_event && event.save_event.length
+                    ? ''
+                    : 'opacity-50 pointer-events-none',
+                  ' mb-auto'
+                ]"
+              >
                 <square-container
                   squareSize="44"
                   bgClass="bg-black"
@@ -82,7 +90,7 @@ export default {
   },
   methods: {
     saveEvent (event) {
-      alert(event)
+      window.open(event.save_event)
     }
   }
 }

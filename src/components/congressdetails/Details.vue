@@ -7,12 +7,11 @@
         v-html="congressDescription"
       />
 
-      <div v-if="congressMaps" class="flex relative mb-4 mx-8 items-center">
-        <a
-          :href="'geo:' + congressMaps.link"
-          title="google maps link"
-          class="absolute top-0 left-0 w-full h-full"
-        ></a>
+      <div
+        v-if="congressMaps && congressMaps.link && congressMaps.link.length"
+        class="flex relative mb-4 mx-8 items-center"
+        @click="openLink(congressMaps.link)"
+      >
         <square-container
           bgClass="bg-black"
           squareSize="44"
@@ -26,12 +25,15 @@
           {{ congressMaps.label }}
         </span>
       </div>
-      <div v-if="congressDownloadMaps" class="flex relative mx-8 items-center">
-        <a
-          :href="congressDownloadMaps.link"
-          title="google maps link"
-          class="absolute top-0 left-0 w-full h-full"
-        ></a>
+      <div
+        v-if="
+          congressDownloadMaps &&
+            congressDownloadMaps.link &&
+            congressDownloadMaps.link.length
+        "
+        class="flex relative mx-8 items-center"
+        @click="openLink(congressDownloadMaps.link)"
+      >
         <square-container
           bgClass="bg-light-grey"
           squareSize="44"
@@ -76,7 +78,11 @@
             >
           </div>
         </div>
-        <big-button label="Save in calendar" />
+        <big-button
+          v-if="congressDates.save_event && congressDates.save_event.length"
+          label="Save in calendar"
+          @onClick="openLink(congressDates.save_event)"
+        />
       </div>
       <div class="mt-8">
         <p
@@ -281,6 +287,9 @@ export default {
     }
   },
   methods: {
+    openLink (link) {
+      window.open(link)
+    },
     readMore (param) {
       const obj = Object.assign({}, this.isReadMore)
       obj[param] = !obj[param]

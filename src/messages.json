@@ -22,6 +22,8 @@
 
     "search": "An error occurred while searching",
 
+    "usefulLinks": "An error occured while getting the links",
+
     "missingMailPassword": "Insert email and password",
     "cannotPerform": "Cannot perform operation",
 

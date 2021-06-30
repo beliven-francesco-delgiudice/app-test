@@ -48,11 +48,16 @@
             >
           </div>
         </div>
-        <big-button label="Save in calendar" />
+        <big-button
+          v-if="updatedCongress.save_event && updatedCongress.save_event.length"
+          label="Save in calendar"
+          @onClick="saveEvent"
+        />
       </div>
       <div
         v-if="updatedCongress.link && updatedCongress.link.length"
         class="flex mt-4 items-center relative mx-8"
+        @click="openLink"
       >
         <square-container
           bgClass="bg-light-grey"
@@ -125,6 +130,12 @@ export default {
   methods: {
     readMore () {
       this.isReadMore = !this.updatedReadMore
+    },
+    saveEvent () {
+      window.open(this.updatedCongress.save_event)
+    },
+    openLink () {
+      window.open(this.updatedCongress.link)
     }
   }
 }

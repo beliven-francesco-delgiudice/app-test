@@ -13,6 +13,7 @@ import Home from '../pages/Home'
 import Menu from '../pages/Menu'
 import Search from '../pages/Search'
 import Login from '../pages/Login'
+import UsefulLinks from '../pages/UsefulLinks'
 
 import ProductsIndex from '../pages/products/ProductsIndex.vue'
 import ProductsSegment from '../pages/products/ProductsSegment.vue'
@@ -50,6 +51,20 @@ const routes = [
         path: '',
         name: 'Home',
         component: Home
+      }
+    ]
+  },
+  {
+    path: '/useful',
+    component: MainLayout,
+    children: [
+      {
+        path: '',
+        name: 'Useful Links',
+        component: UsefulLinks,
+        meta: {
+          showBack: true
+        }
       }
     ]
   },

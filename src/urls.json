@@ -19,5 +19,6 @@
     "home":"/congresses/home",
     "list":"/congresses",
     "activity": "/congresses/activity"
-  }
+  },
+  "usefulLinks": "/useful-links"
 }

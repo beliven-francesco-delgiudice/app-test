@@ -89,8 +89,7 @@ export default {
         {
           name: 'Useful Links',
           href: '/useful',
-          img: 'useful.svg',
-          disabled: true
+          img: 'useful.svg'
         },
         {
           name: 'Multimedia',

@@ -60,7 +60,11 @@
             >
           </div>
         </div>
-        <big-button label="Save in calendar" />
+        <big-button
+          v-if="updatedActivity.save_event && updatedActivity.save_event.length"
+          label="Save in calendar"
+          @onClick="openLink(updatedActivity.save_event)"
+        />
       </div>
     </div>
 
@@ -199,6 +203,9 @@ export default {
     },
     closeFaculty () {
       this.faculty = null
+    },
+    openLink (link) {
+      window.open(link)
     }
   },
   async created () {
