@@ -12,7 +12,7 @@
       <div
         class="image-container pointer-events-none relative bg-black flex justify-center items-center"
       >
-        <ion-img :src="obj.image" class="w-full opacity-50" />
+        <ion-img :src="obj.preview" class="w-full opacity-50" />
         <ion-img
           src="/assets/button-icons/play-white.svg"
           class="m-auto absolute z-10"
@@ -69,6 +69,6 @@ export default {
 }
 .image-container {
   width: 100%;
-  height: 170px;
+  height: 180px;
 }
 </style>
