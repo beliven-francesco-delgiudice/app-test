@@ -115,7 +115,7 @@ export default {
           url: urls.congresses.list,
           params: this.filters
         })
-        this.congresses = results
+        this.congresses = results.list
         this.filtersOptions = results.filters || {}
       } catch (e) {
         console.error(e)
