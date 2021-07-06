@@ -39,3 +39,4 @@ resources/windows/splash
 /www
 /android/*.pepk
 /android/Superbike
+/ios/DerivedData

@@ -1,21 +1,21 @@
-# Messaging Center
+# LimAPP
 
 Mobile app for teams to receive notifications from race direction
 
 ## General structure
 
-  - __android__ Android specific codebase
-  - __ios__ iOS specific codebase
-  - __public__ Public web resources
-  - __resources__ Static resources for native builds
-  - __src__ Platform-agnostic codebase (uses [Ionic Framework](https://ionicframework.com/docs/vue/overview) with [Vue js](https://v3.vuejs.org/guide/introduction.html))
-  - __tests__ Integration and E2E test suite
+- **android** Android specific codebase
+- **ios** iOS specific codebase
+- **public** Public web resources
+- **resources** Static resources for native builds
+- **src** Platform-agnostic codebase (uses [Ionic Framework](https://ionicframework.com/docs/vue/overview) with [Vue js](https://v3.vuejs.org/guide/introduction.html))
+- **tests** Integration and E2E test suite
 
 ## Pre-requisites
 
-  - __NodeJS__ >= 12 (https://nodejs.org/en/download/)
-  - __Xcode__ (https://ionicframework.com/docs/developing/ios)
-  - __Android Studio__ (https://ionicframework.com/docs/developing/android)
+- **NodeJS** >= 12 (https://nodejs.org/en/download/)
+- **Xcode** (https://ionicframework.com/docs/developing/ios)
+- **Android Studio** (https://ionicframework.com/docs/developing/android)
 
 ## Getting started
 
@@ -39,8 +39,8 @@ ionic capacitor build android
 ## Configuration
 
 - `src/config.json` Main configuration file
-  - *environment* Select development (dev) and production (prod) mode
-  - *onesignal* Onesignal api keys
+  - _environment_ Select development (dev) and production (prod) mode
+  - _onesignal_ Onesignal api keys
 - `src/messages.json` Stores all success and failure messages of the app
 - `src/urls.json` Stores all urls used for the server connection
 

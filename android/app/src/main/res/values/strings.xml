@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">Messaging Center SBK</string>
-    <string name="title_activity_main">Messaging Center SBK</string>
-    <string name="package_name">io.ionic.superbike</string>
-    <string name="custom_url_scheme">io.ionic.superbike</string>
+    <string name="app_name">LimAPP</string>
+    <string name="title_activity_main">LimAPP</string>
+    <string name="package_name">com.limacorporate.limapp</string>
+    <string name="custom_url_scheme">com.limacorporate.limapp</string>
 </resources>

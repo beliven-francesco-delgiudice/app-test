@@ -1,6 +1,6 @@
 <template>
   <div
-    class="px-8 pt-20 min-h-screen gradient-background relative max-h-screen overflow-y-auto pb-24"
+    class="px-8 pt-20 min-h-screen login-background relative max-h-screen overflow-y-auto pb-24"
   >
     <ion-img
       src="/assets/login-bg.png"
@@ -101,6 +101,7 @@
 
 <script>
 import { IonInput, IonImg } from '@ionic/vue'
+import { Browser } from '@capacitor/browser'
 import Title from '../components/Title.vue'
 import BigButton from '../components/containers/BigButton.vue'
 import messages from '@/messages'
@@ -138,10 +139,13 @@ export default {
         password: this.password
       })
     },
-    loginWithAzure () {
+    async loginWithAzure () {
       // FIXME: change "dev" in "prod"
       const url = urls.baseUrl.dev + urls.auth.azureLogin
-      window.open(url)
+      await Browser.open({ url })
+      Browser.addListener('browserFinished', info => {
+        console.log(info)
+      })
 
       // onAppForeground event in which I can check if user is authorized / logged in (maybe localStorage)?
     },

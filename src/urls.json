@@ -1,7 +1,7 @@
 {
   "baseUrl": {
     "dev": "https://lima-app-api.heply.run/api",
-    "prod": "https://messagingcenter.perugiatiming.com/api"
+    "prod": ""
   },
   "auth" : {
     "loginCheck": "/users/check-domain",
