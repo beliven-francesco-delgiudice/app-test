@@ -129,6 +129,12 @@ export default {
       return false
     }
   },
+  created () {
+    if (this.$store.getters.loggedIn) {
+      // user is already logged in
+      this.$router.push('/home')
+    }
+  },
   methods: {
     onBack () {
       this.step = 1
