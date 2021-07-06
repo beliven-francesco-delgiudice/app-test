@@ -4,7 +4,7 @@ import router from './router'
 import config from './config'
 
 import { IonicVue } from '@ionic/vue'
-import { Plugins } from '@capacitor/core'
+import { SplashScreen } from '@capacitor/splash-screen'
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/vue/css/core.css'
@@ -51,7 +51,7 @@ import $onesignal from '@/plugins/onesignal-native'
 import $backgroundmode from '@/plugins/backgroundmode'
 
 async function init () {
-  await Plugins.SplashScreen.show()
+  await SplashScreen.show()
 
   const app = createApp(App)
     .use(IonicVue)
@@ -99,7 +99,7 @@ async function init () {
 
   // Fixing iphone quirks
   setTimeout(() => {
-    Plugins.SplashScreen.hide()
+    SplashScreen.hide()
   }, 500)
 }
 

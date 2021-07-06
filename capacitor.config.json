@@ -1,6 +1,6 @@
 {
   "appId": "com.limacorporate.limapp",
-  "appName": "LimAPP",
+  "appName": "LimApp",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "dist",
