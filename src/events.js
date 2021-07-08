@@ -4,7 +4,7 @@
  * @param {*} permissionChange Permission status
  */
 export async function onOnesignalPermissionChange (plugins, permissionChange) {
-  var currentPermission = permissionChange.to
+  const currentPermission = permissionChange.to
   console.log('New permission state:', currentPermission)
 
   await plugins.$store.dispatch('newNotificationsState', currentPermission)
@@ -61,8 +61,21 @@ export async function onOnesignalNotificationOpened (plugins, e) {
 export async function onAppForeground (plugins, e) {
   console.log('App foreground: ', e)
 
-  if (e.isActive === true && plugins.$store.getters.loggedIn && plugins.$route.meta.refreshOnOpen === true)
+  if (
+    e.isActive === true &&
+    !plugins.$store.getters.loggedIn &&
+    window.localStorage.getItem('JWT')
+  ) {
+    await plugins.$store.dispatch('loginWithToken')
+  }
+
+  if (
+    e.isActive === true &&
+    plugins.$store.getters.loggedIn &&
+    plugins.$route.meta.refreshOnOpen === true
+  ) {
     await plugins.$store.dispatch('getMessages')
+  }
 }
 
 export function onBackButton (plugins, e, App) {

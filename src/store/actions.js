@@ -40,6 +40,39 @@ export async function login (context, data) {
   }
 }
 
+export async function loginWithToken (context) {
+  try {
+    // Decouple data from Vue as we will do modifications that user should not see
+
+    const loggedData = await this.$app.$http({
+      method: 'POST',
+      url: urls.auth.loginWithToken
+    })
+
+    const userData = Object.assign({}, loggedData.user)
+
+    context.commit('setUserData', userData)
+    console.log('Logged in, user data: ', userData)
+
+    window.localStorage.setItem('JWT', loggedData.jwt)
+
+    // Now that we have user id we can proceed wit OneSignal sync with server
+    // context.dispatch('syncOneSignal', userData.id)
+
+    // Check OneSignal permissions status
+    // const subscriptionData = await this.$app.$onesignal.getPermissionState()
+    // await context.dispatch('newNotificationsState', subscriptionData)
+
+    this.$app.$router.push('/home')
+  } catch (e) {
+    this.$app.$toast({
+      message: messages.errors.cannotLogin,
+      color: 'danger'
+    })
+    throw e
+  }
+}
+
 export async function getHome (context) {
   let products = []
   let congresses = []

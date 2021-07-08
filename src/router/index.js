@@ -203,9 +203,6 @@ router.beforeEach((to, from, next) => {
     masterStore.dispatch('logout')
   }
   next()
-  // if (!masterStore.getters.loggedIn) {
-  //   next('/login')
-  // }
 })
 
 export default router

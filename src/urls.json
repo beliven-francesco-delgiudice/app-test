@@ -6,7 +6,8 @@
   "auth" : {
     "loginCheck": "/users/check-domain",
     "login" : "/users/login",
-    "azureLogin": "/users/login-azure"
+    "azureLogin": "/users/login-azure",
+    "loginWithToken": "/users/get-data"
   },
   "search": "/search",
   "products": {

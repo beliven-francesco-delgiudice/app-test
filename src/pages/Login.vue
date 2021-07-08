@@ -106,6 +106,11 @@ import Title from '../components/Title.vue'
 import BigButton from '../components/containers/BigButton.vue'
 import messages from '@/messages'
 import urls from '@/urls'
+
+window.handleOpenURL = function (url) {
+  console.log('received url here: ' + url)
+}
+
 export default {
   components: {
     IonInput,
@@ -148,12 +153,9 @@ export default {
     async loginWithAzure () {
       // FIXME: change "dev" in "prod"
       const url = urls.baseUrl.dev + urls.auth.azureLogin
+      console.log('opnening browser')
+      // window.open(url)
       await Browser.open({ url })
-      Browser.addListener('browserFinished', info => {
-        console.log(info)
-      })
-
-      // onAppForeground event in which I can check if user is authorized / logged in (maybe localStorage)?
     },
     async next () {
       if (this.email && this.email.length) {
@@ -180,6 +182,11 @@ export default {
           color: 'danger'
         })
       }
+    }
+  },
+  watch: {
+    'window.azureToken': function (newV) {
+      console.log('azurello tokenello', newV)
     }
   }
 }

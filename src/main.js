@@ -48,10 +48,17 @@ import $device from '@/plugins/device'
 
 import $docviewer from '@/plugins/docviewer-native'
 import $onesignal from '@/plugins/onesignal-native'
-import $backgroundmode from '@/plugins/backgroundmode'
+// import $backgroundmode from '@/plugins/backgroundmode'
 
 async function init () {
   await SplashScreen.show()
+
+  window.handleOpenURL = function (url) {
+    const token = url.split('token=')[1].split('#')[0]
+    window.azureToken = token
+    console.log('received url: ' + url, token)
+    window.localStorage.setItem('JWT', token)
+  }
 
   const app = createApp(App)
     .use(IonicVue)
@@ -69,14 +76,6 @@ async function init () {
       color: 'primary'
     })
     .use($docviewer)
-    .use($backgroundmode, {
-      enabled: true,
-      defaults: {
-        silent: false,
-        title: 'App in background',
-        text: 'Monitoring messages'
-      }
-    })
     .use($onesignal, {
       events: {
         permissionChange: onOnesignalPermissionChange,
