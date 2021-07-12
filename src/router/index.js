@@ -14,6 +14,7 @@ import Menu from '../pages/Menu'
 import Search from '../pages/Search'
 import Login from '../pages/Login'
 import UsefulLinks from '../pages/UsefulLinks'
+import OnBoarding from '../pages/OnBoarding'
 
 import ProductsIndex from '../pages/products/ProductsIndex.vue'
 import ProductsSegment from '../pages/products/ProductsSegment.vue'
@@ -51,6 +52,17 @@ const routes = [
         path: '',
         name: 'Home',
         component: Home
+      }
+    ]
+  },
+  {
+    path: '/onboarding',
+    component: CleanLayout,
+    children: [
+      {
+        path: '',
+        name: 'OnBoarding',
+        component: OnBoarding
       }
     ]
   },

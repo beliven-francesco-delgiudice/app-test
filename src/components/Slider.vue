@@ -18,7 +18,9 @@ export default {
     BigButton
   },
   props: {
-    slides: Array
+    slides: Array,
+    finalLabel: String,
+    mainButtonLabel: String
   },
   data () {
     return {
@@ -34,9 +36,9 @@ export default {
     },
     buttonLabel () {
       if (this.isLastSlide) {
-        return 'Lets’s start'
+        return this.finalLabel || 'Lets’s start'
       }
-      return 'Next'
+      return this.mainButtonLabel || 'Next'
     }
   },
   methods: {

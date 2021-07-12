@@ -30,7 +30,11 @@ export async function login (context, data) {
     // const subscriptionData = await this.$app.$onesignal.getPermissionState()
     // await context.dispatch('newNotificationsState', subscriptionData)
 
-    this.$app.$router.push('/home')
+    if (userData.onboarding) {
+      this.$app.$router.push('/onboarding')
+    } else {
+      this.$app.$router.push('/home')
+    }
   } catch (e) {
     this.$app.$toast({
       message: messages.errors.cannotLogin,
@@ -63,7 +67,11 @@ export async function loginWithToken (context) {
     // const subscriptionData = await this.$app.$onesignal.getPermissionState()
     // await context.dispatch('newNotificationsState', subscriptionData)
 
-    this.$app.$router.push('/home')
+    if (userData.onboarding) {
+      this.$app.$router.push('/onboarding')
+    } else {
+      this.$app.$router.push('/home')
+    }
   } catch (e) {
     this.$app.$toast({
       message: messages.errors.cannotLogin,

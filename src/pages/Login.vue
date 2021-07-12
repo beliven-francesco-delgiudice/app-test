@@ -107,10 +107,6 @@ import BigButton from '../components/containers/BigButton.vue'
 import messages from '@/messages'
 import urls from '@/urls'
 
-window.handleOpenURL = function (url) {
-  console.log('received url here: ' + url)
-}
-
 export default {
   components: {
     IonInput,
@@ -153,8 +149,6 @@ export default {
     async loginWithAzure () {
       // FIXME: change "dev" in "prod"
       const url = urls.baseUrl.dev + urls.auth.azureLogin
-      console.log('opnening browser')
-      // window.open(url)
       await Browser.open({ url })
     },
     async next () {

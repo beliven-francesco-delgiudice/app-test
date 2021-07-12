@@ -11,6 +11,8 @@
 
     "home": "An error occurred while getting all the informations",
 
+    "onboarding":"An error occurred while getting you on board. Try again later",
+
     "segments": "An error occurred while obtaining the segments",
     "segmentProducts": "An error occurred while obtaining the products of this segment",
     "productDetail":"An error occurred while getting the product",
