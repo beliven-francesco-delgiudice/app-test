@@ -13,6 +13,9 @@
 
     "onboarding":"An error occurred while getting you on board. Try again later",
 
+    "news": "An error occurred while obtaining the news",
+    "newsDetail": "An error occurred while obtaining this news",
+
     "segments": "An error occurred while obtaining the segments",
     "segmentProducts": "An error occurred while obtaining the products of this segment",
     "productDetail":"An error occurred while getting the product",

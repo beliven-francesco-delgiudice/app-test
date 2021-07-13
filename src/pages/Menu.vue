@@ -81,6 +81,11 @@ export default {
           img: 'congresses.svg'
         },
         {
+          name: 'News',
+          href: '/news',
+          img: 'news.svg'
+        },
+        {
           name: "What's New",
           href: '/new',
           img: 'notifications.svg',

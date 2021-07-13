@@ -15,6 +15,10 @@ import Search from '../pages/Search'
 import Login from '../pages/Login'
 import UsefulLinks from '../pages/UsefulLinks'
 import OnBoarding from '../pages/OnBoarding'
+import WhatsNew from '../pages/WhatsNew'
+
+import News from '../pages/news/News'
+import NewsDetail from '../pages/news/NewsDetail'
 
 import ProductsIndex from '../pages/products/ProductsIndex.vue'
 import ProductsSegment from '../pages/products/ProductsSegment.vue'
@@ -74,6 +78,42 @@ const routes = [
         path: '',
         name: 'Useful Links',
         component: UsefulLinks,
+        meta: {
+          showBack: true
+        }
+      }
+    ]
+  },
+  {
+    path: '/news',
+    component: MainLayout,
+    children: [
+      {
+        path: '/news/:id',
+        name: 'News Detail',
+        component: NewsDetail,
+        meta: {
+          showBack: true
+        }
+      },
+      {
+        path: '',
+        name: 'News',
+        component: News,
+        meta: {
+          showBack: true
+        }
+      }
+    ]
+  },
+  {
+    path: '/new',
+    component: MainLayout,
+    children: [
+      {
+        path: '',
+        name: "What's New",
+        component: WhatsNew,
         meta: {
           showBack: true
         }

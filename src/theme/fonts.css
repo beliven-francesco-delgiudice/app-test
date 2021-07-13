@@ -124,6 +124,13 @@
   font-weight: bold;
 }
 
+.font-helvetica.paragraph strong,
+.font-helvetica.paragraph b {
+  font-family: "Helvetica Neue", sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+}
+
 .text-28 {
   font-size: 28px;
 }

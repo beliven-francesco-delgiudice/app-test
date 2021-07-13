@@ -1,6 +1,6 @@
 {
   "baseUrl": {
-    "dev": "https://lima-app-api.heply.run/api",
+    "dev": "https://app-api-staging.limacorporate.com/api",
     "prod": ""
   },
   "auth" : {
@@ -20,6 +20,10 @@
     "home":"/congresses/home",
     "list":"/congresses",
     "activity": "/congresses/activity"
+  },
+  "news": {
+    "home": "/news/home",
+    "list": "/news"
   },
   "onBoarding": "/users/onboarding",
   "deviceInfo": "/users/register-device",
