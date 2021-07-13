@@ -1,7 +1,6 @@
-import { Plugins } from '@capacitor/core'
 import { isPlatform, useBackButton } from '@ionic/vue'
 import { App } from '@capacitor/app'
-const { Device } = Plugins
+import { Device } from '@capacitor/device'
 
 export default {
   async install (app, conf = {}) {
@@ -21,6 +20,12 @@ export default {
     }
 
     const $device = {
+      getId: async function () {
+        return Device.getId()
+      },
+      getAppInfo: async function () {
+        return App.getInfo()
+      },
       getInfo: async function () {
         if (!info) info = await Device.getInfo()
         return info

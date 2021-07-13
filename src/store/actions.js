@@ -24,7 +24,7 @@ export async function login (context, data) {
     window.localStorage.setItem('JWT', loggedData.jwt)
 
     // Now that we have user id we can proceed wit OneSignal sync with server
-    // context.dispatch('syncOneSignal', userData.id)
+    await context.dispatch('syncOneSignal')
 
     // Check OneSignal permissions status
     // const subscriptionData = await this.$app.$onesignal.getPermissionState()
@@ -43,7 +43,6 @@ export async function login (context, data) {
     throw e
   }
 }
-
 export async function loginWithToken (context) {
   try {
     // Decouple data from Vue as we will do modifications that user should not see
@@ -61,7 +60,7 @@ export async function loginWithToken (context) {
     window.localStorage.setItem('JWT', loggedData.jwt)
 
     // Now that we have user id we can proceed wit OneSignal sync with server
-    // context.dispatch('syncOneSignal', userData.id)
+    await context.dispatch('syncOneSignal')
 
     // Check OneSignal permissions status
     // const subscriptionData = await this.$app.$onesignal.getPermissionState()
@@ -80,7 +79,25 @@ export async function loginWithToken (context) {
     throw e
   }
 }
+export async function syncOneSignal () {
+  const playerId = await this.$app.$onesignal.getUID()
+  const deviceInfo = await this.$app.$device.getInfo()
+  const deviceId = await this.$app.$device.getId()
+  const appInfo = await this.$app.$device.getAppInfo()
 
+  await this.$app.$http({
+    method: 'POST',
+    url: urls.deviceInfo,
+    data: {
+      uuid: deviceId.uuid,
+      os: deviceInfo.platform,
+      device: `${deviceInfo.platform} ${deviceInfo.osVersion} - ${deviceInfo.model}`,
+      push_id: playerId,
+      browser: window.navigator.userAgent || window.navigator.appVersion,
+      app_version: appInfo.version
+    }
+  })
+}
 export async function getHome (context) {
   let products = []
   let congresses = []
