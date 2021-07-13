@@ -79,6 +79,7 @@ export async function loginWithToken (context) {
     throw e
   }
 }
+
 export async function syncOneSignal () {
   const playerId = await this.$app.$onesignal.getUID()
   const deviceInfo = await this.$app.$device.getInfo()
@@ -98,6 +99,46 @@ export async function syncOneSignal () {
     }
   })
 }
+export async function getMessages (context, event) {
+  try {
+    const messagesList = await this.$app.$http({
+      method: 'GET',
+      url: `${urls.list.messages}${
+        context.getters.roundId ? `?roundId=${context.getters.roundId}` : ''
+      }`,
+      loader: !!context.getters.roundId
+    })
+    context.commit('setMessages', (messagesList || {}).data || {})
+  } catch (e) {
+    this.$app.$toast({
+      message: messages.errors.cannotGetMessages,
+      color: 'danger'
+    })
+  }
+  if (event && event.target.complete) event.target.complete()
+}
+export async function setMessageAs (context, { id, status = 1 }) {
+  await this.$app.$http({
+    method: 'POST',
+    url: urls.list.messages,
+    loader: false,
+    data: {
+      messageId: id,
+      status
+    }
+  })
+}
+export async function sendMessageResponse (context, { id, reply }) {
+  await this.$app.$http({
+    method: 'POST',
+    url: urls.list.reply,
+    data: {
+      messageId: id,
+      reply
+    }
+  })
+}
+
 export async function getHome (context) {
   let products = []
   let congresses = []

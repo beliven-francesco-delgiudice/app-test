@@ -27,9 +27,9 @@ export async function onOnesignalNotificationReceived (plugins, e) {
     status: 2
   })
 
-  // Set round of the message and fetch it
-  plugins.$router.push('/hub')
-  await plugins.$store.commit('setRoundId', data.roundId)
+  // // Set round of the message and fetch it
+  // plugins.$router.push('/hub')
+  // await plugins.$store.commit('setRoundId', data.roundId)
 
   await plugins.$store.dispatch('getMessages')
 }
