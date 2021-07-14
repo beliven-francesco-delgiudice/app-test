@@ -1,11 +1,5 @@
 <template>
-  <Page
-    label="What's New"
-    back="/menu"
-    :filters="filters"
-    :filtersOptions="options"
-    @onFiltersChange="onFiltersChange"
-  >
+  <Page label="What's New" back="/menu">
     <carousel classes="pt-4 -my-4 pb-8">
       <section-button
         v-for="(theSection, i) in sections"
@@ -17,26 +11,32 @@
       />
       <div>&nbsp;</div>
     </carousel>
-    <!-- <Updates
+    <Updates
       v-if="section === 'updates'"
       :filters="updatedFilters"
       @updateFilters="updateFilters"
     />
     <Notifications
-      v-if="section === 'widgets'"
+      v-if="section === 'notifications'"
       :filters="updatedFilters"
       @updateFilters="updateFilters"
-    /> -->
+    />
   </Page>
 </template>
 
 <script>
-// import Updates from '../../components/whatsnew/Updates.vue'
-// import Notifications from '../../components/whatsnew/Notifications.vue'
+import Page from '../../components/Page.vue'
+import Updates from '../../components/whatsnew/Updates.vue'
+import Notifications from '../../components/whatsnew/Notifications.vue'
+import Carousel from '../../components/Carousel.vue'
+import SectionButton from '../../components/containers/SectionButton.vue'
 export default {
   components: {
-    // Updates,
-    // Notifications
+    Page,
+    Updates,
+    Notifications,
+    Carousel,
+    SectionButton
   },
   data () {
     return {
@@ -50,9 +50,7 @@ export default {
           label: 'App updates',
           path: 'updates'
         }
-      ],
-      filtersOptions: {},
-      filters: {}
+      ]
     }
   },
   computed: {
@@ -61,12 +59,6 @@ export default {
         return this.$route.meta.section
       }
       return this.initSection
-    },
-    options () {
-      return this.filtersOptions
-    },
-    updatedFilters () {
-      return this.filters
     }
   },
   methods: {
@@ -76,13 +68,6 @@ export default {
         link += path
       }
       this.$router.push(link)
-    },
-    updateFilters (payload) {
-      this.filters = payload.filters
-      this.filtersOptions = payload.filtersOptions
-    },
-    onFiltersChange (filterObj) {
-      this.filters = Object.assign({}, filterObj)
     }
   }
 }

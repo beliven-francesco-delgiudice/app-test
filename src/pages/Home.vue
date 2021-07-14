@@ -12,20 +12,27 @@
           square
           styles="position:relative;"
           bgClass="bg-white ml-auto my-auto"
-          @onClick="openUpdates"
+          @onClick="openNotifications"
         >
           <ion-img
             src="/assets/menu/notifications.svg"
             className="pointer-events-none"
           />
+
+          <div
+            v-if="$store.getters.areNotificationsNotRead"
+            class="absolute width-8 height-8 bg-red rounded-full top-0 right-0 pointer-events-none"
+            style="margin-top: 4px; margin-right: 4px;"
+          ></div>
         </shadow-button>
       </div>
-      <ion-img src="/assets/hero.png" class="w-full z-0" />
-      <div class="absolute top-0 z-10 w-full h-full">
+      <ion-img src="/assets/hero.png" class="w-full z-0 pointer-events-none" />
+      <div class="absolute top-0 z-0 w-full h-full">
         <Title
           titleClass="relative pb-4 text-black font-helvetica-bold text-28 block px-8 pt-20 z-10"
         >
-          <span class="text-black font-helvetica-bold text-20"
+          <span
+            class="text-black font-helvetica-bold text-20 pointer-events-none"
             >Hi {{ $store.getters.userData.first_name }}, <br /></span
           >Welcome Back
         </Title>
@@ -310,6 +317,9 @@ export default {
     }
   },
   methods: {
+    openNotifications () {
+      this.$router.push({ path: '/new', meta: { section: 'notifications' } })
+    },
     updateState (payload) {
       const { products, documents, news, meded, congresses } = payload
       this.products = products || []

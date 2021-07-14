@@ -15,7 +15,9 @@ import Search from '../pages/Search'
 import Login from '../pages/Login'
 import UsefulLinks from '../pages/UsefulLinks'
 import OnBoarding from '../pages/OnBoarding'
-import WhatsNew from '../pages/WhatsNew'
+
+import WhatsNew from '../pages/whatsnew/WhatsNew'
+import NotificationsDetail from '../pages/whatsnew/NotificationsDetail'
 
 import News from '../pages/news/News'
 import NewsDetail from '../pages/news/NewsDetail'
@@ -114,6 +116,14 @@ const routes = [
         path: '',
         name: "What's New",
         component: WhatsNew,
+        meta: {
+          showBack: true
+        }
+      },
+      {
+        path: '/new/notifications/:id',
+        name: 'Notification',
+        component: NotificationsDetail,
         meta: {
           showBack: true
         }

@@ -139,9 +139,32 @@ export async function sendMessageResponse (context, { id, reply }) {
   })
 }
 
+export async function getNotifications (context) {
+  let notifications = []
+
+  try {
+    // get products
+    const results = await this.$app.$http({
+      method: 'GET',
+      url: urls.notifications.list,
+      params: {}
+    })
+
+    notifications = results
+  } catch (e) {
+    this.$app.$toast({
+      message: messages.errors.home,
+      color: 'danger'
+    })
+  }
+
+  context.commit('setNotifications', notifications)
+}
+
 export async function getHome (context) {
   let products = []
   let congresses = []
+  let notifications = []
 
   try {
     // get products
@@ -162,6 +185,15 @@ export async function getHome (context) {
       params: {}
     })
     congresses = congressesList
+
+    // get notifications
+    const notificationsList = await this.$app.$http({
+      method: 'GET',
+      url: urls.notifications.list,
+      params: {}
+    })
+
+    notifications = notificationsList
   } catch (e) {
     this.$app.$toast({
       message: messages.errors.home,
@@ -175,4 +207,5 @@ export async function getHome (context) {
   }
 
   context.commit('setHome', homeObject)
+  context.commit('setNotifications', notifications)
 }

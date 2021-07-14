@@ -132,6 +132,10 @@
 .width-675 {
   width: 6.75px;
 }
+.width-8{
+  width: 8px;
+  min-width: 8px;
+}
 .width-11 {
   width: 11px;
   min-width: 11px;
@@ -175,6 +179,10 @@
 
 .height-0, .h-0 {
   height: 0;
+}
+.height-8 {
+  height: 8px;
+  min-height: 8px;
 }
 .height-12 {
   height:12px
@@ -507,6 +515,10 @@
 .rounded-12 {
   border-radius: 12px !important;
   --border-radius: 12px !important;
+}
+.rounded-full {
+  border-radius: 100% !important;
+  --border-radius: 100% !important;
 }
 
 .elevated-shadow {

@@ -25,6 +25,9 @@
     "home": "/news/home",
     "list": "/news"
   },
+  "notifications": {
+    "list": "/push"
+  },
   "onBoarding": "/users/onboarding",
   "deviceInfo": "/users/register-device",
   "usefulLinks": "/useful-links"

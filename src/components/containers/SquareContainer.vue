@@ -20,8 +20,8 @@ export default {
           this.squareSize
             ? 'width-' + this.squareSize + ' height-' + this.squareSize
             : ''
-        } ` +
-        ' flex justify-center items-center ' +
+        }` +
+        ' flex justify-center items-center overflow-hidden ' +
         propsClass
       )
     }

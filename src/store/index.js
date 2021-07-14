@@ -18,6 +18,7 @@ const master = {
       congresses: [],
       news: []
     },
+    notifications: [],
     messages: []
   },
   mutations: {
@@ -45,6 +46,10 @@ const master = {
 
     setMessages (store, messages) {
       store.messages.list = messages
+    },
+
+    setNotifications (store, notifications) {
+      store.notifications = notifications
     },
 
     setHome (store, homeData) {
@@ -107,6 +112,19 @@ const master = {
         return state.home.congresses
       }
       return []
+    },
+    gotNotifications: state => {
+      return state.notifications
+    },
+    areNotificationsNotRead: state => {
+      if (state.notifications && state.notifications.length) {
+        for (let i = 0; i < state.notifications.length; i++) {
+          if (state.notifications[i] && !state.notifications[i].read) {
+            return true
+          }
+        }
+      }
+      return false
     },
     username: state => state.user.data.username || '',
     userTypes: state => state.user.types || [],
