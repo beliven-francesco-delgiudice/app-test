@@ -4,21 +4,17 @@
       class="flex flex-row justify-between items-center bg-transparent pb-4 mb-4"
       v-for="(item, i) in updatedNotifications"
       :key="i"
-      @click="routeTo(item)"
+      @click="openNotification(item)"
     >
       <div
-        class="flex justify-between items-center pointer-events-none px-8 w-full"
+        class="flex justify-between items-stretch pointer-events-none px-8 w-full"
       >
-        <square-container
-          bgClass="bg-white"
-          squareSize="64"
-          rounded="12"
-          classes="mr-4"
-        >
-          <ion-img
-            :src="item.preview ? item.preview : '/assets/icon/icon.png'"
-          />
-        </square-container>
+        <div
+          :class="[
+            !item.read ? 'bg-red' : 'bg-light-grey',
+            ' width-4 rounded-2 mr-4'
+          ]"
+        ></div>
         <div class="flex flex-col justify-between py-2">
           <p class="font-helvetica-medium text-black text-16 spacing-5 line-28">
             {{ item.title }}
@@ -38,13 +34,10 @@
 </template>
 
 <script>
-import { IonList, IonImg } from '@ionic/vue'
-import SquareContainer from '../../components/containers/SquareContainer.vue'
+import { IonList } from '@ionic/vue'
 export default {
   components: {
-    IonList,
-    IonImg,
-    SquareContainer
+    IonList
   },
   data () {
     return {
@@ -60,9 +53,8 @@ export default {
     }
   },
   methods: {
-    routeTo (item) {
-      const link = `/new/notifications/${item.id}`
-      this.$router.push(link)
+    openNotification (item) {
+      this.$emit('onChangeNotification', item.id)
     }
   }
 }

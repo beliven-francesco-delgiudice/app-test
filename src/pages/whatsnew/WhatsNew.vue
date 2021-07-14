@@ -18,8 +18,12 @@
     />
     <Notifications
       v-if="section === 'notifications'"
-      :filters="updatedFilters"
-      @updateFilters="updateFilters"
+      @onChangeNotification="openNotification"
+    />
+    <notifications-modal
+      v-if="notificationOpened !== null"
+      :notificationID="notificationOpened"
+      @onClose="closeNotification"
     />
   </Page>
 </template>
@@ -28,6 +32,7 @@
 import Page from '../../components/Page.vue'
 import Updates from '../../components/whatsnew/Updates.vue'
 import Notifications from '../../components/whatsnew/Notifications.vue'
+import NotificationsModal from '../../components/whatsnew/NotificationsModal.vue'
 import Carousel from '../../components/Carousel.vue'
 import SectionButton from '../../components/containers/SectionButton.vue'
 export default {
@@ -35,6 +40,7 @@ export default {
     Page,
     Updates,
     Notifications,
+    NotificationsModal,
     Carousel,
     SectionButton
   },
@@ -50,24 +56,24 @@ export default {
           label: 'App updates',
           path: 'updates'
         }
-      ]
+      ],
+      notificationOpened: null
     }
   },
   computed: {
     section () {
-      if (this.$route.meta && this.$route.meta.section) {
-        return this.$route.meta.section
-      }
       return this.initSection
     }
   },
   methods: {
     routeToSection (path) {
-      let link = `/new/`
-      if (path && path !== 'updates') {
-        link += path
-      }
-      this.$router.push(link)
+      this.initSection = path
+    },
+    closeNotification () {
+      this.notificationOpened = null
+    },
+    openNotification (notificationID) {
+      this.notificationOpened = notificationID
     }
   }
 }
