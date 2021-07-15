@@ -88,8 +88,7 @@ export default {
         {
           name: "What's New",
           href: '/new',
-          img: 'notifications.svg',
-          disabled: true
+          img: 'notifications.svg'
         },
         {
           name: 'Useful Links',
@@ -103,10 +102,9 @@ export default {
           disabled: true
         },
         {
-          name: 'Contact',
-          href: '/contact',
-          img: 'contact.svg',
-          disabled: true
+          name: 'Contacts',
+          href: '/contacts',
+          img: 'contact.svg'
         }
       ]
     }

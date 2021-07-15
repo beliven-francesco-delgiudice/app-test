@@ -18,6 +18,8 @@ import OnBoarding from '../pages/OnBoarding'
 
 import WhatsNew from '../pages/whatsnew/WhatsNew'
 
+import Contacts from '../pages/Contact.vue'
+
 import News from '../pages/news/News'
 import NewsDetail from '../pages/news/NewsDetail'
 
@@ -143,6 +145,17 @@ const routes = [
         path: '',
         name: 'Search',
         component: Search
+      }
+    ]
+  },
+  {
+    path: '/contacts',
+    component: MainLayout,
+    children: [
+      {
+        path: '',
+        name: 'Contacts',
+        component: Contacts
       }
     ]
   },

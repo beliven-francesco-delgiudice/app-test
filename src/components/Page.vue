@@ -46,6 +46,24 @@
         />
       </shadow-button>
 
+      <!-- Mail button -->
+      <shadow-button
+        square
+        styles="position:relative;"
+        bgClass="bg-white ml-auto my-auto"
+        v-if="mail"
+      >
+        <a
+          :href="'mailto:' + mail"
+          title="Mail to info"
+          class="absolute top-0 left-0 w-full h-full"
+        ></a>
+        <ion-img
+          src="/assets/button-icons/mail-black.svg"
+          className="width-24 height-24 pointer-events-none m-auto"
+        />
+      </shadow-button>
+
       <!-- Filters button -->
       <shadow-button
         square
@@ -57,19 +75,6 @@
         <ion-img
           src="/assets/button-icons/filters.svg"
           className="width-24 height-24 pointer-events-none m-auto"
-        />
-      </shadow-button>
-
-      <!-- More button -->
-      <shadow-button
-        square
-        styles="position:relative;"
-        bgClass="bg-white ml-auto my-auto"
-        v-if="more"
-      >
-        <ion-img
-          src="/assets/button-icons/threedots.svg"
-          class="width-4 height-18 m-auto pointer-events-none"
         />
       </shadow-button>
     </div>
@@ -114,13 +119,13 @@ export default {
     noTopSpace: Boolean,
     info: Boolean,
     back: [Boolean, String, Object],
+    mail: String,
     filters: [Boolean, Object],
-    filtersOptions: Object,
-    more: [Boolean, Object]
+    filtersOptions: Object
   },
   computed: {
     isHeaderNecessary () {
-      if (this.info || this.back || this.filters || this.more) {
+      if (this.info || this.back || this.filters || this.mail) {
         return true
       }
       return false
