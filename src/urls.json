@@ -28,6 +28,10 @@
   "notifications": {
     "list": "/push"
   },
+  "multimedia": {
+    "videos": "/multimedia/video",
+    "images": "/multimedia/images"
+  },
   "onBoarding": "/users/onboarding",
   "deviceInfo": "/users/register-device",
   "usefulLinks": "/useful-links"

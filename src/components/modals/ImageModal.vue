@@ -25,20 +25,32 @@
           />
         </ion-button>
       </div>
-      <ion-img :src="imgSrc" class="w-full my-auto" />
+      <ion-img
+        v-if="updatedGallery.length === 1"
+        :src="imgSrc"
+        class="w-full my-auto"
+      />
+      <ion-slides v-else ref="slides">
+        <ion-slide v-for="(slide, i) in updatedGallery" :key="i">
+          <ion-img :src="slide" class="w-full my-auto" />
+        </ion-slide>
+      </ion-slides>
     </div>
   </ion-modal>
 </template>
 <script>
-import { IonImg, IonModal } from '@ionic/vue'
+import { IonImg, IonModal, IonSlides, IonSlide } from '@ionic/vue'
 export default {
   components: {
     IonImg,
-    IonModal
+    IonModal,
+    IonSlides,
+    IonSlide
   },
   props: {
     open: Boolean,
-    image: String
+    image: Number,
+    gallery: Array
   },
   data () {
     return {
@@ -53,11 +65,30 @@ export default {
   computed: {
     imgSrc () {
       return this.image
+    },
+    updatedGallery () {
+      if (this.gallery && this.gallery.length) {
+        return this.gallery.map(item => {
+          if (item.hd) {
+            return item.hd
+          } else if (item.image) {
+            return item.image
+          } else if (item.preview) {
+            return item.preview
+          } else {
+            return item
+          }
+        })
+      }
+      return []
     }
   },
   watch: {
     open: function (newValue) {
       this.isOpened = newValue
+      if (this.image) {
+        this.$refs.slides.slideTo(this.image)
+      }
     }
   }
 }

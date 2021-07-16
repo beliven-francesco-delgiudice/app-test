@@ -18,6 +18,8 @@ import OnBoarding from '../pages/OnBoarding'
 
 import WhatsNew from '../pages/whatsnew/WhatsNew'
 
+import Multimedia from '../pages/Multimedia.vue'
+
 import Contacts from '../pages/Contact.vue'
 
 import News from '../pages/news/News'
@@ -106,6 +108,17 @@ const routes = [
         meta: {
           showBack: true
         }
+      }
+    ]
+  },
+  {
+    path: '/multimedia',
+    component: MainLayout,
+    children: [
+      {
+        path: '',
+        name: 'Multimedia',
+        component: Multimedia
       }
     ]
   },
@@ -268,6 +281,7 @@ router.beforeEach((to, from, next) => {
   if (to.path !== '/login' && !masterStore.getters.loggedIn) {
     masterStore.dispatch('logout')
   }
+  console.log(from, to)
   next()
 })
 

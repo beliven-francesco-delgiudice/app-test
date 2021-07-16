@@ -98,8 +98,7 @@ export default {
         {
           name: 'Multimedia',
           href: '/multimedia',
-          img: 'multimedia.svg',
-          disabled: true
+          img: 'multimedia.svg'
         },
         {
           name: 'Contacts',

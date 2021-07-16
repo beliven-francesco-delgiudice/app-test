@@ -29,6 +29,7 @@
             Filters & Sort
           </Title>
 
+          <!-- Order -->
           <div
             v-if="filtersOptions.order && filtersOptions.order.length"
             class="flex pt-2 pb-1 border-grey border-b w-full justify-between items-center"
@@ -46,6 +47,27 @@
               @onChange="updateFilters($event, 'order')"
             />
           </div>
+
+          <!-- Type -->
+          <div
+            v-if="filtersOptions.type && filtersOptions.type.length"
+            class="flex pt-2 pb-1 border-grey border-b w-full justify-between items-center"
+          >
+            <span
+              class="w-1/2 font-helvetica text-16 spacing-5 line-28
+            text-dark-grey"
+              >Type</span
+            >
+            <custom-select
+              name="type"
+              placeholder="Select type"
+              :options="filtersOptions.type"
+              :value="computedFilters.type"
+              @onChange="updateFilters($event, 'type')"
+            />
+          </div>
+
+          <!-- Subcategories -->
           <div
             v-if="
               filtersOptions.subcategories &&

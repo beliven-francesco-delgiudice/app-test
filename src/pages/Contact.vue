@@ -138,10 +138,6 @@ export default {
       return this.sections.find(sec => sec.id === this.section)
     },
     subsidiary () {
-      console.log(
-        this.subsidiaryOpened,
-        this.subsidiaryOpened ? Object.keys(this.subsidiaryOpened).length : ''
-      )
       if (this.subsidiaryOpened && Object.keys(this.subsidiaryOpened).length) {
         return this.subsidiaryOpened
       }
