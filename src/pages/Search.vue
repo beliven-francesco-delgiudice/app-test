@@ -131,6 +131,7 @@
       v-else-if="isSearched && isSearched.length && formattedResultsLength <= 0"
       class="flex-grow flex flex-col justify-center items-center"
     >
+      <ion-img src="assets/icon/no-results.svg" class="mx-auto mb-16" />
       <span class="font-helvetica-bold text-20 spacing-2 line-28 mb-2 -mt-8"
         >Sorry, no results found :(</span
       >
