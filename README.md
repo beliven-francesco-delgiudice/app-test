@@ -46,16 +46,16 @@ ionic capacitor build android
 
 ## Play Store
 
-To build the android app run `ionic capacitor build android`.
-After running the command, open Android Studio on the project.
-Go to _Build_ and then _Generate Signed Bundle_.
-Select _Android App Bundle_ and then _Next_.
+To build the android app run `ionic capacitor build android`. \
+After running the command, open Android Studio on the project. \
+Go to _Build_ and then _Generate Signed Bundle_. \
+Select _Android App Bundle_ and then _Next_. \
 
 - The _Key store path_ is the unique path to the Key file. You can find it in the Heply Google Drive in the folder APP > chiavi names as _Untitled_. Download it and insert the unique path.
 - The _Key store password_ and the _Key password_ are the same, you can find it in the Heply password manager under _LimAPP key store password_.
 
-The go _Next_, choose _release_ and press _Finish_.
-After finishing, you will see a notification in the bottom low corner. Press on the arrow and click on _locate_.
+The go _Next_, choose _release_ and press _Finish_. \
+After finishing, you will see a notification in the bottom low corner. Press on the arrow and click on _locate_. \
 There you will find the finished build, ready to be uploaded on the Play Store.
 
 ## Copyright
