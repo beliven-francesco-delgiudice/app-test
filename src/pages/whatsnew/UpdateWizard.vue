@@ -24,19 +24,23 @@ export default {
     }
   },
   async created () {
-    try {
-      const results = await this.$http({
-        method: 'GET',
-        url: urls.onBoarding
-      })
-      this.slides = results
-    } catch (e) {
-      console.error(e)
-      this.$router.push('/home')
-      this.$toast({
-        message: messages.errors.onboarding,
-        color: 'danger'
-      })
+    if (this.$route.params.id) {
+      try {
+        const results = await this.$http({
+          method: 'GET',
+          url: urls.notifications.updates + '/' + this.$route.params.id
+        })
+        this.slides = results
+      } catch (e) {
+        console.error(e)
+        this.$router.push('/home')
+        this.$toast({
+          message: messages.errors.onboarding,
+          color: 'danger'
+        })
+      }
+    } else {
+      this.routeBack()
     }
   },
   methods: {

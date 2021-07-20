@@ -31,6 +31,8 @@
 
 <script>
 import { IonList } from '@ionic/vue'
+import messages from '@/messages'
+import urls from '@/urls'
 export default {
   components: {
     IonList
@@ -45,7 +47,7 @@ export default {
   },
   computed: {
     formattedUpdates () {
-      return this.updates
+      return this.appUpdates
     }
   },
   methods: {
@@ -53,12 +55,20 @@ export default {
       this.$router.push('/new/update/' + item.id)
     },
     async getUpdates () {
-      const results = await this.$app.$http({
-        method: 'GET',
-        url: urls.notifications.updates,
-        params: {}
-      })
-      this.updates = results
+      try {
+        const results = await this.$http({
+          method: 'GET',
+          url: urls.notifications.updates,
+          params: {}
+        })
+        this.updates = results
+      } catch (e) {
+        console.error(e)
+        this.$toast({
+          message: messages.errors.appUpdates,
+          color: 'danger'
+        })
+      }
     }
   }
 }

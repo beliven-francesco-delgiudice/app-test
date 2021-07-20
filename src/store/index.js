@@ -19,6 +19,7 @@ const master = {
       news: []
     },
     notifications: [],
+    appUpdates: [],
     messages: []
   },
   mutations: {
@@ -50,6 +51,10 @@ const master = {
 
     setNotifications (store, notifications) {
       store.notifications = notifications
+    },
+
+    setAppUpdates (store, appUpdates) {
+      store.appUpdates = appUpdates
     },
 
     setHome (store, homeData) {
@@ -126,6 +131,9 @@ const master = {
         }
       }
       return notRead
+    },
+    gotUpdatesToShow: state => {
+      return state.appUpdates
     },
     username: state => state.user.data.username || '',
     userTypes: state => state.user.types || [],

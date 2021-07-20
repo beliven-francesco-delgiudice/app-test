@@ -18,6 +18,7 @@
 
     "notifications": "An error occurred while obtaining the notifications",
     "notificationDetail": "An error occurred while obtaining this notification",
+    "appUpdates": "An error occurred while checking the latest app updates",
 
     "segments": "An error occurred while obtaining the segments",
     "segmentProducts": "An error occurred while obtaining the products of this segment",

@@ -10,10 +10,13 @@ export async function login (context, data) {
     // Decouple data from Vue as we will do modifications that user should not see
     data = { ...data }
 
+    this.$app.$loading.show()
+
     const loggedData = await this.$app.$http({
       method: 'POST',
       url: urls.auth.login,
-      data
+      data,
+      loader: false
     })
 
     const userData = Object.assign({}, loggedData.user)
@@ -24,12 +27,15 @@ export async function login (context, data) {
     window.localStorage.setItem('JWT', loggedData.jwt)
 
     // Now that we have user id we can proceed wit OneSignal sync with server
-    await context.dispatch('syncOneSignal')
+    await context.dispatch('syncOneSignal', context)
 
     // Check OneSignal permissions status
     // const subscriptionData = await this.$app.$onesignal.getPermissionState()
     // await context.dispatch('newNotificationsState', subscriptionData)
 
+    this.$app.$loading.hide()
+
+    // Onboarding, Wizard or Home
     if (userData.onboarding) {
       this.$app.$router.push('/onboarding')
     } else {
@@ -47,9 +53,12 @@ export async function loginWithToken (context) {
   try {
     // Decouple data from Vue as we will do modifications that user should not see
 
+    this.$app.$loading.show()
+
     const loggedData = await this.$app.$http({
       method: 'POST',
-      url: urls.auth.loginWithToken
+      url: urls.auth.loginWithToken,
+      loader: false
     })
 
     const userData = Object.assign({}, loggedData.user)
@@ -60,14 +69,19 @@ export async function loginWithToken (context) {
     window.localStorage.setItem('JWT', loggedData.jwt)
 
     // Now that we have user id we can proceed wit OneSignal sync with server
-    await context.dispatch('syncOneSignal')
+    await context.dispatch('syncOneSignal', context)
 
     // Check OneSignal permissions status
     // const subscriptionData = await this.$app.$onesignal.getPermissionState()
     // await context.dispatch('newNotificationsState', subscriptionData)
 
+    this.$app.$loading.hide()
+
+    // Onboarding, Wizard or Home
     if (userData.onboarding) {
       this.$app.$router.push('/onboarding')
+    } else if (context.getters.gotUpdatesToShow) {
+      this.$app.$router.push('/new/update/' + context.getters.gotUpdatesToShow)
     } else {
       this.$app.$router.push('/home')
     }
@@ -80,24 +94,34 @@ export async function loginWithToken (context) {
   }
 }
 
-export async function syncOneSignal () {
+export async function syncOneSignal (context) {
   const playerId = await this.$app.$onesignal.getUID()
   const deviceInfo = await this.$app.$device.getInfo()
   const deviceId = await this.$app.$device.getId()
   const appInfo = await this.$app.$device.getAppInfo()
 
-  await this.$app.$http({
-    method: 'POST',
-    url: urls.deviceInfo,
-    data: {
-      uuid: deviceId.uuid,
-      os: deviceInfo.platform,
-      device: `${deviceInfo.platform} ${deviceInfo.osVersion} - ${deviceInfo.model}`,
-      push_id: playerId,
-      browser: window.navigator.userAgent || window.navigator.appVersion,
-      app_version: appInfo.version
-    }
-  })
+  try {
+    const oneSignalData = await this.$app.$http({
+      method: 'POST',
+      url: urls.deviceInfo,
+      loader: false,
+      data: {
+        uuid: deviceId.uuid,
+        os: deviceInfo.platform,
+        device: `${deviceInfo.platform} ${deviceInfo.osVersion} - ${deviceInfo.model}`,
+        push_id: playerId,
+        browser: window.navigator.userAgent || window.navigator.appVersion,
+        app_version: appInfo.version
+      }
+    })
+
+    context.commit('setAppUpdates', oneSignalData.update_id)
+  } catch (e) {
+    this.$app.$toast({
+      message: messages.errors.appUpdates,
+      color: 'danger'
+    })
+  }
 }
 export async function getMessages (context, event) {
   try {
@@ -166,12 +190,15 @@ export async function getHome (context) {
   let congresses = []
   let notifications = []
 
+  this.$app.$loading.show()
+
   try {
     // get products
     const prod = await this.$app.$http({
       method: 'GET',
       url: urls.products.segments,
-      params: {}
+      params: {},
+      loader: false
     })
 
     if (prod && prod.categories) {
@@ -182,7 +209,8 @@ export async function getHome (context) {
     const congressesList = await this.$app.$http({
       method: 'GET',
       url: urls.congresses.home,
-      params: {}
+      params: {},
+      loader: false
     })
     congresses = congressesList
 
@@ -190,7 +218,8 @@ export async function getHome (context) {
     const notificationsList = await this.$app.$http({
       method: 'GET',
       url: urls.notifications.list,
-      params: {}
+      params: {},
+      loader: false
     })
 
     notifications = notificationsList
@@ -200,6 +229,8 @@ export async function getHome (context) {
       color: 'danger'
     })
   }
+
+  this.$app.$loading.hide()
 
   const homeObject = {
     products,

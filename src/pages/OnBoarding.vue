@@ -41,7 +41,13 @@ export default {
   },
   methods: {
     routeHome () {
-      this.$router.push('/home')
+      if (this.$store.getters.gotUpdatesToShow) {
+        this.$app.$router.push(
+          '/new/update/' + this.$store.getters.gotUpdatesToShow
+        )
+      } else {
+        this.$router.push('/home')
+      }
     }
   }
 }
