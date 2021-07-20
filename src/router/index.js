@@ -17,6 +17,7 @@ import UsefulLinks from '../pages/UsefulLinks'
 import OnBoarding from '../pages/OnBoarding'
 
 import WhatsNew from '../pages/whatsnew/WhatsNew'
+import UpdateWizard from '../pages/whatsnew/UpdateWizard'
 
 import Multimedia from '../pages/Multimedia.vue'
 
@@ -126,6 +127,12 @@ const routes = [
     path: '/new',
     component: MainLayout,
     children: [
+      {
+        path: '/new/update/:id',
+        name: 'Update',
+        component: UpdateWizard,
+        meta: {}
+      },
       {
         path: '',
         name: "What's New",

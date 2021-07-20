@@ -67,13 +67,15 @@ export default {
           name: 'Documents',
           href: '/documents',
           img: 'documents.svg',
-          disabled: true
+          disabled: true,
+          hidden: true
         },
         {
           name: 'Medical Education',
           href: '/meded',
           img: 'meded.svg',
-          disabled: true
+          disabled: true,
+          hidden: true
         },
         {
           name: 'Congresses',
@@ -83,7 +85,8 @@ export default {
         {
           name: 'News',
           href: '/news',
-          img: 'news.svg'
+          img: 'news.svg',
+          hidden: true
         },
         {
           name: "What's New",
@@ -98,7 +101,8 @@ export default {
         {
           name: 'Multimedia',
           href: '/multimedia',
-          img: 'multimedia.svg'
+          img: 'multimedia.svg',
+          hidden: true
         },
         {
           name: 'Contacts',
@@ -110,8 +114,17 @@ export default {
   },
   computed: {
     updatedList () {
-      const newList = this.list.map(i => i)
-      newList[6].notifications = 2
+      const newList = this.list
+        .filter(item => !item.hidden)
+        .map(item => {
+          if (item.href === '/new') {
+            return {
+              ...item,
+              notifications: this.$store.getters.areNotificationsNotRead
+            }
+          }
+          return item
+        })
       return newList
     }
   },

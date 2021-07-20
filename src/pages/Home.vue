@@ -20,7 +20,10 @@
           />
 
           <div
-            v-if="$store.getters.areNotificationsNotRead"
+            v-if="
+              $store.getters.areNotificationsNotRead &&
+                $store.getters.areNotificationsNotRead > 0
+            "
             class="absolute width-8 height-8 bg-red rounded-full top-0 right-0 pointer-events-none"
             style="margin-top: 4px; margin-right: 4px;"
           ></div>

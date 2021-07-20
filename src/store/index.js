@@ -117,14 +117,15 @@ const master = {
       return state.notifications
     },
     areNotificationsNotRead: state => {
+      let notRead = 0
       if (state.notifications && state.notifications.length) {
         for (let i = 0; i < state.notifications.length; i++) {
           if (state.notifications[i] && !state.notifications[i].read) {
-            return true
+            notRead += 1
           }
         }
       }
-      return false
+      return notRead
     },
     username: state => state.user.data.username || '',
     userTypes: state => state.user.types || [],

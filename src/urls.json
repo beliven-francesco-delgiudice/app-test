@@ -26,7 +26,8 @@
     "list": "/news"
   },
   "notifications": {
-    "list": "/push"
+    "list": "/push",
+    "updates": "/updates"
   },
   "multimedia": {
     "videos": "/multimedia/video",
