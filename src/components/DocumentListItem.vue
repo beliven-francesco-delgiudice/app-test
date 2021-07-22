@@ -1,6 +1,9 @@
 <template>
-  <div :class="[divClass, 'w-full flex justify-between']">
-    <div @click="documentAction" class="flex justify-start items-center">
+  <div :class="[divClass, 'w-full flex justify-between items-center']">
+    <div
+      @click="documentAction"
+      class="flex justify-start items-center flex-grow"
+    >
       <square-container
         rounded="8"
         :bgClass="imageBackround"
@@ -9,7 +12,9 @@
       >
         <ion-img :src="image" class="m-auto" />
       </square-container>
-      <div class="flex flex-col justify-between items-start">
+      <div
+        class="flex flex-col justify-between items-start pointer-events-none"
+      >
         <span
           class="font-helvetica-medium text-16 text-black spacing-5 line-28"
           >{{
@@ -23,7 +28,7 @@
         }}</span>
       </div>
     </div>
-    <div @click="openDocumentMenu" class="height-44 w-44 flex">
+    <div @click="openDocumentMenu" class="height-44 w-44 flex pl-4">
       <ion-img
         src="/assets/button-icons/threedots.svg"
         class="width-4 height-18 my-auto ml-auto"
@@ -65,11 +70,11 @@ export default {
   },
   methods: {
     documentAction () {
-      if (this.document.type === 'folder') {
+      if (this.document && this.document.type === 'folder') {
         this.$router.push('/documents/folders/' + this.document.id)
+      } else {
+        this.openDocumentMenu()
       }
-      //open document through plugin
-      alert(this.document.link)
     },
     async openDocumentMenu () {
       const actionMenu = await actionSheetController.create({
@@ -79,22 +84,55 @@ export default {
         buttons: [
           {
             text: 'Open',
-            handler: () => {
-              console.log('open')
+            handler: async () => {
+              try {
+                await this.$loading.show()
+                await this.$docviewer(
+                  this.updatedDocument.url
+                    ? this.updatedDocument.url
+                    : this.updatedDocument.link,
+                  this.updatedDocument.title
+                )
+              } catch (e) {
+                console.log(e)
+                this.$toast({
+                  message: 'Cannot open document',
+                  color: 'danger'
+                })
+              }
+              await this.$loading.hide()
             }
           },
           {
             text: 'Download',
-            handler: () => {
-              console.log('download')
-            }
-          },
-          {
-            text: 'Share',
-            handler: () => {
-              console.log('Share clicked')
+            handler: async () => {
+              try {
+                await this.$loading.show()
+                await this.$docsaver(
+                  this.updatedDocument.url,
+                  this.updatedDocument.title
+                )
+                await this.$loading.hide()
+                this.$toast({
+                  message: 'Document successfully saved in "Documents"',
+                  color: 'dark'
+                })
+              } catch (e) {
+                await this.$loading.hide()
+                console.log(e)
+                this.$toast({
+                  message: 'Cannot download document',
+                  color: 'danger'
+                })
+              }
             }
           }
+          // {
+          //   text: 'Share',
+          //   handler: () => {
+          //     console.log('Share clicked')
+          //   }
+          // }
         ]
       })
       await actionMenu.present()

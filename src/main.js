@@ -47,6 +47,7 @@ import $alert from '@/plugins/alert'
 import $device from '@/plugins/device'
 
 import $docviewer from '@/plugins/docviewer-native'
+import $docsaver from '@/plugins/docsaver'
 import $onesignal from '@/plugins/onesignal-native'
 // import $backgroundmode from '@/plugins/backgroundmode'
 
@@ -76,6 +77,7 @@ async function init () {
       color: 'primary'
     })
     .use($docviewer)
+    .use($docsaver)
     .use($onesignal, {
       events: {
         permissionChange: onOnesignalPermissionChange,

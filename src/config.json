@@ -1,5 +1,5 @@
 {
-  "mode": "dev",
+  "mode": "prod",
   "oneSignal": {
     "appId": "3bc8b116-7b53-4e1d-8e5b-fa2a785113e0",
     "firebaseId": "517810307555"

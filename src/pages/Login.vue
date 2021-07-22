@@ -147,7 +147,7 @@ export default {
       })
     },
     async loginWithAzure () {
-      // FIXME: change "dev" in "prod"
+      // FIXME: change "dev" in "prod" (also in config.json)
       const url = urls.baseUrl.dev + urls.auth.azureLogin
       await Browser.open({ url })
     },
