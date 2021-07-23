@@ -100,7 +100,7 @@
 </template>
 
 <script>
-import { IonInput, IonImg } from '@ionic/vue'
+import { IonInput, IonImg, IonButton } from '@ionic/vue'
 import { Browser } from '@capacitor/browser'
 import Title from '../components/Title.vue'
 import BigButton from '../components/containers/BigButton.vue'
@@ -112,7 +112,8 @@ export default {
     IonInput,
     IonImg,
     Title,
-    BigButton
+    BigButton,
+    IonButton
   },
   data () {
     return {

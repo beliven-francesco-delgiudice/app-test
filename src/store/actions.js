@@ -26,8 +26,15 @@ export async function login (context, data) {
 
     window.localStorage.setItem('JWT', loggedData.jwt)
 
-    // Now that we have user id we can proceed wit OneSignal sync with server
-    await context.dispatch('syncOneSignal', context)
+    // No OneSignal if WebApp
+    try {
+      if (await this.$app.$device.getAppInfo()) {
+        // Now that we have user id we can proceed wit OneSignal sync with server
+        await context.dispatch('syncOneSignal', context)
+      }
+    } catch (e) {
+      console.log(e)
+    }
 
     // Check OneSignal permissions status
     // const subscriptionData = await this.$app.$onesignal.getPermissionState()
@@ -38,6 +45,8 @@ export async function login (context, data) {
     // Onboarding, Wizard or Home
     if (userData.onboarding) {
       this.$app.$router.push('/onboarding')
+    } else if (context.getters.gotUpdatesToShow) {
+      this.$app.$router.push('/new/update/' + context.getters.gotUpdatesToShow)
     } else {
       this.$app.$router.push('/home')
     }
@@ -68,8 +77,15 @@ export async function loginWithToken (context) {
 
     window.localStorage.setItem('JWT', loggedData.jwt)
 
-    // Now that we have user id we can proceed wit OneSignal sync with server
-    await context.dispatch('syncOneSignal', context)
+    // No OneSignal if WebApp
+    try {
+      if (await this.$app.$device.getAppInfo()) {
+        // Now that we have user id we can proceed wit OneSignal sync with server
+        await context.dispatch('syncOneSignal', context)
+      }
+    } catch (e) {
+      console.log(e)
+    }
 
     // Check OneSignal permissions status
     // const subscriptionData = await this.$app.$onesignal.getPermissionState()
@@ -95,12 +111,12 @@ export async function loginWithToken (context) {
 }
 
 export async function syncOneSignal (context) {
-  const playerId = await this.$app.$onesignal.getUID()
-  const deviceInfo = await this.$app.$device.getInfo()
-  const deviceId = await this.$app.$device.getId()
-  const appInfo = await this.$app.$device.getAppInfo()
-
   try {
+    const playerId = await this.$app.$onesignal.getUID()
+    const deviceInfo = await this.$app.$device.getInfo()
+    const deviceId = await this.$app.$device.getId()
+    const appInfo = await this.$app.$device.getAppInfo()
+
     const oneSignalData = await this.$app.$http({
       method: 'POST',
       url: urls.deviceInfo,
@@ -117,6 +133,7 @@ export async function syncOneSignal (context) {
 
     context.commit('setAppUpdates', oneSignalData.update_id)
   } catch (e) {
+    console.log(e)
     this.$app.$toast({
       message: messages.errors.appUpdates,
       color: 'danger'

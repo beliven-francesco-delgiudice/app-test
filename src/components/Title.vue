@@ -8,7 +8,7 @@
 export default {
   props: {
     label: String,
-    titleClass: String
+    titleClass: [String, Array]
   },
   components: {}
 }

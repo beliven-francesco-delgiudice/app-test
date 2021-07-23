@@ -17,7 +17,11 @@
 </template>
 
 <script>
+import { IonImg } from '@ionic/vue'
 export default {
+  components: {
+    IonImg
+  },
   props: {
     path: String,
     label: String,

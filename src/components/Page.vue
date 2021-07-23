@@ -98,14 +98,15 @@
 <script>
 import Title from '../components/Title'
 import ShadowButton from '../components/containers/ShadowButton.vue'
-import { IonImg } from '@ionic/vue'
+import { IonImg, IonButton } from '@ionic/vue'
 import FiltersModal from './modals/FiltersModal.vue'
 export default {
   components: {
     Title,
     ShadowButton,
     IonImg,
-    FiltersModal
+    FiltersModal,
+    IonButton
   },
   data () {
     return {
