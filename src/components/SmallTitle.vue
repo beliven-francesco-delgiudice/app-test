@@ -15,7 +15,7 @@ import Title from '../components/Title'
 export default {
   props: {
     label: String,
-    classes: String,
+    classes: [String, Array],
     noPadding: Boolean
   },
   components: {

@@ -13,19 +13,12 @@ export const docviewer = $app =>
       responseType: 'arraybuffer'
     })
 
-    console.log('result', doc)
-    console.log('result data', doc.data)
-
     if (!doc) throw new Error('Cannot open pdf')
     const pdf = new Blob([doc], { type: 'application/pdf' })
-
-    console.log('after blob', pdf)
 
     await File.writeFile(File.dataDirectory, `${name}.pdf`, pdf, {
       replace: true
     })
-
-    console.log('after write file', pdf)
 
     return new Promise((resolve, reject) => {
       FileOpener.open(`${File.dataDirectory}${name}.pdf`, 'application/pdf', {

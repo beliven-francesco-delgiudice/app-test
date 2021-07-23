@@ -11,11 +11,12 @@
       class="width-24 height-24"
     />
     <ion-input
+      required
+      class="mx-2"
+      minlength="3"
       placeholder="Search"
       v-model="search"
       @keydown.enter.prevent="submitSearch"
-      class="mx-2"
-      required
     ></ion-input>
     <div v-if="search && search.length" @click="cancelValue" class="flex">
       <ion-img src="/assets/button-icons/close.svg" class="my-auto" />
@@ -30,7 +31,7 @@ export default {
     IonInput
   },
   props: {
-    classes: String
+    classes: [String, Array]
   },
   data () {
     return {
@@ -49,7 +50,11 @@ export default {
       this.$emit('cancel')
     },
     submitSearch () {
-      this.$emit('submit', this.search)
+      if (this.search && this.search.length > 2) {
+        this.$emit('submit', this.search)
+      } else {
+        alert('Insert at least 3 characters')
+      }
     }
   }
 }

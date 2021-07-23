@@ -17,7 +17,7 @@
 export default {
   components: {},
   props: {
-    classes: String,
+    classes: [String, Array],
     active: Boolean,
     label: String
   },

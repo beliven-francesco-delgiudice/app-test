@@ -26,7 +26,7 @@ export default {
   },
   props: {
     title: String,
-    productID: Number,
+    productID: [Number, String],
     section: String
   },
   data () {

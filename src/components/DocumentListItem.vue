@@ -40,15 +40,27 @@
 <script>
 import SquareContainer from './containers/SquareContainer.vue'
 import { IonImg, actionSheetController } from '@ionic/vue'
+import { CapacitorPlatforms } from '@capacitor/core'
 
 export default {
   components: { SquareContainer, IonImg },
   props: {
     bgClass: String,
     classes: [String, Array],
-    document: Object
+    document: Object,
+    small: Boolean
   },
   computed: {
+    isApp () {
+      if (
+        CapacitorPlatforms.currentPlatform &&
+        CapacitorPlatforms.currentPlatform.name === 'web'
+      ) {
+        return false
+      } else {
+        return true
+      }
+    },
     divClass () {
       return `${this.bgClass || 'bg-white'} ${this.classes || ''}`
     },
@@ -69,6 +81,17 @@ export default {
     }
   },
   methods: {
+    async getAppInfo () {
+      return await this.$device.getAppInfo()
+    },
+    openFile (url) {
+      var link = document.createElement('a')
+      link.target = '_blank'
+      link.href = url
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+    },
     documentAction () {
       if (this.document && this.document.type === 'folder') {
         this.$router.push('/documents/folders/' + this.document.id)
@@ -85,45 +108,53 @@ export default {
           {
             text: 'Open',
             handler: async () => {
-              try {
-                await this.$loading.show()
-                await this.$docviewer(
-                  this.updatedDocument.url
-                    ? this.updatedDocument.url
-                    : this.updatedDocument.link,
-                  this.updatedDocument.title
-                )
-              } catch (e) {
-                console.log(e)
-                this.$toast({
-                  message: 'Cannot open document',
-                  color: 'danger'
-                })
+              if (this.isApp) {
+                try {
+                  await this.$loading.show()
+                  await this.$docviewer(
+                    this.updatedDocument.url
+                      ? this.updatedDocument.url
+                      : this.updatedDocument.link,
+                    this.updatedDocument.title
+                  )
+                } catch (e) {
+                  console.log(e)
+                  this.$toast({
+                    message: 'Cannot open document',
+                    color: 'danger'
+                  })
+                }
+                await this.$loading.hide()
+              } else {
+                this.openFile(this.updatedDocument.url)
               }
-              await this.$loading.hide()
             }
           },
           {
             text: 'Download',
             handler: async () => {
-              try {
-                await this.$loading.show()
-                await this.$docsaver(
-                  this.updatedDocument.url,
-                  this.updatedDocument.title
-                )
-                await this.$loading.hide()
-                this.$toast({
-                  message: 'Document successfully saved in "Documents"',
-                  color: 'dark'
-                })
-              } catch (e) {
-                await this.$loading.hide()
-                console.log(e)
-                this.$toast({
-                  message: 'Cannot download document',
-                  color: 'danger'
-                })
+              if (this.isApp) {
+                try {
+                  await this.$loading.show()
+                  await this.$docsaver(
+                    this.updatedDocument.url,
+                    this.updatedDocument.title
+                  )
+                  await this.$loading.hide()
+                  this.$toast({
+                    message: 'Document successfully saved in "Documents"',
+                    color: 'dark'
+                  })
+                } catch (e) {
+                  await this.$loading.hide()
+                  console.log(e)
+                  this.$toast({
+                    message: 'Cannot download document',
+                    color: 'danger'
+                  })
+                }
+              } else {
+                this.openFile(this.updatedDocument.url)
               }
             }
           }

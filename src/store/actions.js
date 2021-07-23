@@ -46,6 +46,7 @@ export async function login (context, data) {
     if (userData.onboarding) {
       this.$app.$router.push('/onboarding')
     } else if (context.getters.gotUpdatesToShow) {
+      console.log('new update', context.getters.gotUpdatesToShow)
       this.$app.$router.push('/new/update/' + context.getters.gotUpdatesToShow)
     } else {
       this.$app.$router.push('/home')
