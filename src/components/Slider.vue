@@ -1,9 +1,9 @@
 <template>
-  <div class="flex flex-col relative">
+  <div class="flex flex-col relative gradient-background min-h-screen">
     <ion-button
       type="button"
       class="absolute top-0 left-0"
-      style="--background:transparent; margin-top:1rem; margin-left:2rem"
+      style="--background:transparent; margin-top:1rem; margin-left:2rem;--box-shadow: none;"
       v-if="back"
       @click="onClose"
     >
@@ -14,7 +14,7 @@
     </ion-button>
 
     <ion-slides ref="slides" @ionSlideDidChange="updateActiveIndex" pager>
-      <ion-slide v-for="(slide, i) in slides" :key="i">
+      <ion-slide v-for="(slide, i) in computedSlides" :key="i">
         <slot :item="slide"></slot>
       </ion-slide>
     </ion-slides>
@@ -53,13 +53,14 @@
   </div>
 </template>
 <script>
-import { IonSlides, IonSlide, IonImg } from '@ionic/vue'
+import { IonSlides, IonSlide, IonImg, IonButton } from '@ionic/vue'
 import BigButton from './containers/BigButton.vue'
 export default {
   components: {
     IonSlide,
     IonSlides,
     IonImg,
+    IonButton,
     BigButton
   },
   props: {
@@ -74,6 +75,9 @@ export default {
     }
   },
   computed: {
+    computedSlides () {
+      return this.slides
+    },
     activeSlide () {
       return this.active
     },

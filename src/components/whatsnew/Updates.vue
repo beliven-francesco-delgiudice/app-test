@@ -1,5 +1,5 @@
 <template>
-  <ion-list class="bg-transparent">
+  <ion-list class="bg-transparent px-8">
     <div
       class="flex flex-row justify-between items-center bg-transparent pb-4 mb-4"
       v-for="(item, i) in formattedUpdates"
@@ -18,10 +18,10 @@
         <div class="flex flex-col justify-between py-2">
           <span
             class="font-helvetica-medium text-black text-16 spacing-5 line-28"
-            >{{ item.title }}</span
+            >{{ item.name }}</span
           >
           <span class="font-helvetica text-grey text-14 spacing-44 line-24">{{
-            item.subtitle
+            item.release
           }}</span>
         </div>
       </div>
@@ -30,12 +30,15 @@
 </template>
 
 <script>
-import { IonList } from '@ionic/vue'
+import { IonList, IonImg } from '@ionic/vue'
 import messages from '@/messages'
 import urls from '@/urls'
+import SquareContainer from '../containers/SquareContainer.vue'
 export default {
   components: {
-    IonList
+    IonList,
+    IonImg,
+    SquareContainer
   },
   data () {
     return {
@@ -47,7 +50,7 @@ export default {
   },
   computed: {
     formattedUpdates () {
-      return this.appUpdates
+      return this.updates
     }
   },
   methods: {

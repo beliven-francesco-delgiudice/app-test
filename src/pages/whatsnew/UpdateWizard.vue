@@ -1,7 +1,15 @@
 <template>
-  <slider :slides="slides" @onEnd="routeBack" back>
+  <slider
+    v-if="formattedSlides && formattedSlides.length"
+    :slides="formattedSlides"
+    finalLabel="Close"
+    @onEnd="routeBack"
+    back
+  >
     <template v-slot="{ item }">
-      <div class="">{{ item.text }}</div>
+      <div class="flex flex-col flex flex-grow">
+        <ion-img :src="item.big" />
+      </div>
     </template>
   </slider>
 </template>
@@ -9,18 +17,20 @@
 import messages from '@/messages'
 import urls from '@/urls'
 import Slider from '../../components/Slider.vue'
+// import { IonImg } from '@ionic/vue'
 export default {
   components: {
     Slider
+    // IonImg
   },
   data () {
     return {
-      slides: []
+      results: {}
     }
   },
   computed: {
     formattedSlides () {
-      return this.slides
+      return this.results.gallery || []
     }
   },
   async created () {
@@ -30,7 +40,7 @@ export default {
           method: 'GET',
           url: urls.notifications.updates + '/' + this.$route.params.id
         })
-        this.slides = results
+        this.results = results
       } catch (e) {
         console.error(e)
         this.$router.push('/home')

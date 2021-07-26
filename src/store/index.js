@@ -19,7 +19,7 @@ const master = {
       news: []
     },
     notifications: [],
-    appUpdates: [],
+    appUpdates: null,
     messages: []
   },
   mutations: {
