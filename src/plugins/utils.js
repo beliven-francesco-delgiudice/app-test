@@ -36,12 +36,29 @@ export function validateErrorResponse (response) {
   return response.trim() || ''
 }
 
+/**
+ * Function to check if app is played in web or mobile device
+ * @param {object} platforms the CapacitorPlatforms object
+ * @returns boolean
+ */
+export function checkIsApp (platforms) {
+  if (
+    !platforms ||
+    !platforms.currentPlatform ||
+    platforms.currentPlatform.name !== 'web'
+  ) {
+    return true
+  }
+  return false
+}
+
 export default {
   install (app) {
     app.mixin({
       methods: {
         capitalizeFirstLetter,
         ticksToString,
+        checkIsApp,
         validateErrorResponse,
         valIsArray (val) {
           return val instanceof Array

@@ -52,14 +52,7 @@ export default {
   },
   computed: {
     isApp () {
-      if (
-        CapacitorPlatforms.currentPlatform &&
-        CapacitorPlatforms.currentPlatform.name === 'web'
-      ) {
-        return false
-      } else {
-        return true
-      }
+      return this.checkIsApp(CapacitorPlatforms)
     },
     divClass () {
       return `${this.bgClass || 'bg-white'} ${this.classes || ''}`
