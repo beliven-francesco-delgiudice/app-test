@@ -1,0 +1,42 @@
+{
+  "order": {
+    "span": "Order by",
+    "placeholder": "Order by",
+    "name": "order"
+  },
+  "type": {
+    "span": "Type",
+    "placeholder": "Select type",
+    "name": "type"
+  },
+  "subcategories": {
+    "span": "Subcategories",
+    "placeholder": "Select cat.",
+    "name": "subcategory"
+  },
+  "categories": {
+    "span": "Categories",
+    "placeholder": "Select cat.",
+    "name": "category"
+  },
+  "faculties": {
+    "span": "Faculty",
+    "placeholder": "Select faculty",
+    "name": "faculty"
+  },
+  "pillars": {
+    "span": "Pillar",
+    "placeholder": "Select pillar",
+    "name": "pillar"
+  },
+  "months": {
+    "span": "Month",
+    "placeholder": "Select month",
+    "name": "month"
+  },
+  "years": {
+    "span": "Year",
+    "placeholder": "Select year",
+    "name": "year"
+  }
+}

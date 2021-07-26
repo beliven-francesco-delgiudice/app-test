@@ -3,7 +3,7 @@
     interface="action-sheet"
     class="custom-select"
     cssClass="custom-select-sheet"
-    :v-model="selectValue"
+    :value="selectValue"
     :name="name"
     :disabled="isDisabled"
     :placeholder="placeholder"

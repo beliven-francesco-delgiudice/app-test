@@ -30,7 +30,7 @@
           </Title>
 
           <!-- Order -->
-          <div
+          <!-- <div
             v-if="filtersOptions.order && filtersOptions.order.length"
             class="flex pt-2 pb-1 border-grey border-b w-full justify-between items-center"
           >
@@ -46,10 +46,10 @@
               :value="computedFilters.order"
               @onChange="updateFilters($event, 'order')"
             />
-          </div>
+          </div> -->
 
           <!-- Type -->
-          <div
+          <!-- <div
             v-if="filtersOptions.type && filtersOptions.type.length"
             class="flex pt-2 pb-1 border-grey border-b w-full justify-between items-center"
           >
@@ -65,10 +65,10 @@
               :value="computedFilters.type"
               @onChange="updateFilters($event, 'type')"
             />
-          </div>
+          </div> -->
 
           <!-- Subcategories -->
-          <div
+          <!-- <div
             v-if="
               filtersOptions.subcategories &&
                 filtersOptions.subcategories.length
@@ -87,9 +87,11 @@
               :value="computedFilters.subcategory"
               @onChange="updateFilters($event, 'subcategory')"
             />
-          </div>
-          <div
-            v-if="filtersOptions.year && filtersOptions.year.length"
+          </div> -->
+
+          <!-- Year -->
+          <!-- <div
+            v-if="filtersOptions.years && filtersOptions.years.length"
             class="flex pt-2 pb-1 border-grey border-b w-full justify-between items-center"
           >
             <span
@@ -103,6 +105,25 @@
               :options="filtersOptions.year"
               :value="computedFilters.year"
               @onChange="updateFilters($event, 'year')"
+            />
+          </div> -->
+
+          <div
+            v-for="(option, optKey) in arrayOfOptions"
+            :key="optKey"
+            class="flex pt-2 pb-1 border-grey border-b w-full justify-between items-center"
+          >
+            <span
+              class="w-1/2 font-helvetica text-16 spacing-5 line-28
+            text-dark-grey"
+              >{{ option.json.span }}</span
+            >
+            <custom-select
+              :name="option.json.name"
+              :value="computedFilters[option.json.name]"
+              :options="filtersOptions[option.key]"
+              :placeholder="option.json.placeholder"
+              @onChange="updateFilters($event, option.json.name)"
             />
           </div>
         </div>
@@ -118,6 +139,7 @@ import Title from '../Title.vue'
 import BigButton from '../containers/BigButton.vue'
 import { IonImg, IonModal } from '@ionic/vue'
 import CustomSelect from '../CustomSelect.vue'
+import filtersJson from '@/filtersJson'
 export default {
   components: {
     Title,
@@ -143,6 +165,18 @@ export default {
     },
     filtersOptions () {
       return this.options
+    },
+    arrayOfOptions () {
+      const keys = Object.keys(this.filtersOptions)
+      const array = keys.map(key => ({
+        key: key,
+        json: filtersJson[key]
+      }))
+
+      return array.filter(
+        opt =>
+          this.filtersOptions[opt.key] && this.filtersOptions[opt.key].length
+      )
     }
   },
   methods: {
@@ -162,6 +196,7 @@ export default {
   watch: {
     open: function (newValue) {
       const filterObj = Object.assign({}, this.filtersState)
+      console.log(filterObj, this.filtersOptions)
       this.filters = filterObj
       this.isOpened = newValue
     }
