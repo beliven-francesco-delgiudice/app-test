@@ -40,7 +40,7 @@
 <script>
 import SquareContainer from './containers/SquareContainer.vue'
 import { IonImg, actionSheetController } from '@ionic/vue'
-import { CapacitorPlatforms } from '@capacitor/core'
+import { Capacitor } from '@capacitor/core'
 
 export default {
   components: { SquareContainer, IonImg },
@@ -52,7 +52,7 @@ export default {
   },
   computed: {
     isApp () {
-      return this.checkIsApp(CapacitorPlatforms)
+      return this.checkIsApp(Capacitor.getPlatform())
     },
     divClass () {
       return `${this.bgClass || 'bg-white'} ${this.classes || ''}`

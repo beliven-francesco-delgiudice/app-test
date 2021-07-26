@@ -1,6 +1,6 @@
 import urls from '@/urls'
 import messages from '@/messages'
-import { CapacitorPlatforms } from '@capacitor/core'
+import { Capacitor } from '@capacitor/core'
 
 export async function logout (context) {
   context.commit('setUserData', false)
@@ -29,10 +29,7 @@ export async function login (context, data) {
 
     // No OneSignal if WebApp
     try {
-      if (
-        !CapacitorPlatforms.currentPlatform ||
-        CapacitorPlatforms.currentPlatform.name !== 'web'
-      ) {
+      if (!Capacitor.getPlatform() || Capacitor.getPlatform() !== 'web') {
         // Now that we have user id we can proceed wit OneSignal sync with server
         await context.dispatch('syncOneSignal', context)
       }
@@ -84,10 +81,7 @@ export async function loginWithToken (context) {
 
     // No OneSignal if WebApp
     try {
-      if (
-        !CapacitorPlatforms.currentPlatform ||
-        CapacitorPlatforms.currentPlatform.name !== 'web'
-      ) {
+      if (!Capacitor.getPlatform() || Capacitor.getPlatform() !== 'web') {
         // Now that we have user id we can proceed wit OneSignal sync with server
         await context.dispatch('syncOneSignal', context)
       }

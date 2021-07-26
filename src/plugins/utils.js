@@ -41,12 +41,8 @@ export function validateErrorResponse (response) {
  * @param {object} platforms the CapacitorPlatforms object
  * @returns boolean
  */
-export function checkIsApp (platforms) {
-  if (
-    !platforms ||
-    !platforms.currentPlatform ||
-    platforms.currentPlatform.name !== 'web'
-  ) {
+export function checkIsApp (platform) {
+  if (!platform || platform !== 'web') {
     return true
   }
   return false
