@@ -55,10 +55,12 @@ async function init () {
   await SplashScreen.show()
 
   window.handleOpenURL = function (url) {
-    const token = url.split('token=')[1].split('#')[0]
-    window.azureToken = token
-    console.log('received url: ' + url, token)
-    window.localStorage.setItem('JWT', token)
+    if (url) {
+      const token = url.split('token=')[1].split('#')[0]
+      window.azureToken = token
+      console.log('received url: ' + url, token)
+      window.localStorage.setItem('JWT', token)
+    }
   }
 
   const app = createApp(App)

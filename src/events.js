@@ -16,7 +16,7 @@ export async function onOnesignalPermissionChange (plugins, permissionChange) {
  * @param {*} e Raw event
  */
 export async function onOnesignalNotificationReceived (plugins, e) {
-  console.log('Notification received', e)
+  // console.log('Notification received', e)
 
   const data = e.payload.additionalData
   plugins.$bg.wakeUp()
@@ -40,17 +40,27 @@ export async function onOnesignalNotificationReceived (plugins, e) {
  * @param {*} e Raw event
  */
 export async function onOnesignalNotificationOpened (plugins, e) {
-  console.log('Opened notification', e)
+  // console.log('Opened notification', e)
 
-  const data = e.notification.payload.additionalData
+  // const data = e.notification.payload.additionalData
 
   // Set round of the message and redirect directly to message
-  plugins.$store.commit('setRoundId', data.roundId)
+  // plugins.$store.commit('setRoundId', data.roundId)
 
-  await plugins.$router.push('/hub')
+  // await plugins.$router.push('/hub')
 
-  await plugins.$store.dispatch('getMessages')
-  await plugins.$router.push(`/hub/message/${data.messageId}`)
+  // await plugins.$store.dispatch('getMessages')
+  // await plugins.$router.push(`/hub/message/${data.messageId}`)
+  const notification = e.notification
+  if (notification.payload && notification.payload.launchURL) {
+    let path = notification.payload.launchURL
+    path = path.split('limapp:/')[1]
+    if (plugins.$store.getters.loggedIn) {
+      plugins.$router.push(path)
+    } else {
+      plugins.$store.commit('setNotificationToShow', path)
+    }
+  }
 }
 
 /**
@@ -59,7 +69,7 @@ export async function onOnesignalNotificationOpened (plugins, e) {
  * @param {*} e Raw event
  */
 export async function onAppForeground (plugins, e) {
-  console.log('App foreground: ', e)
+  // console.log('App foreground: ', e)
 
   if (
     e.isActive === true &&

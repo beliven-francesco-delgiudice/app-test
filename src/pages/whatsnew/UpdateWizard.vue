@@ -3,7 +3,7 @@
     v-if="formattedSlides && formattedSlides.length"
     :slides="formattedSlides"
     finalLabel="Close"
-    @onEnd="routeBack"
+    @onEnd="resolveRouting"
     back
   >
     <template v-slot="{ item }">
@@ -41,21 +41,33 @@ export default {
           url: urls.notifications.updates + '/' + this.$route.params.id
         })
         this.results = results
+        if (this.$store.getters.gotUpdatesToShow) {
+          this.$store.commit('setAppUpdates', null)
+        }
       } catch (e) {
         console.error(e)
         this.$router.push('/home')
         this.$toast({
-          message: messages.errors.onboarding,
+          message: messages.errors.updates,
           color: 'danger'
         })
       }
     } else {
-      this.routeBack()
+      this.resolveRouting()
     }
   },
   methods: {
-    routeBack () {
-      this.$router.back()
+    resolveRouting () {
+      // check if user has clicked a notification
+      if (this.$store.getters.gotNotificationToShow) {
+        const path = this.$store.getters.gotNotificationToShow
+        if (this.$store.getters.gotNotificationToShow) {
+          this.$store.commit('setNotificationToShow', null)
+        }
+        this.$router.push(path)
+      } else {
+        this.$router.push('/new?section=updates')
+      }
     }
   }
 }

@@ -134,7 +134,7 @@ export default {
   created () {
     if (this.$store.getters.loggedIn) {
       // user is already logged in
-      this.$router.push('/home')
+      this.$store.dispatch('alreadyLoggedRouting')
     }
   },
   methods: {

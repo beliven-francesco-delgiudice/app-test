@@ -2,8 +2,47 @@ import urls from '@/urls'
 import messages from '@/messages'
 import { Capacitor } from '@capacitor/core'
 
+function resolveRouting (
+  app,
+  needOnboarding,
+  isUpdateToShow,
+  isNotificationToShow
+) {
+  if (needOnboarding) {
+    app.$router.push('/onboarding')
+  } else if (isUpdateToShow) {
+    console.log(isUpdateToShow)
+    app.$router.push('/new/update/' + isUpdateToShow)
+  } else if (isNotificationToShow) {
+    const path = isNotificationToShow
+    app.$store.commit('setNotificationToShow', null)
+    app.$router.push(path)
+  } else {
+    app.$router.push('/home')
+  }
+}
+
+export async function alreadyLoggedRouting (context) {
+  try {
+    if (!Capacitor.getPlatform() || Capacitor.getPlatform() !== 'web') {
+      // Now that we have user id we can proceed wit OneSignal sync with server
+      await context.dispatch('syncOneSignal', context)
+    }
+  } catch (e) {
+    console.log(e)
+  }
+
+  resolveRouting(
+    this.$app,
+    context.getters.onboarding,
+    context.getters.gotUpdatesToShow,
+    context.getters.gotNotificationToShow
+  )
+}
+
 export async function logout (context) {
   context.commit('setUserData', false)
+  window.localStorage.setItem('JWT', '')
   this.$app.$router.push('/login')
 }
 export async function login (context, data) {
@@ -43,15 +82,22 @@ export async function login (context, data) {
 
     this.$app.$loading.hide()
 
-    // Onboarding, Wizard or Home
-    if (userData.onboarding) {
-      this.$app.$router.push('/onboarding')
-    } else if (context.getters.gotUpdatesToShow) {
-      console.log('new update', context.getters.gotUpdatesToShow)
-      this.$app.$router.push('/new/update/' + context.getters.gotUpdatesToShow)
-    } else {
-      this.$app.$router.push('/home')
-    }
+    resolveRouting(
+      this.$app,
+      userData.onboarding,
+      context.getters.gotUpdatesToShow,
+      context.getters.gotNotificationToShow
+    )
+
+    // // Onboarding, Wizard or Home
+    // if (userData.onboarding) {
+    //   this.$app.$router.push('/onboarding')
+    // } else if (context.getters.gotUpdatesToShow) {
+    //   console.log('new update', context.getters.gotUpdatesToShow)
+    //   this.$app.$router.push('/new/update/' + context.getters.gotUpdatesToShow)
+    // } else {
+    //   this.$app.$router.push('/home')
+    // }
   } catch (e) {
     this.$app.$toast({
       message: messages.errors.cannotLogin,
@@ -95,14 +141,12 @@ export async function loginWithToken (context) {
 
     this.$app.$loading.hide()
 
-    // Onboarding, Wizard or Home
-    if (userData.onboarding) {
-      this.$app.$router.push('/onboarding')
-    } else if (context.getters.gotUpdatesToShow) {
-      this.$app.$router.push('/new/update/' + context.getters.gotUpdatesToShow)
-    } else {
-      this.$app.$router.push('/home')
-    }
+    resolveRouting(
+      this.$app,
+      userData.onboarding,
+      context.getters.gotUpdatesToShow,
+      context.getters.gotNotificationToShow
+    )
   } catch (e) {
     this.$app.$toast({
       message: messages.errors.cannotLogin,
@@ -186,7 +230,7 @@ export async function getNotifications (context) {
   let notifications = []
 
   try {
-    // get products
+    // get notifications
     const results = await this.$app.$http({
       method: 'GET',
       url: urls.notifications.list,

@@ -30,6 +30,9 @@ export default {
         url: urls.onBoarding
       })
       this.slides = results
+      const userData = this.$store.getters.userData
+      userData.onboarding = false
+      this.$store.commit('setUserData', userData)
     } catch (e) {
       console.error(e)
       this.$router.push('/home')

@@ -65,6 +65,11 @@ export default {
       return this.initSection
     }
   },
+  created () {
+    if (this.$route.query && this.$route.query.section) {
+      this.initSection = this.$route.query.section
+    }
+  },
   methods: {
     routeToSection (path) {
       this.initSection = path

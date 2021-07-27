@@ -11,7 +11,7 @@
           bgClass="bg-white"
           squareSize="64"
           rounded="12"
-          classes="mr-4 p-2"
+          classes="mr-4"
         >
           <ion-img :src="item.preview" />
         </square-container>

@@ -20,6 +20,7 @@ const master = {
     },
     notifications: [],
     appUpdates: null,
+    notificationToShow: null,
     messages: []
   },
   mutations: {
@@ -51,6 +52,10 @@ const master = {
 
     setNotifications (store, notifications) {
       store.notifications = notifications
+    },
+
+    setNotificationToShow (store, path) {
+      store.notificationToShow = path
     },
 
     setAppUpdates (store, appUpdates) {
@@ -134,6 +139,9 @@ const master = {
     },
     gotUpdatesToShow: state => {
       return state.appUpdates
+    },
+    gotNotificationToShow: state => {
+      return state.notificationToShow
     },
     username: state => state.user.data.username || '',
     userTypes: state => state.user.types || [],

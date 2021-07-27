@@ -42,6 +42,7 @@ const routes = [
     path: '',
     redirect: '/login'
   },
+  // login
   {
     path: '/login',
     component: CleanLayout,
@@ -53,6 +54,7 @@ const routes = [
       }
     ]
   },
+  // home
   {
     path: '/home',
     component: HomeLayout,
@@ -65,6 +67,7 @@ const routes = [
       }
     ]
   },
+  // onboarding
   {
     path: '/onboarding',
     component: CleanLayout,
@@ -76,6 +79,7 @@ const routes = [
       }
     ]
   },
+  // useful
   {
     path: '/useful',
     component: MainLayout,
@@ -90,6 +94,7 @@ const routes = [
       }
     ]
   },
+  // news
   {
     path: '/news',
     component: MainLayout,
@@ -112,6 +117,7 @@ const routes = [
       }
     ]
   },
+  // multimedia
   {
     path: '/multimedia',
     component: MainLayout,
@@ -123,6 +129,7 @@ const routes = [
       }
     ]
   },
+  // new
   {
     path: '/new',
     component: MainLayout,
@@ -143,6 +150,7 @@ const routes = [
       }
     ]
   },
+  // menu
   {
     path: '/menu',
     component: MainLayout,
@@ -157,6 +165,7 @@ const routes = [
       }
     ]
   },
+  // search
   {
     path: '/search',
     component: MainLayout,
@@ -168,6 +177,7 @@ const routes = [
       }
     ]
   },
+  // contacts
   {
     path: '/contacts',
     component: MainLayout,
@@ -179,6 +189,7 @@ const routes = [
       }
     ]
   },
+  // products
   {
     path: '/products',
     component: MainLayout,
@@ -245,6 +256,7 @@ const routes = [
       }
     ]
   },
+  // congresses
   {
     path: '/congresses',
     component: MainLayout,
@@ -288,7 +300,7 @@ router.beforeEach((to, from, next) => {
   if (to.path !== '/login' && !masterStore.getters.loggedIn) {
     masterStore.dispatch('logout')
   }
-  console.log(from, to)
+  // console.log(from, to)
   next()
 })
 
