@@ -2,7 +2,7 @@
   <div class="flex flex-col relative gradient-background min-h-screen">
     <ion-button
       type="button"
-      class="absolute top-0 left-0"
+      class="absolute top-0 left-0 z-10"
       style="--background:transparent; margin-top:1rem; margin-left:2rem;--box-shadow: none;"
       v-if="back"
       @click="onClose"
