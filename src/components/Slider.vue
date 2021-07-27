@@ -13,7 +13,11 @@
       />
     </ion-button>
 
-    <ion-slides ref="slides" @ionSlideDidChange="updateActiveIndex" pager>
+    <ion-slides
+      ref="slides"
+      @ionSlideDidChange="updateActiveIndex"
+      :pager="true"
+    >
       <ion-slide v-for="(slide, i) in computedSlides" :key="i">
         <slot :item="slide"></slot>
       </ion-slide>

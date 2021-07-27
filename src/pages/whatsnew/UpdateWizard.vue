@@ -1,10 +1,10 @@
 <template>
   <slider
-    v-if="formattedSlides && formattedSlides.length"
-    :slides="formattedSlides"
-    finalLabel="Close"
-    @onEnd="resolveRouting"
     back
+    finalLabel="Close"
+    :slides="formattedSlides"
+    v-if="formattedSlides && formattedSlides.length"
+    @onEnd="resolveRouting"
   >
     <template v-slot="{ item }">
       <div class="flex flex-col flex flex-grow">
