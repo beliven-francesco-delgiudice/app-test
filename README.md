@@ -51,7 +51,7 @@ After running the command, open Android Studio on the project. \
 Go to _Build_ and then _Generate Signed Bundle_. \
 Select _Android App Bundle_ and then _Next_.
 
-- The _Key store path_ is the unique path to the Key file. You can find it in the Heply Google Drive in the folder _Lima Corporate_ > _APP_ > _chiavi_ names as **Untitled**. Download it and insert the unique path.
+- The _Key store path_ is the unique path to the Key file. You can find it in the Heply Google Drive in the folder _Lima Corporate_ > _APP_ > _chiavi_ named as **Key Android**. Download it and insert the unique path.
 - The _Key store password_ and the _Key password_ are the same, you can find them in the Heply password manager under **LimAPP key store password**.
 
 The go _Next_, choose _release_ and press _Finish_. \
