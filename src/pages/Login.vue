@@ -8,7 +8,7 @@
     />
     <div
       class="bg-transparent absolute top-0 left-0 flex px-8 w-full z-10"
-      style="height:90px"
+      :style="isIos ? 'margin-top:35px;height:90px;' : 'height:90px;'"
     >
       <ion-button
         v-if="backAction"
@@ -106,7 +106,8 @@ import Title from '../components/Title.vue'
 import BigButton from '../components/containers/BigButton.vue'
 import messages from '@/messages'
 import urls from '@/urls'
-
+import config from '@/config'
+import { Capacitor } from '@capacitor/core'
 export default {
   components: {
     IonInput,
@@ -124,6 +125,16 @@ export default {
     }
   },
   computed: {
+    isIos () {
+      if (
+        Capacitor &&
+        Capacitor.getPlatform() &&
+        Capacitor.getPlatform() === 'ios'
+      ) {
+        return true
+      }
+      return false
+    },
     backAction () {
       if (this.step > 1) {
         return true
@@ -148,8 +159,8 @@ export default {
       })
     },
     async loginWithAzure () {
-      // FIXME: change "dev" in "prod" (also in config.json)
-      const url = urls.baseUrl.dev + urls.auth.azureLogin
+      const mode = config.mode
+      const url = urls.baseUrl[mode] + urls.auth.azureLogin
       await Browser.open({ url })
     },
     async next () {

@@ -17,7 +17,7 @@
     <div
       v-if="isHeaderNecessary"
       class="bg-transparent absolute top-0 left-0 flex px-8 w-full z-10"
-      style="height:90px"
+      :style="isIos ? 'margin-top:35px;height:90px;' : 'height:90px;'"
     >
       <!-- back button -->
       <ion-button
@@ -100,6 +100,7 @@ import Title from '../components/Title'
 import ShadowButton from '../components/containers/ShadowButton.vue'
 import { IonImg, IonButton } from '@ionic/vue'
 import FiltersModal from './modals/FiltersModal.vue'
+import { Capacitor } from '@capacitor/core'
 export default {
   components: {
     Title,
@@ -125,6 +126,16 @@ export default {
     filtersOptions: Object
   },
   computed: {
+    isIos () {
+      if (
+        Capacitor &&
+        Capacitor.getPlatform() &&
+        Capacitor.getPlatform() === 'ios'
+      ) {
+        return true
+      }
+      return false
+    },
     isHeaderNecessary () {
       if (this.info || this.back || this.filters || this.mail) {
         return true
@@ -147,7 +158,7 @@ export default {
       this.$router.back()
     },
     routeToWizard () {
-      this.$router.push('/wizard')
+      this.$router.push('/new?section=updates')
     },
     openFilters () {
       this.isFiltersOpened = true

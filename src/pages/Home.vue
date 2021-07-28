@@ -6,7 +6,7 @@
     <div class="w-full relative">
       <div
         class="bg-transparent absolute top-0 flex px-8 w-full z-10"
-        style="height:90px"
+        :style="isIos ? 'margin-top:35px;height:90px;' : 'height:90px;'"
       >
         <shadow-button
           square
@@ -148,6 +148,7 @@ import HomeTitledContainer from '../components/home/HomeTitledContainer.vue'
 import HomeCongress from '../components/home/HomeCongress.vue'
 // import HomeDocuments from '../components/home/HomeDocuments.vue'
 import ShadowButton from '../components/containers/ShadowButton.vue'
+import { Capacitor } from '@capacitor/core'
 export default {
   components: {
     IonImg,
@@ -317,6 +318,18 @@ export default {
           date: '31 Aug - 4 Sep'
         }
       ]
+    }
+  },
+  computed: {
+    isIos () {
+      if (
+        Capacitor &&
+        Capacitor.getPlatform() &&
+        Capacitor.getPlatform() === 'ios'
+      ) {
+        return true
+      }
+      return false
     }
   },
   methods: {

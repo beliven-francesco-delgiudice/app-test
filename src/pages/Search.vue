@@ -4,7 +4,11 @@
   >
     <div
       class="bg-transparent flex px-8 z-10"
-      style="height:90px;min-height:90px;"
+      :style="
+        isIos
+          ? 'margin-top:35px;height:90px;min-height:90px;'
+          : 'height:90px;min-height:90px;'
+      "
     >
       <ion-button
         v-if="formattedResultsLength > 0"
@@ -154,6 +158,7 @@ import SectionButton from '../components/containers/SectionButton.vue'
 import DetailSection from '../components/DetailSection.vue'
 import messages from '@/messages'
 import urls from '@/urls'
+import { Capacitor } from '@capacitor/core'
 export default {
   components: {
     IonImg,
@@ -173,6 +178,16 @@ export default {
     }
   },
   computed: {
+    isIos () {
+      if (
+        Capacitor &&
+        Capacitor.getPlatform() &&
+        Capacitor.getPlatform() === 'ios'
+      ) {
+        return true
+      }
+      return false
+    },
     formattedResultsLength () {
       const keys = Object.keys(this.results)
       let total = 0
