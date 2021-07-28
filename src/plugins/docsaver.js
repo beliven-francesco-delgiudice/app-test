@@ -3,6 +3,7 @@ import { Filesystem, Directory } from '@capacitor/filesystem'
 
 export const docsaver = $app =>
   async function (url, name = 'Document') {
+    await $app.$loading.show()
     const doc = await $app.$http({
       method: 'GET',
       baseUrl: url,
@@ -30,6 +31,8 @@ export const docsaver = $app =>
     await File.writeFile(File.dataDirectory, `${name}.pdf`, pdf, {
       replace: true
     })
+
+    await $app.$loading.hide()
 
     const writeSecretFile = async () => {
       await Filesystem.writeFile({

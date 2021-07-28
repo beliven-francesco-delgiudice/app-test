@@ -3,6 +3,7 @@ import { FileOpener } from '@ionic-native/file-opener'
 
 export const docviewer = $app =>
   async function (url, name = 'Document') {
+    await $app.$loading.show()
     const doc = await $app.$http({
       method: 'GET',
       baseUrl: url,
@@ -20,6 +21,7 @@ export const docviewer = $app =>
       replace: true
     })
 
+    await $app.$loading.hide()
     return new Promise((resolve, reject) => {
       FileOpener.open(`${File.dataDirectory}${name}.pdf`, 'application/pdf', {
         error: reject,
