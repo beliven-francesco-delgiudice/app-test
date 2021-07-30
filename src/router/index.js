@@ -21,6 +21,8 @@ import UpdateWizard from '../pages/whatsnew/UpdateWizard'
 
 import Multimedia from '../pages/Multimedia.vue'
 
+import Privacy from '../pages/Privacy.vue'
+
 import Contacts from '../pages/Contact.vue'
 
 import News from '../pages/news/News'
@@ -177,6 +179,18 @@ const routes = [
       }
     ]
   },
+  // privacy
+  {
+    path: '/privacy',
+    component: MainLayout,
+    children: [
+      {
+        path: '',
+        name: 'Privacy',
+        component: Privacy
+      }
+    ]
+  },
   // contacts
   {
     path: '/contacts',
@@ -297,7 +311,11 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.path !== '/login' && !masterStore.getters.loggedIn) {
+  if (
+    to.path !== '/login' &&
+    to.path !== '/privacy' &&
+    !masterStore.getters.loggedIn
+  ) {
     masterStore.dispatch('logout')
   }
   // console.log(from, to)

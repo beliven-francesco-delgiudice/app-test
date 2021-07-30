@@ -105,6 +105,11 @@ export default {
           hidden: true
         },
         {
+          name: 'Privacy',
+          href: '/privacy',
+          img: 'privacy.svg'
+        },
+        {
           name: 'Contacts',
           href: '/contacts',
           img: 'contact.svg'
