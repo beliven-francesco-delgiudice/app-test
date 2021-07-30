@@ -15,7 +15,7 @@
           <div
             class="relative w-auto mx-auto overflow-y-visible flex justify-center w-full pt-10"
           >
-            <ion-img :src="segment.image" class="absolute bottom-0 w-auto" />
+            <ion-img :src="segment.preview" class="absolute bottom-0 w-auto" />
           </div>
           <span class="font-helvetica-medium text-black text-16 mt-4">{{
             segment.name
