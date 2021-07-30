@@ -16,7 +16,7 @@
       labels:
         - traefik.enable=true
         - traefik.webapp=${CI_PROJECT_NAME}-webapp
-        - traefik.frontend.rule=Host:app${DOMAIN}
+        - traefik.frontend.rule=Host:${DOMAIN}
         - traefik.docker.network=web
         - traefik.port=80
         - traefik.frontend.headers.customResponseHeaders=X-Robots-Tag :noindex,nofollow,nosnippet,noarchive,notranslate,noimageindex

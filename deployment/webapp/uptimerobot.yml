@@ -1,0 +1,17 @@
+---
+uptimerobot:
+  stage: post
+  image: alpine:3
+  environment:
+    name: production
+  before_script:
+    - apk add curl jq
+  script:
+    - 'curl -X POST -H "Cache-Control: no-cache" -H "Content-Type: application/x-www-form-urlencoded"
+      -d "api_key=${UPTIMEROBOT_API_KEY}&format=json&type=1&url=https://${DOMAIN}/api/health&friendly_name=${UPTIMEROBOT_BASE_NAME}-api&interval=${UPTIMEROBOT_DEFAULT_INTERVAL}&alert_contacts=${UPTIMEROBOT_SLACK_ALERTS_CONTACT_ID}_${UPTIMEROBOT_DEFAULT_THRESHOLD}_${UPTIMEROBOT_DEFAULT_RECURRENCE}"
+      "https://api.uptimerobot.com/v2/newMonitor"'
+    - 'curl -X POST -H "Cache-Control: no-cache" -H "Content-Type: application/x-www-form-urlencoded"
+      -d "api_key=${UPTIMEROBOT_API_KEY}&format=json&type=1&url=https://${DOMAIN}&friendly_name=${UPTIMEROBOT_BASE_NAME}-dashboard&interval=${UPTIMEROBOT_DEFAULT_INTERVAL}&alert_contacts=${UPTIMEROBOT_SLACK_ALERTS_CONTACT_ID}_${UPTIMEROBOT_DEFAULT_THRESHOLD}_${UPTIMEROBOT_DEFAULT_RECURRENCE}"
+      "https://api.uptimerobot.com/v2/newMonitor"'
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master"'
