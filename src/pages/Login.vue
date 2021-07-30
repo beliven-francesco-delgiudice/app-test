@@ -47,6 +47,14 @@
         ></ion-input>
       </div>
       <big-button label="Next" @onClick="next" />
+
+      <a
+        class="font-helvetica text-mid-dark-grey text-12 spacing-1 line-24 mt-4 text-center mx-auto z-10"
+        href="https://limacorporate.com/en/about-us/privacy-policy.html"
+        title="LimaCorporate Privacy Policy"
+        target="_blank"
+        >Privacy Policy</a
+      >
     </div>
     <div v-if="step === 2 && isAzureMail" class="flex flex-col">
       <div class="flex z-10 relative mb-4">
@@ -71,6 +79,13 @@
           Login with Azure
         </span>
       </ion-button>
+      <a
+        class="font-helvetica text-mid-dark-grey text-12 spacing-1 line-24 mt-4 text-center mx-auto z-10"
+        href="https://limacorporate.com/en/about-us/privacy-policy.html"
+        title="LimaCorporate Privacy Policy"
+        target="_blank"
+        >Privacy Policy</a
+      >
     </div>
     <div v-if="step === 2 && !isAzureMail" class="flex flex-col">
       <div
@@ -92,8 +107,18 @@
       </div>
       <big-button label="Sign in" @onClick="loginWithPassword" />
       <a
-        class="mt-4 font-helvetica-medium text-14 text-black spacing-44 line-28 mx-auto"
+        class="mt-4 font-helvetica-medium text-14 text-black spacing-44 line-28 mx-auto z-10"
+        title="Forgot your password link"
+        href="https://limacorporate.com/it/intranet-login.html?recovery=password"
+        target="_blank"
         >Forgot your password?</a
+      >
+      <a
+        class="font-helvetica text-mid-dark-grey text-12 spacing-1 line-24 mt-4 text-center mx-auto z-10"
+        href="https://limacorporate.com/en/about-us/privacy-policy.html"
+        title="LimaCorporate Privacy Policy"
+        target="_blank"
+        >Privacy Policy</a
       >
     </div>
   </div>

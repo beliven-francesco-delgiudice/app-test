@@ -1,5 +1,5 @@
 <template>
-  <Page withMargin label="Privacy Policy" :back="backPath">
+  <Page withMargin label="Privacy Policy" back>
     <p
       class="px-8 font-helvetica text-mid-dark-grey text-16 spacing-1 line-24 mb-4"
       v-html="formattedPrivacy"
@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Page from '../../components/Page.vue'
+import Page from '../components/Page.vue'
 export default {
   components: {
     Page
