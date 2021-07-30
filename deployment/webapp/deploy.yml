@@ -1,0 +1,39 @@
+---
+.deploy_base: &deploy_base
+  stage: deploy
+  image: alpine:3
+  script:
+    # Install and configure SSH
+    - apk add --no-cache openssh
+    - eval $(ssh-agent -s)
+    - echo "$SSH_KEY" | tr -d '\r' | ssh-add - > /dev/null
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan -p $SSH_PORT $CI_HOST >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+    # Copy docker-compose.$CI_ENVIRONMENT_SLUG.yml
+    - scp -P $SSH_PORT ./deployment/webapp/deploy/docker-compose.$CI_ENVIRONMENT_SLUG.yml $SSH_USER@$CI_HOST:$CI_DEPLOY_FOLDER/docker-compose.yml
+    # Pull docker image and run docker-compose up
+    - ssh -p $SSH_PORT $SSH_USER@$CI_HOST "cd $CI_DEPLOY_FOLDER
+      && docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+      && docker pull $CI_REGISTRY_IMAGE/webapp:$CI_COMMIT_SHORT_SHA
+      && docker tag $CI_REGISTRY_IMAGE/webapp:$CI_COMMIT_SHORT_SHA $CI_PROJECT_NAME/webapp:$CI_COMMIT_SHORT_SHA
+      && docker image rmi $CI_REGISTRY_IMAGE/webapp:$CI_COMMIT_SHORT_SHA
+      && docker-compose up -d"
+
+deploy_staging:
+  <<: *deploy_base
+  environment:
+    name: $CI_COMMIT_BRANCH
+    url: https://$DOMAIN
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "staging"'
+
+deploy_production:
+  <<: *deploy_base
+  environment:
+    name: production
+    url: https://$DOMAIN
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master"'

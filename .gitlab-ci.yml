@@ -1,0 +1,22 @@
+---
+variables:
+  DOCKER_TLS_CERTDIR: ""
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_DRIVER: overlay2
+  GIT_USER: https://gitlab-ci-token:$CI_JOB_TOKEN
+
+stages:
+  - build
+  - deploy
+  - post
+
+include:
+  # Stage: build
+  - "/deployment/build.yml"
+  - "/deployment/env.yml"
+
+  # Stage: deploy
+  - "/deployment/deploy.yml"
+
+  # Stage: post
+  - "/deployment/uptimerobot.yml"
