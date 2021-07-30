@@ -12,11 +12,11 @@ stages:
 
 include:
   # Stage: build
-  - "/deployment/build.yml"
-  - "/deployment/env.yml"
+  - "/deployment/webapp/build.yml"
+  - "/deployment/webapp/env.yml"
 
   # Stage: deploy
-  - "/deployment/deploy.yml"
+  - "/deployment/webapp/deploy.yml"
 
   # Stage: post
-  - "/deployment/uptimerobot.yml"
+  - "/deployment/webapp/uptimerobot.yml"
