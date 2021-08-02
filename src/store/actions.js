@@ -294,15 +294,13 @@ export async function getHome (context) {
     })
   }
 
-  console.log('outside try and catch', this.$app, this.$app.loading)
-
   this.$app.$loading.hide()
+  console.log(this.$app.$loading)
 
   const homeObject = {
     products,
     congresses
   }
-  console.log('before context commit', context)
 
   context.commit('setHome', homeObject)
   context.commit('setNotifications', notifications)

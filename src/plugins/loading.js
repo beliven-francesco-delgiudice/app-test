@@ -15,9 +15,13 @@ export default {
       async hide () {
         index--
 
-        if (loading === false && index > 0)
+        if (loading === false && index > 0) {
           console.warn('Have you awaited the show function?')
-        if (index === 0 && loading) await loading.dismiss()
+        }
+        if (index === 0 && loading) {
+          await loading.dismiss()
+          console.log('Loader dismissed')
+        }
       }
     }
   }
