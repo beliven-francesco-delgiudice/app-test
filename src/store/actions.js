@@ -287,11 +287,14 @@ export async function getHome (context) {
 
     notifications = notificationsList
   } catch (e) {
+    console.log(e)
     this.$app.$toast({
       message: messages.errors.home,
       color: 'danger'
     })
   }
+
+  console.log('outside try and catch', this.$app, this.$app.loading)
 
   this.$app.$loading.hide()
 
@@ -299,6 +302,7 @@ export async function getHome (context) {
     products,
     congresses
   }
+  console.log('before context commit', context)
 
   context.commit('setHome', homeObject)
   context.commit('setNotifications', notifications)
