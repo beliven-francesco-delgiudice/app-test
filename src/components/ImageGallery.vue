@@ -93,6 +93,12 @@ export default {
   min-width: calc(100vw - 4rem);
   height: 221px;
 }
+@media screen and (min-width: 1024px) {
+  .gallery-container {
+    width: calc(100% - 4rem);
+    min-width: calc(100% - 4rem);
+  }
+}
 .bg-black-50 {
   background-color: #1c1c1b80;
   --background: #1c1c1b80;

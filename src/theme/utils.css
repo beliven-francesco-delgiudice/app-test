@@ -34,6 +34,13 @@ p {
   background: white;
 }
 
+@media screen and (min-width:1024px) {
+  .custom-modal {
+    height:100%;
+    --height:100%;
+  }
+}
+
 ::-webkit-scrollbar,
 *::-webkit-scrollbar {
   display: none;

@@ -10,7 +10,7 @@
       class="w-full h-full relative pt-20 bg-black flex justify-center items-center"
     >
       <div
-        class="bg-transparent absolute top-0 left-0 flex px-8 w-full z-10"
+        class="bg-black absolute top-0 left-0 flex px-8 w-full z-10"
         style="height:90px"
       >
         <!-- close button -->
