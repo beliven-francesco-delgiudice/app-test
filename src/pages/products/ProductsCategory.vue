@@ -22,7 +22,7 @@
             rounded="12"
             classes="mr-4 p-2"
           >
-            <ion-img :src="item.image" />
+            <ion-img :src="item.preview" />
           </square-container>
           <div class="flex flex-col justify-between py-2">
             <span
