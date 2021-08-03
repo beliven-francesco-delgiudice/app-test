@@ -39,7 +39,7 @@
     </ion-content>
     <Tabs />
   </ion-page> -->
-  <ion-page>
+  <ion-page :style="isApp ? '' : 'max-width:600px; margin:auto;'">
     <ion-content :fullscreen="true" id="content">
       <ion-refresher
         slot="fixed"
@@ -70,6 +70,7 @@ import {
   IonRefresherContent
 } from '@ionic/vue'
 // import ShadowButton from '../components/containers/ShadowButton.vue'
+import { Capacitor } from '@capacitor/core'
 
 export default {
   methods: {
@@ -81,6 +82,9 @@ export default {
     }
   },
   computed: {
+    isApp () {
+      return this.checkIsApp(Capacitor.getPlatform())
+    },
     showBack () {
       return this.$route.meta.showBack
     },
