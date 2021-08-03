@@ -24,6 +24,16 @@ p {
   color: white !important;
 }
 
+.action-sheet-selected.sc-ion-action-sheet-ios::after {
+  --background: white;
+  background: white;
+}
+
+.action-sheet-cancel.sc-ion-action-sheet-ios::after {
+  --background: white;
+  background: white;
+}
+
 ::-webkit-scrollbar,
 *::-webkit-scrollbar {
   display: none;

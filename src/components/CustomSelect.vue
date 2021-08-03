@@ -94,15 +94,26 @@ export default {
   border-top: 1px solid #ededed;
 }
 
+.action-sheet-container .action-sheet-group:first-child:not(:only-child) {
+  margin-bottom: 0;
+}
+.action-sheet-container .action-sheet-group-cancel:not(:only-child) {
+  border-radius: 0;
+}
+
 .select-action-sheet button {
   padding: 1.5rem 0 1.5rem 0 !important;
   margin-bottom: 0.5rem !important;
   height: auto !important;
 }
-.select-action-sheet .action-sheet-group > button:first-child {
+.select-action-sheet
+  .action-sheet-group
+  > button:first-child:not(.action-sheet-cancel) {
   margin-top: 1.5rem !important;
 }
-.select-action-sheet .action-sheet-group > button:last-child {
+.select-action-sheet
+  .action-sheet-group
+  > button:last-child:not(.action-sheet-cancel) {
   margin-bottom: 1.5rem !important;
 }
 .select-action-sheet button > span {
