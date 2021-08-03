@@ -65,7 +65,7 @@
             <div class="relative mr-2 width-64 overflow-y-visible">
               <ion-img
                 :src="prod.preview"
-                class="absolute bottom-0 blend-mode-darken"
+                class="absolute bottom-0 blend-mode-darken -mb-2"
               />
             </div>
             <span class="font-helvetica-medium text-black text-16">{{
