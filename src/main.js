@@ -65,25 +65,22 @@ async function init () {
   }
 
   const app = createApp(App)
+    .use(IonicVue)
 
-  app.use(IonicVue)
-
-  app.use(router)
-  app.use(masterStore)
-  app.use(utils)
-  app.use($http, {
-    mode: config.mode
-  })
-  app.use($alert)
-  app.use($loading)
-  if (!Capacitor.getPlatform() || Capacitor.getPlatform() !== 'web') {
-    app.use($toast, {
+    .use(router)
+    .use(masterStore)
+    .use(utils)
+    .use($http, {
+      mode: config.mode
+    })
+    .use($alert)
+    .use($loading)
+    .use($docviewer)
+    .use($docsaver)
+    .use($toast, {
       duration: 3000,
       color: 'primary'
     })
-  }
-  app.use($docviewer)
-  app.use($docsaver)
 
   if (!Capacitor.getPlatform() || Capacitor.getPlatform() !== 'web') {
     app.use($onesignal, {
