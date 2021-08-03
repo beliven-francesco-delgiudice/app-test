@@ -62,8 +62,11 @@
               ' p-6 mr-4 overflow-y-visible mt-auto pointer-events-none'
             ]"
           >
-            <div class="relative mr-2 width-44 overflow-y-visible">
-              <ion-img :src="prod.preview" class="absolute bottom-0" />
+            <div class="relative mr-2 width-64 overflow-y-visible">
+              <ion-img
+                :src="prod.preview"
+                class="absolute bottom-0 blend-mode-darken"
+              />
             </div>
             <span class="font-helvetica-medium text-black text-16">{{
               prod.name

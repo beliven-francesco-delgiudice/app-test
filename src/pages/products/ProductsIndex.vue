@@ -5,7 +5,7 @@
         v-for="(segment, i) in segments"
         :key="i"
         @click="routeToSegment(segment)"
-        class="w-1/2 pt-12 mt-4"
+        class="w-1/2 pt-20 mt-8"
       >
         <grey-container
           vertical
@@ -15,7 +15,10 @@
           <div
             class="relative w-auto mx-auto overflow-y-visible flex justify-center w-full pt-10"
           >
-            <ion-img :src="segment.preview" class="absolute bottom-0 w-auto" />
+            <ion-img
+              :src="segment.preview"
+              class="absolute bottom-0 w-3/4 sm:w-1/2 blend-mode-darken"
+            />
           </div>
           <span class="font-helvetica-medium text-black text-16 mt-4">{{
             segment.name
