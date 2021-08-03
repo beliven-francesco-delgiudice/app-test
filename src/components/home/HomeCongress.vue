@@ -42,7 +42,7 @@ export default {
 </script>
 <style scoped>
 .congress {
-  height: 125px;
-  min-height: 125px;
+  height: 150px;
+  min-height: 150px;
 }
 </style>
