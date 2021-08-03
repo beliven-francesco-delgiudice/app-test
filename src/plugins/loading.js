@@ -20,7 +20,6 @@ export default {
         }
         if (index === 0 && loading) {
           await loading.dismiss()
-          console.log('Loader dismissed')
         }
       }
     }

@@ -295,7 +295,6 @@ export async function getHome (context) {
   }
 
   this.$app.$loading.hide()
-  console.log(this.$app.$loading)
 
   const homeObject = {
     products,

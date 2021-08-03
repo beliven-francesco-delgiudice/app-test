@@ -50,6 +50,7 @@ import $docviewer from '@/plugins/docviewer-native'
 import $docsaver from '@/plugins/docsaver'
 import $onesignal from '@/plugins/onesignal-native'
 // import $backgroundmode from '@/plugins/backgroundmode'
+import { Capacitor } from '@capacitor/core'
 
 async function init () {
   await SplashScreen.show()
@@ -64,23 +65,28 @@ async function init () {
   }
 
   const app = createApp(App)
-    .use(IonicVue)
-    .use(router)
-    .use(masterStore)
-    .use(utils)
 
-    .use($http, {
-      mode: config.mode
-    })
-    .use($alert)
-    .use($loading)
-    .use($toast, {
+  app.use(IonicVue)
+
+  app.use(router)
+  app.use(masterStore)
+  app.use(utils)
+  app.use($http, {
+    mode: config.mode
+  })
+  app.use($alert)
+  app.use($loading)
+  if (!Capacitor.getPlatform() || Capacitor.getPlatform() !== 'web') {
+    app.use($toast, {
       duration: 3000,
       color: 'primary'
     })
-    .use($docviewer)
-    .use($docsaver)
-    .use($onesignal, {
+  }
+  app.use($docviewer)
+  app.use($docsaver)
+
+  if (!Capacitor.getPlatform() || Capacitor.getPlatform() !== 'web') {
+    app.use($onesignal, {
       events: {
         permissionChange: onOnesignalPermissionChange,
         notifOpened: onOnesignalNotificationOpened,
@@ -88,12 +94,14 @@ async function init () {
       },
       ...config.oneSignal
     })
-    .use($device, {
-      events: {
-        onForeground: onAppForeground,
-        onBackButton
-      }
-    })
+  }
+
+  app.use($device, {
+    events: {
+      onForeground: onAppForeground,
+      onBackButton
+    }
+  })
 
   masterStore.$app = app.config.globalProperties
 
