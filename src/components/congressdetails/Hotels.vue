@@ -220,6 +220,12 @@ export default {
   min-width: calc(100vw - 4rem);
   height: 221px;
 }
+@media screen and (min-width: 1024px) {
+  .gallery-container {
+    width: calc(100% - 4rem);
+    min-width: calc(100% - 4rem);
+  }
+}
 
 span > p {
   font-family: inherit;

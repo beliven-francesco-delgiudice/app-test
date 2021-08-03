@@ -153,9 +153,10 @@ export default {
     onBack () {
       if (this.back && this.back.length) {
         this.$router.push(this.back)
+      } else {
+        this.$router.back()
       }
       // this.$router.push('/home')
-      this.$router.back()
     },
     routeToWizard () {
       this.$router.push('/new?section=updates')
