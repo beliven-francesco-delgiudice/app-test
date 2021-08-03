@@ -42,8 +42,12 @@
         <div class="flex justify-between items-start mb-4">
           <div class="flex flex-col">
             <span
-              class="font-helvetica text-14 text-grey spacing-44 line-28 mb-4"
+              class="font-helvetica text-14 text-grey spacing-44 line-28 mb-2"
               >Check-in</span
+            >
+            <span
+              class="font-helvetica text-12 text-grey spacing-44 line-28 mb-2"
+              >From</span
             >
             <span
               class="font-helvetica-medium text-16 text-red spacing-23 line-24 mb-2"
@@ -55,8 +59,12 @@
           </div>
           <div class="flex flex-col">
             <span
-              class="font-helvetica text-14 text-grey spacing-44 line-28 mb-4"
+              class="font-helvetica text-14 text-grey spacing-44 line-28 mob-2"
               >Check-out</span
+            >
+            <span
+              class="font-helvetica text-12 text-grey spacing-44 line-28 mb-2"
+              >Until</span
             >
             <span
               class="font-helvetica-medium text-16 text-red spacing-23 line-24 mb-2"
@@ -85,8 +93,12 @@
         <div class="flex justify-between items-start mb-4">
           <div class="flex flex-col">
             <span
-              class="font-helvetica text-14 text-grey spacing-44 line-28 mb-4"
+              class="font-helvetica text-14 text-grey spacing-44 line-28 mb-2"
               >Check-in</span
+            >
+            <span
+              class="font-helvetica text-12 text-grey spacing-44 line-28 mb-2"
+              >Until</span
             >
             <span
               class="font-helvetica-medium text-16 text-red spacing-23 line-24 mb-2"
@@ -102,8 +114,12 @@
           </div>
           <div class="flex flex-col">
             <span
-              class="font-helvetica text-14 text-grey spacing-44 line-28 mb-4"
+              class="font-helvetica text-14 text-grey spacing-44 line-28 mb-2"
               >Check-out</span
+            >
+            <span
+              class="font-helvetica text-12 text-grey spacing-44 line-28 mb-2"
+              >Until</span
             >
             <span
               class="font-helvetica-medium text-16 text-red spacing-23 line-24 mb-2"
