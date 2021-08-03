@@ -1,7 +1,7 @@
 <template>
   <Page
-    :label="updatedCategory.parent_name"
-    :back="segmentPath"
+    back
+    :label="updatedCategory.category_name"
     :filters="filters"
     :filtersOptions="options"
     @onFiltersChange="updateFilters"
@@ -56,7 +56,8 @@ export default {
     return {
       category: {
         parent_id: '0',
-        parent_name: 'Category',
+        parent_name: 'Segment',
+        category_name: 'Category',
         list: [],
         filters: {}
       },
