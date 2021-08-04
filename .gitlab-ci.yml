@@ -13,7 +13,7 @@ stages:
 
 include:
   # Stage: pre
-  - "/deployment/webapp/check_release.yml"
+  - "/deployment/webapp/pre.yml"
 
   # Stage: build
   - "/deployment/webapp/build.yml"
