@@ -17,3 +17,5 @@ build_webapp:
     - docker push $CI_REGISTRY_IMAGE/webapp:latest
     - docker tag $CI_REGISTRY_IMAGE/webapp:latest $CI_REGISTRY_IMAGE/webapp:$CI_COMMIT_SHORT_SHA
     - docker push $CI_REGISTRY_IMAGE/webapp:$CI_COMMIT_SHORT_SHA
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "develop"'
