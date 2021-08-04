@@ -27,8 +27,8 @@ deploy_staging:
   environment:
     name: staging
     url: https://$DOMAIN
-  rules:
-  - if: '$CI_COMMIT_TAG'
+  needs:
+    - check_release
 
 # deploy_production:
 #   <<: *deploy_base
