@@ -5,7 +5,7 @@
     >
       <ion-img
         :src="updatedNews.preview || ''"
-        class="h-full w-auto pointer-events-none"
+        class="w-full pointer-events-none"
       />
     </div>
 

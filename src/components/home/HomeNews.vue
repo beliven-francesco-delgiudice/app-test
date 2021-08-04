@@ -6,10 +6,10 @@
     <div
       class="news-image w-full overflow-hidden rounded-12 mb-4 container-shadow"
     >
-      <ion-img :src="news.img" class="w-full object-cover" />
+      <ion-img :src="news.preview" class="w-full object-cover" />
     </div>
     <span class="font-helvetica-medium text-black text-16">{{
-      news.text
+      news.title
     }}</span>
   </div>
 </template>
