@@ -5,8 +5,6 @@ build_webapp:
   services:
     - docker:19.03.0-dind
   before_script:
-    - apk update && apk upgrade && apk add --no-cache git
-    - eval $TAG_BRANCH
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
   script:
     - docker pull $CI_REGISTRY_IMAGE/webapp:latest || true
@@ -19,5 +17,5 @@ build_webapp:
     - docker push $CI_REGISTRY_IMAGE/webapp:latest
     - docker tag $CI_REGISTRY_IMAGE/webapp:latest $CI_REGISTRY_IMAGE/webapp:$CI_COMMIT_SHORT_SHA
     - docker push $CI_REGISTRY_IMAGE/webapp:$CI_COMMIT_SHORT_SHA
-  # rules:
-  #   - if: '$CI_COMMIT_BRANCH == "develop"'
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "develop"'

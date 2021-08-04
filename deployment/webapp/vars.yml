@@ -1,7 +1,0 @@
-vars:
-  stage: vars
-  script:
-    - echo "TAG_BRANCH=$(eval $TAG_BRANCH)" > vars.env
-  artifacts:
-    reports:
-      dotenv: vars.env
