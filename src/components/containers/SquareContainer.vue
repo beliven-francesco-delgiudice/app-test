@@ -1,5 +1,5 @@
 <template>
-  <div :class="divClass">
+  <div :class="divClass" :style="styles || ''">
     <slot></slot>
   </div>
 </template>
@@ -10,7 +10,8 @@ export default {
     bgClass: String,
     squareSize: String,
     rounded: String,
-    classes: [String, Array]
+    classes: [String, Array],
+    styles: [String, Array]
   },
   computed: {
     divClass () {
