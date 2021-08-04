@@ -1,5 +1,5 @@
 ---
-check_release:
+pre:
   stage: pre
   image: alpine:3
   script:

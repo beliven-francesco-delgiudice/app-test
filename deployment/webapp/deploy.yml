@@ -27,7 +27,7 @@ deploy_staging:
   environment:
     name: staging
     url: https://$DOMAIN
-  needs: ["check_release"]
+  needs: ["pre"]
 
 # deploy_production:
 #   <<: *deploy_base
