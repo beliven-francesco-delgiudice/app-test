@@ -6,14 +6,14 @@ variables:
   GIT_USER: https://gitlab-ci-token:$CI_JOB_TOKEN
 
 stages:
-  - pre
+  - check_release
   - build
   - deploy
   - post
 
 include:
-  # Stage: pre
-  - "/deployment/webapp/pre.yml"
+  # Stage: check_release
+  - "/deployment/webapp/check_release.yml"
 
   # Stage: build
   - "/deployment/webapp/build.yml"
