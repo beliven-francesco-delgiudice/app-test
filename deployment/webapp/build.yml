@@ -6,7 +6,7 @@ build_webapp:
     - docker:19.03.0-dind
   before_script:
     - apk update && apk upgrade && apk add --no-cache git
-    - 'eval "$TAG_BRANCH"'
+    - 'echo "$TAG_BRANCH"'
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
   script:
     - docker pull $CI_REGISTRY_IMAGE/webapp:latest || true
