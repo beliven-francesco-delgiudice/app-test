@@ -111,7 +111,7 @@
     >
       <carousel>
         <home-news
-          v-for="(singleNews, i) in news"
+          v-for="(singleNews, i) in $store.getters.homeNews"
           :key="i"
           :index="i"
           :news="singleNews"
@@ -159,7 +159,6 @@ import { Capacitor } from '@capacitor/core'
 export default {
   components: {
     IonImg,
-    // IonSlide,
     Title,
     Searchbar,
     Carousel,
@@ -167,8 +166,8 @@ export default {
     HomeTitledContainer,
     ShadowButton,
     HomeNews,
-    // HomeMeded,
     HomeCongress
+    // HomeMeded,
     // HomeDocuments
   },
   data () {
