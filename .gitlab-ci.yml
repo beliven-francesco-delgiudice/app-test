@@ -19,4 +19,4 @@ include:
   - "/deployment/webapp/deploy.yml"
 
   # Stage: post
-  - "/deployment/webapp/uptimerobot.yml"
+  # - "/deployment/webapp/uptimerobot.yml"
