@@ -85,8 +85,7 @@ export default {
         {
           name: 'News',
           href: '/news',
-          img: 'news.svg',
-          hidden: true
+          img: 'news.svg'
         },
         {
           name: "What's New",
