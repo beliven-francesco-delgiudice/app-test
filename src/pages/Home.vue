@@ -104,17 +104,21 @@
     </home-titled-container> -->
 
     <!-- News -->
-    <!-- <home-titled-container label="News" path="/news">
+    <home-titled-container
+      v-if="$store.getters.homeNews && $store.getters.homeNews.length"
+      label="News"
+      path="/news"
+    >
       <carousel>
         <home-news
-          v-for="(singleNews, i) in news"
+          v-for="(singleNews, i) in $store.getters.homeNews"
           :key="i"
           :index="i"
           :news="singleNews"
         />
         <div>&nbsp;</div>
       </carousel>
-    </home-titled-container> -->
+    </home-titled-container>
 
     <!-- Congresses -->
     <home-titled-container
@@ -146,7 +150,7 @@ import Searchbar from '../components/Searchbar.vue'
 import Carousel from '../components/Carousel.vue'
 import GreyContainer from '../components/containers/GreyContainer.vue'
 import HomeTitledContainer from '../components/home/HomeTitledContainer.vue'
-// import HomeNews from '../components/home/HomeNews.vue'
+import HomeNews from '../components/home/HomeNews.vue'
 // import HomeMeded from '../components/home/HomeMeded.vue'
 import HomeCongress from '../components/home/HomeCongress.vue'
 // import HomeDocuments from '../components/home/HomeDocuments.vue'
@@ -155,16 +159,15 @@ import { Capacitor } from '@capacitor/core'
 export default {
   components: {
     IonImg,
-    // IonSlide,
     Title,
     Searchbar,
     Carousel,
     GreyContainer,
     HomeTitledContainer,
     ShadowButton,
-    // HomeNews,
-    // HomeMeded,
+    HomeNews,
     HomeCongress
+    // HomeMeded,
     // HomeDocuments
   },
   data () {
