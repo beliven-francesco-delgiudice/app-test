@@ -4,14 +4,18 @@ variables:
   DOCKER_HOST: tcp://docker:2375
   DOCKER_DRIVER: overlay2
   GIT_USER: https://gitlab-ci-token:$CI_JOB_TOKEN
-  TAG_BRANCH: 'eval $(git branch --contains tags/$CI_COMMIT_TAG)'
+  TAG_BRANCH: "git branch --contains tags/$CI_COMMIT_TAG | cut -d ' ' -f 2"
 
 stages:
+  - vars
   - build
   - deploy
   - post
 
 include:
+  # Stage vars
+  # - "/deployment/webapp/vars.yml"
+
   # Stage: build
   - "/deployment/webapp/build.yml"
   - "/deployment/webapp/env.yml"
