@@ -172,6 +172,12 @@ export default {
       // user is already logged in
       this.$store.dispatch('alreadyLoggedRouting')
     }
+    if (this.$route.params.token && Capacitor.getPlatform() === 'web') {
+      window.azureToken = this.$route.params.token
+      console.log('received token:', this.$route.params.token)
+      window.localStorage.setItem('JWT', token)
+      this.$store.dispatch('loginWithToken')
+    }
   },
   methods: {
     onBack () {
@@ -213,11 +219,6 @@ export default {
           color: 'danger'
         })
       }
-    }
-  },
-  watch: {
-    'window.azureToken': function (newV) {
-      console.log('azurello tokenello', newV)
     }
   }
 }
