@@ -175,7 +175,7 @@ export default {
     if (this.$route.params.token && Capacitor.getPlatform() === 'web') {
       window.azureToken = this.$route.params.token
       console.log('received token:', this.$route.params.token)
-      window.localStorage.setItem('JWT', token)
+      window.localStorage.setItem('JWT', this.$route.params.token)
       this.$store.dispatch('loginWithToken')
     }
   },

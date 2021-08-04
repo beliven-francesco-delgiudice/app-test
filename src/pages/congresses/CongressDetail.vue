@@ -62,7 +62,48 @@ export default {
     return {
       section: 'info',
       congress: {
-        tabs: []
+        tabs: {
+          info: {
+            title: 'Info',
+            content: {}
+          },
+          details: {
+            title: 'Details',
+            content: {
+              congress_venue: {},
+              timing_dates: {},
+              lima_booth: {},
+              useful_information: {}
+            }
+          },
+          hotel: {
+            title: 'Hotel & Transfer',
+            content: {
+              hotel: {},
+              transfer: {}
+            }
+          },
+          day: {
+            title: 'Day by day',
+            content: []
+          },
+          activities: {
+            title: 'Activities',
+            content: []
+          },
+          key: {
+            title: 'Key messages',
+            content: []
+          },
+          downloads: {
+            title: 'Downloads',
+            content: []
+          },
+          contacts: {
+            title: 'Contacts',
+            content: {}
+          }
+        }
       }
     }
   },
@@ -79,12 +120,8 @@ export default {
       return 'Congress details'
     },
     updatedCongress () {
-      const tabs = this.congress.tabs || []
-      const congress = {}
-      tabs.map(singleTab => {
-        congress[singleTab.section] = Object.assign({}, singleTab)
-      })
-      return congress
+      const obj = Object.assign({}, this.congress.tabs)
+      return obj
     },
     updatedSection () {
       return this.section
