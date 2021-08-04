@@ -2,5 +2,7 @@
 check_release:
   stage: pre
   image: alpine:3
+  script:
+    - if [ -z "$CI_COMMIT_TAG" ]; then echo exit 1; else echo exit 0; fi
   rules:
     - if: '$CI_COMMIT_TAG'
