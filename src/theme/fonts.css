@@ -127,7 +127,7 @@
 .font-helvetica.paragraph strong,
 .font-helvetica.paragraph b {
   font-family: "Helvetica Neue", sans-serif;
-  font-weight: 500;
+  font-weight: bold;
   letter-spacing: 0.025em;
 }
 
