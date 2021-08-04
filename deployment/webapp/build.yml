@@ -5,6 +5,7 @@ build_webapp:
   services:
     - docker:19.03.0-dind
   before_script:
+    - echo $TAG_BRANCH
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
   script:
     - docker pull $CI_REGISTRY_IMAGE/webapp:latest || true
