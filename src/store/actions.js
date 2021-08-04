@@ -252,6 +252,7 @@ export async function getHome (context) {
   let products = []
   let congresses = []
   let notifications = []
+  let news = []
 
   this.$app.$loading.show()
 
@@ -284,8 +285,16 @@ export async function getHome (context) {
       params: {},
       loader: false
     })
-
     notifications = notificationsList
+
+    // get news
+    const newsList = await this.$app.$http({
+      method: 'GET',
+      url: urls.news.home,
+      params: {},
+      loader: false
+    })
+    news = newsList
   } catch (e) {
     console.log(e)
     this.$app.$toast({
@@ -298,7 +307,8 @@ export async function getHome (context) {
 
   const homeObject = {
     products,
-    congresses
+    congresses,
+    news
   }
 
   context.commit('setHome', homeObject)

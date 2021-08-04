@@ -104,7 +104,11 @@
     </home-titled-container> -->
 
     <!-- News -->
-    <!-- <home-titled-container label="News" path="/news">
+    <home-titled-container
+      v-if="$store.getters.homeNews && $store.getters.homeNews.length"
+      label="News"
+      path="/news"
+    >
       <carousel>
         <home-news
           v-for="(singleNews, i) in news"
@@ -114,7 +118,7 @@
         />
         <div>&nbsp;</div>
       </carousel>
-    </home-titled-container> -->
+    </home-titled-container>
 
     <!-- Congresses -->
     <home-titled-container
@@ -146,7 +150,7 @@ import Searchbar from '../components/Searchbar.vue'
 import Carousel from '../components/Carousel.vue'
 import GreyContainer from '../components/containers/GreyContainer.vue'
 import HomeTitledContainer from '../components/home/HomeTitledContainer.vue'
-// import HomeNews from '../components/home/HomeNews.vue'
+import HomeNews from '../components/home/HomeNews.vue'
 // import HomeMeded from '../components/home/HomeMeded.vue'
 import HomeCongress from '../components/home/HomeCongress.vue'
 // import HomeDocuments from '../components/home/HomeDocuments.vue'
@@ -162,7 +166,7 @@ export default {
     GreyContainer,
     HomeTitledContainer,
     ShadowButton,
-    // HomeNews,
+    HomeNews,
     // HomeMeded,
     HomeCongress
     // HomeDocuments

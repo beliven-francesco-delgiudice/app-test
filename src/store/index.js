@@ -123,6 +123,12 @@ const master = {
       }
       return []
     },
+    homeNews: state => {
+      if (state && state.home && state.home.news) {
+        return state.home.news
+      }
+      return []
+    },
     gotNotifications: state => {
       return state.notifications
     },
