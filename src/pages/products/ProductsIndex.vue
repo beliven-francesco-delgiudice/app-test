@@ -5,7 +5,7 @@
         v-for="(segment, i) in segments"
         :key="i"
         @click="routeToSegment(segment)"
-        class="w-1/2 pt-20 mt-8"
+        class="w-1/2 pt-10 mt-8"
       >
         <grey-container
           vertical
