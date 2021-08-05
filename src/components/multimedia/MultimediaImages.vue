@@ -14,7 +14,6 @@
     </div>
     <image-modal
       :open="isOpenImage"
-      :image="image"
       :gallery="bigGallery"
       @onClose="closeImage"
     />
