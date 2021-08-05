@@ -21,20 +21,30 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.getcapacitor.capacitor</string>
+			<string>com.limacorporate</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>capacitor</string>
+				<string>limapp</string>
 			</array>
 		</dict>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>CFBundleURLName</key>
+			<string>com.limacorporate</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>limapp</string>
 			</array>
 		</dict>
 	</array>
+  <key>LSApplicationQueriesSchemes</key>
+  <array>
+      <string>limapp</string>
+  </array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
