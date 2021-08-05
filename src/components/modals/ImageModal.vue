@@ -3,7 +3,7 @@
     animated
     showBackdrop
     css-class="custom-modal"
-    :is-open="isOpened"
+    :is-open="computedOpen"
     @didDismiss="$emit('onClose')"
   >
     <div
@@ -19,7 +19,7 @@
           class="relative mr-auto my-auto back-button"
           @click="closeImage"
         >
-          <ion-img
+          <img
             src="/assets/button-icons/close-white.svg"
             className="pointer-events-none"
           />
@@ -27,34 +27,45 @@
       </div>
       <ion-img
         v-if="updatedGallery.length === 1"
-        :src="imgSrc"
+        :src="updatedGallery[0]"
         class="w-full my-auto"
       />
-      <ion-slides v-else ref="slides">
+      <ion-slides v-else ref="slides" :options="options">
         <ion-slide v-for="(slide, i) in updatedGallery" :key="i">
-          <ion-img :src="slide" class="w-full my-auto" />
+          <div class="flex w-full h-full">
+            <img :src="slide" class="w-full mx-auto my-auto" />
+          </div>
         </ion-slide>
       </ion-slides>
     </div>
   </ion-modal>
 </template>
 <script>
-import { IonImg, IonModal, IonSlides, IonSlide } from '@ionic/vue'
+import { IonImg, IonModal, IonSlides, IonSlide, IonButton } from '@ionic/vue'
+import { ref } from '@vue/reactivity'
 export default {
   components: {
     IonImg,
     IonModal,
     IonSlides,
-    IonSlide
+    IonSlide,
+    IonButton
   },
   props: {
     open: Boolean,
     image: Number,
-    gallery: Array
+    gallery: Array,
+    index: Number
   },
   data () {
     return {
-      isOpened: false
+      reffino: null,
+      options: {
+        initialSlide: 0,
+        slidesPerView: 1,
+        centeredSlides: true,
+        freeMode: false
+      }
     }
   },
   methods: {
@@ -63,8 +74,8 @@ export default {
     }
   },
   computed: {
-    imgSrc () {
-      return this.image
+    computedOpen () {
+      return this.open
     },
     updatedGallery () {
       if (this.gallery && this.gallery.length) {
@@ -83,12 +94,27 @@ export default {
       return []
     }
   },
+  mounted () {
+    this.$loading.show()
+    this.reffino = ref(null)
+    this.$nextTick(() => {
+      this.$loading.hide()
+    })
+  },
   watch: {
-    open: function (newValue) {
-      this.isOpened = newValue
-      if (this.image) {
-        this.$refs.slides.slideTo(this.image)
+    open: function () {
+      if (this.index) {
+        this.options.initialSlide = this.index
+        if (this.$refs && this.$refs.slides) {
+          this.$refs.slides.slideTo(this.index)
+        }
       }
+    },
+    'this.$refs': function (newV) {
+      console.log('refs', newV)
+    },
+    reffino: function (v) {
+      console.log('reffino', v)
     }
   }
 }
