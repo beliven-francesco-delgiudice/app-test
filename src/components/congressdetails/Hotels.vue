@@ -54,8 +54,8 @@
               >{{ updatedHotel.checkin_date }}</span
             >
             <span class="font-helvetica text-14 text-red spacing-2 line-24"
-              >{{ updatedHotel.checkin_time }} UTC</span
-            >
+              >{{ updatedHotel.checkin_time }}
+            </span>
           </div>
           <div class="flex flex-col">
             <span
@@ -71,8 +71,8 @@
               >{{ updatedHotel.checkout_date }}</span
             >
             <span class="font-helvetica text-14 text-red spacing-2 line-24"
-              >{{ updatedHotel.checkout_time }} UTC</span
-            >
+              >{{ updatedHotel.checkout_time }}
+            </span>
           </div>
         </div>
         <big-button label="Save in calendar" />
@@ -107,7 +107,7 @@
             <span class="font-helvetica text-14 text-red spacing-2 line-24"
               >{{
                 updatedTransfer.transfer_time
-                  ? `${updatedTransfer.transfer_time} UTC`
+                  ? `${updatedTransfer.transfer_time} `
                   : ''
               }}
             </span>
@@ -127,7 +127,7 @@
             >
             <span class="font-helvetica text-14 text-red spacing-2 line-24">{{
               updatedTransfer.transfer_return_time
-                ? `${updatedTransfer.transfer_return_time} UTC`
+                ? `${updatedTransfer.transfer_return_time} `
                 : ''
             }}</span>
           </div>

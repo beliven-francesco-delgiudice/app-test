@@ -31,8 +31,8 @@
               >{{ updatedCongress.first_date }}</span
             >
             <span class="font-helvetica text-14 text-red spacing-2 line-24"
-              >{{ updatedCongress.first_date_time }} UTC</span
-            >
+              >{{ updatedCongress.first_date_time }}
+            </span>
           </div>
           <div class="flex flex-col">
             <span
@@ -44,8 +44,8 @@
               >{{ updatedCongress.last_date }}</span
             >
             <span class="font-helvetica text-14 text-red spacing-2 line-24"
-              >{{ updatedCongress.last_date_time }} UTC</span
-            >
+              >{{ updatedCongress.last_date_time }}
+            </span>
           </div>
         </div>
         <big-button

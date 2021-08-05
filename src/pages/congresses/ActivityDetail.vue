@@ -45,8 +45,8 @@
               >{{ updatedActivity.start_date_date }}</span
             >
             <span class="font-helvetica text-14 text-red spacing-2 line-24"
-              >{{ updatedActivity.start_date_time }} UTC</span
-            >
+              >{{ updatedActivity.start_date_time }}
+            </span>
           </div>
           <div class="flex flex-col">
             <span
@@ -58,8 +58,8 @@
               >{{ updatedActivity.end_date_date }}</span
             >
             <span class="font-helvetica text-14 text-red spacing-2 line-24"
-              >{{ updatedActivity.end_date_time }} UTC</span
-            >
+              >{{ updatedActivity.end_date_time }}
+            </span>
           </div>
         </div>
         <big-button

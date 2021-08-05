@@ -22,7 +22,10 @@
       <!-- back button -->
       <ion-button
         type="button"
-        class="relative mr-auto my-auto back-button"
+        :class="[
+          isIos ? 'mb-auto' : 'my-auto',
+          ' relative mr-auto my-auto back-button'
+        ]"
         v-if="back"
         @click="onBack"
       >
@@ -36,7 +39,7 @@
       <shadow-button
         square
         styles="position:relative;"
-        bgClass="bg-white ml-auto my-auto"
+        :bgClass="[isIos ? 'mb-auto' : 'my-auto', ' bg-white ml-auto']"
         v-if="info"
         @onClick="routeToWizard"
       >
@@ -50,7 +53,7 @@
       <shadow-button
         square
         styles="position:relative;"
-        bgClass="bg-white ml-auto my-auto"
+        :bgClass="[isIos ? 'mb-auto' : 'my-auto', ' bg-white ml-auto']"
         v-if="mail"
       >
         <a
@@ -68,7 +71,7 @@
       <shadow-button
         square
         styles="position:relative;"
-        bgClass="bg-white ml-auto my-auto"
+        :bgClass="[isIos ? 'mb-auto' : 'my-auto', ' bg-white ml-auto']"
         v-if="filters"
         @onClick="openFilters"
       >
