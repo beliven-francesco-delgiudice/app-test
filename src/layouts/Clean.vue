@@ -1,6 +1,11 @@
 <template>
   <ion-page :style="isApp ? '' : 'max-width:600px; margin:auto;'">
-    <ion-content :fullscreen="true" id="content">
+    <ion-content
+      id="content"
+      :fullscreen="true"
+      :forceOverscroll="true"
+      :scroll-x="true"
+    >
       <div id="container">
         <router-view />
       </div>

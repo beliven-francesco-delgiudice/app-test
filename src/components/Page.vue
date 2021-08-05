@@ -3,7 +3,7 @@
     :class="[
       withMargin ? 'px-8' : '',
       noTopSpace ? '' : 'pt-20',
-      'min-h-screen gradient-background relative max-h-screen overflow-y-auto pb-24'
+      'min-h-screen gradient-background relative pb-24'
     ]"
   >
     <filters-modal
