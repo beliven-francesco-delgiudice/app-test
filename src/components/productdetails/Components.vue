@@ -3,6 +3,7 @@
     section="components"
     :title="updatedProduct.name"
     :productID="$route.params.id"
+    :parentID="updatedProduct.parent_id"
   >
     <accordions-list classes="mt-4 px-8" :list="updatedProduct.components">
       <template v-slot="{ item }">

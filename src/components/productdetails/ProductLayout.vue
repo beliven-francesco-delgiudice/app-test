@@ -1,5 +1,5 @@
 <template>
-  <Page :label="title" back>
+  <Page :label="title" :back="backLink">
     <carousel classes="pt-4 -my-4 pb-8">
       <section-button
         v-for="(theSection, i) in sections"
@@ -27,7 +27,8 @@ export default {
   props: {
     title: String,
     productID: [Number, String],
-    section: String
+    section: String,
+    parentID: [Number, String]
   },
   data () {
     return {
@@ -45,6 +46,11 @@ export default {
           path: 'documents'
         }
       ]
+    }
+  },
+  computed: {
+    backLink () {
+      return `/products/category/${this.parentID}`
     }
   },
   methods: {

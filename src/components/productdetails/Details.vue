@@ -3,6 +3,7 @@
     section="details"
     :title="updatedProduct.name"
     :productID="$route.params.id"
+    :parentID="updatedProduct.parent_id"
   >
     <image-gallery :gallery="updatedProduct.images" />
     <detail-section label="Description">

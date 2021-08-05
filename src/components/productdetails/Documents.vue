@@ -3,6 +3,7 @@
     section="documents"
     :title="updatedProduct.name"
     :productID="$route.params.id"
+    :parentID="updatedProduct.parent_id"
   >
     <accordions-list classes="mt-4 px-8" :list="computedAttachments">
       <template v-slot="{ item }">
