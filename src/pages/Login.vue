@@ -172,10 +172,10 @@ export default {
       // user is already logged in
       this.$store.dispatch('alreadyLoggedRouting')
     }
-    if (this.$route.params.token && Capacitor.getPlatform() === 'web') {
-      window.azureToken = this.$route.params.token
-      console.log('received token:', this.$route.params.token)
-      window.localStorage.setItem('JWT', this.$route.params.token)
+    if (this.$route.query.token && Capacitor.getPlatform() === 'web') {
+      window.azureToken = this.$route.query.token
+      console.log('received token:', this.$route.query.token)
+      window.localStorage.setItem('JWT', this.$route.query.token)
       this.$store.dispatch('loginWithToken')
     }
   },
