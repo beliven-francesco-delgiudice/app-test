@@ -23,13 +23,15 @@
         class="font-helvetica-medium text-16 spacing-4 line-24 text-dark-grey mb-4"
         >{{ updatedActivity.subtitle2 }}
       </span>
-      <span class="font-helvetica text-14 text-grey spacing-44 line-20"
-        >Location</span
-      >
-      <span
-        class="font-helvetica text-16 text-mid-dark-grey spacing-2 line-26 mb-8"
-        >{{ updatedActivity.location }}</span
-      >
+      <div v-if="updatedActivity.location" class="flex flex-col">
+        <span class="font-helvetica text-14 text-grey spacing-44 line-20"
+          >Location</span
+        >
+        <span
+          class="font-helvetica text-16 text-mid-dark-grey spacing-2 line-26 mb-8"
+          >{{ updatedActivity.location }}</span
+        >
+      </div>
 
       <div class="flex flex-col bg-light-red rounded-12 p-6">
         <div class="flex justify-between items-start mb-4">
@@ -82,7 +84,11 @@
         />
       </div>
     </detail-section>
-    <detail-section label="Faculties" noPadding>
+    <detail-section
+      v-if="updatedActivity.experts && updatedActivity.experts.length"
+      label="Faculties"
+      noPadding
+    >
       <div
         :key="i"
         v-for="(faculty, i) in updatedActivity.experts"
@@ -109,10 +115,14 @@
         </div>
       </div>
     </detail-section>
-    <detail-section label="Download" noPadding>
+    <detail-section
+      v-if="updatedActivity.files && updatedActivity.files.length"
+      label="Download"
+      noPadding
+    >
       <document-list-item
         bgClass="bg-transparent"
-        v-for="(file, j) in files"
+        v-for="(file, j) in updatedActivity.files"
         :key="j"
         :document="file"
       />
@@ -149,25 +159,7 @@ export default {
     return {
       isReadMore: false,
       faculty: null,
-      activity: {
-        id: 1,
-        parent_id: 1,
-        type: '',
-        title: 'Activity',
-        subtitle1: '',
-        subtitle2: '',
-        location: '',
-        description: '',
-        preview: '',
-        experts: [],
-        description_short: '',
-        start_date_time: '',
-        start_date_date: '',
-        end_date_time: '',
-        end_date_date: '',
-        save_event: '',
-        files: []
-      }
+      activity: {}
     }
   },
   computed: {
@@ -178,7 +170,7 @@ export default {
       return this.isReadMore
     },
     aboveTitle () {
-      return this.updatedActivity.type + ' /'
+      return this.updatedActivity.parent_name + ' /'
     },
     formattedDescription () {
       if (this.updatedReadMore) {
@@ -217,9 +209,10 @@ export default {
           url: urls.congresses.activity + '/' + activityID,
           params: {}
         })
-        if (this.results && Object.keys(this.results).length) {
+        if (results && Object.keys(results).length) {
           this.activity = results
         }
+        console.log(results)
       } catch (e) {
         console.error(e)
         this.$toast({
