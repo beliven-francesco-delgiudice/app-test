@@ -29,6 +29,7 @@
   </carousel>
   <image-modal
     :open="isOpenImage"
+    :index="index"
     :gallery="updatedGallery"
     @onClose="closeImage"
   />
@@ -49,7 +50,8 @@ export default {
   },
   data () {
     return {
-      isOpenImage: false
+      isOpenImage: false,
+      index: 0
     }
   },
   computed: {
@@ -75,9 +77,11 @@ export default {
   },
   methods: {
     openImage (i) {
+      this.index = i
       this.isOpenImage = true
     },
     closeImage () {
+      this.index = 0
       this.isOpenImage = false
     }
   }
