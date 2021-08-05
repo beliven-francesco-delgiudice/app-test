@@ -99,13 +99,26 @@
     </detail-section>
     <detail-section label="Lima Booth">
       <image-gallery
+        v-if="
+          updatedCongress.lima_booth &&
+            updatedCongress.lima_booth.gallery &&
+            updatedCongress.lima_booth.gallery.length
+        "
         :gallery="
           updatedCongress.lima_booth && updatedCongress.lima_booth.gallery
             ? updatedCongress.lima_booth.gallery
             : []
         "
       />
-      <div class="mt-8">
+      <div
+        :class="
+          updatedCongress.lima_booth &&
+          updatedCongress.lima_booth.gallery &&
+          updatedCongress.lima_booth.gallery.length
+            ? 'mt-8'
+            : ''
+        "
+      >
         <p
           class="px-8 font-helvetica text-mid-dark-grey text-16 spacing-1 line-24 mb-4 mt-0"
           v-html="formattedDescriptionBooth"
