@@ -1,6 +1,30 @@
 <template>
   <div class="flex flex-col mx-8">
-    <detail-section noPadding label="Congress">
+    <detail-section noPadding label="Main Contact">
+      <div class="relative flex mb-4">
+        <square-container
+          bgClass="bg-black"
+          squareSize="44"
+          classes="pointer-events-none flex"
+        >
+          <ion-img
+            src="/assets/button-icons/open-link-white.svg"
+            class="m-auto"
+          />
+        </square-container>
+        <div
+          class="ml-4 flex flex-col justify-between items-start pointer-events-none"
+        >
+          <span
+            class="font-helvetica-medium text-16 text-black spacing-5 line-28"
+            >{{ updatedCongress.name }}</span
+          >
+          <span class="font-helvetica text-14 text-grey spacing-44 line-24">
+            Name
+          </span>
+        </div>
+      </div>
+
       <div class="relative flex mb-4">
         <a
           :href="'tel:' + updatedCongress.phone"
@@ -29,7 +53,7 @@
 
       <div class="relative flex mb-4">
         <a
-          :href="'mailto:' + updatedCongress.mail"
+          :href="'mailto:' + updatedCongress.email"
           title="mail to"
           class="absolute top-0 left-0 w-full h-full"
         ></a>
@@ -53,7 +77,7 @@
         </div>
       </div>
 
-      <div
+      <!-- <div
         @click="openLink(updatedCongress.website)"
         class="relative flex mb-4"
       >
@@ -78,7 +102,7 @@
             Website
           </span>
         </div>
-      </div>
+      </div> -->
     </detail-section>
     <detail-section noPadding label="Congress Venue">
       <p
