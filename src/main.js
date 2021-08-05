@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import { App as CapacitorApp } from '@capacitor/app'
 import router from './router'
 import config from './config'
 
@@ -52,16 +53,20 @@ import $onesignal from '@/plugins/onesignal-native'
 // import $backgroundmode from '@/plugins/backgroundmode'
 import { Capacitor } from '@capacitor/core'
 
+function getTokenFromURL (url = '') {
+  if (url) {
+    const token = url.split('token=')[1].split('#')[0]
+    window.azureToken = token
+    console.log('received url: ' + url, token)
+    window.localStorage.setItem('JWT', token)
+  }
+}
+
 async function init () {
   await SplashScreen.show()
 
   window.handleOpenURL = function (url) {
-    if (url) {
-      const token = url.split('token=')[1].split('#')[0]
-      window.azureToken = token
-      console.log('received url: ' + url, token)
-      window.localStorage.setItem('JWT', token)
-    }
+    getTokenFromURL(url)
   }
 
   const app = createApp(App)
@@ -112,3 +117,10 @@ async function init () {
 }
 
 init()
+
+CapacitorApp.addListener('appUrlOpen', data => {
+  const { url } = data
+  if (url) {
+    getTokenFromURL(url)
+  }
+})
