@@ -5,7 +5,7 @@
  */
 export async function onOnesignalPermissionChange (plugins, permissionChange) {
   const currentPermission = permissionChange.to
-  console.log('New permission state:', currentPermission)
+  // console.log('New permission state:', currentPermission)
 
   await plugins.$store.dispatch('newNotificationsState', currentPermission)
 }
@@ -69,7 +69,7 @@ export async function onOnesignalNotificationOpened (plugins, e) {
  * @param {*} e Raw event
  */
 export async function onAppForeground (plugins, e) {
-  // console.log('App foreground: ', e)
+  console.log('App foreground: ', plugins, e)
 
   if (
     e.isActive === true &&

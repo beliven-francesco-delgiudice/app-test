@@ -318,7 +318,6 @@ router.beforeEach((to, from, next) => {
   ) {
     masterStore.dispatch('logout')
   }
-  // console.log(from, to)
   next()
 })
 

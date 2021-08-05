@@ -171,14 +171,12 @@ export default {
     }
   },
   created () {
-    console.log(this.$route.query.token)
     if (this.$store.getters.loggedIn && Capacitor.getPlatform() !== 'web') {
       // user is already logged in
       this.$store.dispatch('alreadyLoggedRouting')
     }
     if (this.$route.query.token && Capacitor.getPlatform() === 'web') {
       window.azureToken = this.$route.query.token
-      console.log('received token:', this.$route.query.token)
       window.localStorage.setItem('JWT', this.$route.query.token)
       this.$store.dispatch('loginWithToken')
     }
@@ -228,7 +226,7 @@ export default {
   },
   watch: {
     'this.$route.query': function (val) {
-      console.log(val)
+      console.debug('QUERY', val)
     }
   }
 }

@@ -70,7 +70,6 @@ export default {
     }
   },
   created () {
-    console.log('cfeated')
     this.getMultimedia()
   },
   methods: {
@@ -82,7 +81,6 @@ export default {
       this.filters = Object.assign({}, filterObj)
     },
     async getMultimedia () {
-      console.log('cane')
       try {
         const results = await this.$http({
           method: 'GET',

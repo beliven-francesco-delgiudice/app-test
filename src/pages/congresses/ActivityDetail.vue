@@ -212,7 +212,6 @@ export default {
         if (results && Object.keys(results).length) {
           this.activity = results
         }
-        console.log(results)
       } catch (e) {
         console.error(e)
         this.$toast({

@@ -111,7 +111,7 @@ export default {
                     this.updatedDocument.title
                   )
                 } catch (e) {
-                  console.log(e)
+                  console.error(e)
                   this.$toast({
                     message: 'Cannot open document',
                     color: 'danger'
@@ -161,7 +161,7 @@ export default {
       })
       await actionMenu.present()
       const { role } = await actionMenu.onDidDismiss()
-      console.log('onDidDismiss resolved with role', role)
+      console.debug('onDidDismiss resolved with role', role)
     }
   }
 }

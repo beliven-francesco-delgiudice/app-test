@@ -110,12 +110,8 @@ export default {
         }
       }
     },
-    'this.$refs': function (newV) {
-      console.log('refs', newV)
-    },
-    reffino: function (v) {
-      console.log('reffino', v)
-    }
+    'this.$refs': function () {},
+    reffino: function () {}
   }
 }
 </script>

@@ -196,7 +196,6 @@ export default {
   watch: {
     open: function (newValue) {
       const filterObj = Object.assign({}, this.filtersState)
-      console.log(filterObj, this.filtersOptions)
       this.filters = filterObj
       this.isOpened = newValue
     }

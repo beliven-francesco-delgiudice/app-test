@@ -71,8 +71,6 @@ const master = {
     setNotificationsAllowState (store, subscriptionData) {
       let confirmed = 'no'
 
-      console.log('Notification state: ', subscriptionData)
-
       const hasPermissions =
         subscriptionData &&
         subscriptionData.hasPrompted === true &&

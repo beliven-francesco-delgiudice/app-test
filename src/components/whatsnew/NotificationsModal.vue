@@ -134,7 +134,6 @@ export default {
     }
   },
   created () {
-    console.log('id', this.notificationID)
     if (this.notificationID) {
       this.getNotification()
     }
@@ -148,7 +147,6 @@ export default {
       }
     },
     notificationID: function (newValue) {
-      console.log('value', newValue)
       if (newValue) {
         this.isOpened = true
         this.getNotification()

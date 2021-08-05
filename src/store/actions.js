@@ -11,7 +11,6 @@ function resolveRouting (
   if (needOnboarding) {
     app.$router.push('/onboarding')
   } else if (isUpdateToShow) {
-    console.log(isUpdateToShow)
     app.$router.push('/new/update/' + isUpdateToShow)
   } else if (isNotificationToShow) {
     const path = isNotificationToShow
@@ -29,7 +28,7 @@ export async function alreadyLoggedRouting (context) {
       await context.dispatch('syncOneSignal', context)
     }
   } catch (e) {
-    console.log(e)
+    console.error(e)
   }
 
   resolveRouting(
@@ -72,7 +71,7 @@ export async function login (context, data) {
         await context.dispatch('syncOneSignal', context)
       }
     } catch (e) {
-      console.log(e)
+      console.error(e)
     }
 
     // Check OneSignal permissions status
@@ -120,7 +119,6 @@ export async function loginWithToken (context) {
     const userData = Object.assign({}, loggedData.user)
 
     context.commit('setUserData', userData)
-    console.log('Logged in, user data: ', userData)
 
     window.localStorage.setItem('JWT', loggedData.jwt)
 
@@ -131,7 +129,7 @@ export async function loginWithToken (context) {
         await context.dispatch('syncOneSignal', context)
       }
     } catch (e) {
-      console.log(e)
+      console.error(e)
     }
 
     // Check OneSignal permissions status
@@ -178,7 +176,7 @@ export async function syncOneSignal (context) {
 
     context.commit('setAppUpdates', oneSignalData.update_id)
   } catch (e) {
-    console.log(e)
+    console.error(e)
     this.$app.$toast({
       message: messages.errors.appUpdates,
       color: 'danger'
@@ -295,7 +293,6 @@ export async function getHome (context) {
     })
     news = newsList
   } catch (e) {
-    console.log(e)
     this.$app.$toast({
       message: messages.errors.home,
       color: 'danger'
