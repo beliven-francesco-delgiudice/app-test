@@ -13,7 +13,10 @@
       <ion-button
         v-if="backAction"
         type="button"
-        class="relative mr-auto my-auto back-button"
+        :class="[
+          isIos ? 'mb-auto' : 'my-auto',
+          ' relative mr-auto my-auto back-button'
+        ]"
         @click="onBack"
       >
         <ion-img
@@ -126,7 +129,7 @@
 
 <script>
 import { IonInput, IonImg, IonButton } from '@ionic/vue'
-import { Browser } from '@capacitor/browser'
+// import { Browser } from '@capacitor/browser'
 import Title from '../components/Title.vue'
 import BigButton from '../components/containers/BigButton.vue'
 import messages from '@/messages'
@@ -168,6 +171,7 @@ export default {
     }
   },
   created () {
+    console.log(this.$route.query.token)
     if (this.$store.getters.loggedIn && Capacitor.getPlatform() !== 'web') {
       // user is already logged in
       this.$store.dispatch('alreadyLoggedRouting')
@@ -192,7 +196,8 @@ export default {
     async loginWithAzure () {
       const mode = config.mode
       const url = urls.baseUrl[mode] + urls.auth.azureLogin
-      await Browser.open({ url })
+      // await Browser.open({ url })
+      window.open(url, '_system')
     },
     async next () {
       if (this.email && this.email.length) {
@@ -219,6 +224,11 @@ export default {
           color: 'danger'
         })
       }
+    }
+  },
+  watch: {
+    'this.$route.query': function (val) {
+      console.log(val)
     }
   }
 }
