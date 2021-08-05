@@ -106,19 +106,22 @@
                   rounded="12"
                   classes="mr-4 overflow-hidden"
                 >
-                  <ion-img :src="item.image" class="h-full w-auto" />
+                  <ion-img :src="item.preview" class="h-full w-auto" />
                 </square-container>
                 <div class="flex flex-col justify-between py-2">
                   <span
                     class="font-helvetica-medium text-black text-16 spacing-5 line-28"
-                    >{{ item.title }}
+                    >{{ item.name }}
                   </span>
                   <span
                     class="font-helvetica text-grey text-14 spacing-44 line-24"
                   >
-                    {{ item.location }}
+                    {{ item.subtitle }}
                   </span>
-                  <div class="bg-light-red rounded-6 px-2 mr-auto">
+                  <div
+                    v-if="item.date"
+                    class="bg-light-red rounded-6 px-2 mr-auto"
+                  >
                     <span
                       class="font-helvetica-medium text-12 text-red spacing-8 line-30 pointer-events-none"
                       >{{ item.date }}
