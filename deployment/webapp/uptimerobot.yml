@@ -14,4 +14,4 @@ uptimerobot:
       -d "api_key=${UPTIMEROBOT_API_KEY}&format=json&type=1&url=https://${DOMAIN}&friendly_name=${UPTIMEROBOT_BASE_NAME}-dashboard&interval=${UPTIMEROBOT_DEFAULT_INTERVAL}&alert_contacts=${UPTIMEROBOT_SLACK_ALERTS_CONTACT_ID}_${UPTIMEROBOT_DEFAULT_THRESHOLD}_${UPTIMEROBOT_DEFAULT_RECURRENCE}"
       "https://api.uptimerobot.com/v2/newMonitor"'
   rules:
-    - if: '$CI_COMMIT_BRANCH == "master"'
+    - if: $CI_COMMIT_TAG
