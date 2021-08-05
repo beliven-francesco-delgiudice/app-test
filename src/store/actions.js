@@ -62,7 +62,6 @@ export async function login (context, data) {
     const userData = Object.assign({}, loggedData.user)
 
     context.commit('setUserData', userData)
-    console.log('Logged in, user data: ', userData)
 
     window.localStorage.setItem('JWT', loggedData.jwt)
 
