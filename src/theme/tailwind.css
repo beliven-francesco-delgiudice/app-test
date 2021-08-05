@@ -8,6 +8,7 @@
 }
 .bg-light-grey {
   background: #F5F4F4;
+  --background: #F5F4F4;
 }
 .bg-light-grey2 {
   background: #F7F6F6;
@@ -242,10 +243,6 @@
 }
 .max-h-screen {
   max-height: 100vh;
-}
-
-.border-none {
-  border: none
 }
 
 .transition-all	{
@@ -506,16 +503,20 @@
   margin-bottom: -0.5rem;
 }
 
+.border {
+  border: 1px solid;
+}
 .border-t {
   border-top: 1px solid;
 }
-
 .border-b {
   border-bottom: 1px solid;
 }
-
 .border-l {
   border-left: 1px solid;
+}
+.border-none {
+  border: none
 }
 
 .border-black {
@@ -605,8 +606,13 @@
 .uppercase	{
   text-transform: uppercase;
 }
+
 .blend-mode-darken {
   mix-blend-mode: darken;
+}
+
+.rotate-180 {
+  transform: rotate(180deg);
 }
 
 .z-0 {

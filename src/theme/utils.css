@@ -8,6 +8,10 @@ p {
   margin-block-end: 0;
 }
 
+.ion-activated {
+  --ripple-color: transparent;
+}
+
 .main-layout ion-tabs > .tabs-inner:first-child {
   display: none !important;
 }
@@ -40,7 +44,6 @@ p {
     --height:100%;
   }
 }
-
 ::-webkit-scrollbar,
 *::-webkit-scrollbar {
   display: none;
