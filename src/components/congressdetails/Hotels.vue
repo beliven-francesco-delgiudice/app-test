@@ -40,7 +40,7 @@
       </div>
 
       <div class="flex flex-col bg-light-red rounded-12 p-6 mx-8">
-        <div class="flex justify-between items-start mb-4">
+        <div class="flex justify-between items-start">
           <div class="flex flex-col">
             <span
               class="font-helvetica text-14 text-grey spacing-44 line-28 mb-2"
@@ -60,7 +60,7 @@
           </div>
           <div class="flex flex-col">
             <span
-              class="font-helvetica text-14 text-grey spacing-44 line-28 mob-2"
+              class="font-helvetica text-14 text-grey spacing-44 line-28 mb-2"
               >Check-out</span
             >
             <!-- <span
@@ -95,7 +95,7 @@
       v-if="
         (updatedTransfer &&
           updatedTransfer.transfer_date &&
-            updatedTransfer.transfer_return_date) ||
+          updatedTransfer.transfer_return_date) ||
           transferDescription
       "
       label="Transfer"
@@ -113,49 +113,52 @@
               class="font-helvetica text-14 text-grey spacing-44 line-28 mb-2"
               >Check-in</span
             >
-            <!-- <span
+            <span
               class="font-helvetica text-12 text-grey spacing-44 line-28 mb-2"
               >From</span
-            > -->
+            >
             <span
               class="font-helvetica-medium text-16 text-red spacing-23 line-24 mb-2"
               >{{ updatedTransfer.transfer_date }}</span
             >
-            <!-- <span class="font-helvetica text-14 text-red spacing-2 line-24"
+            <span class="font-helvetica text-14 text-red spacing-2 line-24"
               >{{
                 updatedTransfer.transfer_time
                   ? `${updatedTransfer.transfer_time} `
                   : ''
               }}
-            </span> -->
+            </span>
           </div>
           <div class="flex flex-col">
             <span
               class="font-helvetica text-14 text-grey spacing-44 line-28 mb-2"
               >Check-out</span
             >
-            <!-- <span
+            <span
               class="font-helvetica text-12 text-grey spacing-44 line-28 mb-2"
               >Until</span
-            > -->
+            >
             <span
               class="font-helvetica-medium text-16 text-red spacing-23 line-24 mb-2"
               >{{ updatedTransfer.transfer_return_date }}</span
             >
-            <!-- <span class="font-helvetica text-14 text-red spacing-2 line-24">{{
+            <span class="font-helvetica text-14 text-red spacing-2 line-24">{{
               updatedTransfer.transfer_return_time
                 ? `${updatedTransfer.transfer_return_time} `
                 : ''
-            }}</span> -->
+            }}</span>
           </div>
         </div>
-        <!-- <big-button label="Save in calendar" /> -->
+        <big-button label="Save in calendar" @onClick="saveEvent('transfer')" />
       </div>
       <p
         class="px-8 font-helvetica text-mid-dark-grey text-16 spacing-1 line-24 mb-4 mt-0"
         v-html="transferDescription"
       />
-      <div class="mx-8 flex justify-start">
+      <div
+        v-if="transferDescription && transferDescription.length"
+        class="mx-8 flex justify-start"
+      >
         <section-button
           :label="updatedReadMore.transfer ? 'Read less' : 'Read more'"
           @onClick="readMore('transfer')"
@@ -168,14 +171,14 @@
 import SectionButton from '../containers/SectionButton.vue'
 import DetailSection from '../DetailSection.vue'
 import { IonImg } from '@ionic/vue'
-// import BigButton from '../containers/BigButton.vue'
+import BigButton from '../containers/BigButton.vue'
 import SquareContainer from '../containers/SquareContainer.vue'
 export default {
   components: {
     SectionButton,
     DetailSection,
     IonImg,
-    // BigButton,
+    BigButton,
     SquareContainer
   },
   props: {
@@ -227,6 +230,13 @@ export default {
       const obj = Object.assign({}, this.isReadMore)
       obj[param] = !obj[param]
       this.isReadMore = obj
+    },
+    saveEvent (string) {
+      if (string === 'transfer') {
+        window.open(this.updatedTransfer.save_event)
+      } else {
+        window.open(this.updatedHotel.save_event)
+      }
     }
   }
 }
