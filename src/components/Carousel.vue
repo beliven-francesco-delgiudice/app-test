@@ -1,7 +1,6 @@
 <template>
   <div class="relative">
-    <ion-scroll
-      :scrollX="true"
+    <div
       :class="[
         height || '',
         classes || '',
@@ -9,16 +8,13 @@
       ]"
     >
       <slot></slot>
-    </ion-scroll>
+    </div>
   </div>
 </template>
 
 <script>
-import { IonScroll } from '@ionic/vue'
 export default {
-  components: {
-    IonScroll
-  },
+  components: {},
   props: {
     height: [Number, String],
     classes: [String, Array]
