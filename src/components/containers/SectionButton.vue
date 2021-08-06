@@ -16,6 +16,7 @@
 <script>
 export default {
   components: {},
+  emits: ['onClick'],
   props: {
     classes: [String, Array],
     active: Boolean,

@@ -42,7 +42,6 @@
 </template>
 <script>
 import { IonImg, IonModal, IonSlides, IonSlide, IonButton } from '@ionic/vue'
-import { ref } from '@vue/reactivity'
 export default {
   components: {
     IonImg,
@@ -93,13 +92,6 @@ export default {
       }
       return []
     }
-  },
-  mounted () {
-    this.$loading.show()
-    this.reffino = ref(null)
-    this.$nextTick(() => {
-      this.$loading.hide()
-    })
   },
   watch: {
     open: function () {

@@ -44,14 +44,15 @@
 </template>
 <script>
 import Title from '../Title.vue'
-import { IonImg, IonModal } from '@ionic/vue'
+import { IonImg, IonModal, IonButton } from '@ionic/vue'
 import SquareContainer from '../containers/SquareContainer.vue'
 export default {
   components: {
     Title,
     IonImg,
     IonModal,
-    SquareContainer
+    SquareContainer,
+    IonButton
   },
   props: {
     faculty: Object
