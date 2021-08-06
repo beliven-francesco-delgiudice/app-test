@@ -20,6 +20,12 @@ export default {
         }
         if (index === 0 && loading) {
           await loading.dismiss()
+
+          setTimeout(async () => {
+            if (loading) {
+              await loading.dismiss()
+            }
+          }, 1500)
         }
       }
     }
