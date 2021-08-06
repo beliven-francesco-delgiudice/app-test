@@ -6,7 +6,7 @@
       class="bg-transparent flex px-8 z-10"
       :style="
         isIos
-          ? 'margin-top:35px;height:90px;min-height:90px;'
+          ? 'margin-top:35px;height:70px;min-height:70px;'
           : 'height:90px;min-height:90px;'
       "
     >

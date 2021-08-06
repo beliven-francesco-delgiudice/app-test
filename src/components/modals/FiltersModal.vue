@@ -9,7 +9,11 @@
     <div class="w-full h-full relative pt-20 gradient-background">
       <div
         class="bg-transparent absolute top-0 left-0 flex px-8 w-full z-10"
-        style="height:90px"
+        :style="
+          isIos
+            ? 'margin-top:35px;height:70px;min-height:70px;'
+            : 'height:90px;min-height:90px;'
+        "
       >
         <!-- close button -->
         <ion-button
@@ -140,6 +144,7 @@ import BigButton from '../containers/BigButton.vue'
 import { IonImg, IonModal } from '@ionic/vue'
 import CustomSelect from '../CustomSelect.vue'
 import filtersJson from '@/filtersJson'
+import { Capacitor } from '@capacitor/core'
 export default {
   components: {
     Title,
@@ -160,6 +165,16 @@ export default {
     }
   },
   computed: {
+    isIos () {
+      if (
+        Capacitor &&
+        Capacitor.getPlatform() &&
+        Capacitor.getPlatform() === 'ios'
+      ) {
+        return true
+      }
+      return false
+    },
     computedFilters () {
       return this.filters
     },

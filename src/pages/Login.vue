@@ -8,7 +8,7 @@
     />
     <div
       class="bg-transparent absolute top-0 left-0 flex px-8 w-full z-10"
-      :style="isIos ? 'margin-top:35px;height:90px;' : 'height:90px;'"
+      :style="isIos ? 'margin-top:35px;height:70px;' : 'height:90px;'"
     >
       <ion-button
         v-if="backAction"

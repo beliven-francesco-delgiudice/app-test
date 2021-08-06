@@ -6,7 +6,7 @@
     <div class="w-full relative">
       <div
         class="bg-transparent absolute top-0 flex px-8 w-full z-10"
-        :style="isIos ? 'margin-top:35px;height:90px;' : 'height:90px;'"
+        :style="isIos ? 'margin-top:35px;height:70px;' : 'height:90px;'"
       >
         <shadow-button
           square

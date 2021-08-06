@@ -17,15 +17,12 @@
     <div
       v-if="isHeaderNecessary"
       class="bg-transparent absolute top-0 left-0 flex px-8 w-full z-10"
-      :style="isIos ? 'margin-top:35px;height:90px;' : 'height:90px;'"
+      :style="isIos ? 'margin-top:35px;height:70px;' : 'height:90px;'"
     >
       <!-- back button -->
       <ion-button
         type="button"
-        :class="[
-          isIos ? 'mb-auto' : 'my-auto',
-          ' relative mr-auto my-auto back-button'
-        ]"
+        class="relative mr-auto my-auto back-button"
         v-if="back"
         @click="onBack"
       >
@@ -39,7 +36,7 @@
       <shadow-button
         square
         styles="position:relative;"
-        :bgClass="[isIos ? 'mb-auto' : 'my-auto', ' bg-white ml-auto']"
+        bgClass="my-auto bg-white ml-auto"
         v-if="info"
         @onClick="routeToWizard"
       >
@@ -53,7 +50,7 @@
       <shadow-button
         square
         styles="position:relative;"
-        :bgClass="[isIos ? 'mb-auto' : 'my-auto', ' bg-white ml-auto']"
+        bgClass="my-auto bg-white ml-auto"
         v-if="mail"
       >
         <a
@@ -71,7 +68,7 @@
       <shadow-button
         square
         styles="position:relative;"
-        :bgClass="[isIos ? 'mb-auto' : 'my-auto', ' bg-white ml-auto']"
+        bgClass="my-auto bg-white ml-auto"
         v-if="filters"
         @onClick="openFilters"
       >
