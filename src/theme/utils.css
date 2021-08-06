@@ -80,6 +80,17 @@ ion-content {
   }
 }
 
+
+.staff > p > b,
+.staff > div > p > b {
+  padding-top: 1rem;
+  display: block;
+}
+
+p > br:only-child {
+  display: none;
+}
+
 .margin-center {
   margin: 0px auto;
 }

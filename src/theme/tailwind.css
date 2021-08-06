@@ -40,6 +40,9 @@
 .bg-cover {
   background-size: cover;
 }
+.bg-center {
+  background-position: center;
+}
 
 .text-black {
   color: #1C1C1B;
