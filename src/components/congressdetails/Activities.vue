@@ -32,17 +32,27 @@
             </square-container>
           </div>
         </div>
+        <div
+          class="flex justify-between items-center w-full pointer-events-none mt-4"
+        >
+          <big-button bgClass="bg-black " label="Read more" />
+        </div>
       </div>
     </template>
   </accordions-list>
 </template>
 <script>
+import { IonImg } from '@ionic/vue'
 import SquareContainer from '../containers/SquareContainer.vue'
 import AccordionsList from '../AccordionsList.vue'
+import BigButton from '../containers/BigButton.vue'
+
 export default {
   components: {
+    IonImg,
     AccordionsList,
-    SquareContainer
+    SquareContainer,
+    BigButton
   },
   props: {
     congress: Object

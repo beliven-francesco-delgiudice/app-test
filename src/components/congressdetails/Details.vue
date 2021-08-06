@@ -89,12 +89,12 @@
           class="px-8 font-helvetica text-mid-dark-grey text-16 spacing-1 line-24 mb-4 mt-0"
           v-html="formattedDescriptionDates"
         />
-        <div class="mx-8 flex justify-start">
+        <!-- <div class="mx-8 flex justify-start">
           <section-button
             :label="updatedReadMore.dates ? 'Read less' : 'Read more'"
             @onClick="readMore('dates')"
           />
-        </div>
+        </div> -->
       </div>
     </detail-section>
     <detail-section label="Lima Booth">
@@ -123,15 +123,12 @@
           class="px-8 font-helvetica text-mid-dark-grey text-16 spacing-1 line-24 mb-4 mt-0"
           v-html="formattedDescriptionBooth"
         />
-        <div class="mx-8 flex justify-start">
-          <section-button
-            :label="updatedReadMore.booth ? 'Read less' : 'Read more'"
-            @onClick="readMore('booth')"
-          />
-        </div>
       </div>
     </detail-section>
-    <detail-section label="Useful information">
+    <detail-section
+      v-if="formattedDescriptionInfo && formattedDescriptionInfo.length"
+      label="Useful information"
+    >
       <p
         class="px-8 font-helvetica text-mid-dark-grey text-16 spacing-1 line-24 mb-4 mt-0"
         v-html="formattedDescriptionInfo"
@@ -167,8 +164,7 @@ export default {
   data () {
     return {
       isReadMore: {
-        dates: false,
-        booth: false,
+        dates: true,
         useful: false
       },
       detailsObject: {
@@ -243,16 +239,10 @@ export default {
         : ''
     },
     formattedDescriptionBooth () {
-      if (this.updatedReadMore.booth) {
-        return this.updatedCongress.lima_booth &&
-          this.updatedCongress.lima_booth.description
-          ? this.updatedCongress.lima_booth.description
-          : ''
+      if (this.updatedCongress.lima_booth) {
+        return this.updatedCongress.lima_booth.description
       }
-      return this.updatedCongress.lima_booth &&
-        this.updatedCongress.lima_booth.description_short
-        ? this.updatedCongress.lima_booth.description_short
-        : ''
+      return ''
     },
     formattedDescriptionInfo () {
       if (this.updatedReadMore.useful) {

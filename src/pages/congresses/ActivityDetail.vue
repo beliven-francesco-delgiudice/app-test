@@ -8,7 +8,7 @@
     <div
       class="bg-white rounded-12 relative mr-4 gallery-container elevated-shadow overflow-hidden"
     >
-      <ion-img
+      <IonImg
         :src="updatedActivity.preview"
         class="h-full w-auto pointer-events-none"
       />
@@ -42,7 +42,7 @@
             >
             <span
               class="font-helvetica-medium text-16 text-red spacing-23 line-24 mb-2"
-              >{{ updatedActivity.start_date_date }}</span
+              >{{ updatedActivity.start_date }}</span
             >
             <span class="font-helvetica text-14 text-red spacing-2 line-24"
               >{{ updatedActivity.start_date_time }}
@@ -55,7 +55,7 @@
             >
             <span
               class="font-helvetica-medium text-16 text-red spacing-23 line-24 mb-2"
-              >{{ updatedActivity.end_date_date }}</span
+              >{{ updatedActivity.end_date }}</span
             >
             <span class="font-helvetica text-14 text-red spacing-2 line-24"
               >{{ updatedActivity.end_date_time }}
@@ -100,7 +100,7 @@
           squareSize="64"
           classes="mr-4 pointer-events-none"
         >
-          <ion-img :src="faculty.preview" />
+          <IonImg :src="faculty.preview" />
         </square-container>
         <div
           class="flex flex-col justify-between items-start pointer-events-none"

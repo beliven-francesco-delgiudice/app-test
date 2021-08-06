@@ -118,7 +118,7 @@
     </detail-section>
     <detail-section noPadding label="Staff" noSeparator>
       <p
-        class="font-helvetica text-16 text-mid-dark-grey spacing-1 line-24 mb-4"
+        class="font-helvetica text-16 text-mid-dark-grey spacing-1 line-24 mb-4 staff"
         v-html="updatedStaff"
       ></p>
     </detail-section>
@@ -137,6 +137,11 @@ export default {
   props: {
     congress: Object
   },
+  mounted () {
+    setTimeout(() => {
+      this.cleanParagraphs()
+    }, 500)
+  },
   computed: {
     updatedCongress () {
       if (this.congress && this.congress.content) {
@@ -147,7 +152,7 @@ export default {
     },
     updatedVenue () {
       if (this.updatedCongress && this.updatedCongress.congress_venue) {
-        return this.updatedCongress.congress_venue
+        return this.sanitizeManageText(this.updatedCongress.congress_venue)
       }
       return {}
     },
@@ -159,7 +164,7 @@ export default {
     },
     updatedStaff () {
       if (this.updatedCongress && this.updatedCongress.staff) {
-        return this.updatedCongress.staff
+        return this.sanitizeManageText(this.updatedCongress.staff)
       }
       return {}
     }

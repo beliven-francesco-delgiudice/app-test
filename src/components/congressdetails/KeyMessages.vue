@@ -31,9 +31,11 @@
   </div>
 </template>
 <script>
+import { IonImg } from '@ionic/vue'
 import ImageGallery from '../ImageGallery.vue'
 export default {
   components: {
+    IonImg,
     ImageGallery
   },
   props: {

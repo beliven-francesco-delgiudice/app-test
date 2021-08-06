@@ -1,9 +1,10 @@
 <template>
   <div class="flex flex-col">
     <div
-      class="ml-8 bg-white rounded-12 relative mr-4 gallery-container elevated-shadow overflow-hidden"
+      class="ml-8 bg-white rounded-12 relative mr-4 gallery-container elevated-shadow overflow-hidden bg-no-repeat bg-cover bg-center"
+      :style="`background-image:url('${updatedHotel.image}'`"
     >
-      <ion-img :src="updatedHotel.image" class="w-full pointer-events-none" />
+      <!-- <ion-img :src="updatedHotel.image" class="w-full pointer-events-none m" /> -->
     </div>
     <detail-section :label="updatedHotel.name">
       <div class="flex flex-col justify-start items-start mb-8 px-8">
@@ -16,7 +17,7 @@
         />
         <div
           v-if="updatedHotel.googlemaps"
-          class="flex relative mb-4 items-center"
+          class="flex relative mt-2 mb-4 items-center"
         >
           <a
             :href="'geo:' + updatedHotel.googlemaps"
@@ -45,50 +46,60 @@
               class="font-helvetica text-14 text-grey spacing-44 line-28 mb-2"
               >Check-in</span
             >
-            <span
+            <!-- <span
               class="font-helvetica text-12 text-grey spacing-44 line-28 mb-2"
               >From</span
-            >
+            > -->
             <span
               class="font-helvetica-medium text-16 text-red spacing-23 line-24 mb-2"
               >{{ updatedHotel.checkin_date }}</span
             >
-            <span class="font-helvetica text-14 text-red spacing-2 line-24"
+            <!-- <span class="font-helvetica text-14 text-red spacing-2 line-24"
               >{{ updatedHotel.checkin_time }}
-            </span>
+            </span> -->
           </div>
           <div class="flex flex-col">
             <span
               class="font-helvetica text-14 text-grey spacing-44 line-28 mob-2"
               >Check-out</span
             >
-            <span
+            <!-- <span
               class="font-helvetica text-12 text-grey spacing-44 line-28 mb-2"
               >Until</span
-            >
+            > -->
             <span
               class="font-helvetica-medium text-16 text-red spacing-23 line-24 mb-2"
               >{{ updatedHotel.checkout_date }}</span
             >
-            <span class="font-helvetica text-14 text-red spacing-2 line-24"
+            <!-- <span class="font-helvetica text-14 text-red spacing-2 line-24"
               >{{ updatedHotel.checkout_time }}
-            </span>
+            </span> -->
           </div>
         </div>
-        <big-button label="Save in calendar" />
+        <!-- <big-button label="Save in calendar" /> -->
       </div>
       <p
+        v-if="hotelDescription && hotelDescription.length"
         class="px-8 font-helvetica text-mid-dark-grey text-16 spacing-1 line-24 mb-8 mt-8"
         v-html="hotelDescription"
       />
       <div class="mx-8 flex justify-start">
         <section-button
+          v-if="hotelDescription && hotelDescription.length"
           :label="updatedReadMore.hotel ? 'Read less' : 'Read more'"
           @onClick="readMore('hotel')"
         />
       </div>
     </detail-section>
-    <detail-section label="Transfer" noSeparator>
+    <detail-section
+      v-if="
+        updatedTransfer &&
+          updatedTransfer.transfer_date &&
+          updatedTransfer.transfer_return_date
+      "
+      label="Transfer"
+      noSeparator
+    >
       <div class="flex flex-col bg-light-red rounded-12 p-6 mx-8">
         <div class="flex justify-between items-start mb-4">
           <div class="flex flex-col">
@@ -96,43 +107,43 @@
               class="font-helvetica text-14 text-grey spacing-44 line-28 mb-2"
               >Check-in</span
             >
-            <span
+            <!-- <span
               class="font-helvetica text-12 text-grey spacing-44 line-28 mb-2"
-              >Until</span
-            >
+              >From</span
+            > -->
             <span
               class="font-helvetica-medium text-16 text-red spacing-23 line-24 mb-2"
               >{{ updatedTransfer.transfer_date }}</span
             >
-            <span class="font-helvetica text-14 text-red spacing-2 line-24"
+            <!-- <span class="font-helvetica text-14 text-red spacing-2 line-24"
               >{{
                 updatedTransfer.transfer_time
                   ? `${updatedTransfer.transfer_time} `
                   : ''
               }}
-            </span>
+            </span> -->
           </div>
           <div class="flex flex-col">
             <span
               class="font-helvetica text-14 text-grey spacing-44 line-28 mb-2"
               >Check-out</span
             >
-            <span
+            <!-- <span
               class="font-helvetica text-12 text-grey spacing-44 line-28 mb-2"
               >Until</span
-            >
+            > -->
             <span
               class="font-helvetica-medium text-16 text-red spacing-23 line-24 mb-2"
               >{{ updatedTransfer.transfer_return_date }}</span
             >
-            <span class="font-helvetica text-14 text-red spacing-2 line-24">{{
+            <!-- <span class="font-helvetica text-14 text-red spacing-2 line-24">{{
               updatedTransfer.transfer_return_time
                 ? `${updatedTransfer.transfer_return_time} `
                 : ''
-            }}</span>
+            }}</span> -->
           </div>
         </div>
-        <big-button label="Save in calendar" />
+        <!-- <big-button label="Save in calendar" /> -->
       </div>
       <p
         class="px-8 font-helvetica text-mid-dark-grey text-16 spacing-1 line-24 mb-4 mt-0"
@@ -151,14 +162,14 @@
 import SectionButton from '../containers/SectionButton.vue'
 import DetailSection from '../DetailSection.vue'
 import { IonImg } from '@ionic/vue'
-import BigButton from '../containers/BigButton.vue'
+// import BigButton from '../containers/BigButton.vue'
 import SquareContainer from '../containers/SquareContainer.vue'
 export default {
   components: {
     SectionButton,
     DetailSection,
     IonImg,
-    BigButton,
+    // BigButton,
     SquareContainer
   },
   props: {

@@ -19,6 +19,7 @@ import Carousel from '../Carousel.vue'
 import Page from '../Page.vue'
 import SectionButton from '../containers/SectionButton'
 export default {
+  emits: ['changeSection'],
   components: {
     Page,
     Carousel,

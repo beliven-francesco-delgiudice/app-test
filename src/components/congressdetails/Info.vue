@@ -9,15 +9,10 @@
       />
     </div>
     <detail-section :label="updatedCongress.name">
-      <div class="flex flex-col justify-start items-start mb-8 px-8">
-        <span class="font-helvetica text-14 text-grey spacing-44 line-20"
-          >Location</span
-        >
-        <span
-          class="font-helvetica text-16 text-mid-dark-grey spacing-2 line-26"
-          >{{ updatedCongress.subtitle }}</span
-        >
-      </div>
+      <span
+        class="font-helvetica text-16 text-mid-dark-grey spacing-2 line-26 px-8 mb-4"
+        >{{ updatedCongress.subtitle }}</span
+      >
 
       <div class="flex flex-col bg-light-red rounded-12 p-6 mx-8">
         <div class="flex justify-between items-start mb-4">
@@ -78,24 +73,24 @@
         class="px-8 font-helvetica text-mid-dark-grey text-16 spacing-1 line-24 mb-4 mt-0"
         v-html="formattedDescription"
       ></p>
-      <div class="mx-8 flex justify-start">
+      <!-- <div class="mx-8 flex justify-start">
         <section-button
           :label="updatedReadMore ? 'Read less' : 'Read more'"
           @onClick="readMore"
         />
-      </div>
+      </div> -->
     </detail-section>
   </div>
 </template>
 <script>
-import SectionButton from '../containers/SectionButton.vue'
+// import SectionButton from '../containers/SectionButton.vue'
 import DetailSection from '../DetailSection.vue'
 import { IonImg } from '@ionic/vue'
 import BigButton from '../containers/BigButton.vue'
 import SquareContainer from '../containers/SquareContainer.vue'
 export default {
   components: {
-    SectionButton,
+    // SectionButton,
     DetailSection,
     IonImg,
     BigButton,
@@ -106,7 +101,7 @@ export default {
   },
   data () {
     return {
-      isReadMore: false
+      isReadMore: true
     }
   },
   computed: {
