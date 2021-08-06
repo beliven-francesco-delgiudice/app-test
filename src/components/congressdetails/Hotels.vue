@@ -93,14 +93,20 @@
     </detail-section>
     <detail-section
       v-if="
-        updatedTransfer &&
+        (updatedTransfer &&
           updatedTransfer.transfer_date &&
-          updatedTransfer.transfer_return_date
+            updatedTransfer.transfer_return_date) ||
+          transferDescription
       "
       label="Transfer"
       noSeparator
     >
-      <div class="flex flex-col bg-light-red rounded-12 p-6 mx-8">
+      <div
+        v-if="
+          updatedTransfer.transfer_date && updatedTransfer.transfer_return_date
+        "
+        class="flex flex-col bg-light-red rounded-12 p-6 mx-8"
+      >
         <div class="flex justify-between items-start mb-4">
           <div class="flex flex-col">
             <span
