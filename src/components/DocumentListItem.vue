@@ -77,10 +77,24 @@ export default {
     async getAppInfo () {
       return await this.$device.getAppInfo()
     },
-    openFile (url) {
+    getDocumentPath (document) {
+      let path = ''
+      if (document.url) {
+        path = document.url
+      } else if (document.link) {
+        path = document.link
+      } else if (document.file) {
+        path = document.file
+      } else if (document.path) {
+        path = document.path
+      }
+      return path
+    },
+    openFile (doc) {
+      const path = this.getDocumentPath(doc)
       var link = document.createElement('a')
       link.target = '_blank'
-      link.href = url
+      link.href = path
       document.body.appendChild(link)
       link.click()
       document.body.removeChild(link)
@@ -102,14 +116,10 @@ export default {
             text: 'Open',
             handler: async () => {
               if (this.isApp) {
+                const path = this.getDocumentPath(this.updatedDocument)
                 try {
                   await this.$loading.show()
-                  await this.$docviewer(
-                    this.updatedDocument.url
-                      ? this.updatedDocument.url
-                      : this.updatedDocument.link,
-                    this.updatedDocument.title
-                  )
+                  await this.$docviewer(path, this.updatedDocument.title)
                 } catch (e) {
                   console.error(e)
                   this.$toast({
@@ -119,7 +129,7 @@ export default {
                 }
                 await this.$loading.hide()
               } else {
-                this.openFile(this.updatedDocument.url)
+                this.openFile(this.updatedDocument)
               }
             }
           },
@@ -127,12 +137,10 @@ export default {
             text: 'Download',
             handler: async () => {
               if (this.isApp) {
+                const path = this.getDocumentPath(this.updatedDocument)
                 try {
                   await this.$loading.show()
-                  await this.$docsaver(
-                    this.updatedDocument.url,
-                    this.updatedDocument.title
-                  )
+                  await this.$docsaver(path, this.updatedDocument.title)
                   await this.$loading.hide()
                   this.$toast({
                     message: 'Document successfully saved in "Documents"',
@@ -147,7 +155,7 @@ export default {
                   })
                 }
               } else {
-                this.openFile(this.updatedDocument.url)
+                this.openFile(this.updatedDocument)
               }
             }
           }
@@ -160,8 +168,8 @@ export default {
         ]
       })
       await actionMenu.present()
-      const { role } = await actionMenu.onDidDismiss()
-      console.debug('onDidDismiss resolved with role', role)
+      // const { role } = await actionMenu.onDidDismiss()
+      // console.debug('onDidDismiss resolved with role', role)
     }
   }
 }
