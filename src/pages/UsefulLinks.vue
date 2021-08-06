@@ -14,9 +14,9 @@
             bgClass="bg-white"
             squareSize="64"
             rounded="12"
-            classes="mr-4 overflow-hidden"
+            classes="mr-4 overflow-hidden bg-no-repeat bg-cover bg-center"
+            :styles="`background-image:url('${item.image}')`"
           >
-            <ion-img :src="item.image" class="h-full w-auto" />
           </square-container>
           <div class="flex flex-col justify-between py-2">
             <span
@@ -35,7 +35,7 @@
 
 <script>
 import Page from '../components/Page.vue'
-import { IonList, IonImg } from '@ionic/vue'
+import { IonList } from '@ionic/vue'
 import SquareContainer from '../components/containers/SquareContainer.vue'
 import messages from '@/messages'
 import urls from '@/urls'
@@ -43,7 +43,6 @@ export default {
   components: {
     Page,
     IonList,
-    IonImg,
     SquareContainer
   },
   data () {
