@@ -54,7 +54,7 @@ export default {
     open: Boolean,
     image: Number,
     gallery: Array,
-    index: Number
+    index: Number // TODO: manage index of image to open. Need a "ref" and function "slideTo"
   },
   data () {
     return {
