@@ -1,12 +1,13 @@
 <template>
   <Page withMargin back :label="updatedNews.title">
     <div
-      class="bg-white rounded-12 relative mr-4 gallery-container elevated-shadow overflow-hidden"
+      class="bg-white rounded-12 relative mr-4 gallery-container elevated-shadow overflow-hidden bg-cover bg-no-repeat bg-center"
+      :style="`background-image:url('${updatedNews.preview}')`"
     >
-      <ion-img
+      <!-- <ion-img
         :src="updatedNews.preview || ''"
         class="w-full pointer-events-none"
-      />
+      /> -->
     </div>
 
     <div class="flex my-8 justify-between items-start">
@@ -19,13 +20,11 @@
 </template>
 
 <script>
-import { IonImg } from '@ionic/vue'
 import Page from '../../components/Page.vue'
 import messages from '@/messages'
 import urls from '@/urls'
 export default {
   components: {
-    IonImg,
     Page
   },
   data () {

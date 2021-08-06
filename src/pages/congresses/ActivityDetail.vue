@@ -7,11 +7,9 @@
   >
     <div
       class="bg-white rounded-12 relative mr-4 gallery-container elevated-shadow overflow-hidden"
+      :style="`background-image:url('${updatedActivity.image}'`"
     >
-      <IonImg
-        :src="updatedActivity.preview"
-        class="h-full w-auto pointer-events-none"
-      />
+      <!-- <ion-img :src="updatedActivity.image" class="w-full pointer-events-none" /> -->
     </div>
 
     <div class="flex flex-col my-8 ">
