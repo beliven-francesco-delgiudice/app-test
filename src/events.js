@@ -69,8 +69,6 @@ export async function onOnesignalNotificationOpened (plugins, e) {
  * @param {*} e Raw event
  */
 export async function onAppForeground (plugins, e) {
-  console.log('App foreground: ', plugins, e)
-
   if (
     e.isActive === true &&
     !plugins.$store.getters.loggedIn &&
