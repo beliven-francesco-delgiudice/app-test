@@ -48,6 +48,30 @@ export function checkIsApp (platform) {
   return false
 }
 
+export function cleanParagraphs () {
+  const elements = document.getElementsByTagName('p')
+  const arrayOfEls = Array.from(elements)
+  const filteredEls = arrayOfEls.filter(
+    item => item.textContent.trim().length === 0
+  )
+  filteredEls.map(element => element.remove())
+  console.debug('Empty paragraphs have been cleaned. See you next Wednesday!')
+}
+
+export function sanitizeManageText (text) {
+  if (text && text.length) {
+    let sanitizedText = text.replace(
+      /(<br><\/p>|<\/br><\/p>|<br\/><\/p>)/gm,
+      '</p>'
+    )
+    sanitizedText = sanitizedText.replace(/(<br>|<\/br>|<br\/>)/gm, '\n')
+    sanitizedText = sanitizedText.replace(/^\s/gm, '')
+    sanitizedText = sanitizedText.replace(/\n/gm, '<br>')
+    return sanitizedText
+  }
+  return ''
+}
+
 export default {
   install (app) {
     app.mixin({
@@ -55,6 +79,8 @@ export default {
         capitalizeFirstLetter,
         ticksToString,
         checkIsApp,
+        cleanParagraphs,
+        sanitizeManageText,
         validateErrorResponse,
         valIsArray (val) {
           return val instanceof Array
