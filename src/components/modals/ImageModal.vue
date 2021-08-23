@@ -30,7 +30,13 @@
         :src="updatedGallery[0]"
         class="w-full my-auto"
       />
-      <ion-slides v-else ref="slides" :options="options">
+      <ion-slides
+        v-else
+        ref="slides"
+        mode="ios"
+        :options="options"
+        @ionSlidesDidLoad="updateIndex"
+      >
         <ion-slide v-for="(slide, i) in updatedGallery" :key="i">
           <div class="flex w-full h-full">
             <img :src="slide" class="w-full mx-auto my-auto" />
@@ -54,22 +60,28 @@ export default {
     open: Boolean,
     image: Number,
     gallery: Array,
-    index: Number // TODO: manage index of image to open. Need a "ref" and function "slideTo"
+    index: Number
   },
   data () {
     return {
-      reffino: null,
       options: {
         initialSlide: 0,
-        slidesPerView: 1,
-        centeredSlides: true,
-        freeMode: false
+        speed: 400
       }
     }
   },
   methods: {
     closeImage () {
       this.$emit('onClose')
+    },
+    async updateIndex () {
+      console.log(this.index)
+      if (this.$refs.slides) {
+        const swiper = await this.$refs.slides.$el.getSwiper()
+        if (this.index) {
+          swiper.slideTo(this.index)
+        }
+      }
     }
   },
   computed: {
@@ -92,18 +104,6 @@ export default {
       }
       return []
     }
-  },
-  watch: {
-    open: function () {
-      if (this.index) {
-        this.options.initialSlide = this.index
-        if (this.$refs && this.$refs.slides) {
-          this.$refs.slides.slideTo(this.index)
-        }
-      }
-    },
-    'this.$refs': function () {},
-    reffino: function () {}
   }
 }
 </script>
