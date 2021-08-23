@@ -4,7 +4,7 @@
     :class="[index === 0 ? 'ml-8 ' : '', 'flex flex-col home-container mr-4']"
   >
     <div
-      class="news-image w-full overflow-hidden rounded-12 mb-4 container-shadow"
+      class="news-image w-full overflow-hidden rounded-12 mb-4 container-shadow pointer-events-none"
     >
       <ion-img :src="news.preview" class="w-full object-cover" />
     </div>
@@ -14,7 +14,9 @@
   </div>
 </template>
 <script>
+import { IonImg } from '@ionic/vue'
 export default {
+  components: { IonImg },
   props: {
     news: Object,
     index: Number
