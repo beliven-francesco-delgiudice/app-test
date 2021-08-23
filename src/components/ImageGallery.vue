@@ -7,7 +7,6 @@
         i === 0 ? margin : '',
         'bg-white rounded-12 relative mr-4 gallery-container overflow-hidden'
       ]"
-      @click="openImage(i)"
     >
       <ion-img
         :src="image.image ? image.image : image.preview"
@@ -29,7 +28,7 @@
   </carousel>
   <image-modal
     :open="isOpenImage"
-    :index="index"
+    :index="computedIndex"
     :gallery="updatedGallery"
     @onClose="closeImage"
   />
@@ -57,6 +56,9 @@ export default {
   computed: {
     margin () {
       return this.initMargin || 'ml-8'
+    },
+    computedIndex () {
+      return this.index
     },
     updatedGallery () {
       const array = this.gallery
