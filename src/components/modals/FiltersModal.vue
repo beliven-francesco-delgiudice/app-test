@@ -141,7 +141,7 @@
 <script>
 import Title from '../Title.vue'
 import BigButton from '../containers/BigButton.vue'
-import { IonImg, IonModal } from '@ionic/vue'
+import { IonImg, IonModal, IonButton } from '@ionic/vue'
 import CustomSelect from '../CustomSelect.vue'
 import filtersJson from '@/filtersJson'
 import { Capacitor } from '@capacitor/core'
@@ -149,6 +149,7 @@ export default {
   components: {
     Title,
     BigButton,
+    IonButton,
     IonImg,
     IonModal,
     CustomSelect
