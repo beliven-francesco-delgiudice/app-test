@@ -37,23 +37,19 @@
           <p
             class="m-0 paragraph font-helvetica text-16 text-mid-dark-grey spacing-1 line-24"
             v-html="
-              updatedSubsidiary && updatedSubsidiary.contacts
-                ? updatedSubsidiary.contacts.address
+              updatedSubsidiary && updatedSubsidiary.address
+                ? updatedSubsidiary.address
                 : ''
             "
           ></p>
         </div>
         <div class="flex flex-col">
           <div
-            v-if="
-              updatedSubsidiary &&
-                updatedSubsidiary.contacts &&
-                updatedSubsidiary.contacts.phone
-            "
+            v-if="updatedSubsidiary && updatedSubsidiary.phone"
             class="relative flex mb-4"
           >
             <a
-              :href="'tel:' + updatedSubsidiary.contacts.phone"
+              :href="'tel:' + updatedSubsidiary.phone"
               title="phone"
               class="absolute top-0 left-0 w-full h-full"
             ></a>
@@ -72,7 +68,7 @@
             >
               <span
                 class="font-helvetica-medium text-16 text-black spacing-5 line-28"
-                >{{ updatedSubsidiary.contacts.phone }}</span
+                >{{ updatedSubsidiary.phone }}</span
               >
               <span class="font-helvetica text-14 text-grey spacing-44 line-24">
                 Phone
@@ -81,11 +77,7 @@
           </div>
 
           <div
-            v-if="
-              updatedSubsidiary &&
-                updatedSubsidiary.contacts &&
-                updatedSubsidiary.contacts.fax
-            "
+            v-if="updatedSubsidiary && updatedSubsidiary.fax"
             class="relative flex mb-4"
           >
             <square-container
@@ -103,7 +95,7 @@
             >
               <span
                 class="font-helvetica-medium text-16 text-black spacing-5 line-28"
-                >{{ updatedSubsidiary.contacts.fax }}</span
+                >{{ updatedSubsidiary.fax }}</span
               >
               <span class="font-helvetica text-14 text-grey spacing-44 line-24">
                 Fax
@@ -112,15 +104,11 @@
           </div>
 
           <div
-            v-if="
-              updatedSubsidiary &&
-                updatedSubsidiary.contacts &&
-                updatedSubsidiary.contacts.mail
-            "
+            v-if="updatedSubsidiary && updatedSubsidiary.email"
             class="relative flex mb-4"
           >
             <a
-              :href="'mailto:' + updatedSubsidiary.contacts.mail"
+              :href="'mailto:' + updatedSubsidiary.email"
               title="mail to"
               class="absolute top-0 left-0 w-full h-full"
             ></a>
@@ -139,7 +127,7 @@
             >
               <span
                 class="font-helvetica-medium text-16 text-black spacing-5 line-28"
-                >{{ updatedSubsidiary.contacts.mail }}</span
+                >{{ updatedSubsidiary.email }}</span
               >
               <span class="font-helvetica text-14 text-grey spacing-44 line-24">
                 E-mail

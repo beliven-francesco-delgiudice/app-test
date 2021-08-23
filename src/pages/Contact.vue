@@ -13,12 +13,13 @@
     </carousel>
     <div class="flex flex-col px-8 mt-4">
       <div
-        v-for="(sub, k) in sectionToShow.subsidiaries"
+        v-for="(sub, k) in sectionToShow.voices"
         :key="k"
         class="flex flex-row pb-4 mb-4 items-center"
         @click="openModal(sub)"
       >
         <square-container
+          v-if="sub.image"
           bgClass="bg-white"
           squareSize="64"
           rounded="full"
@@ -33,7 +34,7 @@
             {{ sub.title }}
           </span>
           <span class="font-helvetica text-14 text-grey spacing-44 line-24">
-            {{ sub.location }}
+            {{ sub.subtitle }}
           </span>
         </div>
       </div>
@@ -51,6 +52,8 @@ import Page from '../components/Page.vue'
 import SectionButton from '../components/containers/SectionButton'
 import SquareContainer from '../components/containers/SquareContainer.vue'
 import ContactsModal from '../components/ContactsModal.vue'
+import messages from '@/messages'
+import urls from '@/urls'
 export default {
   components: {
     Page,
@@ -61,7 +64,7 @@ export default {
   },
   data () {
     return {
-      section: 1,
+      section: 0,
       subsidiaryOpened: null,
       sections: [
         {
@@ -127,15 +130,38 @@ export default {
       ]
     }
   },
+  async created () {
+    try {
+      const contacts = await this.$http({
+        method: 'GET',
+        url: urls.contacts,
+        params: {}
+      })
+      this.sections = contacts
+    } catch (e) {
+      console.error(e)
+      this.$toast({
+        message: messages.errors.contacts,
+        color: 'danger'
+      })
+    }
+  },
+
   computed: {
+    formattedSections () {
+      return this.sections.map((sec, i) => ({
+        ...sec,
+        id: i
+      }))
+    },
     sectionsForCarousel () {
-      return this.sections.map(sec => ({
+      return this.formattedSections.map(sec => ({
         path: sec.id,
-        label: sec.title
+        label: sec.tab
       }))
     },
     sectionToShow () {
-      return this.sections.find(sec => sec.id === this.section)
+      return this.formattedSections.find(sec => sec.id === this.section)
     },
     subsidiary () {
       if (this.subsidiaryOpened && Object.keys(this.subsidiaryOpened).length) {
@@ -148,8 +174,30 @@ export default {
     changeSection (id) {
       this.section = id
     },
-    openModal (subsidiary) {
-      this.subsidiaryOpened = subsidiary
+    async openModal (subsidiary) {
+      const subsidiaryID = subsidiary.id
+      if (subsidiaryID) {
+        try {
+          const results = await this.$http({
+            method: 'GET',
+            url: urls.contacts + '/' + subsidiaryID,
+            params: {}
+          })
+          this.subsidiaryOpened = results
+        } catch (e) {
+          console.error(e)
+          this.$toast({
+            message: messages.errors.contactsDetail,
+            color: 'danger'
+          })
+        }
+      } else {
+        console.error('No contact id')
+        this.$toast({
+          message: messages.errors.contactsDetail,
+          color: 'danger'
+        })
+      }
     },
     closeSubsidiary () {
       this.subsidiaryOpened = null
