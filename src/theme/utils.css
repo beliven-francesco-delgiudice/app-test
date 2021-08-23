@@ -87,8 +87,20 @@ ion-content {
   display: block;
 }
 
-p > br:only-child {
+p > br:only-child,
+ul > br:only-child {
   display: none;
+}
+
+
+ion-slides {
+  overflow: visible !important;
+}
+.swiper-pagination {
+  z-index: 10;
+  height: 20px;
+  bottom: -35px !important;
+  opacity: 1;
 }
 
 .margin-center {
