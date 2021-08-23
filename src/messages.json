@@ -14,21 +14,23 @@
     "onboarding":"An error occurred while getting you on board. Try again later",
     "updates":"An error occurred while showing you the last addition to the app. Check in \"What's new\"",
 
-    "news": "An error occurred while obtaining the news",
-    "newsDetail": "An error occurred while obtaining this news",
+    "news": "An error occurred while retrieving the news",
+    "newsDetail": "An error occurred while retrieving this news",
 
-    "notifications": "An error occurred while obtaining the notifications",
-    "notificationDetail": "An error occurred while obtaining this notification",
+    "contacts": "An error occurred while retrieving the contacts",
+
+    "notifications": "An error occurred while retrieving the notifications",
+    "notificationDetail": "An error occurred while retrieving this notification",
     "appUpdates": "An error occurred while checking the latest app updates",
 
-    "segments": "An error occurred while obtaining the segments",
-    "segmentProducts": "An error occurred while obtaining the products of this segment",
+    "segments": "An error occurred while retrieving the segments",
+    "segmentProducts": "An error occurred while retrieving the products of this segment",
     "productDetail":"An error occurred while getting the product",
-    "categoryProducts": "An error occurred while obtaining the products of this category",
+    "categoryProducts": "An error occurred while retrieving the products of this category",
 
-    "congresses": "An error occurred while obtaining the congresses",
-    "congressDetail": "An error occurred while obtaining the congress information",
-    "activityDetail": "An error occurred while obtaining the activity information",
+    "congresses": "An error occurred while retrieving the congresses",
+    "congressDetail": "An error occurred while retrieving the congress information",
+    "activityDetail": "An error occurred while retrieving the activity information",
 
     "search": "An error occurred while searching",
 
