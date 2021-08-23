@@ -23,6 +23,12 @@
               item.name
             }}</span>
           </div>
+          <div v-if="item.disabled" class="bg-light-red rounded-6 px-2">
+            <span
+              class="font-helvetica-medium text-12 text-red spacing-8 line-30 pointer-events-none"
+              >COMING SOON
+            </span>
+          </div>
           <square-container
             v-if="item.notifications && item.notifications > 0"
             bgClass="bg-red"
@@ -67,15 +73,13 @@ export default {
           name: 'Documents',
           href: '/documents',
           img: 'documents.svg',
-          disabled: true,
-          hidden: true
+          disabled: true
         },
         {
           name: 'Medical Education',
           href: '/meded',
           img: 'meded.svg',
-          disabled: true,
-          hidden: true
+          disabled: true
         },
         {
           name: 'Congresses',
@@ -101,7 +105,7 @@ export default {
           name: 'Multimedia',
           href: '/multimedia',
           img: 'multimedia.svg',
-          hidden: true
+          disabled: true
         },
         {
           name: 'Privacy',
@@ -118,17 +122,15 @@ export default {
   },
   computed: {
     updatedList () {
-      const newList = this.list
-        .filter(item => !item.hidden)
-        .map(item => {
-          if (item.href === '/new') {
-            return {
-              ...item,
-              notifications: this.$store.getters.areNotificationsNotRead
-            }
+      const newList = this.list.map(item => {
+        if (item.href === '/new') {
+          return {
+            ...item,
+            notifications: this.$store.getters.areNotificationsNotRead
           }
-          return item
-        })
+        }
+        return item
+      })
       return newList
     }
   },
