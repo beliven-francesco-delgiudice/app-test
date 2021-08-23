@@ -39,7 +39,7 @@
     </ion-content>
     <Tabs />
   </ion-page> -->
-  <ion-page :style="isApp ? '' : 'max-width:600px; margin:auto;'">
+  <ion-page :style="isApp ? '' : 'max-width:400px; margin:auto;'">
     <ion-content
       id="content"
       :fullscreen="true"

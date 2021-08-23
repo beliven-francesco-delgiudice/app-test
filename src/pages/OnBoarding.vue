@@ -1,7 +1,7 @@
 <template>
   <slider :slides="slides" :pager="true" @onEnd="routeHome">
     <template v-slot="{ item }">
-      <div class="flex flex-col flex flex-grow">
+      <div class="flex flex-col flex flex-grow pointer-events-none">
         <ion-img :src="item.big" />
       </div>
     </template>

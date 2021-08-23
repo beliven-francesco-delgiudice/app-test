@@ -66,7 +66,7 @@ ion-content {
   }
 }
 
-@media only screen and (max-height: 600px) and (max-width: 700px) and (orientation: portrait) {
+@media only screen and (max-height: 400px) and (max-width: 700px) and (orientation: portrait) {
   /* mobile  portrait */
   .hide-on-keyboard-open {
     display: none;
