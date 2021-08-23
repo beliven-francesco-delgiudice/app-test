@@ -1,6 +1,6 @@
 <template>
   <Page
-    back
+    back="/home"
     label="News"
     :filters="filters"
     :filtersOptions="options"
@@ -29,6 +29,9 @@
             >
               {{ item.title }}
             </p>
+            <span class="font-helvetica text-grey text-14 spacing-44 line-24">
+              {{ item.date }}
+            </span>
           </div>
         </div>
       </div>
