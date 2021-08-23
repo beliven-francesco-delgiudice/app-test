@@ -75,14 +75,11 @@
           <div class="flex flex-col justify-between items-start">
             <span
               class="font-helvetica-medium text-dark-grey text-16 spacing-4 line-24"
-              >{{ variant.attribute }}</span
+              >{{ variant.size }}</span
             >
-            <span class="font-helvetica text-grey text-14 spacing-44 line-24">{{
-              variant.code
-            }}</span>
-            <span class="font-helvetica text-grey text-14 spacing-44 line-24">{{
-              variant.size
-            }}</span>
+            <span class="font-helvetica text-grey text-14 spacing-44 line-24">
+              {{ variant.code }}
+            </span>
           </div>
         </div>
         <div
