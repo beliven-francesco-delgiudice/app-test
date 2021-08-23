@@ -44,8 +44,24 @@ ionic capacitor build android
 - `src/messages.json` Stores all success and failure messages of the app
 - `src/urls.json` Stores all urls used for the server connection
 
+## Upload to stores
+
+You will find here the guides on how to upload the app on the Play Store and on the App Store.
+Please keep the version and the build number equally updated:
+
+Version number:
+
+- iOs: "Version"
+- Android: "versionName"
+
+Build number:
+
+- iOs: "Build"
+- Android: "versionCode"
+
 ## Play Store
 
+**Before building you will need to open the file _build.gradle_ to edit the _versionName_ and increase the _versionCode_ number.**
 To build the android app run `ionic capacitor build android`. \
 After running the command, if not already opened, open Android Studio on the project. \
 Go to _Build_ and then _Generate Signed Bundle/APK_. \
@@ -57,6 +73,19 @@ Select _Android App Bundle_ and then _Next_.
 The go _Next_, choose _release_ and press _Finish_. \
 After finishing, you will see a notification in the bottom low corner titled **Generate Signed Bundle**. Press on the arrow and click on _locate_. \
 There you will find the finished build as an .aab file, ready to be uploaded on the Play Store.
+
+## App Store
+
+To build the ios app run `ionic capacitor build ios`. \
+After running the command, if not already opened, open XCode on the project by opening _App.xcodeproj_. \
+In the top side of the window click on _App_ (next to Play and Pause) and select _Any iOS Device_. \
+**Before archiving you will need to open the file _App.xcodeproj_ to edit the _Version_ and increase the _Build_ number.**
+Then in the top bar click on _Product_ and select _Archive_.
+
+**Note:** If you encounter the "Capacitor not found" error, close XCode and open it by running `npx cap open ios` in the project repository. {: .note} \
+
+After archiving, click on _Distribute app_, then always click on _Next_ until you read _Processing App..._\
+Now click on Upload to automatically upload it on the app store. \
 
 ## Copyright
 
