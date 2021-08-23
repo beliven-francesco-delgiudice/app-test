@@ -6,7 +6,7 @@
     :back="backPath"
   >
     <div
-      class="bg-white rounded-12 relative mr-4 gallery-container elevated-shadow overflow-hidden"
+      class="bg-white rounded-12 relative mr-4 gallery-container elevated-shadow overflow-hidden bg-cover bg-no-repeat bg-center"
       :style="`background-image:url('${updatedActivity.image}'`"
     >
       <!-- <ion-img :src="updatedActivity.image" class="w-full pointer-events-none" /> -->
@@ -73,6 +73,11 @@
     <detail-section label="Description" noPadding>
       <p
         class="p-children font-helvetica text-mid-dark-grey text-16 spacing-1 line-24 mb-4 mt-0"
+        :style="
+          !updatedReadMore
+            ? 'display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;'
+            : ''
+        "
         v-html="formattedDescription"
       />
       <div class="flex justify-start">
@@ -171,10 +176,14 @@ export default {
       return this.updatedActivity.parent_name + ' /'
     },
     formattedDescription () {
-      if (this.updatedReadMore) {
-        return this.updatedActivity.description
+      if (
+        this.updatedActivity &&
+        this.updatedActivity.description &&
+        this.updatedActivity.description.length
+      ) {
+        return this.sanitizeManageText(this.updatedActivity.description)
       }
-      return this.updatedActivity.description_short
+      return ''
     },
     backPath () {
       const id = this.updatedActivity.parent_id
@@ -210,6 +219,9 @@ export default {
         if (results && Object.keys(results).length) {
           this.activity = results
         }
+        setTimeout(() => {
+          this.cleanParagraphs()
+        }, 500)
       } catch (e) {
         console.error(e)
         this.$toast({
@@ -230,14 +242,14 @@ export default {
 </script>
 <style scoped>
 .gallery-container {
-  width: calc(100vw - 4rem);
-  min-width: calc(100vw - 4rem);
+  width: calc(100vw);
+  min-width: calc(100vw);
   height: 221px;
 }
 @media screen and (min-width: 1024px) {
   .gallery-container {
-    width: calc(100% - 4rem);
-    min-width: calc(100% - 4rem);
+    width: calc(100%);
+    min-width: calc(100%);
   }
 }
 p {

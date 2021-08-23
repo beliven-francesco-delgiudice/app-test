@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col">
     <div
-      class="ml-8 bg-white rounded-12 relative mr-4 gallery-container elevated-shadow overflow-hidden"
+      class="ml-8 bg-white rounded-12 relative mr-4 gallery-container elevated-shadow overflow-hidden bg-contain bg-no-repeat bg-center"
       :style="`background-image:url('${updatedCongress.image}')`"
     >
       <!-- <ion-img :src="updatedCongress.image" class="w-full pointer-events-none m" /> -->

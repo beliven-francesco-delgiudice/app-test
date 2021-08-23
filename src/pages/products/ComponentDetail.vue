@@ -6,7 +6,7 @@
     :back="backPath"
   >
     <div
-      class="bg-white rounded-12 relative mr-4 gallery-container elevated-shadow overflow-hidden"
+      class="bg-white rounded-12 relative gallery-container elevated-shadow overflow-hidden"
     >
       <ion-img
         :src="
@@ -79,6 +79,9 @@
             >
             <span class="font-helvetica text-grey text-14 spacing-44 line-24">{{
               variant.code
+            }}</span>
+            <span class="font-helvetica text-grey text-14 spacing-44 line-24">{{
+              variant.size
             }}</span>
           </div>
         </div>
@@ -159,14 +162,14 @@ export default {
 </script>
 <style scoped>
 .gallery-container {
-  width: calc(100vw - 4rem);
-  min-width: calc(100vw - 4rem);
+  width: calc(100vw);
+  min-width: calc(100vw);
   height: 221px;
 }
 @media screen and (min-width: 1024px) {
   .gallery-container {
-    width: calc(100% - 4rem);
-    min-width: calc(100% - 4rem);
+    width: calc(100%);
+    min-width: calc(100%);
   }
 }
 </style>

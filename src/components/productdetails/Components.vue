@@ -4,6 +4,7 @@
     :title="updatedProduct.name"
     :productID="$route.params.id"
     :parentID="updatedProduct.parent_id"
+    :isFirstLevel="updatedProduct.parent_first_level"
   >
     <accordions-list classes="mt-4 px-8" :list="updatedProduct.components">
       <template v-slot="{ item }">
@@ -16,9 +17,9 @@
               bgClass="bg-white"
               squareSize="64"
               rounded="12"
-              classes="mr-4 p-2"
+              classes="mr-4 bg-no-repeat bg-contain bg-center"
+              :styles="`background-image:url('${item.preview}')`"
             >
-              <ion-img :src="item.preview" />
             </square-container>
             <div class="flex flex-col justify-between py-2">
               <span

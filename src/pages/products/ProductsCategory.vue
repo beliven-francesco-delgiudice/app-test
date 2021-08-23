@@ -20,7 +20,7 @@
             bgClass="bg-white"
             squareSize="64"
             rounded="12"
-            classes="mr-4 bg-no-repeat bg-contain"
+            classes="mr-4 bg-no-repeat bg-contain bg-center"
             :styles="`background-image:url('${item.preview}')`"
           >
             <!-- <ion-img :src="item.preview" /> -->
