@@ -1,6 +1,7 @@
 <template>
   <div class="relative">
     <div
+      ref="carousel"
       :class="[
         height || '',
         classes || '',
@@ -24,6 +25,7 @@ export default {
   },
   mounted () {
     const slider = document.querySelector('.carousel')
+
     let isDown = false
     let startX
     let scrollLeft
