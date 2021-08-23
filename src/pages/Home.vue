@@ -44,7 +44,7 @@
     </div>
     <!-- Products -->
     <div class="w-full relative pt-4 overflow-y-visible">
-      <carousel height="h-24">
+      <carousel height="h-24" id="products-carousel">
         <!-- <ion-slide
           v-for="(prod, i) in products"
           :key="i"
@@ -108,8 +108,9 @@
       v-if="$store.getters.homeNews && $store.getters.homeNews.length"
       label="News"
       path="/news"
+      classes="overflow-y-visible"
     >
-      <carousel>
+      <carousel id="news-carousel">
         <home-news
           v-for="(singleNews, i) in $store.getters.homeNews"
           :key="i"
