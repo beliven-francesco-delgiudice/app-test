@@ -4,11 +4,17 @@
     :title="updatedProduct.name"
     :productID="$route.params.id"
     :parentID="updatedProduct.parent_id"
+    :isFirstLevel="updatedProduct.parent_first_level"
   >
     <image-gallery :gallery="updatedProduct.images" />
     <detail-section label="Description">
       <p
         class="px-8 font-helvetica text-mid-dark-grey text-16 spacing-1 line-24 mb-4"
+        :style="
+          !updatedReadMore
+            ? 'display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;'
+            : ''
+        "
         v-html="formattedDescription"
       />
       <div class="mx-8 mt-4 flex justify-start">
@@ -38,7 +44,7 @@
         </div>
         <ion-img
           src="/assets/hero-2.png"
-          class="w-full blend-mode-darken -mt-12"
+          class="w-full blend-mode-darken lg:-mt-32 -mt-20"
         />
       </div>
     </detail-section>
@@ -83,10 +89,13 @@ export default {
       return this.isReadMore
     },
     formattedDescription () {
-      if (this.updatedReadMore) {
-        return this.updatedProduct.description
+      if (
+        this.updatedProduct.description &&
+        this.updatedProduct.description.length
+      ) {
+        return this.sanitizeManageText(this.updatedProduct.description)
       }
-      return this.updatedProduct.description_short
+      return ''
     }
   },
   async created () {
@@ -98,6 +107,9 @@ export default {
           params: {}
         })
         this.product = resProduct
+        setTimeout(() => {
+          this.cleanParagraphs()
+        }, 500)
       } catch (e) {
         console.error(e)
         this.$toast({

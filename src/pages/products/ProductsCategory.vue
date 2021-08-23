@@ -1,6 +1,6 @@
 <template>
   <Page
-    back
+    :back="backLink"
     :label="updatedCategory.category_name"
     :filters="filters"
     :filtersOptions="options"
@@ -20,9 +20,10 @@
             bgClass="bg-white"
             squareSize="64"
             rounded="12"
-            classes="mr-4 p-2"
+            classes="mr-4 bg-no-repeat bg-contain"
+            :styles="`background-image:url('${item.preview}')`"
           >
-            <ion-img :src="item.preview" />
+            <!-- <ion-img :src="item.preview" /> -->
           </square-container>
           <div class="flex flex-col justify-between py-2">
             <span
@@ -41,7 +42,7 @@
 
 <script>
 import Page from '../../components/Page.vue'
-import { IonList, IonImg } from '@ionic/vue'
+import { IonList } from '@ionic/vue'
 import SquareContainer from '../../components/containers/SquareContainer.vue'
 import messages from '@/messages'
 import urls from '@/urls'
@@ -49,7 +50,6 @@ export default {
   components: {
     Page,
     IonList,
-    IonImg,
     SquareContainer
   },
   data () {
@@ -82,12 +82,15 @@ export default {
     }
   },
   computed: {
+    backLink () {
+      if (this.updatedCategory.parent_id) {
+        return '/products/' + this.updatedCategory.parent_id
+      } else {
+        return '/products'
+      }
+    },
     updatedCategory () {
       return this.category
-    },
-    segmentPath () {
-      const id = this.category.parent_id
-      return '/products/' + id
     },
     options () {
       return this.filtersOptions

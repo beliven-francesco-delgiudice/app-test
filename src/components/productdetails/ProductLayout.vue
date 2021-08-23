@@ -28,7 +28,8 @@ export default {
     title: String,
     productID: [Number, String],
     section: String,
-    parentID: [Number, String]
+    parentID: [Number, String],
+    isFirstLevel: Boolean
   },
   data () {
     return {
@@ -50,6 +51,9 @@ export default {
   },
   computed: {
     backLink () {
+      if (this.isFirstLevel) {
+        return `/products/${this.parentID}`
+      }
       return `/products/category/${this.parentID}`
     }
   },
