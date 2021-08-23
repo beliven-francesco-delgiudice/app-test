@@ -1,5 +1,5 @@
 <template>
-  <Page withMargin back :label="updatedNews.title">
+  <Page withMargin back="/news" :label="updatedNews.title">
     <div
       class="bg-white rounded-12 relative mr-4 gallery-container elevated-shadow overflow-hidden bg-cover bg-no-repeat bg-center"
       :style="`background-image:url('${updatedNews.preview}')`"
