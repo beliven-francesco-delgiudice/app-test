@@ -1,6 +1,12 @@
 <template>
   <div :class="[classes || '', ' flex flex-col']">
+    <span
+      v-if="!updatedList || !updatedList.length"
+      class="font-helvetica text-grey text-14 spacing-44 line-24 text-center"
+      >No components found.
+    </span>
     <div
+      v-if="updatedList && updatedList.length"
       @click="expandAll"
       :class="[
         isExpandable ? '' : 'pointer-events-none opacity-50',
