@@ -8,16 +8,25 @@
   </slider>
 </template>
 <script>
-import messages from '@/messages'
-import urls from '@/urls'
+// import messages from '@/messages'
+// import urls from '@/urls'
 import Slider from '../components/Slider.vue'
+import { IonImg } from '@ionic/vue'
 export default {
   components: {
-    Slider
+    Slider,
+    IonImg
   },
   data () {
     return {
-      slides: []
+      slides: [
+        {
+          big: '/assets/onboarding/prova.jpg'
+        },
+        {
+          big: '/assets/onboarding/prova.jpg'
+        }
+      ]
     }
   },
   computed: {
@@ -25,25 +34,25 @@ export default {
       return this.slides
     }
   },
-  async created () {
-    try {
-      const results = await this.$http({
-        method: 'GET',
-        url: urls.onBoarding
-      })
-      this.slides = results
-      const userData = this.$store.getters.userData
-      userData.onboarding = false
-      this.$store.commit('setUserData', userData)
-    } catch (e) {
-      console.error(e)
-      this.$router.push('/home')
-      this.$toast({
-        message: messages.errors.onboarding,
-        color: 'danger'
-      })
-    }
-  },
+  // async created () {
+  //   try {
+  //     const results = await this.$http({
+  //       method: 'GET',
+  //       url: urls.onBoarding
+  //     })
+  //     this.slides = results
+  //     const userData = this.$store.getters.userData
+  //     userData.onboarding = false
+  //     this.$store.commit('setUserData', userData)
+  //   } catch (e) {
+  //     console.error(e)
+  //     this.$router.push('/home')
+  //     this.$toast({
+  //       message: messages.errors.onboarding,
+  //       color: 'danger'
+  //     })
+  //   }
+  // },
   methods: {
     routeHome () {
       if (this.$store.getters.gotUpdatesToShow) {
