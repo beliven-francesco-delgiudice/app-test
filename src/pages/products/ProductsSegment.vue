@@ -1,5 +1,5 @@
 <template>
-  <Page back :label="updatedSegment.category_name">
+  <Page back="/products" :label="updatedSegment.category_name">
     <ion-list class="bg-transparent">
       <div
         class="flex flex-row justify-between items-center bg-transparent pb-4 mb-4"

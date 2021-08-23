@@ -1,5 +1,5 @@
 <template>
-  <Page label="Contacts" back mail="info@limacorporate.com">
+  <Page label="Contacts" back="/menu" mail="info@limacorporate.com">
     <carousel id="sections-carousel" classes="pt-4 -my-4 pb-8">
       <section-button
         v-for="(theSection, i) in sectionsForCarousel"

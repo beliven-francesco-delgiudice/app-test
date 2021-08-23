@@ -4,6 +4,7 @@
     :title="updatedProduct.name"
     :productID="$route.params.id"
     :parentID="updatedProduct.parent_id"
+    :isFirstLevel="updatedProduct.parent_first_level"
   >
     <accordions-list classes="mt-4 px-8" :list="computedAttachments">
       <template v-slot="{ item }">
