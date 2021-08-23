@@ -83,15 +83,10 @@ export default {
     return {
       active: 0,
       slideOpts: {
-        initialSlide: 1,
+        initialSlide: 0,
         speed: 400
       }
     }
-  },
-  mounted () {
-    setTimeout(() => {
-      window.location.reload
-    }, 500)
   },
   computed: {
     computedSlides () {
@@ -117,14 +112,16 @@ export default {
     onClose () {
       this.$router.back()
     },
-    previousSlide () {
-      this.$refs.slides.slidePrev()
+    async previousSlide () {
+      const swiper = await this.$refs.slides.$el.getSwiper()
+      swiper.slidePrev()
     },
-    buttonClick () {
+    async buttonClick () {
       if (this.isLastSlide) {
         this.$emit('onEnd')
       } else {
-        this.$refs.slides.slideNext()
+        const swiper = await this.$refs.slides.$el.getSwiper()
+        swiper.slideNext()
       }
     },
     onNextEnd () {
