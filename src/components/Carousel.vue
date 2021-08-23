@@ -1,11 +1,11 @@
 <template>
   <div class="relative">
     <div
-      ref="carousel"
+      :id="id"
       :class="[
         height || '',
         classes || '',
-        'flex w-full max-w-full overflow-x-auto carousel overflow-y-visible carousel'
+        'flex w-full max-w-full overflow-x-auto overflow-y-visible carousel'
       ]"
     >
       <slot></slot>
@@ -18,13 +18,19 @@ export default {
   components: {},
   props: {
     height: [Number, String],
-    classes: [String, Array]
+    classes: [String, Array],
+    id: String
   },
   methods: {
     scrollLeft () {}
   },
   mounted () {
-    const slider = document.querySelector('.carousel')
+    let slider = null
+    if (this.id) {
+      slider = document.querySelector('#' + this.id)
+    } else {
+      slider = document.querySelector('.carousel')
+    }
 
     let isDown = false
     let startX

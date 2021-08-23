@@ -79,7 +79,7 @@
 
     <!-- Documents -->
     <!-- <home-titled-container label="Documents" path="/documents">
-      <carousel classes="py-4 -my-4">
+      <carousel id="documents-carousel" classes="py-4 -my-4">
         <home-documents
           title="Last saved"
           :docs="documents.last_saved"
@@ -92,7 +92,7 @@
 
     <!-- Medical Education -->
     <!-- <home-titled-container label="Medical Education" path="/meded">
-      <carousel>
+      <carousel id="medical-carousel">
         <home-meded
           v-for="(singleMed, i) in meded"
           :key="i"
@@ -129,7 +129,7 @@
       label="Congresses"
       path="/congresses"
     >
-      <carousel classes="py-4 -mt-4">
+      <carousel id="congresses-carousel" classes="py-4 -mt-4">
         <home-congress
           v-for="(congress, i) in $store.getters.homeCongresses"
           :key="i"

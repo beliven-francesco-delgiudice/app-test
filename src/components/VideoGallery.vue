@@ -1,5 +1,5 @@
 <template>
-  <carousel classes="-my-8 py-8">
+  <carousel id="video-gallery" classes="-my-8 py-8">
     <div
       v-for="(obj, i) in gallery"
       :key="i"

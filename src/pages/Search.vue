@@ -39,7 +39,7 @@
         Search Results
       </Title>
 
-      <carousel classes="pt-4 -my-4 pb-8">
+      <carousel id="search-carousel" classes="pt-4 -my-4 pb-8">
         <section-button
           v-for="(section, i) in parsedSections"
           :key="i"
