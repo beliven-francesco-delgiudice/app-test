@@ -61,7 +61,7 @@ Build number:
 
 ## Play Store
 
-**Before building you will need to open the file _build.gradle_ to edit the _versionName_ and increase the _versionCode_ number.**
+**Before building you will need to open the file _build.gradle_ to edit the _versionName_ and increase the _versionCode_ number.** \
 To build the android app run `ionic capacitor build android`. \
 After running the command, if not already opened, open Android Studio on the project. \
 Go to _Build_ and then _Generate Signed Bundle/APK_. \
@@ -82,7 +82,7 @@ In the top side of the window click on _App_ (next to Play and Pause) and select
 **Before archiving you will need to open the file _App.xcodeproj_ to edit the _Version_ and increase the _Build_ number.**
 Then in the top bar click on _Product_ and select _Archive_.
 
-**Note:** If you encounter the "Capacitor not found" error, close XCode and open it by running `npx cap open ios` in the project repository. {: .note} \
+**Note:** If you encounter the "Capacitor not found" error, close XCode and open it by running `npx cap open ios` in the project repository. \
 
 After archiving, click on _Distribute app_, then always click on _Next_ until you read _Processing App..._\
 Now click on Upload to automatically upload it on the app store. \
