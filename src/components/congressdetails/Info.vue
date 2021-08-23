@@ -66,7 +66,11 @@
         </span>
       </div>
     </detail-section>
-    <detail-section label="Description" noSeparator>
+    <detail-section
+      v-if="formattedDescription && formattedDescription.length"
+      label="Description"
+      noSeparator
+    >
       <p
         class="px-8 font-helvetica text-mid-dark-grey text-16 spacing-1 line-24 mb-4 mt-0"
         v-html="formattedDescription"

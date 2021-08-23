@@ -133,17 +133,10 @@
         class="px-8 font-helvetica text-mid-dark-grey text-16 spacing-1 line-24 mb-4 mt-0"
         v-html="formattedDescriptionInfo"
       />
-      <div class="mx-8 flex justify-start">
-        <section-button
-          :label="updatedReadMore.useful ? 'Read less' : 'Read more'"
-          @onClick="readMore('useful')"
-        />
-      </div>
     </detail-section>
   </div>
 </template>
 <script>
-import SectionButton from '../containers/SectionButton.vue'
 import DetailSection from '../DetailSection.vue'
 import ImageGallery from '../ImageGallery.vue'
 import { IonImg } from '@ionic/vue'
@@ -152,7 +145,6 @@ import BigButton from '../containers/BigButton.vue'
 export default {
   components: {
     ImageGallery,
-    SectionButton,
     DetailSection,
     IonImg,
     SquareContainer,
@@ -245,15 +237,9 @@ export default {
       return ''
     },
     formattedDescriptionInfo () {
-      if (this.updatedReadMore.useful) {
-        return this.updatedCongress.useful_information &&
-          this.updatedCongress.useful_information.description
-          ? this.updatedCongress.useful_information.description
-          : ''
-      }
       return this.updatedCongress.useful_information &&
-        this.updatedCongress.useful_information.description_short
-        ? this.updatedCongress.useful_information.description_short
+        this.updatedCongress.useful_information.description
+        ? this.updatedCongress.useful_information.description
         : ''
     },
     congressMaps () {

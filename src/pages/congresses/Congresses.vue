@@ -1,7 +1,7 @@
 <template>
   <Page
     label="Congresses"
-    back="/menu"
+    back="/home"
     :filters="filters"
     :filtersOptions="options"
     @onFiltersChange="updateFilters"
