@@ -42,9 +42,8 @@ export default {
         url: urls.onBoarding
       })
       this.slides = results
-      const userData = this.$store.getters.userData
-      userData.onboarding = false
-      this.$store.commit('setUserData', userData)
+      // no need to see onboarding anymore
+      this.$store.commit('setOnboarding', false)
     } catch (e) {
       console.error(e)
       this.$router.push('/home')
