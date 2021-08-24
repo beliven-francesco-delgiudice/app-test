@@ -77,13 +77,6 @@ export async function login (context, data) {
       console.error(e)
     }
 
-    console.log(
-      context.getters.userData,
-      context.getters.needOnboarding,
-      context.getters.gotUpdatesToShow,
-      context.getters.gotNotificationToShow
-    )
-
     // Check OneSignal permissions status
     // const subscriptionData = await this.$app.$onesignal.getPermissionState()
     // await context.dispatch('newNotificationsState', subscriptionData)
@@ -98,7 +91,7 @@ export async function login (context, data) {
     )
 
     // // Onboarding, Wizard or Home
-    // if (userData.onboarding) {
+    // if (loggedData.onboarding) {
     //   this.$app.$router.push('/onboarding')
     // } else if (context.getters.gotUpdatesToShow) {
     //   console.log('new update', context.getters.gotUpdatesToShow)
@@ -153,7 +146,7 @@ export async function loginWithToken (context) {
 
     resolveRouting(
       this.$app,
-      userData.onboarding,
+      context.getters.needOnboarding,
       context.getters.gotUpdatesToShow,
       context.getters.gotNotificationToShow
     )
