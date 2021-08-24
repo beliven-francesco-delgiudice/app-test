@@ -61,9 +61,9 @@ export async function login (context, data) {
     const userData = Object.assign({}, loggedData.user)
 
     context.commit('setUserData', userData)
-
     context.commit('setOnboarding', loggedData.onboarding)
     context.commit('setNotifications', loggedData.push)
+    context.commit('setAppUpdates', loggedData.update_id)
 
     window.localStorage.setItem('JWT', loggedData.jwt)
 
@@ -122,11 +122,11 @@ export async function loginWithToken (context) {
     const userData = Object.assign({}, loggedData.user)
 
     context.commit('setUserData', userData)
-
-    window.localStorage.setItem('JWT', loggedData.jwt)
-
     context.commit('setOnboarding', loggedData.onboarding)
     context.commit('setNotifications', loggedData.push)
+    context.commit('setAppUpdates', loggedData.update_id)
+
+    window.localStorage.setItem('JWT', loggedData.jwt)
 
     // No OneSignal if WebApp
     try {
@@ -159,7 +159,7 @@ export async function loginWithToken (context) {
   }
 }
 
-export async function syncOneSignal (context) {
+export async function syncOneSignal () {
   try {
     const playerId = await this.$app.$onesignal.getUID()
     const deviceInfo = await this.$app.$device.getInfo()
@@ -180,7 +180,7 @@ export async function syncOneSignal (context) {
       }
     })
 
-    context.commit('setAppUpdates', oneSignalData.update_id)
+    console.debug(oneSignalData)
   } catch (e) {
     console.error(e)
     this.$app.$toast({
