@@ -21,6 +21,7 @@ const master = {
     notifications: [],
     appUpdates: null,
     notificationToShow: null,
+    onboarding: false,
     messages: []
   },
   mutations: {
@@ -56,6 +57,10 @@ const master = {
 
     setNotificationToShow (store, path) {
       store.notificationToShow = path
+    },
+
+    setOnboarding (store, needOnboarding) {
+      store.onboarding = needOnboarding
     },
 
     setAppUpdates (store, appUpdates) {
@@ -101,6 +106,27 @@ const master = {
 
       return data
     },
+    needOnboarding: state => state.onboarding,
+    gotNotifications: state => {
+      return state.notifications
+    },
+    areNotificationsNotRead: state => {
+      let notRead = 0
+      if (state.notifications && state.notifications.length) {
+        for (let i = 0; i < state.notifications.length; i++) {
+          if (state.notifications[i] && !state.notifications[i].read) {
+            notRead += 1
+          }
+        }
+      }
+      return notRead
+    },
+    gotUpdatesToShow: state => {
+      return state.appUpdates
+    },
+    gotNotificationToShow: state => {
+      return state.notificationToShow
+    },
     homeData: state =>
       state.home || {
         products: [],
@@ -126,26 +152,6 @@ const master = {
         return state.home.news
       }
       return []
-    },
-    gotNotifications: state => {
-      return state.notifications
-    },
-    areNotificationsNotRead: state => {
-      let notRead = 0
-      if (state.notifications && state.notifications.length) {
-        for (let i = 0; i < state.notifications.length; i++) {
-          if (state.notifications[i] && !state.notifications[i].read) {
-            notRead += 1
-          }
-        }
-      }
-      return notRead
-    },
-    gotUpdatesToShow: state => {
-      return state.appUpdates
-    },
-    gotNotificationToShow: state => {
-      return state.notificationToShow
     },
     username: state => state.user.data.username || '',
     userTypes: state => state.user.types || [],

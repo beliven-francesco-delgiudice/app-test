@@ -33,7 +33,7 @@ export async function alreadyLoggedRouting (context) {
 
   resolveRouting(
     this.$app,
-    context.getters.onboarding,
+    context.getters.needOnboarding,
     context.getters.gotUpdatesToShow,
     context.getters.gotNotificationToShow
   )
@@ -62,6 +62,9 @@ export async function login (context, data) {
 
     context.commit('setUserData', userData)
 
+    context.commit('setOnboarding', loggedData.onboarding)
+    context.commit('setNotifications', loggedData.push)
+
     window.localStorage.setItem('JWT', loggedData.jwt)
 
     // No OneSignal if WebApp
@@ -74,6 +77,13 @@ export async function login (context, data) {
       console.error(e)
     }
 
+    console.log(
+      context.getters.userData,
+      context.getters.needOnboarding,
+      context.getters.gotUpdatesToShow,
+      context.getters.gotNotificationToShow
+    )
+
     // Check OneSignal permissions status
     // const subscriptionData = await this.$app.$onesignal.getPermissionState()
     // await context.dispatch('newNotificationsState', subscriptionData)
@@ -82,7 +92,7 @@ export async function login (context, data) {
 
     resolveRouting(
       this.$app,
-      userData.onboarding,
+      context.getters.needOnboarding,
       context.getters.gotUpdatesToShow,
       context.getters.gotNotificationToShow
     )
@@ -121,6 +131,9 @@ export async function loginWithToken (context) {
     context.commit('setUserData', userData)
 
     window.localStorage.setItem('JWT', loggedData.jwt)
+
+    context.commit('setOnboarding', loggedData.onboarding)
+    context.commit('setNotifications', loggedData.push)
 
     // No OneSignal if WebApp
     try {
