@@ -18,12 +18,8 @@
         <div
           v-if="updatedHotel.googlemaps"
           class="flex relative mt-2 mb-4 items-center"
+          @click="openLink(updatedHotel.googlemaps)"
         >
-          <a
-            :href="'geo:' + updatedHotel.googlemaps"
-            title="google maps link"
-            class="absolute top-0 left-0 w-full h-full"
-          ></a>
           <square-container
             bgClass="bg-black"
             squareSize="44"
@@ -226,6 +222,9 @@ export default {
     }
   },
   methods: {
+    openLink (link) {
+      window.open(link)
+    },
     readMore (param) {
       const obj = Object.assign({}, this.isReadMore)
       obj[param] = !obj[param]
