@@ -79,12 +79,12 @@ There you will find the finished build as an .aab file, ready to be uploaded on 
 To build the ios app run `ionic capacitor build ios`. \
 After running the command, if not already opened, open XCode on the project by opening _App.xcodeproj_. \
 In the top side of the window click on _App_ (next to Play and Pause) and select _Any iOS Device_. \
-**Before archiving you will need to open the file _App.xcodeproj_ to edit the _Version_ and increase the _Build_ number.**
+**Before archiving you will need to open the file _App.xcodeproj_ to edit the _Version_ and increase the _Build_ number.** \
 Then in the top bar click on _Product_ and select _Archive_.
 
 **Note:** If you encounter the "Capacitor not found" error, close XCode and open it by running `npx cap open ios` in the project repository.
 
-After archiving, click on _Distribute app_, then always click on _Next_ until you read _Processing App..._\
+After archiving, in the new window click on _Distribute app_, then always click on _Next_ until you read _Processing App..._\
 Now click on Upload to automatically upload it on the app store.
 
 ## Copyright
