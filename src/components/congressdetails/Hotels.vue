@@ -230,7 +230,7 @@ export default {
     },
     hotelDescription () {
       if (this.updatedHotel.info && this.updatedHotel.info.length) {
-        return this.sanitizeManageText(this.updatedHotel.description)
+        return this.sanitizeManageText(this.updatedHotel.info)
       }
       return ''
     },
