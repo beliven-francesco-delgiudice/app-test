@@ -76,12 +76,23 @@
       </div>
       <p
         v-if="hotelDescription && hotelDescription.length"
-        class="px-8 font-helvetica text-mid-dark-grey text-16 spacing-1 line-24 mb-8 mt-8"
+        class="px-8 font-helvetica text-mid-dark-grey text-16 spacing-1 line-24 mt-8"
+        :style="
+          !updatedReadMore.hotel
+            ? 'display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;'
+            : ''
+        "
         v-html="hotelDescription"
       />
-      <div class="mx-8 flex justify-start">
+      <div
+        v-if="
+          hotelDescription &&
+            hotelDescription.length &&
+            hotelDescription.length > 400
+        "
+        class="mx-8 mt-8 flex justify-start"
+      >
         <section-button
-          v-if="hotelDescription && hotelDescription.length"
           :label="updatedReadMore.hotel ? 'Read less' : 'Read more'"
           @onClick="readMore('hotel')"
         />
@@ -149,10 +160,19 @@
       </div>
       <p
         class="px-8 font-helvetica text-mid-dark-grey text-16 spacing-1 line-24 mb-4 mt-0"
+        :style="
+          !updatedReadMore.transfer
+            ? 'display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;'
+            : ''
+        "
         v-html="transferDescription"
       />
       <div
-        v-if="transferDescription && transferDescription.length"
+        v-if="
+          transferDescription &&
+            transferDescription.length &&
+            transferDescription.length > 400
+        "
         class="mx-8 flex justify-start"
       >
         <section-button
@@ -209,16 +229,16 @@ export default {
       return this.isReadMore
     },
     hotelDescription () {
-      if (this.updatedReadMore.hotel) {
-        return this.updatedHotel.info
+      if (this.updatedHotel.info && this.updatedHotel.info.length) {
+        return this.sanitizeManageText(this.updatedHotel.description)
       }
-      return this.updatedHotel.info_short
+      return ''
     },
     transferDescription () {
-      if (this.updatedReadMore.transfer) {
-        return this.updatedTransfer.info
+      if (this.updatedTransfer.info && this.updatedTransfer.info.length) {
+        return this.sanitizeManageText(this.updatedTransfer.info)
       }
-      return this.updatedTransfer.info_short
+      return ''
     }
   },
   methods: {
@@ -237,6 +257,11 @@ export default {
         window.open(this.updatedHotel.save_event)
       }
     }
+  },
+  mounted () {
+    setTimeout(() => {
+      this.cleanParagraphs()
+    }, 500)
   }
 }
 </script>
