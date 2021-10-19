@@ -1,4 +1,4 @@
-package com.limacorporate.limapp;
+package com.limacorporate.sales;
 
 import com.getcapacitor.BridgeActivity;
 
