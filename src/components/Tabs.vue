@@ -69,7 +69,6 @@ export default {
         {
           name: 'documents',
           href: '/documents',
-          disabled: true,
           icon: '/assets/button-icons/documents.svg'
         },
         {

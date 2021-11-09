@@ -32,6 +32,9 @@
     "congressDetail": "An error occurred while retrieving the congress information",
     "activityDetail": "An error occurred while retrieving the activity information",
 
+    "documents": "An error occurred while retrieving the documents. Retry later",
+    "folderDetail": "An error occurred while retrieving the folder",
+
     "search": "An error occurred while searching",
 
     "usefulLinks": "An error occured while getting the links",

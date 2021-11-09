@@ -28,6 +28,9 @@ import Contacts from '../pages/Contact.vue'
 import News from '../pages/news/News'
 import NewsDetail from '../pages/news/NewsDetail'
 
+import Documents from '../pages/documents/Documents'
+import FolderDetail from '../pages/documents/FolderDetail'
+
 import ProductsIndex from '../pages/products/ProductsIndex.vue'
 import ProductsSegment from '../pages/products/ProductsSegment.vue'
 import ProductsCategory from '../pages/products/ProductsCategory.vue'
@@ -200,6 +203,29 @@ const routes = [
         path: '',
         name: 'Contacts',
         component: Contacts
+      }
+    ]
+  },
+  // documents
+  {
+    path: '/documents',
+    component: MainLayout,
+    children: [
+      {
+        path: '/documents/folder/:id',
+        name: 'Folder',
+        component: FolderDetail,
+        meta: {
+          showBack: true
+        }
+      },
+      {
+        path: '',
+        name: 'Documents',
+        component: Documents,
+        meta: {
+          showBack: true
+        }
       }
     ]
   },

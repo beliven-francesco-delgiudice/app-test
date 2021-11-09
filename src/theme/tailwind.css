@@ -490,6 +490,9 @@
 .-mt-20 {
   margin-top: -5rem;
 }
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -564,6 +567,9 @@
 }
 .container-shadow {
   box-shadow: 0 8px 21px 0 rgba(106,115,119,0.15);
+}
+.shadow-none {
+  box-shadow: none !important;
 }
 
 .overflow-hidden {

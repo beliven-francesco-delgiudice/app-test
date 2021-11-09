@@ -14,6 +14,7 @@
         :key="i"
         :classes="i > 0 ? 'mt-4' : ''"
         :document="doc"
+        :type="type"
         small
       />
     </div>
@@ -27,7 +28,8 @@ export default {
   props: {
     docs: [Array, Object],
     title: String,
-    classes: [Array, String]
+    classes: [Array, String],
+    type: [String]
   }
 }
 </script>

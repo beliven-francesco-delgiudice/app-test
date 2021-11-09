@@ -22,6 +22,20 @@
     "list":"/congresses",
     "activity": "/congresses/activity"
   },
+  "documents": {
+    "list_my":"/documents/my",
+    "list_shared":"/documents/shared",
+    "add_to_my": "/documents/favorite",
+    "remove_from_my": "/documents/remove",
+    "move": "/documents/move",
+    "share": "/documents/share"
+  },
+  "folders": {
+    "create":"/folders",
+    "move": "/folders/move",
+    "share": "/folders/share",
+    "move_in_my": "/folders/mydocs"
+  },
   "news": {
     "home": "/news/home",
     "list": "/news"

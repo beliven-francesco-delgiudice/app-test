@@ -1,5 +1,10 @@
 <template>
-  <div :class="[divClass, 'w-full flex justify-between items-center']">
+  <div
+    :class="[
+      divClass,
+      'w-full flex justify-between items-center py-2 rounded-8'
+    ]"
+  >
     <div
       @click="documentAction"
       class="flex justify-start items-center flex-grow"
@@ -24,31 +29,50 @@
           }}</span
         >
         <span class="font-helvetica text-14 text-grey spacing-44 line-24">{{
-          updatedDocument.size
+          updatedDocument.size || updatedDocument.subtitle
         }}</span>
       </div>
     </div>
-    <div @click="openDocumentMenu" class="height-44 w-44 flex pl-4">
+    <div
+      v-if="actions && actions.length"
+      @click="openDocumentMenu"
+      class="height-44 w-44 flex pl-4"
+    >
       <ion-img
         src="/assets/button-icons/threedots.svg"
         class="width-4 height-18 my-auto ml-auto"
       />
     </div>
   </div>
+  <rename-modal
+    v-if="isRenameModalOpen"
+    :doc="document"
+    @onClose="closeModal('rename')"
+  />
 </template>
 
 <script>
 import SquareContainer from './containers/SquareContainer.vue'
 import { IonImg, actionSheetController } from '@ionic/vue'
 import { Capacitor } from '@capacitor/core'
+import RenameModal from './documents/RenameModal.vue'
 
 export default {
-  components: { SquareContainer, IonImg },
+  components: { SquareContainer, IonImg, RenameModal },
   props: {
     bgClass: String,
     classes: [String, Array],
     document: Object,
-    small: Boolean
+    small: Boolean,
+    actions: Array,
+    type: String
+  },
+  data () {
+    return {
+      action: null,
+      isRenameModalOpen: false,
+      isDeleteModalOpen: false
+    }
   },
   computed: {
     isApp () {
@@ -77,6 +101,19 @@ export default {
     async getAppInfo () {
       return await this.$device.getAppInfo()
     },
+    closeModal (action) {
+      switch (action) {
+        case 'rename':
+          this.isRenameModalOpen = false
+          break
+
+        case 'delete':
+          this.isDeleteModalOpen = false
+          break
+        default:
+          break
+      }
+    },
     getDocumentPath (document) {
       let path = ''
       if (document.url) {
@@ -101,71 +138,91 @@ export default {
     },
     documentAction () {
       if (this.document && this.document.type === 'folder') {
-        this.$router.push('/documents/folders/' + this.document.id)
+        this.$router.push(
+          '/documents/folder/' + this.document.id + '?type=' + this.type
+        )
       } else {
         this.openDocumentMenu()
       }
     },
+    openActionModal (action) {
+      this.action = action
+      this.isActionModalOpen = true
+    },
     async openDocumentMenu () {
+      const buttonsArray = []
+      const actionsList = this.actions ? this.actions.map(i => i) : []
+      for (let i = 0; i < actionsList.length; i++) {
+        switch (actionsList[i]) {
+          case 'rename':
+            buttonsArray.push({
+              text: 'Rename',
+              handler: async () => {
+                this.openActionModal('rename')
+              }
+            })
+            break
+          default:
+            break
+        }
+      }
+
+      if (this.document.type !== 'folder') {
+        buttonsArray.push({
+          text: 'Open',
+          handler: async () => {
+            if (this.isApp) {
+              const path = this.getDocumentPath(this.updatedDocument)
+              try {
+                await this.$loading.show()
+                await this.$docviewer(path, this.updatedDocument.title)
+              } catch (e) {
+                console.error(e)
+                this.$toast({
+                  message: 'Cannot open document',
+                  color: 'danger'
+                })
+              }
+              await this.$loading.hide()
+            } else {
+              this.openFile(this.updatedDocument)
+            }
+          }
+        })
+
+        buttonsArray.push({
+          text: 'Download',
+          handler: async () => {
+            if (this.isApp) {
+              const path = this.getDocumentPath(this.updatedDocument)
+              try {
+                await this.$loading.show()
+                await this.$docsaver(path, this.updatedDocument.title)
+                await this.$loading.hide()
+                this.$toast({
+                  message: 'Document successfully saved in "Documents"',
+                  color: 'dark'
+                })
+              } catch (e) {
+                await this.$loading.hide()
+                console.log(e)
+                this.$toast({
+                  message: 'Cannot download document',
+                  color: 'danger'
+                })
+              }
+            } else {
+              this.openFile(this.updatedDocument)
+            }
+          }
+        })
+      }
+
       const actionMenu = await actionSheetController.create({
         header: this.document.label,
         animated: true,
         cssClass: 'document-action-menu',
-        buttons: [
-          {
-            text: 'Open',
-            handler: async () => {
-              if (this.isApp) {
-                const path = this.getDocumentPath(this.updatedDocument)
-                try {
-                  await this.$loading.show()
-                  await this.$docviewer(path, this.updatedDocument.title)
-                } catch (e) {
-                  console.error(e)
-                  this.$toast({
-                    message: 'Cannot open document',
-                    color: 'danger'
-                  })
-                }
-                await this.$loading.hide()
-              } else {
-                this.openFile(this.updatedDocument)
-              }
-            }
-          },
-          {
-            text: 'Download',
-            handler: async () => {
-              if (this.isApp) {
-                const path = this.getDocumentPath(this.updatedDocument)
-                try {
-                  await this.$loading.show()
-                  await this.$docsaver(path, this.updatedDocument.title)
-                  await this.$loading.hide()
-                  this.$toast({
-                    message: 'Document successfully saved in "Documents"',
-                    color: 'dark'
-                  })
-                } catch (e) {
-                  await this.$loading.hide()
-                  console.log(e)
-                  this.$toast({
-                    message: 'Cannot download document',
-                    color: 'danger'
-                  })
-                }
-              } else {
-                this.openFile(this.updatedDocument)
-              }
-            }
-          }
-          // {
-          //   text: 'Share',
-          //   handler: () => {
-          //     console.log('Share clicked')
-          //   }
-          // }
-        ]
+        buttons: buttonsArray
       })
       await actionMenu.present()
       // const { role } = await actionMenu.onDidDismiss()

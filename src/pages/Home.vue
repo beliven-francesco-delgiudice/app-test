@@ -78,17 +78,22 @@
     </div>
 
     <!-- Documents -->
-    <!-- <home-titled-container label="Documents" path="/documents">
+    <home-titled-container label="Documents" path="/documents">
       <carousel id="documents-carousel" classes="py-4 -my-4">
         <home-documents
-          title="Last saved"
-          :docs="documents.last_saved"
+          title="My Docs"
+          :docs="$store.getters.homeDocuments.my"
+          type="my"
           classes="ml-8"
         />
-        <home-documents title="Other" :docs="documents.other" />
+        <home-documents
+          title="Shared with me"
+          type="shared"
+          :docs="$store.getters.homeDocuments.shared"
+        />
         <div>&nbsp;</div>
       </carousel>
-    </home-titled-container> -->
+    </home-titled-container>
 
     <!-- Medical Education -->
     <!-- <home-titled-container label="Medical Education" path="/meded">
@@ -154,7 +159,7 @@ import HomeTitledContainer from '../components/home/HomeTitledContainer.vue'
 import HomeNews from '../components/home/HomeNews.vue'
 // import HomeMeded from '../components/home/HomeMeded.vue'
 import HomeCongress from '../components/home/HomeCongress.vue'
-// import HomeDocuments from '../components/home/HomeDocuments.vue'
+import HomeDocuments from '../components/home/HomeDocuments.vue'
 import ShadowButton from '../components/containers/ShadowButton.vue'
 import { Capacitor } from '@capacitor/core'
 export default {
@@ -167,9 +172,9 @@ export default {
     HomeTitledContainer,
     ShadowButton,
     HomeNews,
-    HomeCongress
+    HomeCongress,
     // HomeMeded,
-    // HomeDocuments
+    HomeDocuments
   },
   data () {
     return {
@@ -190,68 +195,7 @@ export default {
           img: '/assets/test/product-vertical-home.svg'
         }
       ],
-      documents: {
-        last_saved: [
-          {
-            image: '/assets/test/folder.jpg',
-            type: 'folder',
-            label: 'Lorem ipsum',
-            size: '3.6MB',
-            link: 'link'
-          },
-          {
-            image: '/assets/test/file.jpg',
-            type: 'file',
-            label: 'Lorem ipsum',
-            size: '3.6MB',
-            link: 'link'
-          },
-          {
-            image: '/assets/test/folder.jpg',
-            type: 'folder',
-            label: 'Lorem ipsum',
-            size: '3.6MB',
-            link: 'link'
-          },
-          {
-            image: '/assets/test/file.jpg',
-            type: 'file',
-            label: 'Lorem ipsum',
-            size: '3.6MB',
-            link: 'link'
-          }
-        ],
-        other: [
-          {
-            image: '/assets/test/folder.jpg',
-            type: 'folder',
-            label: 'Lorem ipsum',
-            size: '3.6MB',
-            link: 'link'
-          },
-          {
-            image: '/assets/test/file.jpg',
-            type: 'file',
-            label: 'Lorem ipsum',
-            size: '3.6MB',
-            link: 'link'
-          },
-          {
-            image: '/assets/test/folder.jpg',
-            type: 'folder',
-            label: 'Lorem ipsum',
-            size: '3.6MB',
-            link: 'link'
-          },
-          {
-            image: '/assets/test/file.jpg',
-            type: 'file',
-            label: 'Lorem ipsum',
-            size: '3.6MB',
-            link: 'link'
-          }
-        ]
-      },
+      documents: {},
       news: [
         {
           id: 1,
