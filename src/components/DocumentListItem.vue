@@ -34,7 +34,7 @@
       </div>
     </div>
     <div
-      v-if="actions && actions.length"
+      v-if="documentActions && documentActions.length"
       @click="openDocumentMenu"
       class="height-44 w-44 flex pl-4"
     >
@@ -101,7 +101,8 @@ export default {
       return this.checkIsApp(Capacitor.getPlatform())
     },
     documentActions () {
-      return this.actions || this.updatedDocument.actions || []
+      const actions = this.actions || this.updatedDocument.actions || []
+      return this.sortActions(actions)
     },
     divClass () {
       return `${this.bgClass || 'bg-white'} ${this.classes || ''}`
@@ -180,6 +181,58 @@ export default {
     async openDocumentMenu () {
       const buttonsArray = []
       const actionsList = this.documentActions.map(i => i) || []
+
+      if (this.document.type !== 'folder') {
+        buttonsArray.push({
+          text: 'Open',
+          handler: async () => {
+            if (this.isApp) {
+              const path = this.getDocumentPath(this.updatedDocument)
+              try {
+                await this.$loading.show()
+                await this.$docviewer(path, this.updatedDocument.title)
+              } catch (e) {
+                console.error(e)
+                this.$toast({
+                  message: 'Cannot open document',
+                  color: 'danger'
+                })
+              }
+              await this.$loading.hide()
+            } else {
+              this.openFile(this.updatedDocument)
+            }
+          }
+        })
+
+        buttonsArray.push({
+          text: 'Download',
+          handler: async () => {
+            if (this.isApp) {
+              const path = this.getDocumentPath(this.updatedDocument)
+              try {
+                await this.$loading.show()
+                await this.$docsaver(path, this.updatedDocument.title)
+                await this.$loading.hide()
+                this.$toast({
+                  message: 'Document successfully saved in "Documents"',
+                  color: 'dark'
+                })
+              } catch (e) {
+                await this.$loading.hide()
+                console.log(e)
+                this.$toast({
+                  message: 'Cannot download document',
+                  color: 'danger'
+                })
+              }
+            } else {
+              this.openFile(this.updatedDocument)
+            }
+          }
+        })
+      }
+
       for (let i = 0; i < actionsList.length; i++) {
         switch (actionsList[i]) {
           case 'rename':
@@ -251,7 +304,7 @@ export default {
             break
           case 'save_to_mydocs':
             buttonsArray.push({
-              text: 'Save in Mydocs',
+              text: 'Save in My Docs',
               handler: async () => {
                 if (this.document && this.document.id) {
                   try {
@@ -262,6 +315,10 @@ export default {
                         folder: null,
                         file: this.document.id
                       }
+                    })
+                    this.$toast({
+                      message: "Document saved in 'My Docs'!",
+                      color: 'dark'
                     })
                     console.debug(saveResult)
                   } catch (e) {
@@ -284,7 +341,7 @@ export default {
 
           case 'move_to_mydocs':
             buttonsArray.push({
-              text: 'Move to Mydocs',
+              text: 'Move To My Docs',
               handler: async () => {
                 let errorMessage = messages.errors.folderDetail
                 if (this.document && this.document.type === 'file') {
@@ -294,13 +351,14 @@ export default {
                   try {
                     const saveResult = await this.$http({
                       method: 'POST',
-                      url: urls.documents.move_to_mydocs,
+                      url: urls.folders.move_to_mydocs,
                       data: {
                         type: this.document.type,
                         source: this.document.id
                       }
                     })
                     console.debug(saveResult)
+                    this.$router.go()
                   } catch (e) {
                     console.error(e)
                     this.$toast({
@@ -321,57 +379,6 @@ export default {
           default:
             break
         }
-      }
-
-      if (this.document.type !== 'folder') {
-        buttonsArray.push({
-          text: 'Open',
-          handler: async () => {
-            if (this.isApp) {
-              const path = this.getDocumentPath(this.updatedDocument)
-              try {
-                await this.$loading.show()
-                await this.$docviewer(path, this.updatedDocument.title)
-              } catch (e) {
-                console.error(e)
-                this.$toast({
-                  message: 'Cannot open document',
-                  color: 'danger'
-                })
-              }
-              await this.$loading.hide()
-            } else {
-              this.openFile(this.updatedDocument)
-            }
-          }
-        })
-
-        buttonsArray.push({
-          text: 'Download',
-          handler: async () => {
-            if (this.isApp) {
-              const path = this.getDocumentPath(this.updatedDocument)
-              try {
-                await this.$loading.show()
-                await this.$docsaver(path, this.updatedDocument.title)
-                await this.$loading.hide()
-                this.$toast({
-                  message: 'Document successfully saved in "Documents"',
-                  color: 'dark'
-                })
-              } catch (e) {
-                await this.$loading.hide()
-                console.log(e)
-                this.$toast({
-                  message: 'Cannot download document',
-                  color: 'danger'
-                })
-              }
-            } else {
-              this.openFile(this.updatedDocument)
-            }
-          }
-        })
       }
 
       const actionMenu = await actionSheetController.create({
