@@ -1,8 +1,9 @@
 <template>
   <div class="relative">
     <ion-scroll
+      overflow-scroll="false"
       direction="x"
-      :id="id"
+      :id="computedID"
       :class="[
         height || '',
         classes || '',
@@ -26,10 +27,15 @@ export default {
   methods: {
     scrollLeft () {}
   },
+  computed: {
+    computedID () {
+      return this.id || 'carousel-' + Math.floor(Math.random() * 5)
+    }
+  },
   mounted () {
     let slider = null
-    if (this.id) {
-      slider = document.querySelector('#' + this.id)
+    if (this.computedID) {
+      slider = document.querySelector('#' + this.computedID)
     } else {
       slider = document.querySelector('.carousel')
     }
@@ -39,6 +45,7 @@ export default {
     let scrollLeft
 
     slider.addEventListener('mousedown', e => {
+      console.log('mousedown')
       isDown = true
       slider.classList.add('active')
       startX = e.pageX - slider.offsetLeft

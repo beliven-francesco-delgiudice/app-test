@@ -104,6 +104,7 @@
             updatedCongress.lima_booth.gallery &&
             updatedCongress.lima_booth.gallery.length
         "
+        id="booth"
         :gallery="
           updatedCongress.lima_booth && updatedCongress.lima_booth.gallery
             ? updatedCongress.lima_booth.gallery
