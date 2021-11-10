@@ -1,5 +1,5 @@
 <template>
-  <carousel id="images-carousel" classes="-my-8 py-8">
+  <carousel :id="id" classes="-my-8 py-8">
     <div
       v-for="(image, i) in updatedGallery"
       :key="i"
@@ -45,7 +45,8 @@ export default {
   },
   props: {
     gallery: Array,
-    initMargin: String
+    initMargin: String,
+    id: String
   },
   data () {
     return {
@@ -91,8 +92,8 @@ export default {
 </script>
 <style scoped>
 .gallery-container {
-  width: calc(100vw - 4rem);
-  min-width: calc(100vw - 4rem);
+  width: calc(100% - 4rem);
+  min-width: calc(100% - 4rem);
   height: 221px;
 }
 @media screen and (min-width: 1024px) {
