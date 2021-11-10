@@ -60,13 +60,6 @@
       >
     </div>
     <div v-if="step === 2 && isAzureMail" class="flex flex-col">
-      <div class="flex z-10 relative mb-4">
-        <span
-          class="font-helvetica text-16 text-mid-dark-grey spacing-1 line-24"
-          >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor</span
-        >
-      </div>
       <ion-button
         type="button"
         class="relative bg-azure small-shadow rounded-12 flex justify-center items-center height-56 w-full normal-case"
