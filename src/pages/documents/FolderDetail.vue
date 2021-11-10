@@ -2,7 +2,11 @@
   <Page :label="updatedDocuments.back.name || 'Folder'" back>
     <div class="flex flex-col px-8 pt-8">
       <div class="mb-4" v-for="(doc, i) in updatedDocuments.list" :key="i">
-        <document-list-item :document="doc" :type="updatedDocuments.type" />
+        <document-list-item
+          :document="doc"
+          :type="updatedDocuments.type"
+          :actions="doc.actions"
+        />
       </div>
     </div>
   </Page>

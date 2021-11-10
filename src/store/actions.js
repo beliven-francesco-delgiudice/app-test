@@ -303,8 +303,6 @@ export async function getHome (context) {
     })
     news = newsList
 
-    console.log('before documents')
-
     // get documents
     const documentsMy = await this.$app.$http({
       method: 'GET',
@@ -314,8 +312,6 @@ export async function getHome (context) {
     })
     documents.my = documentsMy.list
 
-    console.log('my', documentsMy)
-
     const documentsShared = await this.$app.$http({
       method: 'GET',
       url: urls.documents.list_shared,
@@ -323,8 +319,6 @@ export async function getHome (context) {
       loader: false
     })
     documents.shared = documentsShared.list
-
-    console.log('shared', documentsShared)
   } catch (e) {
     this.$app.$toast({
       message: messages.errors.home,

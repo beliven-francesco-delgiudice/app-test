@@ -34,6 +34,8 @@
 
     "documents": "An error occurred while retrieving the documents. Retry later",
     "folderDetail": "An error occurred while retrieving the folder",
+    "file": "An error occurred while obtaining the file",
+    "notInternal": "The user associated with that e-mail was not found. Check again the e-mail or try an external share.",
 
     "search": "An error occurred while searching",
 

@@ -13,12 +13,12 @@
     >
       <span
         class="font-helvetica-bold text-20 spacing-22 line-30 text-black mb-1 block"
-        >Rename folder</span
+        >Share {{ doc.type }} with</span
       >
       <ion-input
-        type="text"
-        placeholder="New name"
-        v-model="name"
+        type="email"
+        placeholder="Email"
+        v-model="email"
         class="font-helvetica text-16 spacing-5 line-28 text-black my-2"
         required
       ></ion-input>
@@ -42,7 +42,7 @@
         >
           <span
             class="font-helvetica-medium text-white text-16 spacing-5 line-24 m-auto normal-case"
-            >Save</span
+            >Share</span
           >
         </ion-button>
       </div>
@@ -64,7 +64,7 @@ export default {
   },
   data () {
     return {
-      name: this.doc.title
+      email: ''
     }
   },
   methods: {
@@ -73,17 +73,32 @@ export default {
     },
     async saveName (e) {
       e.preventDefault()
-      if (this.name && this.name.length && this.doc.id) {
-        const renameResults = await this.$http({
-          method: 'POST',
-          url: urls.folders.create + '/' + this.doc.id,
-          data: {
-            name: this.name
-          },
-          loader: true
-        })
-        console.log(renameResults)
-        this.$router.go()
+      if (this.email && this.email.length && this.doc.id) {
+        const data = { email: this.email, file: this.doc.id }
+        let endpoint = urls.documents.share
+        if (this.doc.type === 'folder') {
+          endpoint = urls.folders.share
+          delete data.file
+          data.folder = this.doc.id
+        }
+        try {
+          const shareResults = await this.$http({
+            method: 'POST',
+            url: endpoint,
+            data,
+            loader: true
+          })
+          console.log(shareResults)
+          this.$router.go()
+        } catch (e) {
+          if (e && e.response && e.response.status === 404) {
+            this.$toast({
+              message: messages.errors.notInternal,
+              color: 'danger',
+              duration: 6000
+            })
+          }
+        }
       } else {
         console.error('No folder in route')
         this.$toast({
@@ -93,9 +108,6 @@ export default {
       }
       this.$emit('onClose')
     }
-  },
-  created () {
-    this.name = this.doc.title
   }
 }
 </script>

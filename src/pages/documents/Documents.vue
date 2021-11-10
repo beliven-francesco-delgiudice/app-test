@@ -13,7 +13,11 @@
     </carousel>
     <div class="flex flex-col px-8 pt-8">
       <div class="mb-4" v-for="(doc, i) in documentsToShow" :key="i">
-        <document-list-item :document="doc" :type="updatedSection" />
+        <document-list-item
+          :document="doc"
+          :type="updatedSection"
+          :actions="doc.actions"
+        />
       </div>
     </div>
   </Page>
@@ -75,13 +79,14 @@ export default {
       this.section = path
       this.getDocuments()
     },
-    async getDocuments () {
+    async getDocuments (loader = false) {
       try {
         const endpoint = 'list_' + this.updatedSection
         const results = await this.$http({
           method: 'GET',
           url: urls.documents[endpoint],
-          params: this.filters
+          params: this.filters,
+          loader
         })
         this.documents[this.updatedSection] = results.list
       } catch (e) {
@@ -94,7 +99,7 @@ export default {
     }
   },
   async mounted () {
-    this.getDocuments()
+    this.getDocuments(true)
   }
 }
 </script>

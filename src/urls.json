@@ -25,7 +25,7 @@
   "documents": {
     "list_my":"/documents/my",
     "list_shared":"/documents/shared",
-    "add_to_my": "/documents/favorite",
+    "save_in_mydocs": "/documents/favorite",
     "remove_from_my": "/documents/remove",
     "move": "/documents/move",
     "share": "/documents/share"
@@ -34,7 +34,7 @@
     "create":"/folders",
     "move": "/folders/move",
     "share": "/folders/share",
-    "move_in_my": "/folders/mydocs"
+    "move_to_mydocs": "/folders/mydocs"
   },
   "news": {
     "home": "/news/home",

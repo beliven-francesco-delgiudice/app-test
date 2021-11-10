@@ -15,6 +15,7 @@
         :classes="i > 0 ? 'mt-4' : ''"
         :document="doc"
         :type="type"
+        :actions="doc.actions"
         small
       />
     </div>

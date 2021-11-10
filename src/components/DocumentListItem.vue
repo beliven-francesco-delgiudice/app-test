@@ -47,18 +47,39 @@
   <rename-modal
     v-if="isRenameModalOpen"
     :doc="document"
-    @onClose="closeModal('rename')"
+    @onClose="toggleModal('rename')"
+  />
+  <delete-modal
+    v-if="isDeleteModalOpen"
+    :doc="document"
+    @onClose="toggleModal('delete')"
+  />
+
+  <int-share-modal
+    v-if="isIntShareModalOpen"
+    :doc="document"
+    @onClose="toggleModal('internal_share')"
   />
 </template>
 
 <script>
-import SquareContainer from './containers/SquareContainer.vue'
+import SquareContainer from './containers/SquareContainer'
 import { IonImg, actionSheetController } from '@ionic/vue'
 import { Capacitor } from '@capacitor/core'
-import RenameModal from './documents/RenameModal.vue'
+import RenameModal from './documents/RenameModal'
+import DeleteModal from './documents/DeleteModal'
+import IntShareModal from './documents/IntShareModal'
+import messages from '@/messages'
+import urls from '@/urls'
 
 export default {
-  components: { SquareContainer, IonImg, RenameModal },
+  components: {
+    SquareContainer,
+    IonImg,
+    RenameModal,
+    DeleteModal,
+    IntShareModal
+  },
   props: {
     bgClass: String,
     classes: [String, Array],
@@ -71,12 +92,16 @@ export default {
     return {
       action: null,
       isRenameModalOpen: false,
-      isDeleteModalOpen: false
+      isDeleteModalOpen: false,
+      isIntShareModalOpen: false
     }
   },
   computed: {
     isApp () {
       return this.checkIsApp(Capacitor.getPlatform())
+    },
+    documentActions () {
+      return this.actions || this.updatedDocument.actions || []
     },
     divClass () {
       return `${this.bgClass || 'bg-white'} ${this.classes || ''}`
@@ -100,19 +125,6 @@ export default {
   methods: {
     async getAppInfo () {
       return await this.$device.getAppInfo()
-    },
-    closeModal (action) {
-      switch (action) {
-        case 'rename':
-          this.isRenameModalOpen = false
-          break
-
-        case 'delete':
-          this.isDeleteModalOpen = false
-          break
-        default:
-          break
-      }
     },
     getDocumentPath (document) {
       let path = ''
@@ -149,16 +161,160 @@ export default {
       this.action = action
       this.isActionModalOpen = true
     },
+    toggleModal (action) {
+      switch (action) {
+        case 'rename':
+          this.isRenameModalOpen = !this.isRenameModalOpen
+          break
+        case 'delete':
+          this.isDeleteModalOpen = !this.isDeleteModalOpen
+          break
+        case 'move':
+          this.isMoveModalOpen = !this.isMoveModalOpen
+          break
+        case 'internal_share':
+          this.isIntShareModalOpen = !this.isIntShareModalOpen
+          break
+      }
+    },
     async openDocumentMenu () {
       const buttonsArray = []
-      const actionsList = this.actions ? this.actions.map(i => i) : []
+      const actionsList = this.documentActions.map(i => i) || []
       for (let i = 0; i < actionsList.length; i++) {
         switch (actionsList[i]) {
           case 'rename':
             buttonsArray.push({
               text: 'Rename',
               handler: async () => {
-                this.openActionModal('rename')
+                this.toggleModal('rename')
+              }
+            })
+            break
+          case 'delete':
+            buttonsArray.push({
+              text: 'Delete',
+              handler: async () => {
+                this.toggleModal('delete')
+              }
+            })
+            break
+          case 'move':
+            buttonsArray.push({
+              text: 'Move',
+              handler: async () => {
+                this.toggleModal('move')
+              }
+            })
+            break
+          case 'internal_share':
+            buttonsArray.push({
+              text: 'Share internal',
+              handler: async () => {
+                this.toggleModal('internal_share')
+              }
+            })
+            break
+          case 'external_share':
+            buttonsArray.push({
+              text: 'Share external',
+              handler: async () => {
+                const path = this.getDocumentPath(this.updatedDocument)
+                if (this.isApp) {
+                  try {
+                    await this.$clipboard(path).then(() => {
+                      this.$toast({
+                        message: 'Link copied!',
+                        color: 'dark'
+                      }).catch(() => {
+                        this.$toast({
+                          message: 'Cannot share document',
+                          color: 'danger'
+                        })
+                      })
+                    })
+                  } catch (e) {
+                    await this.$loading.hide()
+                    this.$toast({
+                      message: 'Cannot share document',
+                      color: 'danger'
+                    })
+                  }
+                } else {
+                  window.navigator.clipboard.writeText(path)
+                  this.$toast({
+                    message: 'Link copied!',
+                    color: 'dark'
+                  })
+                }
+              }
+            })
+            break
+          case 'save_to_mydocs':
+            buttonsArray.push({
+              text: 'Save in Mydocs',
+              handler: async () => {
+                if (this.document && this.document.id) {
+                  try {
+                    const saveResult = await this.$http({
+                      method: 'POST',
+                      url: urls.documents.save_in_mydocs,
+                      data: {
+                        folder: null,
+                        file: this.document.id
+                      }
+                    })
+                    console.debug(saveResult)
+                  } catch (e) {
+                    console.error(e)
+                    this.$toast({
+                      message: messages.errors.file,
+                      color: 'danger'
+                    })
+                  }
+                } else {
+                  console.error('No id document to save')
+                  this.$toast({
+                    message: messages.errors.file,
+                    color: 'danger'
+                  })
+                }
+              }
+            })
+            break
+
+          case 'move_to_mydocs':
+            buttonsArray.push({
+              text: 'Move to Mydocs',
+              handler: async () => {
+                let errorMessage = messages.errors.folderDetail
+                if (this.document && this.document.type === 'file') {
+                  errorMessage = messages.errors.file
+                }
+                if (this.document && this.document.id) {
+                  try {
+                    const saveResult = await this.$http({
+                      method: 'POST',
+                      url: urls.documents.move_to_mydocs,
+                      data: {
+                        type: this.document.type,
+                        source: this.document.id
+                      }
+                    })
+                    console.debug(saveResult)
+                  } catch (e) {
+                    console.error(e)
+                    this.$toast({
+                      message: errorMessage,
+                      color: 'danger'
+                    })
+                  }
+                } else {
+                  console.error('No id document to save')
+                  this.$toast({
+                    message: errorMessage,
+                    color: 'danger'
+                  })
+                }
               }
             })
             break

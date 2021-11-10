@@ -6,6 +6,7 @@
       'min-h-screen gradient-background max-h-screen overflow-y-auto relative pb-24'
     ]"
   >
+    <!-- <IonScroll direction="y"> -->
     <filters-modal
       v-if="filters"
       :options="options"
@@ -93,6 +94,7 @@
       {{ label }}
     </Title>
     <slot></slot>
+    <!-- </IonScroll> -->
   </div>
 </template>
 <script>
@@ -108,6 +110,7 @@ export default {
     IonImg,
     FiltersModal,
     IonButton
+    // IonScroll
   },
   data () {
     return {

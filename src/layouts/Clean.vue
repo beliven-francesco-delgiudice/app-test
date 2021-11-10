@@ -5,6 +5,12 @@
       :fullscreen="true"
       :forceOverscroll="true"
       :scroll-x="true"
+      :overflow-scroll="true"
+      :style="
+        isApp
+          ? ''
+          : '-webkit-overflow-scrolling: touch;  overflow-y: auto !important;'
+      "
     >
       <div id="container">
         <router-view />

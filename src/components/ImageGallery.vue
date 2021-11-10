@@ -91,8 +91,8 @@ export default {
 </script>
 <style scoped>
 .gallery-container {
-  width: calc(100vw - 4rem);
-  min-width: calc(100vw - 4rem);
+  width: calc(100% - 4rem);
+  min-width: calc(100% - 4rem);
   height: 221px;
 }
 @media screen and (min-width: 1024px) {

@@ -7,21 +7,24 @@
       style="z-index: 10;"
     ></div>
     <form
-      class="relative z-10 bg-white rounded-8 p-6 mx-auto "
+      class="relative z-10 bg-white rounded-8 p-6 mx-auto flex flex-col"
       style="min-width:280px"
-      @submit="saveName"
+      @submit="deleteDoc"
     >
       <span
         class="font-helvetica-bold text-20 spacing-22 line-30 text-black mb-1 block"
-        >Rename folder</span
+        >Are you sure?</span
       >
-      <ion-input
-        type="text"
-        placeholder="New name"
-        v-model="name"
-        class="font-helvetica text-16 spacing-5 line-28 text-black my-2"
-        required
-      ></ion-input>
+      <p
+        class="w-full font-helvetica text-16 text-mid-dark-grey spacing-1 line-24 mt-2"
+      >
+        By pressing confirm you will delete
+      </p>
+      <p
+        class="w-full font-helvetica text-16 text-mid-dark-grey spacing-1 line-24 mb-2"
+      >
+        the {{ type }} "{{ name }}"
+      </p>
       <div class="mt-2 w-full flex justify-end items-center">
         <div
           class="bg-white
@@ -30,19 +33,18 @@
           @click="cancel"
         >
           <span
-            class="font-helvetica-medium text-black text-16 spacing-5 line-24 m-auto normal-case "
+            class="font-helvetica-medium text-black text-16 spacing-5 line-24 m-auto normal-case"
             >Cancel</span
           >
         </div>
         <ion-button
+          color="secondary"
           type="submit"
-          class="bg-black
-            rounded-12 flex justify-center items-center height-56 w-auto px-2 normal-case'
-          "
+          class="bg-red rounded-12 flex justify-center items-center height-56 w-auto px-2 normal-case"
         >
           <span
-            class="font-helvetica-medium text-white text-16 spacing-5 line-24 m-auto normal-case"
-            >Save</span
+            class="font-helvetica-medium text-white text-16 spacing-5 line-24 m-auto normal-case bg-red"
+            >Confirm</span
           >
         </ion-button>
       </div>
@@ -51,38 +53,37 @@
 </template>
 
 <script>
-import { IonButton, IonInput } from '@ionic/vue'
+import { IonButton } from '@ionic/vue'
 import messages from '@/messages'
 import urls from '@/urls'
 export default {
   components: {
-    IonButton,
-    IonInput
+    IonButton
   },
   props: {
     doc: Object
   },
-  data () {
-    return {
-      name: this.doc.title
+  computed: {
+    name () {
+      return this.doc.title
+    },
+    type () {
+      return this.doc.type
     }
   },
   methods: {
     cancel () {
       this.$emit('onClose')
     },
-    async saveName (e) {
+    async deleteDoc (e) {
       e.preventDefault()
       if (this.name && this.name.length && this.doc.id) {
-        const renameResults = await this.$http({
-          method: 'POST',
-          url: urls.folders.create + '/' + this.doc.id,
-          data: {
-            name: this.name
-          },
+        const deleteResults = await this.$http({
+          method: 'GET',
+          url: urls.folders.create + '/' + this.doc.id + '/delete',
           loader: true
         })
-        console.log(renameResults)
+        console.log(deleteResults)
         this.$router.go()
       } else {
         console.error('No folder in route')
@@ -93,9 +94,6 @@ export default {
       }
       this.$emit('onClose')
     }
-  },
-  created () {
-    this.name = this.doc.title
   }
 }
 </script>
@@ -107,5 +105,9 @@ input {
 }
 .shadow-none button {
   box-shadow: none !important;
+}
+
+.bg-red button {
+  background: #e30513 !important;
 }
 </style>
