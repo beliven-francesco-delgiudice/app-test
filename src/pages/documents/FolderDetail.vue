@@ -9,6 +9,11 @@
         />
       </div>
     </div>
+    <add-button-and-modal
+      v-if="updatedDocuments.type === 'my'"
+      :title="updatedDocuments.back.name"
+      :parent="updatedDocuments.back.id"
+    />
   </Page>
 </template>
 
@@ -17,10 +22,12 @@ import Page from '../../components/Page'
 import DocumentListItem from '../../components/DocumentListItem'
 import messages from '@/messages'
 import urls from '@/urls'
+import AddButtonAndModal from '../../components/documents/AddButtonAndModal'
 export default {
   components: {
     Page,
-    DocumentListItem
+    DocumentListItem,
+    AddButtonAndModal
   },
   data () {
     return {
@@ -69,7 +76,20 @@ export default {
     }
   },
   async mounted () {
+    console.log()
     this.getDocuments()
+  },
+  watch: {
+    '$route.params.id' () {
+      if (
+        this.$router.currentRoute &&
+        this.$router.currentRoute.value &&
+        this.$router.currentRoute.value.path &&
+        this.$router.currentRoute.value.path.includes('folder')
+      ) {
+        this.$router.go()
+      }
+    }
   }
 }
 </script>

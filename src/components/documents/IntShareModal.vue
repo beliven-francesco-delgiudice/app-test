@@ -8,7 +8,7 @@
     ></div>
     <form
       class="relative z-10 bg-white rounded-8 p-6 mx-auto "
-      style="min-width:280px"
+      style="min-width:300px; max-width:300px"
       @submit="saveName"
     >
       <span

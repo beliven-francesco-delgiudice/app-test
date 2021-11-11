@@ -27,6 +27,10 @@ p {
   left: -1rem;
 }
 
+button {
+  --box-shadow: none !important;
+}
+
 .spinner-crescent.sc-ion-loading-md,
 .spinner-crescent {
   color: white !important;

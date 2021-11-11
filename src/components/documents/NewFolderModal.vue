@@ -9,17 +9,17 @@
     <form
       class="relative z-10 bg-white rounded-8 p-6 mx-auto "
       style="min-width:300px; max-width:300px"
-      @submit="saveName"
+      @submit="createFolder"
     >
       <span
         class="font-helvetica-bold text-20 spacing-22 line-30 text-black mb-1 block"
-        >Rename folder</span
+        >Create new folder</span
       >
       <ion-input
         type="text"
-        placeholder="New name"
+        placeholder="Untitled folder"
         v-model="name"
-        class="font-helvetica text-16 spacing-5 line-28 text-black my-2 pb-2 border-grey border-b"
+        class="font-helvetica text-16 spacing-5 line-28 text-black mt-2 mb-4 pb-4 border-grey border-b"
         required
       ></ion-input>
       <div class="mt-2 w-full flex justify-end items-center">
@@ -37,13 +37,12 @@
         <ion-button
           type="submit"
           class="bg-black
-            rounded-12 flex justify-center items-center height-56 w-auto normal-case'
+            rounded-12 flex justify-center items-center height-56 w-auto normal-case px-2'
           "
-          style="--padding-start: 0.5rem; --pading-right:0.5rem"
         >
           <span
             class="font-helvetica-medium text-white text-16 spacing-5 line-24 m-auto normal-case"
-            >Save</span
+            >Create</span
           >
         </ion-button>
       </div>
@@ -61,30 +60,48 @@ export default {
     IonInput
   },
   props: {
-    doc: Object
+    parent: [String, Number]
   },
   data () {
     return {
-      name: this.doc.title
+      name: ''
+    }
+  },
+  computed: {
+    computedParent () {
+      return this.parent
     }
   },
   methods: {
     cancel () {
       this.$emit('onClose')
     },
-    async saveName (e) {
+    async createFolder (e) {
       e.preventDefault()
-      if (this.name && this.name.length && this.doc.id) {
-        const renameResults = await this.$http({
-          method: 'POST',
-          url: urls.folders.create + '/' + this.doc.id,
-          data: {
-            name: this.name
-          },
-          loader: true
-        })
-        console.log(renameResults)
-        this.$router.go()
+      if (this.name && this.name.length) {
+        try {
+          const createResults = await this.$http({
+            method: 'POST',
+            url: urls.folders.create,
+            data: {
+              name: this.name,
+              type: 'my',
+              parent: this.parent || null
+            },
+            loader: true
+          })
+          console.log(createResults)
+          this.$router.go()
+        } catch (e) {
+          console.error(e)
+          if (e && e.response && e.response.status === 400) {
+            this.$toast({
+              message: messages.errors.furtherFolders,
+              color: 'danger'
+            })
+            this.$emit('onClose')
+          }
+        }
       } else {
         console.error('No folder in route')
         this.$toast({
@@ -94,9 +111,6 @@ export default {
       }
       this.$emit('onClose')
     }
-  },
-  created () {
-    this.name = this.doc.title
   }
 }
 </script>

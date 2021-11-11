@@ -36,6 +36,9 @@
     "folderDetail": "An error occurred while retrieving the folder",
     "file": "An error occurred while obtaining the file",
     "notInternal": "The user associated with that e-mail was not found. Check again the e-mail or try an external share.",
+    "furtherFolders": "You cannot create further folders, you have reached max depth level",
+    "fileUpload": "An error occurred while uploading the file. Check the name and the file",
+    "fileSystem": "An error occurred while obtaining the file. Retry later or check the permissions",
 
     "search": "An error occurred while searching",
 

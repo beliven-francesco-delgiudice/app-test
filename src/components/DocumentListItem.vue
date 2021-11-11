@@ -60,6 +60,11 @@
     :doc="document"
     @onClose="toggleModal('internal_share')"
   />
+  <move-modal
+    :open="isMoveModalOpen"
+    :doc="document"
+    @onClose="toggleModal('move')"
+  />
 </template>
 
 <script>
@@ -71,6 +76,7 @@ import DeleteModal from './documents/DeleteModal'
 import IntShareModal from './documents/IntShareModal'
 import messages from '@/messages'
 import urls from '@/urls'
+import MoveModal from './documents/MoveModal.vue'
 
 export default {
   components: {
@@ -78,7 +84,8 @@ export default {
     IonImg,
     RenameModal,
     DeleteModal,
-    IntShareModal
+    IntShareModal,
+    MoveModal
   },
   props: {
     bgClass: String,
@@ -93,7 +100,8 @@ export default {
       action: null,
       isRenameModalOpen: false,
       isDeleteModalOpen: false,
-      isIntShareModalOpen: false
+      isIntShareModalOpen: false,
+      isMoveModalOpen: false
     }
   },
   computed: {
@@ -152,7 +160,7 @@ export default {
     documentAction () {
       if (this.document && this.document.type === 'folder') {
         this.$router.push(
-          '/documents/folder/' + this.document.id + '?type=' + this.type
+          `/documents/folder/${this.document.id}?type=${this.type}`
         )
       } else {
         this.openDocumentMenu()

@@ -20,6 +20,7 @@
         />
       </div>
     </div>
+    <add-button-and-modal title="Documents" v-if="updatedSection === 'my'" />
   </Page>
 </template>
 
@@ -28,6 +29,7 @@ import Page from '../../components/Page'
 import Carousel from '../../components/Carousel'
 import SectionButton from '../../components/containers/SectionButton'
 import DocumentListItem from '../../components/DocumentListItem'
+import AddButtonAndModal from '../../components/documents/AddButtonAndModal'
 import messages from '@/messages'
 import urls from '@/urls'
 export default {
@@ -35,7 +37,8 @@ export default {
     Page,
     Carousel,
     SectionButton,
-    DocumentListItem
+    DocumentListItem,
+    AddButtonAndModal
   },
   data () {
     return {
