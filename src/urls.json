@@ -28,7 +28,8 @@
     "save_in_mydocs": "/documents/favorite",
     "remove_from_my": "/documents/remove",
     "move": "/documents/move",
-    "share": "/documents/share"
+    "share": "/documents/share",
+    "upload": "documents/upload"
   },
   "folders": {
     "create":"/folders",

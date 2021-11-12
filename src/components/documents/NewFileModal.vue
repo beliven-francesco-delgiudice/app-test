@@ -117,7 +117,7 @@ export default {
           formData.append('parent', this.computedParent)
           const uploadResults = await this.$http({
             method: 'POST',
-            url: urls.folders.create,
+            url: urls.documents.upload,
             data: formData,
             headers: {
               'Content-Type': 'multipart/form-data'
