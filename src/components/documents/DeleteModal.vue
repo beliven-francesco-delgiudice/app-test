@@ -78,11 +78,35 @@ export default {
     async deleteDoc (e) {
       e.preventDefault()
       if (this.name && this.name.length && this.doc.id) {
-        const deleteResults = await this.$http({
-          method: 'GET',
-          url: urls.folders.create + '/' + this.doc.id + '/delete',
-          loader: true
-        })
+        let deleteResults = ''
+        try {
+          if (this.doc.type === 'folder') {
+            deleteResults = await this.$http({
+              method: 'POST',
+              url: urls.folders.create + '/' + this.doc.id + '/delete',
+              loader: true
+            })
+          } else {
+            deleteResults = await this.$http({
+              method: 'GET',
+              url: urls.documents.list + '/' + this.doc.id + '/remove',
+              loader: true
+            })
+          }
+        } catch (e) {
+          console.error(e)
+          if (e && e.response && e.reponse.data) {
+            this.$toast({
+              message: e,
+              color: 'danger'
+            })
+          } else {
+            this.$toast({
+              message: messages.errors.folderDetail,
+              color: 'danger'
+            })
+          }
+        }
         console.log(deleteResults)
         this.$router.go()
       } else {

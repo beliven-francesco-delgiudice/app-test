@@ -23,13 +23,14 @@
     "activity": "/congresses/activity"
   },
   "documents": {
+    "list": "/documents",
     "list_my":"/documents/my",
     "list_shared":"/documents/shared",
     "save_in_mydocs": "/documents/favorite",
     "remove_from_my": "/documents/remove",
     "move": "/documents/move",
     "share": "/documents/share",
-    "upload": "documents/upload"
+    "upload": "/documents/upload"
   },
   "folders": {
     "create":"/folders",
