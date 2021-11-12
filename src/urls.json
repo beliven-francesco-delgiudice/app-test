@@ -32,6 +32,7 @@
   },
   "folders": {
     "create":"/folders",
+    "list": "/folders/list",
     "move": "/folders/move",
     "share": "/folders/share",
     "move_to_mydocs": "/folders/mydocs"

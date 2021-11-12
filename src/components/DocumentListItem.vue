@@ -60,7 +60,7 @@
     :doc="document"
     @onClose="toggleModal('internal_share')"
   />
-  <move-modal
+  <folders-tree-modal
     :open="isMoveModalOpen"
     :doc="document"
     @onClose="toggleModal('move')"
@@ -76,7 +76,7 @@ import DeleteModal from './documents/DeleteModal'
 import IntShareModal from './documents/IntShareModal'
 import messages from '@/messages'
 import urls from '@/urls'
-import MoveModal from './documents/MoveModal.vue'
+import FoldersTreeModal from './documents/FoldersTreeModal.vue'
 
 export default {
   components: {
@@ -85,7 +85,7 @@ export default {
     RenameModal,
     DeleteModal,
     IntShareModal,
-    MoveModal
+    FoldersTreeModal
   },
   props: {
     bgClass: String,

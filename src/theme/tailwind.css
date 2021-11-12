@@ -160,6 +160,9 @@
 .width-12 {
   width:12px
 }
+.width-17{
+  width:17px
+}
 .width-24 {
   width:24px
 }
@@ -201,6 +204,12 @@
 }
 .w-screen{
   width: 100vw;
+}
+.min-width-12 {
+  min-width:12px
+}
+.min-width-17 {
+  min-width:17px
 }
 .max-w-full {
   max-width: 100%;

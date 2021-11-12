@@ -12,17 +12,23 @@
           :src="
             `/assets/button-icons/arrow-${isExpanded ? 'down' : 'right'}.svg`
           "
-          :class="[isExpandable ? '' : 'opacity-0', 'width-22']"
+          :class="[
+            isExpandable ? '' : 'opacity-0',
+            isExpanded ? 'width-17 min-width-17' : 'width-12 min-width-12'
+          ]"
         />
+      </div>
+      <div
+        @click="e => emitSelect(e, item)"
+        :class="[
+          isFolderTheSource ? 'opacity-50 pointer-events-none' : '',
+          'flex-grow flex justify-between items-center'
+        ]"
+      >
         <span
           class="font-helvetica-bold text-20 spacing-22 line-30 ml-2 text-black"
           >{{ item.name }}
         </span>
-      </div>
-      <div
-        @click="emitSelect(item.id)"
-        class="flex-grow flex justify-end items-center"
-      >
         <div
           :class="[
             isSelected ? 'border-black' : 'border-grey',
@@ -39,7 +45,14 @@
       </div>
     </div>
     <div v-if="isExpanded" class="flex flex-col h-auto pl-8">
-      <slot></slot>
+      <TreeFolderComponent
+        v-for="(subitem, j) in item.folders"
+        :key="j"
+        :item="subitem"
+        :folder="folder"
+        :source="source"
+        @selectFolder="item => emitSelect(null, item)"
+      />
     </div>
   </div>
 </template>
@@ -47,14 +60,15 @@
 import { IonImg } from '@ionic/vue'
 // import SquareContainer from './containers/SquareContainer.vue'
 export default {
-  name: 'MoveFolder',
+  name: 'TreeFolderComponent',
   components: {
     IonImg
     // SquareContainer
   },
   props: {
     item: Object,
-    folder: Number,
+    folder: Object,
+    source: Object,
     classes: [String, Array]
   },
   data () {
@@ -63,6 +77,16 @@ export default {
     }
   },
   computed: {
+    isFolderTheSource () {
+      if (
+        this.source &&
+        this.source.type === 'folder' &&
+        this.source.id === this.item.id
+      ) {
+        return true
+      }
+      return false
+    },
     isExpandable () {
       if (this.item && this.item.folders && this.item.folders.length) {
         return true
@@ -70,19 +94,18 @@ export default {
       return false
     },
     isSelected () {
-      return this.folder === this.item.id
+      return this.folder ? this.folder.id === this.item.id : false
     }
   },
   methods: {
-    emitSelect (id) {
-      if (id) {
-        this.$emit('activate', id)
-      } else {
-        this.$emit('activate', this.item.id)
+    emitSelect (e, item) {
+      if (e && e.target) {
+        e.stopPropagation()
       }
+      const folderToEmit = item || this.item
+      this.$emit('selectFolder', folderToEmit)
     },
     toggleExpanded () {
-      console.log(this.item)
       this.isExpanded = !this.isExpanded
     }
   }

@@ -34,7 +34,6 @@ export default {
   },
   computed: {
     isDisabled () {
-      console.log('disabled', this.disabled)
       return this.disabled
     }
   },
