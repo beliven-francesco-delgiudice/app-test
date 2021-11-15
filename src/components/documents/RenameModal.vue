@@ -30,15 +30,13 @@
           @click="cancel"
         >
           <span
-            class="font-helvetica-medium text-black text-16 spacing-5 line-24 m-auto normal-case "
+            class="font-helvetica-medium text-black text-16 spacing-5 line-24 m-auto normal-case"
             >Cancel</span
           >
         </div>
         <ion-button
           type="submit"
-          class="bg-black
-            rounded-12 flex justify-center items-center height-56 w-auto normal-case'
-          "
+          class="rounded-12 flex justify-center items-center height-56 w-auto normal-case"
           style="--padding-start: 0.5rem; --pading-right:0.5rem"
         >
           <span

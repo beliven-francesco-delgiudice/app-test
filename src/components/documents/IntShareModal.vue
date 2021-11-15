@@ -36,9 +36,7 @@
         </div>
         <ion-button
           type="submit"
-          class="bg-black
-            rounded-12 flex justify-center items-center height-56 w-auto px-2 normal-case'
-          "
+          class="rounded-12 flex justify-center items-center height-56 w-auto px-2 normal-case"
         >
           <span
             class="font-helvetica-medium text-white text-16 spacing-5 line-24 m-auto normal-case"
