@@ -71,6 +71,7 @@
 import SquareContainer from './containers/SquareContainer'
 import { IonImg, actionSheetController } from '@ionic/vue'
 import { Capacitor } from '@capacitor/core'
+import { Share } from '@capacitor/share'
 import RenameModal from './documents/RenameModal'
 import DeleteModal from './documents/DeleteModal'
 import IntShareModal from './documents/IntShareModal'
@@ -281,25 +282,21 @@ export default {
               handler: async () => {
                 const path = this.getDocumentPath(this.updatedDocument)
                 if (this.isApp) {
-                  try {
-                    await this.$clipboard(path).then(() => {
-                      this.$toast({
-                        message: 'Link copied!',
-                        color: 'dark'
-                      }).catch(() => {
-                        this.$toast({
-                          message: 'Cannot share document',
-                          color: 'danger'
-                        })
-                      })
-                    })
-                  } catch (e) {
-                    await this.$loading.hide()
+                  await Share.share({
+                    title:
+                      'See ' +
+                      (this.document.title ||
+                        this.document.name ||
+                        'this ' + this.document.type),
+                    url: path,
+                    dialogTitle: 'Share this ' + this.document.type
+                  }).catch(e => {
+                    console.ldebug(e)
                     this.$toast({
                       message: 'Cannot share document',
                       color: 'danger'
                     })
-                  }
+                  })
                 } else {
                   window.navigator.clipboard.writeText(path)
                   this.$toast({
