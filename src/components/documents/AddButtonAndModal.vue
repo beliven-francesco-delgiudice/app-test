@@ -2,7 +2,7 @@
   <div>
     <div
       @click="openAdd"
-      class="absolute z-10 rounded-8 bg-black width-56 height-56 flex justify-center items-center"
+      class="fixed z-10 rounded-8 bg-black width-56 height-56 flex justify-center items-center"
       style="bottom: 92px; right:23px;"
     >
       <ion-img

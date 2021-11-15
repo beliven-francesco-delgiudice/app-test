@@ -59,5 +59,8 @@
       "title": "Missing notification permissions",
       "message": "Please reinstall app or go to settings and accept notification permissions"
     }
+  },
+  "success": {
+    "shared": "The document has been successfully shared"
   }
 }

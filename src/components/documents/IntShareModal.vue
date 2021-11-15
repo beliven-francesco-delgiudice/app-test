@@ -89,13 +89,21 @@ export default {
             loader: true
           })
           console.log(shareResults)
-          this.$router.go()
+          this.$toast({
+            message: messages.success.shared,
+            color: 'dark'
+          })
         } catch (e) {
           if (e && e.response && e.response.status === 404) {
             this.$toast({
               message: messages.errors.notInternal,
               color: 'danger',
               duration: 6000
+            })
+          } else if (e && e.response && e.response.data) {
+            this.$toast({
+              message: e.response.data,
+              color: 'danger'
             })
           }
         }

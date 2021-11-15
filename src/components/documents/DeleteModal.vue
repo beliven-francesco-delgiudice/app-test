@@ -40,7 +40,7 @@
         <ion-button
           color="secondary"
           type="submit"
-          class="bg-red rounded-12 flex justify-center items-center height-56 w-auto px-2 normal-case"
+          class="rounded-12 flex justify-center items-center height-56 w-auto px-2 normal-case"
         >
           <span
             class="font-helvetica-medium text-white text-16 spacing-5 line-24 m-auto normal-case bg-red"
@@ -88,9 +88,12 @@ export default {
             })
           } else {
             deleteResults = await this.$http({
-              method: 'GET',
-              url: urls.documents.list + '/' + this.doc.id + '/remove',
-              loader: true
+              method: 'POST',
+              url: urls.documents.remove_from_my,
+              loader: true,
+              data: {
+                id: this.doc.id
+              }
             })
           }
         } catch (e) {
