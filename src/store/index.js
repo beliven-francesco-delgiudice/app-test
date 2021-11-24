@@ -18,6 +18,7 @@ const master = {
       congresses: [],
       news: []
     },
+    documents: {},
     notifications: [],
     appUpdates: null,
     notificationToShow: null,
@@ -69,6 +70,10 @@ const master = {
 
     setHome (store, homeData) {
       store.home = homeData
+    },
+
+    setDocuments (store, docs) {
+      store.documents = docs
     },
 
     // Android does not need any check for notifications, are allowed by default
@@ -150,6 +155,21 @@ const master = {
     homeNews: state => {
       if (state && state.home && state.home.news) {
         return state.home.news
+      }
+      return []
+    },
+    homeDocuments: state => {
+      if (state && state.home && state.home.documents) {
+        return state.home.documents
+      }
+      return {
+        my: [],
+        shared: []
+      }
+    },
+    documents: state => {
+      if (state && state.documents) {
+        return state.documents
       }
       return []
     },

@@ -50,6 +50,8 @@ import $device from '@/plugins/device'
 import $docviewer from '@/plugins/docviewer-native'
 import $docsaver from '@/plugins/docsaver'
 import $onesignal from '@/plugins/onesignal-native'
+import $clipboard from '@/plugins/clipboard'
+
 // import $backgroundmode from '@/plugins/backgroundmode'
 import { Capacitor } from '@capacitor/core'
 
@@ -82,6 +84,7 @@ async function init () {
     .use($loading)
     .use($docviewer)
     .use($docsaver)
+    .use($clipboard)
     .use($toast, {
       duration: 3000,
       color: 'primary'

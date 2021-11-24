@@ -72,6 +72,27 @@ export function sanitizeManageText (text) {
   return ''
 }
 
+export function sortActions (arrayOfActions) {
+  const correctOrder = [
+    'open',
+    'rename',
+    'download',
+    'internal_share',
+    'external_share',
+    'save_to_mydocs',
+    'move_to_mydocs',
+    'move',
+    'delete'
+  ]
+  if (!arrayOfActions || !arrayOfActions.length) {
+    return []
+  }
+
+  return arrayOfActions.sort((a, b) => {
+    return correctOrder.indexOf(a) - correctOrder.indexOf(b)
+  })
+}
+
 export default {
   install (app) {
     app.mixin({
@@ -81,6 +102,7 @@ export default {
         checkIsApp,
         cleanParagraphs,
         sanitizeManageText,
+        sortActions,
         validateErrorResponse,
         valIsArray (val) {
           return val instanceof Array

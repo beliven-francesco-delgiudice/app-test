@@ -26,12 +26,16 @@ npm install
 # Develop
 ionic capacitor run ios
 ionic capacitor run android
+ionic serve
 
 # Build for iOS
 ionic capacitor build ios
 
 # Build for Android
 ionic capacitor build android
+
+# Build Webapp
+npm run build
 ```
 
 **NOTE:** Capacitor will open the native IDEs in order to build the apps

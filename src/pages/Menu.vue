@@ -72,8 +72,7 @@ export default {
         {
           name: 'Documents',
           href: '/documents',
-          img: 'documents.svg',
-          disabled: true
+          img: 'documents.svg'
         },
         {
           name: 'Medical Education',

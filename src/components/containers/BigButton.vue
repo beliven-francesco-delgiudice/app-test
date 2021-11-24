@@ -1,6 +1,7 @@
 <template>
   <ion-button
     :type="type || 'button'"
+    :disabled="isDisabled"
     :class="[
       bgClass || 'bg-black',
       'small-shadow rounded-12 flex justify-center items-center height-56 w-full normal-case'
@@ -27,8 +28,14 @@ export default {
     bgClass: String,
     styles: String,
     square: Boolean,
+    disabled: Boolean,
     type: String,
     label: String
+  },
+  computed: {
+    isDisabled () {
+      return this.disabled
+    }
   },
   methods: {
     emitClick () {

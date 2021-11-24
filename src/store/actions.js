@@ -256,6 +256,10 @@ export async function getHome (context) {
   let congresses = []
   let notifications = []
   let news = []
+  const documents = {
+    my: [],
+    shared: []
+  }
 
   this.$app.$loading.show()
 
@@ -298,6 +302,23 @@ export async function getHome (context) {
       loader: false
     })
     news = newsList
+
+    // get documents
+    const documentsMy = await this.$app.$http({
+      method: 'GET',
+      url: urls.documents.list_my,
+      params: {},
+      loader: false
+    })
+    documents.my = documentsMy.list
+
+    const documentsShared = await this.$app.$http({
+      method: 'GET',
+      url: urls.documents.list_shared,
+      params: {},
+      loader: false
+    })
+    documents.shared = documentsShared.list
   } catch (e) {
     this.$app.$toast({
       message: messages.errors.home,
@@ -310,9 +331,14 @@ export async function getHome (context) {
   const homeObject = {
     products,
     congresses,
-    news
+    news,
+    documents: {
+      my: documents.my.slice(0, 3),
+      shared: documents.shared.slice(0, 3)
+    }
   }
 
   context.commit('setHome', homeObject)
+  context.commit('setDocuments', documents)
   context.commit('setNotifications', notifications)
 }
