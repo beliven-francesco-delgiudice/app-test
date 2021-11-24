@@ -36,7 +36,7 @@
         Step {{ step }}/2
       </span>
     </div>
-    <div v-if="step === 1" class="flex flex-col">
+    <form v-if="step === 1" class="flex flex-col" @submit="next">
       <div
         class="bg-white small-shadow rounded-8 flex items-center z-10 relative px-2 mb-4"
       >
@@ -49,7 +49,7 @@
           required
         ></ion-input>
       </div>
-      <big-button label="Next" @onClick="next" />
+      <big-button label="Next" type="submit" />
 
       <a
         class="font-helvetica text-mid-dark-grey text-12 spacing-1 line-24 mt-4 text-center mx-auto z-10"
@@ -58,7 +58,7 @@
         target="_blank"
         >Privacy Policy</a
       >
-    </div>
+    </form>
     <div v-if="step === 2 && isAzureMail" class="flex flex-col">
       <ion-button
         type="button"
@@ -83,7 +83,11 @@
         >Privacy Policy</a
       >
     </div>
-    <div v-if="step === 2 && !isAzureMail" class="flex flex-col">
+    <form
+      v-if="step === 2 && !isAzureMail"
+      class="flex flex-col"
+      @submit="loginWithPassword"
+    >
       <div
         class="bg-white small-shadow rounded-8 flex items-center z-10 relative px-2 mb-4"
       >
@@ -101,7 +105,7 @@
           required
         ></ion-input>
       </div>
-      <big-button label="Sign in" @onClick="loginWithPassword" />
+      <big-button label="Sign in" type="submit" />
       <a
         class="mt-4 font-helvetica-medium text-14 text-black spacing-44 line-28 mx-auto z-10"
         title="Forgot your password link"
@@ -116,7 +120,7 @@
         target="_blank"
         >Privacy Policy</a
       >
-    </div>
+    </form>
   </div>
 </template>
 
@@ -178,7 +182,8 @@ export default {
     onBack () {
       this.step = 1
     },
-    loginWithPassword () {
+    loginWithPassword (e) {
+      e.preventDefault()
       this.$store.dispatch('login', {
         username: this.email,
         password: this.password
@@ -190,7 +195,8 @@ export default {
       // await Browser.open({ url })
       window.open(url, '_system')
     },
-    async next () {
+    async next (e) {
+      e.preventDefault()
       if (this.email && this.email.length) {
         try {
           const azureFlag = await this.$http({
