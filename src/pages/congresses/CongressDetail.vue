@@ -120,8 +120,8 @@ export default {
       return 'Congress details'
     },
     updatedCongress () {
-      const obj = Object.assign({}, this.congress.tabs)
-      return obj
+      const congressObj = Object.assign({}, this.congress.tabs)
+      return congressObj
     },
     updatedSection () {
       return this.section
