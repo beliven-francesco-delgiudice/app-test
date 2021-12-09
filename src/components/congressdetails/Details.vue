@@ -48,7 +48,7 @@
         </span>
       </div>
     </detail-section>
-    <detail-section label="Timing & Dates">
+    <detail-section v-if="areThereCongressDates" label="Timing & Dates">
       <div class="flex flex-col bg-light-red rounded-12 p-6 mx-8">
         <div class="flex justify-between items-start mb-4">
           <div class="flex flex-col">
@@ -97,7 +97,7 @@
         </div> -->
       </div>
     </detail-section>
-    <detail-section label="Lima Booth">
+    <detail-section v-if="isLimaBooth" label="Lima Booth">
       <image-gallery
         v-if="
           updatedCongress.lima_booth &&
@@ -274,6 +274,34 @@ export default {
         return this.updatedCongress.timing_dates
       }
       return {}
+    },
+    areThereCongressDates () {
+      if (
+        this.congressDates &&
+        Object.keys(this.congressDates) &&
+        Object.keys(this.congressDates).length
+      ) {
+        return true
+      }
+      return false
+    },
+    isLimaBooth () {
+      if (this.updatedCongress.lima_booth) {
+        if (
+          this.updatedCongress.lima_booth.gallery &&
+          this.updatedCongress.lima_booth.gallery.length
+        ) {
+          return true
+        }
+        if (
+          this.updatedCongress.lima_booth.description &&
+          this.updatedCongress.lima_booth.description.length
+        ) {
+          return true
+        }
+        return false
+      }
+      return false
     }
   },
   methods: {
