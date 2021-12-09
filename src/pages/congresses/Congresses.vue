@@ -83,7 +83,7 @@ export default {
       ],
       filtersOptions: {},
       filters: {
-        year: '2021'
+        year: 2022
       }
     }
   },
@@ -96,6 +96,9 @@ export default {
     }
   },
   created () {
+    if (this.$route.query && this.$route.query.year) {
+      this.filters.year = parseInt(this.$route.query.year)
+    }
     this.getCongressesList()
   },
   methods: {
@@ -107,6 +110,10 @@ export default {
       this.filters = Object.assign({}, filterObj)
     },
     async getCongressesList () {
+      this.$router.push({
+        path: this.$route.path,
+        query: this.filters
+      })
       try {
         const results = await this.$http({
           method: 'GET',
@@ -126,6 +133,10 @@ export default {
   },
   watch: {
     filters: function (newFilters) {
+      this.$router.push({
+        path: this.$route.path,
+        query: newFilters
+      })
       this.getCongressesList(newFilters)
     }
   }

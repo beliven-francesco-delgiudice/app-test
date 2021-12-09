@@ -1,5 +1,5 @@
 <template>
-  <Page :label="title" back="/congresses">
+  <Page :label="title" back>
     <carousel id="sections-carousel" classes="pt-4 -my-4 pb-8">
       <section-button
         v-for="(theSection, i) in sections"
