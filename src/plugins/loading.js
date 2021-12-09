@@ -22,8 +22,10 @@ export default {
           await loading.dismiss()
 
           setTimeout(async () => {
-            if (loading) {
+            try {
               await loading.dismiss()
+            } catch (e) {
+              console.debug('Loader already dismissed', e)
             }
           }, 1500)
         }
