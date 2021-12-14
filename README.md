@@ -53,9 +53,14 @@ npm run build
 You will find here the guides on how to upload the app on the Play Store and on the App Store.
 Please keep the version and the build number equally updated:
 
+File:
+
+- Android: `build.gradle`
+- iOS: da XCode
+
 Version number:
 
-- iOs: "Version"
+- iOS: "Version"
 - Android: "versionName"
 
 Build number:
