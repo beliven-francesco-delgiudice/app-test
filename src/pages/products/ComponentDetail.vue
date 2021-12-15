@@ -5,9 +5,7 @@
     :aboveTitle="aboveTitle"
     :back="backPath"
   >
-    <div
-      class="bg-white rounded-12 relative gallery-container elevated-shadow overflow-hidden"
-    >
+    <div class="bg-white rounded-12 relative gallery-container overflow-hidden">
       <ion-img
         :src="
           updatedProduct.gallery && updatedProduct.gallery[0]
