@@ -76,7 +76,7 @@ export default {
         try {
           const shareResults = await this.$http({
             method: 'POST',
-            url: urls.storage.share,
+            url: urls.documents.storage_share,
             data,
             loader: true
           })
