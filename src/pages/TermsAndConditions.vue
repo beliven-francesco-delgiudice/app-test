@@ -123,11 +123,6 @@ export default {
     }
   },
 
-  async mounted () {
-    // no need to accept terms anymore
-    this.$store.commit('setNeedToAcceptTerms', false)
-  },
-
   methods: {
     updateAccepted () {
       this.areAccepted = !this.areAccepted
@@ -135,6 +130,10 @@ export default {
     },
 
     resolveRouting () {
+      // no need to accept terms anymore
+      this.$store.commit('setNeedToAcceptTerms', false)
+
+      // ROUTE
       if (this.$store.getters.needOnboarding) {
         this.$router.push('/onboarding')
       } else if (this.$store.getters.gotUpdatesToShow) {
