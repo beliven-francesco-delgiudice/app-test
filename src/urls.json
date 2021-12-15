@@ -30,6 +30,7 @@
     "remove_from_my": "/documents/remove",
     "move": "/documents/move",
     "share": "/documents/share",
+    "storage_share": "/documents/storage-share",
     "upload": "/documents/upload"
   },
   "folders": {
@@ -38,9 +39,6 @@
     "move": "/folders/move",
     "share": "/folders/share",
     "move_to_mydocs": "/folders/mydocs"
-  },
-  "storage": {
-    "share": "/storage/share"
   },
   "news": {
     "home": "/news/home",
@@ -54,7 +52,7 @@
     "videos": "/multimedia/video",
     "images": "/multimedia/images"
   },
-  "acceptTerms": "user/accept-terms",
+  "acceptTerms": "/users/accept-terms",
   "onBoarding": "/users/onboarding",
   "deviceInfo": "/users/register-device",
   "usefulLinks": "/useful-links"
