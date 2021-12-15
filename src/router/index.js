@@ -15,6 +15,7 @@ import Search from '../pages/Search'
 import Login from '../pages/Login'
 import UsefulLinks from '../pages/UsefulLinks'
 import OnBoarding from '../pages/OnBoarding'
+import TermsAndConditions from '../pages/TermsAndConditions'
 
 import WhatsNew from '../pages/whatsnew/WhatsNew'
 import UpdateWizard from '../pages/whatsnew/UpdateWizard'
@@ -69,6 +70,18 @@ const routes = [
         path: '',
         name: 'Home',
         component: Home
+      }
+    ]
+  },
+  // terms and conditions
+  {
+    path: '/terms',
+    component: CleanLayout,
+    children: [
+      {
+        path: '',
+        name: 'TermsAndConditions',
+        component: TermsAndConditions
       }
     ]
   },
