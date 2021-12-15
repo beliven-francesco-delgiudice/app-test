@@ -60,6 +60,11 @@
     :doc="document"
     @onClose="toggleModal('internal_share')"
   />
+  <storage-share-modal
+    v-if="isStorageShareModalOpen"
+    :doc="document"
+    @onClose="toggleModal('storage_internal_share')"
+  />
   <folders-tree-modal
     :open="isMoveModalOpen"
     :doc="document"
@@ -75,6 +80,7 @@ import { Share } from '@capacitor/share'
 import RenameModal from './documents/RenameModal'
 import DeleteModal from './documents/DeleteModal'
 import IntShareModal from './documents/IntShareModal'
+import StorageShareModal from './documents/StorageShareModal'
 import messages from '@/messages'
 import urls from '@/urls'
 import FoldersTreeModal from './documents/FoldersTreeModal.vue'
@@ -86,6 +92,7 @@ export default {
     RenameModal,
     DeleteModal,
     IntShareModal,
+    StorageShareModal,
     FoldersTreeModal
   },
   props: {
@@ -102,6 +109,7 @@ export default {
       isRenameModalOpen: false,
       isDeleteModalOpen: false,
       isIntShareModalOpen: false,
+      isStorageShareModalOpen: false,
       isMoveModalOpen: false
     }
   },
@@ -184,6 +192,9 @@ export default {
           break
         case 'internal_share':
           this.isIntShareModalOpen = !this.isIntShareModalOpen
+          break
+        case 'storage_internal_share':
+          this.isStorageShareModalOpen = !this.isStorageShareModalOpen
           break
       }
     },
@@ -273,6 +284,14 @@ export default {
               text: 'Share internal',
               handler: async () => {
                 this.toggleModal('internal_share')
+              }
+            })
+            break
+          case 'storage_internal_share':
+            buttonsArray.push({
+              text: 'Share internal',
+              handler: async () => {
+                this.toggleModal('storage_internal_share')
               }
             })
             break
