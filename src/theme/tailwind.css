@@ -361,6 +361,9 @@
 .pb-24 {
   padding-bottom: 6rem;
 }
+.pb-48 {
+  padding-bottom: 12rem;
+}
 
 .px-2 {
   padding-left:0.5rem;
@@ -579,6 +582,10 @@
 .rounded-12 {
   border-radius: 12px !important;
   --border-radius: 12px !important;
+}
+.rounded-32 {
+  border-radius: 32px !important;
+  --border-radius: 32px !important;
 }
 .rounded-full {
   border-radius: 100% !important;
