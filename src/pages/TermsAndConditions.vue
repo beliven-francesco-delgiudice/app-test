@@ -130,7 +130,8 @@ export default {
       this.areAccepted = !this.areAccepted
     },
 
-    async resolveRouting () {
+    async resolveRouting (e) {
+      e.preventDefault()
       try {
         const results = await this.$http({
           method: 'GET',
@@ -138,7 +139,7 @@ export default {
         })
         // no need to accept terms anymore
         this.$store.commit('setNeedToAcceptTerms', false)
-        console.log(results)
+        console.log('RESULTS', results)
       } catch (e) {
         console.error(e)
         this.$toast({
