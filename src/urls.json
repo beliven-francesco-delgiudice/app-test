@@ -39,6 +39,9 @@
     "share": "/folders/share",
     "move_to_mydocs": "/folders/mydocs"
   },
+  "storage": {
+    "share": "/storage/share"
+  },
   "news": {
     "home": "/news/home",
     "list": "/news"
@@ -51,7 +54,9 @@
     "videos": "/multimedia/video",
     "images": "/multimedia/images"
   },
+  "acceptTerms": "user/accept-terms",
   "onBoarding": "/users/onboarding",
   "deviceInfo": "/users/register-device",
   "usefulLinks": "/useful-links"
+
 }

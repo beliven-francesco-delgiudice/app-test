@@ -96,6 +96,8 @@ import { IonToggle } from '@ionic/vue'
 import Title from '../components/Title.vue'
 import BigButton from '../components/containers/BigButton.vue'
 import { Capacitor } from '@capacitor/core'
+import messages from '@/messages'
+import urls from '@/urls'
 
 export default {
   components: {
@@ -126,12 +128,25 @@ export default {
   methods: {
     updateAccepted () {
       this.areAccepted = !this.areAccepted
-      console.log('here')
     },
 
-    resolveRouting () {
-      // no need to accept terms anymore
-      this.$store.commit('setNeedToAcceptTerms', false)
+    async resolveRouting () {
+      try {
+        const results = await this.$http({
+          method: 'GET',
+          url: urls.acceptTerms
+        })
+        // no need to accept terms anymore
+        this.$store.commit('setNeedToAcceptTerms', false)
+        console.log(results)
+      } catch (e) {
+        console.error(e)
+        this.$toast({
+          message: messages.errors.acceptTerms,
+          color: 'danger'
+        })
+        return
+      }
 
       // ROUTE
       if (this.$store.getters.needOnboarding) {

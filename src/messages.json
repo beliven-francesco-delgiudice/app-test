@@ -12,6 +12,7 @@
     "home": "An error occurred while getting all the informations",
 
     "onboarding":"An error occurred while getting you on board. Try again later",
+    "acceptTerms": "An error occurred while saving your consent. Try again later",
     "updates":"An error occurred while showing you the last addition to the app. Check in \"What's new\"",
 
     "news": "An error occurred while retrieving the news",
