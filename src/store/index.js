@@ -64,6 +64,10 @@ const master = {
       store.onboarding = needOnboarding
     },
 
+    setNeedToAcceptTerms (store, needToAcceptTerms) {
+      store.need_accept_terms = needToAcceptTerms
+    },
+
     setAppUpdates (store, appUpdates) {
       store.appUpdates = appUpdates
     },
@@ -111,6 +115,7 @@ const master = {
 
       return data
     },
+    needToAcceptTerms: state => state.need_accept_terms,
     needOnboarding: state => state.onboarding,
     gotNotifications: state => {
       return state.notifications

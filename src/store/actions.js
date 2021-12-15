@@ -4,11 +4,14 @@ import { Capacitor } from '@capacitor/core'
 
 function resolveRouting (
   app,
+  needToAcceptTerms,
   needOnboarding,
   isUpdateToShow,
   isNotificationToShow
 ) {
-  if (needOnboarding) {
+  if (needToAcceptTerms) {
+    app.$router.push('/terms')
+  } else if (needOnboarding) {
     app.$router.push('/onboarding')
   } else if (isUpdateToShow) {
     app.$router.push('/new/update/' + isUpdateToShow)
@@ -33,6 +36,7 @@ export async function alreadyLoggedRouting (context) {
 
   resolveRouting(
     this.$app,
+    context.getters.needToAcceptTerms,
     context.getters.needOnboarding,
     context.getters.gotUpdatesToShow,
     context.getters.gotNotificationToShow
@@ -61,6 +65,7 @@ export async function login (context, data) {
     const userData = Object.assign({}, loggedData.user)
 
     context.commit('setUserData', userData)
+    context.commit('setNeedToAcceptTerms', loggedData.need_accept_terms)
     context.commit('setOnboarding', loggedData.onboarding)
     context.commit('setNotifications', loggedData.push)
     context.commit('setAppUpdates', loggedData.update_id)
@@ -85,6 +90,7 @@ export async function login (context, data) {
 
     resolveRouting(
       this.$app,
+      context.getters.needToAcceptTerms,
       context.getters.needOnboarding,
       context.getters.gotUpdatesToShow,
       context.getters.gotNotificationToShow
@@ -146,6 +152,7 @@ export async function loginWithToken (context) {
 
     resolveRouting(
       this.$app,
+      context.getters.needToAcceptTerms,
       context.getters.needOnboarding,
       context.getters.gotUpdatesToShow,
       context.getters.gotNotificationToShow
