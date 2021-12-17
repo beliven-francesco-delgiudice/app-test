@@ -86,7 +86,7 @@ export default {
         this.$router.currentRoute.value.path &&
         this.$router.currentRoute.value.path.includes('folder')
       ) {
-        this.$router.go()
+        this.getDocuments()
       }
     }
   }
