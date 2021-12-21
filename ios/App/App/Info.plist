@@ -27,7 +27,7 @@
 			<string>com.limacorporate</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>limapp</string>
+				<string>limasales</string>
 			</array>
 		</dict>
 		<dict>
@@ -37,7 +37,7 @@
 			<string>com.limacorporate</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>limapp</string>
+				<string>limasales</string>
 			</array>
 		</dict>
 	</array>
@@ -45,7 +45,7 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string>limapp</string>
+		<string>limasales</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
