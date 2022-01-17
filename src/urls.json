@@ -52,9 +52,12 @@
     "videos": "/multimedia/video",
     "images": "/multimedia/images"
   },
-  "acceptTerms": "/users/accept-terms",
-  "onBoarding": "/users/onboarding",
-  "deviceInfo": "/users/register-device",
+  "users": {
+    "shareList": "/users/share-list",
+    "acceptTerms": "/users/accept-terms",
+    "onBoarding": "/users/onboarding",
+    "deviceInfo": "/users/register-device"
+  },
   "usefulLinks": "/useful-links"
 
 }

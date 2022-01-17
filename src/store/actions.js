@@ -175,7 +175,7 @@ export async function syncOneSignal () {
 
     const oneSignalData = await this.$app.$http({
       method: 'POST',
-      url: urls.deviceInfo,
+      url: urls.users.deviceInfo,
       loader: false,
       data: {
         uuid: deviceId.uuid,

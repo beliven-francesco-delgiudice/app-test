@@ -15,6 +15,8 @@
     "acceptTerms": "An error occurred while saving your consent. Try again later",
     "updates":"An error occurred while showing you the last addition to the app. Check in \"What's new\"",
 
+    "shareList": "An error occurred while retrieving the recipients. Write the email or try again later",
+
     "news": "An error occurred while retrieving the news",
     "newsDetail": "An error occurred while retrieving this news",
 
@@ -62,6 +64,6 @@
     }
   },
   "success": {
-    "shared": "The document has been successfully shared"
+    "shared": "The document has been successfully shared with"
   }
 }

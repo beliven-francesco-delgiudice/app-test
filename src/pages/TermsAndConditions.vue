@@ -26,7 +26,7 @@
     </div>
 
     <form
-      class="flex flex-col fixed px-8 py-8 w-full z-10 bg-white rounded-32 elevated-shadow"
+      class="flex flex-col fixed px-8 py-8 w-full z-10 bg-white rounded-32 top-shadow"
       style="bottom:-1px"
       @submit="resolveRouting"
     >
@@ -92,7 +92,7 @@ export default {
       try {
         const results = await this.$http({
           method: 'GET',
-          url: urls.acceptTerms
+          url: urls.users.acceptTerms
         })
         // no need to accept terms anymore
         this.$store.commit('setNeedToAcceptTerms', false)

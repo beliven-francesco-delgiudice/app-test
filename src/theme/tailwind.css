@@ -595,6 +595,9 @@
 .elevated-shadow {
   box-shadow: 0 10px 25px 0 rgba(106,115,119,0.15);
 }
+.top-shadow {
+  box-shadow: 0 -10px 25px 0 rgba(106,115,119,0.15);
+}
 .small-shadow {
   box-shadow: 0 9px 24px -8px rgba(106,115,119,0.15);
 }

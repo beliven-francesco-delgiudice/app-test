@@ -39,7 +39,7 @@ export default {
     try {
       const results = await this.$http({
         method: 'GET',
-        url: urls.onBoarding
+        url: urls.users.onBoarding
       })
       this.slides = results
       // no need to see onboarding anymore
