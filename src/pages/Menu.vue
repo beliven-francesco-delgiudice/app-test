@@ -75,8 +75,8 @@ export default {
           img: 'documents.svg'
         },
         {
-          name: 'Medical Education',
-          href: '/meded',
+          name: 'L.E.A.R.N.',
+          href: '/learn',
           img: 'meded.svg',
           disabled: true
         },
