@@ -2,13 +2,14 @@
   <ion-modal
     animated
     showBackdrop
-    css-class="custom-modal"
+    css-class="custom-modal no-modal-shadow"
     :is-open="isOpened"
     @didDismiss="closeSubsidiary"
   >
     <div
       class="w-full h-full relative pt-20 gradient-background relative"
       style="min-width:100%;"
+      :style="isIos ? 'margin-top:35px' : ''"
     >
       <div
         class="bg-transparent absolute top-0 left-0 flex px-8 w-full z-10"
@@ -144,12 +145,16 @@
 import { IonImg } from '@ionic/vue'
 import Title from './Title.vue'
 import SquareContainer from './containers/SquareContainer.vue'
+import Platformer from '../mixins/Platformer.vue'
 export default {
   components: {
     IonImg,
     Title,
     SquareContainer
   },
+
+  mixins: [Platformer],
+
   props: {
     subsidiary: Object
   },
@@ -180,3 +185,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.no-modal-shadow .modal-shadow.sc-ion-modal-ios {
+  z-index: -1 !important;
+}
+</style>
