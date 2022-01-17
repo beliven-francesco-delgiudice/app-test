@@ -27,6 +27,12 @@ p {
   left: -1rem;
 }
 
+.transparent-button {
+  --background: transparent;
+  --border: none;
+  --box-shadow: none;
+}
+
 button {
   --box-shadow: none !important;
 }

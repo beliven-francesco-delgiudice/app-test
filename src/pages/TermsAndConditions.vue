@@ -22,53 +22,7 @@
     </div>
 
     <div class="px-8 relative z-10 bg-transparent pb-24">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eget
-      velit lacus. Aliquam pellentesque vehicula mi vitae aliquet. Pellentesque
-      habitant morbi tristique senectus et netus et malesuada fames ac turpis
-      egestas. Morbi at elit porta, dapibus erat eu, maximus erat. Cras sit amet
-      velit a lorem faucibus rutrum. Vivamus tempus, nisl eget molestie laoreet,
-      quam ipsum sollicitudin dolor, at aliquam nisl urna et tellus. Duis
-      finibus erat eget mattis mattis. Aliquam id lectus pulvinar, bibendum
-      mauris sed, vulputate nisl. Curabitur porta sapien neque, interdum pretium
-      risus imperdiet quis. Sed est velit, pharetra vitae leo non, gravida
-      consectetur turpis. Nam convallis massa at ultricies ornare. Suspendisse
-      sapien lorem, tristique non augue non, feugiat vulputate enim. Fusce
-      tempus pulvinar mauris. Maecenas felis neque, vestibulum tincidunt quam
-      vitae, consequat molestie tellus. Quisque convallis risus a facilisis
-      scelerisque. Aliquam aliquet lacus nunc, non facilisis nisi maximus eget.
-      Aenean at dignissim nibh. Pellentesque habitant morbi tristique senectus
-      et netus et malesuada fames ac turpis egestas. Donec est orci, rhoncus ac
-      massa vitae, tempor interdum lorem. Proin accumsan, erat sit amet porta
-      egestas, nulla diam aliquam enim, id vehicula ante nisi ut leo. Proin ac
-      egestas velit. Suspendisse sollicitudin, ligula accumsan dapibus tempus,
-      felis ex euismod urna, nec rhoncus tellus arcu sed quam. Sed rutrum erat
-      et neque ornare rutrum. Pellentesque id fermentum justo. Nam sit amet
-      justo erat. Duis tincidunt quis dolor ut mattis. Donec imperdiet libero at
-      mollis congue. Nulla mattis, purus eu lacinia pharetra, augue mi mattis
-      elit, in vulputate enim est non nunc. Sed non pulvinar neque. Duis diam
-      dui, congue non tincidunt non, hendrerit ut leo. Etiam vehicula porta quam
-      eleifend pretium. Nunc ornare, enim nec interdum rhoncus, tellus augue
-      placerat eros, eu efficitur lectus est in nulla. Vestibulum nec euismod
-      justo. Cras lacinia auctor tortor, at vestibulum nibh consequat at. Duis
-      erat sapien, sagittis nec mauris feugiat, aliquet pretium orci. Etiam sit
-      amet fringilla felis. Curabitur a mattis tortor, et ultrices ipsum.
-      Curabitur accumsan tempor arcu, nec fringilla nunc efficitur ac. Mauris
-      suscipit dictum quam, sed hendrerit dui dignissim sit amet. Mauris
-      malesuada felis ex, sed lacinia enim rhoncus at. Morbi odio nunc,
-      malesuada at turpis efficitur, vulputate egestas libero. In hac habitasse
-      platea dictumst. Aliquam risus urna, feugiat non nunc id, consectetur
-      ornare mi. Phasellus viverra facilisis purus, nec tincidunt urna
-      scelerisque nec. Nam nec commodo est. Nulla purus purus, consequat vel
-      ultrices ut, pellentesque sed sapien. Pellentesque habitant morbi
-      tristique senectus et netus et malesuada fames ac turpis egestas. Morbi
-      vehicula erat in risus blandit vehicula. Ut fermentum at mauris nec
-      aliquam. Mauris pharetra odio vitae vestibulum dapibus. Aenean tempus
-      varius magna, accumsan porta lorem blandit quis. Donec euismod feugiat
-      arcu, convallis tincidunt quam malesuada lobortis. Vestibulum consectetur
-      imperdiet finibus. Nulla imperdiet arcu sit amet massa finibus, in
-      accumsan lorem dapibus. Nullam lacinia tristique purus, ac interdum erat
-      accumsan ut. Vestibulum tincidunt eget turpis ac gravida. Nunc accumsan
-      malesuada pretium.
+      <Terms />
     </div>
 
     <form
@@ -92,18 +46,21 @@
   </div>
 </template>
 <script>
-import { IonToggle } from '@ionic/vue'
+import { IonToggle, IonImg } from '@ionic/vue'
+import { Capacitor } from '@capacitor/core'
 import Title from '../components/Title.vue'
 import BigButton from '../components/containers/BigButton.vue'
-import { Capacitor } from '@capacitor/core'
+import Terms from '../components/Terms'
 import messages from '@/messages'
 import urls from '@/urls'
 
 export default {
   components: {
     IonToggle,
+    IonImg,
     Title,
-    BigButton
+    BigButton,
+    Terms
   },
 
   computed: {
