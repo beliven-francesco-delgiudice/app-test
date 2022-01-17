@@ -191,7 +191,7 @@ export async function syncOneSignal () {
   } catch (e) {
     console.error(e)
     this.$app.$toast({
-      message: messages.errors.appUpdates,
+      message: messages.errors.deviceInfo,
       color: 'danger'
     })
   }
