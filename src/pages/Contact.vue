@@ -1,5 +1,5 @@
 <template>
-  <Page label="Contacts" back="/menu" mail="info@limacorporate.com">
+  <Page support label="Contacts" back="/menu" mail="info@limacorporate.com">
     <carousel id="sections-carousel" classes="pt-4 -my-4 pb-8">
       <section-button
         v-for="(theSection, i) in sectionsForCarousel"
@@ -15,18 +15,9 @@
       <div
         v-for="(sub, k) in sectionToShow.voices"
         :key="k"
-        class="flex flex-row pb-4 mb-4 items-center"
+        class="flex flex-row pb-4 mb-4 items-center justify-between"
         @click="openModal(sub)"
       >
-        <square-container
-          v-if="sub.image"
-          bgClass="bg-white"
-          squareSize="64"
-          rounded="full"
-          classes="mr-4"
-        >
-          <ion-img :src="sub.image" class="width-44 height-44" />
-        </square-container>
         <div class="flex flex-col justify-between">
           <span
             class="font-helvetica-medium text-16 text-black spacing-5 line-28"
@@ -37,6 +28,15 @@
             {{ sub.subtitle }}
           </span>
         </div>
+        <ion-button
+          type="button"
+          class="relative my-auto ml-auto pointer-events-none transparent-button"
+        >
+          <ion-img
+            src="/assets/button-icons/back.svg"
+            className="pointer-events-none width-17 height-17 rotate-180"
+          />
+        </ion-button>
       </div>
     </div>
     <contacts-modal
@@ -50,7 +50,6 @@
 import Carousel from '../components/Carousel.vue'
 import Page from '../components/Page.vue'
 import SectionButton from '../components/containers/SectionButton'
-import SquareContainer from '../components/containers/SquareContainer.vue'
 import ContactsModal from '../components/ContactsModal.vue'
 import messages from '@/messages'
 import urls from '@/urls'
@@ -59,7 +58,6 @@ export default {
     Page,
     Carousel,
     SectionButton,
-    SquareContainer,
     ContactsModal
   },
   data () {
