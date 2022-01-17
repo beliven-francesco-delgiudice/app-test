@@ -71,6 +71,15 @@ export default {
           message: messages.errors.appUpdates,
           color: 'danger'
         })
+        if (this.$store.getters.gotNotificationToShow) {
+          const path = this.$store.getters.gotNotificationToShow
+          if (this.$store.getters.gotNotificationToShow) {
+            this.$store.commit('setNotificationToShow', null)
+          }
+          this.$router.push(path)
+        } else {
+          this.$router.push('/new?section=updates')
+        }
       }
     }
   }

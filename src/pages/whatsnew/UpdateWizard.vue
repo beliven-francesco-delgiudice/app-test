@@ -2,12 +2,16 @@
   <slider
     back
     finalLabel="Close"
+    :pager="true"
     :slides="formattedSlides"
     v-if="formattedSlides && formattedSlides.length"
     @onEnd="resolveRouting"
   >
     <template v-slot="{ item }">
-      <div class="flex flex-col flex flex-grow">
+      <div
+        class="flex flex-col flex flex-grow pointer-events-none"
+        :id="item.big"
+      >
         <ion-img :src="item.big" />
       </div>
     </template>
@@ -17,11 +21,11 @@
 import messages from '@/messages'
 import urls from '@/urls'
 import Slider from '../../components/Slider.vue'
-// import { IonImg } from '@ionic/vue'
+import { IonImg } from '@ionic/vue'
 export default {
   components: {
-    Slider
-    // IonImg
+    Slider,
+    IonImg
   },
   data () {
     return {
