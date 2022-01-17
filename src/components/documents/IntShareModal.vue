@@ -140,6 +140,7 @@ export default {
     },
 
     async saveName (e) {
+      this.email = this.selected
       e.preventDefault()
       if (this.recipient && this.recipient.length && this.doc.id) {
         const data = { email: this.recipient, file: this.doc.id }
