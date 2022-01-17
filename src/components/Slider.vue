@@ -1,18 +1,5 @@
 <template>
   <div class="flex flex-col relative gradient-background min-h-screen">
-    <ion-button
-      type="button"
-      class="absolute top-0 left-0 z-10"
-      style="--background:transparent; margin-top:1rem; margin-left:2rem;--box-shadow: none;"
-      v-if="back"
-      @click="onClose"
-    >
-      <ion-img
-        src="/assets/button-icons/close.svg"
-        className="pointer-events-none"
-      />
-    </ion-button>
-
     <ion-slides
       mode="ios"
       ref="slides"
@@ -30,7 +17,7 @@
       <div v-if="back" class="flex justify-between  items-center px-8">
         <ion-button
           type="button"
-          class="mr-4"
+          class="mr-4 relative elevated-shadow text-black z-10 "
           style="--background:transparent;"
           v-if="activeSlide > 0"
           @click="previousSlide"
@@ -38,16 +25,17 @@
           <ion-img
             src="/assets/button-icons/back.svg"
             class="pointer-events-none"
+            style="visibility:visible; width:14px; height:14px;"
           />
         </ion-button>
         <big-button
+          bgClass="bg-black"
           :label="buttonLabel"
-          :bgClass="isLastSlide ? 'bg-black' : 'bg-light-grey'"
           @onClick="buttonClick"
         />
         <ion-button
           type="button"
-          class="pointer-events-none opacity-0 ml-4"
+          class="pointer-events-none opacity-0 ml-4 elevated-shadow"
           style="--background:transparent;"
           v-if="activeSlide > 0"
           @click="previousSlide"
