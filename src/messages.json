@@ -24,6 +24,7 @@
 
     "notifications": "An error occurred while retrieving the notifications",
     "notificationDetail": "An error occurred while retrieving this notification",
+    "deviceInfo": "An error occurred while checking the user device",
     "appUpdates": "An error occurred while checking the latest app updates",
 
     "segments": "An error occurred while retrieving the segments",
