@@ -65,6 +65,21 @@
         />
       </shadow-button>
 
+      <!-- Support button -->
+      <shadow-button
+        square
+        styles="position:relative;"
+        bgClass="my-auto bg-white ml-4"
+        v-if="support"
+        @onClick="openSupport"
+        @click="openSupport"
+      >
+        <ion-img
+          src="/assets/button-icons/support.svg"
+          className="width-24 height-24 pointer-events-none m-auto"
+        />
+      </shadow-button>
+
       <!-- Filters button -->
       <shadow-button
         square
@@ -95,39 +110,41 @@
     </Title>
     <slot></slot>
     <!-- </IonScroll> -->
+    <contacts-support v-if="isSupportModalOpen" @onClose="closeSupport" />
   </div>
 </template>
 <script>
 import Title from '../components/Title'
 import ShadowButton from '../components/containers/ShadowButton.vue'
-import { IonImg, IonButton } from '@ionic/vue'
 import FiltersModal from './modals/FiltersModal.vue'
+import ContactsSupport from '../components/ContactsSupport.vue'
+import { IonImg, IonButton } from '@ionic/vue'
 import { Capacitor } from '@capacitor/core'
+
 export default {
   components: {
     Title,
     ShadowButton,
     IonImg,
     FiltersModal,
-    IonButton
+    IonButton,
+    ContactsSupport
     // IonScroll
   },
-  data () {
-    return {
-      isFiltersOpened: false
-    }
-  },
+
   props: {
     label: String,
     aboveTitle: String,
     withMargin: Boolean,
     noTopSpace: Boolean,
     info: Boolean,
+    support: Boolean,
     back: [Boolean, String, Object],
     mail: String,
     filters: [Boolean, Object],
     filtersOptions: Object
   },
+
   computed: {
     isIos () {
       if (
@@ -152,6 +169,14 @@ export default {
       return this.filtersOptions
     }
   },
+
+  data () {
+    return {
+      isFiltersOpened: false,
+      isSupportModalOpen: false
+    }
+  },
+
   methods: {
     onBack () {
       if (this.back && this.back.length) {
@@ -173,6 +198,12 @@ export default {
     onSubmit (payload) {
       this.$emit('onFiltersChange', payload)
       this.closeFilters()
+    },
+    openSupport () {
+      this.isSupportModalOpen = true
+    },
+    closeSupport () {
+      this.isSupportModalOpen = false
     }
   }
 }
