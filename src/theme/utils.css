@@ -22,6 +22,7 @@ p {
 
 .back-button {
   --background: transparent;
+  --background-activated: transparent;
   --border: none;
   --box-shadow: none;
   left: -1rem;
@@ -29,6 +30,7 @@ p {
 
 .transparent-button {
   --background: transparent;
+  --background-activated: transparent;
   --border: none;
   --box-shadow: none;
 }
