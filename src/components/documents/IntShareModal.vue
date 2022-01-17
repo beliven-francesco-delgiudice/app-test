@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed top-0 left-0 w-full h-full flex justofy-center items-center"
+    class="fixed top-0 left-0 w-full h-full flex justify-center items-center z-10"
   >
     <div
       class="absolute top-0 left-0 bg-black opacity-50 w-full h-full pointer-events-none"
@@ -15,13 +15,36 @@
         class="font-helvetica-bold text-20 spacing-22 line-30 text-black mb-1 block"
         >Share {{ doc.type }} with</span
       >
+      <span class="font-helvetica text-12 spacing-38 line-24 text-grey">
+        Write the full email or search and select one from the list below.
+        Clicking again a selected user will unselect him.
+      </span>
       <ion-input
-        type="email"
-        placeholder="Email"
-        v-model="email"
-        class="font-helvetica text-16 spacing-5 line-28 text-black my-2"
         required
+        type="email"
+        placeholder="Search or add email"
+        class="font-helvetica text-16 spacing-5 line-28 text-black my-2"
+        v-model="email"
       ></ion-input>
+
+      <div v-if="updatedList && updatedList.length" class="flex flex-col">
+        <span class="font-helvetica text-12 spacing-38 line-24 text-grey">
+          Select a user:
+        </span>
+        <div class="flex flex-col" style="max-height:200px;overflow-y:auto;">
+          <div
+            v-for="user in updatedList"
+            :key="user"
+            class="flex flex-row p-2 font-helvetica text-14 spacing-44 line-24 rounded-6 w-full"
+            :class="selected === user ? 'bg-black text-white' : ''"
+            style="border-bottom: 1px solid #ededed;"
+            @click="selectUser(user)"
+          >
+            {{ user }}
+          </div>
+        </div>
+      </div>
+
       <div class="mt-2 w-full flex justify-end items-center">
         <div
           class="bg-white
@@ -52,27 +75,74 @@
 import { IonButton, IonInput } from '@ionic/vue'
 import messages from '@/messages'
 import urls from '@/urls'
+
 export default {
   components: {
     IonButton,
     IonInput
   },
+
   props: {
     doc: Object
   },
-  data () {
-    return {
-      email: ''
+
+  computed: {
+    recipient () {
+      return this.selected && this.selected.length ? this.selected : this.email
+    },
+
+    updatedList () {
+      if (this.selected && this.selected.length) {
+        const updatedList = this.list.map(user => user)
+        const index = this.list.indexOf(this.selected)
+        if (index > -1) {
+          updatedList.splice(index, 1)
+        }
+        updatedList.unshift(this.selected)
+        return updatedList
+      }
+      return this.list
     }
   },
+
+  data () {
+    return {
+      email: '',
+      selected: '',
+      list: []
+    }
+  },
+
   methods: {
     cancel () {
       this.$emit('onClose')
     },
+
+    async getList () {
+      try {
+        const list = await this.$http({
+          method: 'GET',
+          url: urls.users.shareList,
+          params: {
+            search: this.email
+          }
+        })
+        if (list && list.length) {
+          this.list = list
+        }
+      } catch (e) {
+        console.error(e)
+        this.$toast({
+          message: messages.errors.shareList,
+          color: 'danger'
+        })
+      }
+    },
+
     async saveName (e) {
       e.preventDefault()
-      if (this.email && this.email.length && this.doc.id) {
-        const data = { email: this.email, file: this.doc.id }
+      if (this.recipient && this.recipient.length && this.doc.id) {
+        const data = { email: this.recipient, file: this.doc.id }
         let endpoint = urls.documents.share
         if (this.doc.type === 'folder') {
           endpoint = urls.folders.share
@@ -80,15 +150,14 @@ export default {
           data.folder = this.doc.id
         }
         try {
-          const shareResults = await this.$http({
+          await this.$http({
             method: 'POST',
             url: endpoint,
             data,
             loader: true
           })
-          console.log(shareResults)
           this.$toast({
-            message: messages.success.shared,
+            message: messages.success.shared + ' ' + this.recipient,
             color: 'dark'
           })
         } catch (e) {
@@ -113,6 +182,26 @@ export default {
         })
       }
       this.$emit('onClose')
+    },
+
+    selectUser (user) {
+      if (this.selected !== user) {
+        this.selected = user
+        this.email = user
+      } else {
+        this.selected = ''
+        if (this.email === user) {
+          this.email = ''
+        }
+      }
+    }
+  },
+
+  watch: {
+    email: function (val) {
+      if (val && val.length > 3) {
+        this.getList()
+      }
     }
   }
 }
