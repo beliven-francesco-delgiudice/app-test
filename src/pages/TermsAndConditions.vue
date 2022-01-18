@@ -90,13 +90,12 @@ export default {
     async resolveRouting (e) {
       e.preventDefault()
       try {
-        const results = await this.$http({
+        await this.$http({
           method: 'GET',
           url: urls.users.acceptTerms
         })
         // no need to accept terms anymore
         this.$store.commit('setNeedToAcceptTerms', false)
-        console.log('RESULTS', results)
       } catch (e) {
         console.error(e)
         this.$toast({
