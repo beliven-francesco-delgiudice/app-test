@@ -9,6 +9,10 @@ function resolveRouting (
   isUpdateToShow,
   isNotificationToShow
 ) {
+  console.debug(
+    'need to accept terms? ' + needToAcceptTerms,
+    'need onboarding? ' + needOnboarding
+  )
   if (needToAcceptTerms) {
     app.$router.push('/terms')
   } else if (needOnboarding) {
