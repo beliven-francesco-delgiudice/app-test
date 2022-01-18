@@ -99,16 +99,6 @@ export async function login (context, data) {
       context.getters.gotUpdatesToShow,
       context.getters.gotNotificationToShow
     )
-
-    // // Onboarding, Wizard or Home
-    // if (loggedData.onboarding) {
-    //   this.$app.$router.push('/onboarding')
-    // } else if (context.getters.gotUpdatesToShow) {
-    //   console.log('new update', context.getters.gotUpdatesToShow)
-    //   this.$app.$router.push('/new/update/' + context.getters.gotUpdatesToShow)
-    // } else {
-    //   this.$app.$router.push('/home')
-    // }
   } catch (e) {
     this.$app.$toast({
       message: messages.errors.cannotLogin,
@@ -132,8 +122,8 @@ export async function loginWithToken (context) {
     const userData = Object.assign({}, loggedData.user)
 
     context.commit('setUserData', userData)
-    context.commit('setOnboarding', loggedData.onboarding)
     context.commit('setNeedToAcceptTerms', loggedData.need_accept_terms)
+    context.commit('setOnboarding', loggedData.onboarding)
     context.commit('setNotifications', loggedData.push)
     context.commit('setAppUpdates', loggedData.update_id)
 
@@ -201,6 +191,7 @@ export async function syncOneSignal () {
     })
   }
 }
+
 export async function getMessages (context, event) {
   try {
     const messagesList = await this.$app.$http({
