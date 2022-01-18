@@ -115,7 +115,8 @@ const master = {
 
       return data
     },
-    needToAcceptTerms: state => state.need_accept_terms,
+    needToAcceptTerms: state =>
+      state.need_accept_terms || state.need_accept_terms === undefined,
     needOnboarding: state => state.onboarding,
     gotNotifications: state => {
       return state.notifications
