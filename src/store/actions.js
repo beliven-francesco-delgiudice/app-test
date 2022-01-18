@@ -9,10 +9,6 @@ function resolveRouting (
   isUpdateToShow,
   isNotificationToShow
 ) {
-  console.debug(
-    'need to accept terms? ' + needToAcceptTerms,
-    'need onboarding? ' + needOnboarding
-  )
   if (needToAcceptTerms) {
     app.$router.push('/terms')
   } else if (needOnboarding) {
@@ -111,13 +107,13 @@ export async function loginWithToken (context) {
   try {
     // Decouple data from Vue as we will do modifications that user should not see
 
-    this.$app.$loading.show()
-
     const loggedData = await this.$app.$http({
       method: 'POST',
       url: urls.auth.loginWithToken,
       loader: false
     })
+
+    console.debug('WELCOME')
 
     const userData = Object.assign({}, loggedData.user)
 
@@ -138,12 +134,6 @@ export async function loginWithToken (context) {
     } catch (e) {
       console.error(e)
     }
-
-    // Check OneSignal permissions status
-    // const subscriptionData = await this.$app.$onesignal.getPermissionState()
-    // await context.dispatch('newNotificationsState', subscriptionData)
-
-    this.$app.$loading.hide()
 
     resolveRouting(
       this.$app,
@@ -264,8 +254,6 @@ export async function getHome (context) {
     shared: []
   }
 
-  this.$app.$loading.show()
-
   try {
     // get products
     const prod = await this.$app.$http({
@@ -328,8 +316,6 @@ export async function getHome (context) {
       color: 'danger'
     })
   }
-
-  this.$app.$loading.hide()
 
   const homeObject = {
     products,
