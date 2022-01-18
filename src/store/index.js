@@ -22,8 +22,8 @@ const master = {
     notifications: [],
     appUpdates: null,
     notificationToShow: null,
-    need_accept_terms: true,
-    onboarding: true,
+    need_accept_terms: null,
+    onboarding: null,
     messages: []
   },
   mutations: {
