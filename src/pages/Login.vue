@@ -168,11 +168,15 @@ export default {
     }
   },
   created () {
-    console.log(Capacitor.getPlatform())
-    if (this.$store.getters.loggedIn && Capacitor.getPlatform() !== 'web') {
-      // user is already logged in
-      this.$store.dispatch('alreadyLoggedRouting')
+    if (this.$store.getters.loggedIn) {
+      if (Capacitor.getPlatform() !== 'web') {
+        // user is already logged in
+        this.$store.dispatch('alreadyLoggedRouting')
+      } else {
+        window.localStorage.clear()
+      }
     }
+
     if (this.$route.query.token && Capacitor.getPlatform() === 'web') {
       window.azureToken = this.$route.query.token
       window.localStorage.setItem('JWT', this.$route.query.token)
