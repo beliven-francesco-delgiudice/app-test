@@ -34,6 +34,8 @@ export async function alreadyLoggedRouting (context) {
     console.error(e)
   }
 
+  console.log('state', context, context.state)
+
   resolveRouting(
     this.$app,
     context.getters.needToAcceptTerms,
@@ -52,8 +54,6 @@ export async function login (context, data) {
   try {
     // Decouple data from Vue as we will do modifications that user should not see
     data = { ...data }
-
-    this.$app.$loading.show()
 
     const loggedData = await this.$app.$http({
       method: 'POST',
@@ -85,8 +85,6 @@ export async function login (context, data) {
     // Check OneSignal permissions status
     // const subscriptionData = await this.$app.$onesignal.getPermissionState()
     // await context.dispatch('newNotificationsState', subscriptionData)
-
-    this.$app.$loading.hide()
 
     resolveRouting(
       this.$app,

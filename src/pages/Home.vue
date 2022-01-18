@@ -303,11 +303,6 @@ export default {
       const text = searchText ? '?string=' + searchText : ''
       this.$router.push('/search' + text)
     }
-  },
-
-  async mounted () {
-    await this.$loading.show()
-    await this.$loading.hide()
   }
 }
 </script>
