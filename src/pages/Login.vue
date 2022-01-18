@@ -168,6 +168,7 @@ export default {
     }
   },
   created () {
+    console.log(Capacitor.getPlatform())
     if (this.$store.getters.loggedIn && Capacitor.getPlatform() !== 'web') {
       // user is already logged in
       this.$store.dispatch('alreadyLoggedRouting')
