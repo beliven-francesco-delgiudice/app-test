@@ -133,6 +133,7 @@ export async function loginWithToken (context) {
 
     context.commit('setUserData', userData)
     context.commit('setOnboarding', loggedData.onboarding)
+    context.commit('setNeedToAcceptTerms', loggedData.need_accept_terms)
     context.commit('setNotifications', loggedData.push)
     context.commit('setAppUpdates', loggedData.update_id)
 
