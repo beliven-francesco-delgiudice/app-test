@@ -303,18 +303,6 @@ export default {
       const text = searchText ? '?string=' + searchText : ''
       this.$router.push('/search' + text)
     }
-  },
-
-  mounted () {
-    try {
-      setTimeout(() => {
-        this.$loading.hide().then(() => {
-          console.debug('LOADER CLOSED')
-        })
-      }, 2000)
-    } catch (err) {
-      console.debug('CANNOT CLOSE LOADER', err)
-    }
   }
 }
 </script>
