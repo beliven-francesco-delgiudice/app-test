@@ -83,7 +83,8 @@ export default {
   },
 
   props: {
-    doc: Object
+    doc: Object,
+    isStorage: Boolean
   },
 
   computed: {
@@ -149,6 +150,9 @@ export default {
           endpoint = urls.folders.share
           delete data.file
           data.folder = this.doc.id
+        }
+        if (this.isStorage) {
+          endpoint = urls.documents.storage_share
         }
         try {
           await this.$http({

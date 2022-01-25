@@ -62,13 +62,9 @@
 
   <int-share-modal
     v-if="isIntShareModalOpen"
+    :isStorage="isStorageShare"
     :doc="document"
-    @onClose="toggleModal('internal_share')"
-  />
-  <storage-share-modal
-    v-if="isStorageShareModalOpen"
-    :doc="document"
-    @onClose="toggleModal('storage_internal_share')"
+    @onClose="closeInternalShare"
   />
   <folders-tree-modal
     :open="isMoveModalOpen"
@@ -85,7 +81,6 @@ import { Share } from '@capacitor/share'
 import RenameModal from './documents/RenameModal'
 import DeleteModal from './documents/DeleteModal'
 import IntShareModal from './documents/IntShareModal'
-import StorageShareModal from './documents/StorageShareModal'
 import messages from '@/messages'
 import urls from '@/urls'
 import FoldersTreeModal from './documents/FoldersTreeModal.vue'
@@ -97,7 +92,6 @@ export default {
     RenameModal,
     DeleteModal,
     IntShareModal,
-    StorageShareModal,
     FoldersTreeModal
   },
   props: {
@@ -111,10 +105,10 @@ export default {
   data () {
     return {
       action: null,
+      isStorageShare: false,
       isRenameModalOpen: false,
       isDeleteModalOpen: false,
       isIntShareModalOpen: false,
-      isStorageShareModalOpen: false,
       isMoveModalOpen: false
     }
   },
@@ -149,6 +143,12 @@ export default {
     async getAppInfo () {
       return await this.$device.getAppInfo()
     },
+
+    closeInternalShare () {
+      this.isStorageShare = false
+      this.toggleModal('internal_share')
+    },
+
     getDocumentPath (document) {
       let path = ''
       if (document.url) {
@@ -162,6 +162,7 @@ export default {
       }
       return path
     },
+
     openFile (doc) {
       const path = this.getDocumentPath(doc)
       var link = document.createElement('a')
@@ -171,6 +172,7 @@ export default {
       link.click()
       document.body.removeChild(link)
     },
+
     documentAction () {
       if (this.document && this.document.type === 'folder') {
         this.$router.push(
@@ -180,10 +182,12 @@ export default {
         this.openDocumentMenu()
       }
     },
+
     openActionModal (action) {
       this.action = action
       this.isActionModalOpen = true
     },
+
     toggleModal (action) {
       switch (action) {
         case 'rename':
@@ -198,11 +202,9 @@ export default {
         case 'internal_share':
           this.isIntShareModalOpen = !this.isIntShareModalOpen
           break
-        case 'storage_internal_share':
-          this.isStorageShareModalOpen = !this.isStorageShareModalOpen
-          break
       }
     },
+
     async openDocumentMenu () {
       const buttonsArray = []
       const actionsList = this.documentActions.map(i => i) || []
@@ -296,7 +298,8 @@ export default {
             buttonsArray.push({
               text: 'Share internal',
               handler: async () => {
-                this.toggleModal('storage_internal_share')
+                this.isStorageShare = true
+                this.toggleModal('internal_share')
               }
             })
             break
