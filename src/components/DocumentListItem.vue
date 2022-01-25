@@ -22,15 +22,20 @@
       >
         <span
           class="font-helvetica-medium text-16 text-black spacing-5 line-28"
-          >{{
+        >
+          {{
             updatedDocument.label ||
               updatedDocument.name ||
               updatedDocument.title
-          }}</span
-        >
-        <span class="font-helvetica text-14 text-grey spacing-44 line-24">{{
-          updatedDocument.size || updatedDocument.subtitle
-        }}</span>
+          }}
+        </span>
+        <span class="font-helvetica text-14 text-grey spacing-44 line-24">
+          {{
+            type === 'shared'
+              ? updatedDocument.subtitle
+              : updatedDocument.size || updatedDocument.subtitle
+          }}
+        </span>
       </div>
     </div>
     <div
