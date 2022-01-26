@@ -21,7 +21,7 @@
       </span>
     </div>
 
-    <div class="px-8 relative z-10 bg-transparent pb-24">
+    <div class="relative z-10 bg-transparent pb-24">
       <Terms />
     </div>
 
