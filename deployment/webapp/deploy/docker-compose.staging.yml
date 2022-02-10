@@ -20,7 +20,7 @@
         - traefik.docker.network=web
         - traefik.port=80
         - traefik.frontend.headers.customResponseHeaders=X-Robots-Tag :noindex,nofollow,nosnippet,noarchive,notranslate,noimageindex
-        # - "traefik.frontend.auth.basic.users=heply:$$apr1$$jlxVnLzz$$.DvFktmT6517Zqcs3ZZeF.,lima:$$apr1$$1tZeY41K$$722drij54GteY0v1kYFJ7."
+        - "traefik.frontend.auth.basic.users=heply:$$apr1$$jlxVnLzz$$.DvFktmT6517Zqcs3ZZeF."
       networks:
         - web
 
