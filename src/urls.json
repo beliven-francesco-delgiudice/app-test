@@ -26,6 +26,7 @@
     "list": "/documents",
     "list_my":"/documents/my",
     "list_shared":"/documents/shared",
+    "list_us":"/usadocs",
     "save_in_mydocs": "/documents/favorite",
     "remove_from_my": "/documents/remove",
     "move": "/documents/move",
