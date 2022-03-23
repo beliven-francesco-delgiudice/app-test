@@ -164,9 +164,9 @@ export default {
     },
     updatedStaff () {
       if (this.updatedCongress && this.updatedCongress.staff) {
-        return this.sanitizeManageText(this.updatedCongress.staff)
+        return this.updatedCongress.staff
       }
-      return {}
+      return ''
     }
   },
   methods: {
