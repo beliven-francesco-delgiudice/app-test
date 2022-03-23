@@ -117,19 +117,14 @@
         <div class="flex justify-between items-start mb-4">
           <div class="flex flex-col">
             <span
-              class="font-helvetica text-14 text-grey spacing-44 line-28 mb-2"
-              >Check-in</span
-            >
-            <span
-              class="font-helvetica text-12 text-grey spacing-44 line-28 mb-2"
-              >From</span
-            >
-            <span
               class="font-helvetica-medium text-16 text-red spacing-23 line-24 mb-2"
               >{{ updatedTransfer.transfer_date }}</span
             >
-            <span class="font-helvetica text-14 text-red spacing-2 line-24"
-              >{{
+            <span
+              v-if="showTransferTime"
+              class="font-helvetica text-14 text-red spacing-2 line-24"
+            >
+              {{
                 updatedTransfer.transfer_time
                   ? `${updatedTransfer.transfer_time} `
                   : ''
@@ -138,28 +133,25 @@
           </div>
           <div class="flex flex-col">
             <span
-              class="font-helvetica text-14 text-grey spacing-44 line-28 mb-2"
-              >Check-out</span
-            >
-            <span
-              class="font-helvetica text-12 text-grey spacing-44 line-28 mb-2"
-              >Until</span
-            >
-            <span
               class="font-helvetica-medium text-16 text-red spacing-23 line-24 mb-2"
               >{{ updatedTransfer.transfer_return_date }}</span
             >
-            <span class="font-helvetica text-14 text-red spacing-2 line-24">{{
-              updatedTransfer.transfer_return_time
-                ? `${updatedTransfer.transfer_return_time} `
-                : ''
-            }}</span>
+            <span
+              v-if="showTransferTime"
+              class="font-helvetica text-14 text-red spacing-2 line-24"
+            >
+              {{
+                updatedTransfer.transfer_return_time
+                  ? `${updatedTransfer.transfer_return_time} `
+                  : ''
+              }}</span
+            >
           </div>
         </div>
         <big-button label="Save in calendar" @onClick="saveEvent('transfer')" />
       </div>
       <p
-        class="px-8 font-helvetica text-mid-dark-grey text-16 spacing-1 line-24 mb-4 mt-0"
+        class="px-8 font-helvetica text-mid-dark-grey text-16 spacing-1 line-24 mb-4 mt-8"
         :style="
           !updatedReadMore.transfer
             ? 'display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;'
@@ -224,6 +216,16 @@ export default {
         return this.updatedCongress.transfer
       }
       return {}
+    },
+    showTransferTime () {
+      if (
+        this.updatedTransfer &&
+        (this.updatedTransfer.transfer_return_time ||
+          this.updatedTransfer.transfer_time)
+      ) {
+        return true
+      }
+      return false
     },
     updatedReadMore () {
       return this.isReadMore
