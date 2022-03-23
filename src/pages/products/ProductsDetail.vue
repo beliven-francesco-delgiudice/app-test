@@ -5,14 +5,15 @@
 </template>
 
 <script>
-import Components from '../../components/productdetails/Components.vue'
 import Details from '../../components/productdetails/Details.vue'
 import Documents from '../../components/productdetails/Documents.vue'
+import Components from '../../components/productdetails/Components.vue'
+
 export default {
   components: {
     Details,
-    Components,
-    Documents
+    Documents,
+    Components
   },
   data () {
     return {
