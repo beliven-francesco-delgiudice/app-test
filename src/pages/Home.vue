@@ -81,14 +81,22 @@
     <home-titled-container label="Documents" path="/documents">
       <carousel id="documents-carousel" classes="py-4 -my-4">
         <home-documents
-          title="My Docs"
-          :docs="$store.getters.homeDocuments.my"
-          type="my"
+          v-if="$store.getters.showUS"
+          type="us"
+          title="US"
+          titleClass="bg-red text-white px-2 mb-2 mr-auto rounded-6"
           classes="ml-8"
+          :docs="$store.getters.homeDocuments.us"
         />
         <home-documents
-          title="Shared with me"
+          type="my"
+          title="My Docs"
+          :docs="$store.getters.homeDocuments.my"
+          :classes="$store.getters.showUS ? '' : 'ml-8'"
+        />
+        <home-documents
           type="shared"
+          title="Shared with me"
           :docs="$store.getters.homeDocuments.shared"
         />
         <div>&nbsp;</div>

@@ -5,18 +5,23 @@
     <div
       class="bg-white w-full overflow-hidden rounded-12 flex flex-col justify-between elevated-shadow p-6"
     >
-      <span class="font-helvetica-medium text-dark-grey text-16 mb-4">
+      <span
+        :class="[
+          titleClass || 'text-dark-grey mb-4',
+          'py-1 font-helvetica-medium text-16'
+        ]"
+      >
         {{ title }}</span
       >
 
       <document-list-item
         v-for="(doc, i) in docs"
-        :key="i"
-        :classes="i > 0 ? 'mt-4' : ''"
-        :document="doc"
-        :type="type"
-        :actions="doc.actions"
         small
+        :key="i"
+        :type="type"
+        :document="doc"
+        :actions="doc.actions"
+        :classes="i > 0 ? 'mt-4' : ''"
       />
     </div>
   </div>
@@ -29,6 +34,7 @@ export default {
   props: {
     docs: [Array, Object],
     title: String,
+    titleClass: [Array, String],
     classes: [Array, String],
     type: [String]
   }
