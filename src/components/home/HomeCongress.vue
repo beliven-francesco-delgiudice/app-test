@@ -11,12 +11,15 @@
     >
       <span
         class="w-full text-black font-helvetica-medium text-16 mb-1 spacing-5 line-28"
-        >{{ congress.name }}</span
       >
-      <span
-        class="w-full text-grey font-helvetica text-14 mb-2 spacing-44 line-24"
-        >{{ congress.subtitle }}</span
+        {{ congress.name }}
+      </span>
+      <p
+        class="w-full text-grey font-helvetica text-14 mb-0 mb-4 spacing-44 line-24"
+        style=" overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;line-clamp: 2;-webkit-box-orient: vertical;"
       >
+        {{ congress.subtitle }}
+      </p>
       <div class="mr-auto">
         <div
           class="p-1 bg-light-red rounded-6 font-helvetica-medium text-12 text-red"
@@ -42,7 +45,7 @@ export default {
 </script>
 <style scoped>
 .congress {
-  height: 150px;
-  min-height: 150px;
+  height: 160px;
+  min-height: 160px;
 }
 </style>
