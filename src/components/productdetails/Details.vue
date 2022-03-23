@@ -55,6 +55,14 @@
     >
       <video-gallery :gallery="updatedProduct.videos" />
     </detail-section>
+    <detail-section v-if="showDisclaimer" label="Disclaimer">
+      <p
+        class="px-8 font-helvetica text-mid-dark-grey text-16 spacing-1 line-24 mb-4"
+      >
+        Write the full email or search and select one from the list below.
+        Clicking again a selected user will unselect him.
+      </p>
+    </detail-section>
   </product-layout>
 </template>
 <script>
@@ -96,6 +104,10 @@ export default {
         return this.sanitizeManageText(this.updatedProduct.description)
       }
       return ''
+    },
+    showDisclaimer () {
+      // TODO: add disclaimer check
+      return true
     }
   },
   async created () {
