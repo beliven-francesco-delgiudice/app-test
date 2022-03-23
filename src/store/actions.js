@@ -308,6 +308,14 @@ export async function getHome (context) {
       loader: false
     })
     documents.shared = documentsShared.list
+
+    const documentsUS = await this.$app.$http({
+      method: 'GET',
+      url: urls.documents.list_us,
+      params: {},
+      loader: false
+    })
+    documents.us = documentsUS.list
   } catch (e) {
     this.$app.$toast({
       message: messages.errors.home,
@@ -321,7 +329,8 @@ export async function getHome (context) {
     news,
     documents: {
       my: documents.my.slice(0, 3),
-      shared: documents.shared.slice(0, 3)
+      shared: documents.shared.slice(0, 3),
+      us: documents.us.slice(0, 3)
     }
   }
 
