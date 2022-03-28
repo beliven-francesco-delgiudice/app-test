@@ -76,6 +76,7 @@ export default {
     },
     closeNotification () {
       this.notificationOpened = null
+      this.$store.dispatch('getNotifications')
     },
     openNotification (notificationID) {
       this.notificationOpened = notificationID
