@@ -20,9 +20,17 @@
             class="font-helvetica-medium text-black text-16 spacing-5 line-28"
             >{{ item.name }}</span
           >
-          <span class="font-helvetica text-grey text-14 spacing-44 line-24">{{
-            item.release
-          }}</span>
+          <span class="font-helvetica text-grey text-14 spacing-44 line-24">
+            {{ item.release }}
+          </span>
+        </div>
+        <div
+          class="width-12 height-12 my-auto ml-auto flex justify-center items-center"
+        >
+          <div
+            v-if="!item.read"
+            class="width-8 height-8 bg-red rounded-full"
+          ></div>
         </div>
       </div>
     </div>
