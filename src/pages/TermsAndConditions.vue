@@ -6,7 +6,18 @@
       class="px-8 bg-transparent absolute top-0 left-0 flex px-8 w-full z-10"
       :style="isIos ? 'margin-top:35px;height:70px;' : 'height:90px;'"
     >
-      <div class="relative mr-auto my-auto">
+      <div class="flex relative mr-auto my-auto">
+        <ion-button
+          v-if="accepted"
+          type="button"
+          class="relative back-button"
+          @click="back"
+        >
+          <ion-img
+            src="/assets/button-icons/back.svg"
+            className="pointer-events-none"
+          />
+        </ion-button>
         <ion-img src="/assets/limapp.svg" />
       </div>
     </div>
@@ -16,16 +27,20 @@
       <Title titleClass="pb-2 text-black font-helvetica-bold text-28 block">
         Terms and conditions
       </Title>
-      <span class="font-helvetica text-12 spacing-38 line-24 text-grey">
+      <span
+        v-if="!accepted"
+        class="font-helvetica text-12 spacing-38 line-24 text-grey"
+      >
         Accept to continue
       </span>
     </div>
 
-    <div class="relative z-10 bg-transparent pb-24">
+    <div :class="[accepted ? 'pb-4' : 'pb-24', 'relative z-10 bg-transparent']">
       <Terms />
     </div>
 
     <form
+      v-if="!accepted"
       class="flex flex-col fixed px-8 py-8 w-full z-10 bg-white rounded-32 top-shadow"
       style="bottom:-1px"
       @submit="resolveRouting"
@@ -43,6 +58,9 @@
       </div>
       <big-button :disabled="!areAccepted" label="Next" type="submit" />
     </form>
+    <div v-else class="px-8">
+      <big-button label="Back" type="button" @onClick="back" />
+    </div>
   </div>
 </template>
 <script>
@@ -73,6 +91,10 @@ export default {
         return true
       }
       return false
+    },
+
+    accepted () {
+      return !!this.$route.query.accepted
     }
   },
 
@@ -117,6 +139,10 @@ export default {
       } else {
         this.$router.push('/home')
       }
+    },
+
+    back () {
+      this.$router.push('/menu')
     }
   }
 }
