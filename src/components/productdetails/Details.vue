@@ -17,7 +17,10 @@
         "
         v-html="formattedDescription"
       />
-      <div class="mx-8 mt-4 flex justify-start">
+      <div
+        v-if="formattedDescription && formattedDescription.length"
+        class="mx-8 mt-4 flex justify-start"
+      >
         <section-button
           :label="updatedReadMore ? 'Read less' : 'Read more'"
           @onClick="readMore"
@@ -56,12 +59,18 @@
       <video-gallery :gallery="updatedProduct.videos" />
     </detail-section>
     <detail-section v-if="showDisclaimer" label="Disclaimer">
-      <p
-        class="px-8 font-helvetica text-mid-dark-grey text-16 spacing-1 line-24 mb-4"
-      >
-        Write the full email or search and select one from the list below.
-        Clicking again a selected user will unselect him.
-      </p>
+      <div class="p-8 mx-8 mb-4 bg-light-grey rounded-12 ">
+        <p
+          v-for="(disclaimer, i) in updatedProduct.disclaimers"
+          :key="i"
+          :class="[
+            i === 0 || 'mt-4',
+            'font-helvetica text-mid-dark-grey text-16 spacing-1 line-24'
+          ]"
+        >
+          {{ disclaimer }}
+        </p>
+      </div>
     </detail-section>
   </product-layout>
 </template>
@@ -106,8 +115,10 @@ export default {
       return ''
     },
     showDisclaimer () {
-      // TODO: add disclaimer check
-      return true
+      return (
+        this.updatedProduct.disclaimers &&
+        this.updatedProduct.disclaimers.length
+      )
     }
   },
   async created () {
