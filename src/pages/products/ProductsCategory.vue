@@ -30,9 +30,9 @@
               class="font-helvetica-medium text-black text-16 spacing-5 line-28"
               >{{ item.name }}</span
             >
-            <span class="font-helvetica text-grey text-14 spacing-44 line-24">{{
-              item.category
-            }}</span>
+            <span class="font-helvetica text-grey text-14 spacing-44 line-24">
+              {{ item.category }}
+            </span>
           </div>
         </div>
       </div>
