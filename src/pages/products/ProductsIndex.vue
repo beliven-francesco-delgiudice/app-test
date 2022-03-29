@@ -20,9 +20,9 @@
               class="absolute bottom-0 w-3/4 sm:w-1/2 blend-mode-darken"
             />
           </div>
-          <span class="font-helvetica-medium text-black text-16 mt-4">{{
-            segment.name
-          }}</span>
+          <span class="font-helvetica-medium text-black text-16 mt-4">
+            {{ segment.name }}
+          </span>
         </grey-container>
       </div>
     </div>
@@ -51,7 +51,7 @@ export default {
   data () {
     return {
       segments: [],
-      catalogue: {}
+      catalogue: null
     }
   },
   computed: {},
