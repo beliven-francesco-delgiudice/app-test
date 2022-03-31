@@ -65,7 +65,7 @@
           :key="i"
           :class="[
             i === 0 || 'mt-4',
-            'font-helvetica text-mid-dark-grey text-16 spacing-1 line-24'
+            'font-helvetica text-mid-dark-grey text-12 spacing-38 line-20'
           ]"
         >
           {{ disclaimer }}
