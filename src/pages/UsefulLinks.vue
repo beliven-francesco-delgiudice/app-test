@@ -14,7 +14,7 @@
             bgClass="bg-white"
             squareSize="64"
             rounded="12"
-            classes="mr-4 overflow-hidden bg-no-repeat bg-cover bg-center"
+            classes="mr-4 overflow-hidden bg-no-repeat bg-cover bg-center border border-black"
             :styles="`background-image:url('${item.image}')`"
           >
           </square-container>
