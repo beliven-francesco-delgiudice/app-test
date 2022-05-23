@@ -92,6 +92,11 @@ export default {
           img: 'congresses.svg'
         },
         {
+          name: 'Sales Training',
+          href: '/training',
+          img: 'congresses.svg'
+        },
+        {
           name: 'News',
           href: '/news',
           img: 'news.svg'

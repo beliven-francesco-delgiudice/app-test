@@ -36,6 +36,9 @@
     "congressDetail": "An error occurred while retrieving the congress information",
     "activityDetail": "An error occurred while retrieving the activity information",
 
+    "training": "An error occurred while retrieving the training",
+    "trainingDetail": "An error occurred while retrieving the training information",
+
     "documents": "An error occurred while retrieving the documents. Retry later",
     "folderDetail": "An error occurred while retrieving the folder",
     "file": "An error occurred while obtaining the file",

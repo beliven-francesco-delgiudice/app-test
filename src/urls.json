@@ -22,6 +22,11 @@
     "list":"/congresses",
     "activity": "/congresses/activity"
   },
+  "training": {
+    "home":"/training/home",
+    "list":"/training",
+    "activity": "/training/activity"
+  },
   "documents": {
     "list": "/documents",
     "list_my":"/documents/my",
