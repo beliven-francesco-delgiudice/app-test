@@ -1,10 +1,5 @@
 <template>
-  <Page
-    withMargin
-    :label="updatedActivity.title"
-    :aboveTitle="aboveTitle"
-    :back="backPath"
-  >
+  <Page back withMargin :label="updatedActivity.title" :aboveTitle="aboveTitle">
     <div
       class="bg-white rounded-12 relative mr-4 gallery-container elevated-shadow overflow-hidden bg-cover bg-no-repeat bg-center"
       :style="`background-image:url('${updatedActivity.image}'`"

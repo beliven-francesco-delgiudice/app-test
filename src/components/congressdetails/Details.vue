@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col">
     <image-gallery :gallery="updatedVenueGallery" />
-    <detail-section label="Congress Venue">
+    <detail-section :label="`${isCongress ? 'Congress ' : ''}Venue`">
       <p
         class="px-8 font-helvetica text-mid-dark-grey text-16 spacing-1 line-24 mb-4 mt-0"
         v-html="congressDescription"
@@ -152,7 +152,8 @@ export default {
     BigButton
   },
   props: {
-    congress: Object
+    congress: Object,
+    isCongress: Boolean
   },
   data () {
     return {

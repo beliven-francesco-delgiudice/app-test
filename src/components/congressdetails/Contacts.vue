@@ -104,7 +104,7 @@
         </div>
       </div> -->
     </detail-section>
-    <detail-section noPadding label="Congress Venue">
+    <detail-section noPadding :label="`${isCongress ? 'Congress ' : ''}Venue`">
       <p
         class="font-helvetica text-16 text-mid-dark-grey spacing-1 line-24 mb-4"
         v-html="updatedVenue"
@@ -135,7 +135,8 @@ export default {
     SquareContainer
   },
   props: {
-    congress: Object
+    congress: Object,
+    isCongress: Boolean
   },
   mounted () {
     setTimeout(() => {

@@ -8,10 +8,12 @@
     <Info v-if="updatedSection === 'info'" :congress="updatedCongress.info" />
     <Details
       v-if="updatedSection === 'details'"
+      isCongress
       :congress="updatedCongress.details"
     />
     <Hotels
       v-if="updatedSection === 'hotel'"
+      isCongress
       :congress="updatedCongress.hotel"
     />
     <DayByDay v-if="section === 'day'" :congress="updatedCongress.day" />
@@ -29,6 +31,7 @@
     />
     <Contacts
       v-if="section === 'contacts'"
+      isCongress
       :congress="updatedCongress.contacts"
     />
   </congress-layout>
