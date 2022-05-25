@@ -15,15 +15,15 @@ services:
         max-size: "${LOGS_MAX_SIZE}"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.${CI_PROJECT_NAME}-backend.tls=true"
-      - "traefik.http.routers.${CI_PROJECT_NAME}-backend.entrypoints=websecure"
-      - "traefik.http.routers.${CI_PROJECT_NAME}-backend.tls.certresolver=letsencrypt"
-      - "traefik.http.routers.${CI_PROJECT_NAME}-backend.middlewares=gzip,appHeaders,traefik-auth,redirect-to-https"
-      - "traefik.http.routers.${CI_PROJECT_NAME}-backend.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.routers.${CI_PROJECT_NAME}-webapp.tls=true"
+      - "traefik.http.routers.${CI_PROJECT_NAME}-webapp.entrypoints=websecure"
+      - "traefik.http.routers.${CI_PROJECT_NAME}-webapp.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.${CI_PROJECT_NAME}-webapp.middlewares=gzip,appHeaders,traefik-auth,redirect-to-https"
+      - "traefik.http.routers.${CI_PROJECT_NAME}-webapp.rule=Host(`${DOMAIN}`)"
       - "traefik.http.middlewares.appHeaders.headers.customrequestheaders.X-Robots-Tag=noindex,nofollow,nosnippet,noarchive,notranslate,noimageindex"
       - "traefik.http.middlewares.traefik-auth.basicauth.users=heply:$$apr1$$jlxVnLzz$$.DvFktmT6517Zqcs3ZZeF."
       - "traefik.docker.network=web"
-      - "traefik.http.services.${CI_PROJECT_NAME}-backend.loadbalancer.server.port=80"
+      - "traefik.http.services.${CI_PROJECT_NAME}-webapp.loadbalancer.server.port=80"
     networks:
       - web
 
