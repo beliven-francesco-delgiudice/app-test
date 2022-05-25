@@ -17,7 +17,10 @@
         "
         v-html="formattedDescription"
       />
-      <div class="mx-8 mt-4 flex justify-start">
+      <div
+        v-if="formattedDescription && formattedDescription.length"
+        class="mx-8 mt-4 flex justify-start"
+      >
         <section-button
           :label="updatedReadMore ? 'Read less' : 'Read more'"
           @onClick="readMore"
@@ -54,6 +57,20 @@
       noSeparator
     >
       <video-gallery :gallery="updatedProduct.videos" />
+    </detail-section>
+    <detail-section v-if="showDisclaimer" label="Disclaimer">
+      <div class="p-8 mx-8 mb-4 bg-light-grey rounded-12 ">
+        <p
+          v-for="(disclaimer, i) in updatedProduct.disclaimers"
+          :key="i"
+          :class="[
+            i === 0 || 'mt-4',
+            'font-helvetica text-mid-dark-grey text-12 spacing-38 line-20'
+          ]"
+        >
+          {{ disclaimer }}
+        </p>
+      </div>
     </detail-section>
   </product-layout>
 </template>
@@ -96,6 +113,12 @@ export default {
         return this.sanitizeManageText(this.updatedProduct.description)
       }
       return ''
+    },
+    showDisclaimer () {
+      return (
+        this.updatedProduct.disclaimers &&
+        this.updatedProduct.disclaimers.length
+      )
     }
   },
   async created () {

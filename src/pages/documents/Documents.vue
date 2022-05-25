@@ -2,10 +2,11 @@
   <Page label="Documents" back>
     <carousel id="sections-carousel" classes="pt-4 -my-4 pb-8">
       <section-button
-        v-for="(theSection, i) in sections"
+        v-for="(theSection, i) in formattedSections"
         :key="i"
         :active="section === theSection.path"
         :classes="[i === 0 ? 'ml-8' : '', ' mr-4']"
+        :red="theSection.path === 'us'"
         :label="theSection.label"
         @onClick="changeSection(theSection.path)"
       />
@@ -55,11 +56,24 @@ export default {
       ],
       documents: {
         my: [],
-        shared: []
+        shared: [],
+        us: []
       }
     }
   },
+
   computed: {
+    formattedSections () {
+      const sections = this.sections
+      if (this.$store.getters.showUS) {
+        sections.unshift({
+          path: 'us',
+          label: 'US'
+        })
+      }
+      return sections
+    },
+
     updatedDocuments () {
       let docsObj = this.$store.getters.documents || []
       if (
@@ -70,13 +84,16 @@ export default {
       }
       return docsObj
     },
+
     updatedSection () {
       return this.section
     },
+
     documentsToShow () {
       return this.updatedDocuments[this.updatedSection] || []
     }
   },
+
   methods: {
     changeSection (path) {
       this.section = path
@@ -101,7 +118,11 @@ export default {
       }
     }
   },
+
   async mounted () {
+    if (this.$store.getters.showUS) {
+      this.section = 'us'
+    }
     this.getDocuments(true)
   }
 }

@@ -16,6 +16,9 @@
 .bg-red {
   background: #E30513;
 }
+.bg-lighter-red {
+  background: #E3051388;
+}
 .bg-azure {
   background: #0078D4;
   --background: #0078d4;
@@ -64,6 +67,11 @@
 }
 .text-red {
   color: #E30513;
+}
+
+.antialised {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .block {
@@ -297,6 +305,13 @@
 }
 .p-6 {
   padding:1.5rem;
+}
+.p-8 {
+  padding:2rem;
+}
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
 }
 .py-2 {
   padding-top: 0.5rem;

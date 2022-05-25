@@ -41,6 +41,11 @@ import ComponentDetail from '../pages/products/ComponentDetail.vue'
 import CongressesIndex from '../pages/congresses/Congresses.vue'
 import CongressDetail from '../pages/congresses/CongressDetail.vue'
 import ActivityDetail from '../pages/congresses/ActivityDetail.vue'
+
+import SalesTrainingIndex from '../pages/training/SalesTraining.vue'
+import SalesTrainingDetail from '../pages/training/SalesTrainingDetail.vue'
+import SalesTrainingActivityDetail from '../pages/training/SalesTrainingActivityDetail.vue'
+
 import masterStore from '../store'
 
 const routes = [
@@ -337,6 +342,37 @@ const routes = [
         path: '',
         name: 'Congresses',
         component: CongressesIndex
+      }
+    ]
+  },
+  // sales training
+  {
+    path: '/training',
+    component: MainLayout,
+    children: [
+      // sales training activity detail
+      {
+        path: '/training/activities/:id',
+        name: 'Sales Training Activity Detail',
+        component: SalesTrainingActivityDetail,
+        meta: {
+          showBack: true
+        }
+      },
+      // sales training detail
+      {
+        path: '/training/:id/',
+        name: 'Sales Training Detail',
+        component: SalesTrainingDetail,
+        meta: {
+          showBack: true
+        }
+      },
+      // sales training list
+      {
+        path: '',
+        name: 'Sales Training',
+        component: SalesTrainingIndex
       }
     ]
   }

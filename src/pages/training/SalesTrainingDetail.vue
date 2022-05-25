@@ -5,34 +5,31 @@
     :title="title"
     @changeSection="selectSection"
   >
-    <Info v-if="updatedSection === 'info'" :congress="updatedCongress.info" />
+    <Info v-if="updatedSection === 'info'" :congress="updatedTraining.info" />
     <Details
       v-if="updatedSection === 'details'"
-      isCongress
-      :congress="updatedCongress.details"
+      :congress="updatedTraining.details"
     />
     <Hotels
       v-if="updatedSection === 'hotel'"
-      isCongress
-      :congress="updatedCongress.hotel"
+      :congress="updatedTraining.hotel"
     />
-    <DayByDay v-if="section === 'day'" :congress="updatedCongress.day" />
+    <DayByDay v-if="section === 'day'" :congress="updatedTraining.day" />
     <Activities
       v-if="section === 'activities'"
-      :congress="updatedCongress.activities"
+      :congress="updatedTraining.activities"
     />
     <KeyMessages
       v-if="section === 'messages'"
-      :congress="updatedCongress.messages"
+      :congress="updatedTraining.messages"
     />
     <Downloads
       v-if="section === 'download'"
-      :congress="updatedCongress.download"
+      :congress="updatedTraining.download"
     />
     <Contacts
       v-if="section === 'contacts'"
-      isCongress
-      :congress="updatedCongress.contacts"
+      :congress="updatedTraining.contacts"
     />
   </congress-layout>
 </template>
@@ -64,7 +61,7 @@ export default {
   data () {
     return {
       section: 'info',
-      congress: {
+      training: {
         tabs: {
           info: {
             title: 'Info',
@@ -113,29 +110,29 @@ export default {
   computed: {
     title () {
       if (
-        this.updatedCongress &&
-        this.updatedCongress.info &&
-        this.updatedCongress.info.content &&
-        this.updatedCongress.info.content.name
+        this.updatedTraining &&
+        this.updatedTraining.info &&
+        this.updatedTraining.info.content &&
+        this.updatedTraining.info.content.name
       ) {
-        return this.updatedCongress.info.content.name
+        return this.updatedTraining.info.content.name
       }
       return 'Congress details'
     },
-    updatedCongress () {
-      const congressObj = Object.assign({}, this.congress.tabs)
-      return congressObj
+    updatedTraining () {
+      const object = Object.assign({}, this.training.tabs)
+      return object
     },
     updatedSection () {
       return this.section
     },
     sectionsList () {
-      const newSections = Object.keys(this.updatedCongress)
+      const newSections = Object.keys(this.updatedTraining)
       const array = []
 
       for (let i = 0; i < newSections.length; i++) {
         array.push({
-          label: this.updatedCongress[newSections[i]].title,
+          label: this.updatedTraining[newSections[i]].title,
           path: newSections[i]
         })
       }
@@ -149,28 +146,28 @@ export default {
   },
   async created () {
     if (this.$route.params.id) {
-      const congressID = this.$route.params.id
+      const trainingID = this.$route.params.id
       try {
         const results = await this.$http({
           method: 'GET',
-          url: urls.congresses.list + '/' + congressID,
+          url: urls.training.list + '/' + trainingID,
           params: this.filters
         })
-        this.congress = results
+        this.training = results
       } catch (e) {
         console.error(e)
         this.$toast({
-          message: messages.errors.congressDetail,
+          message: messages.errors.trainingDetail,
           color: 'danger'
         })
       }
     } else {
-      console.error('No congress id in route')
+      console.error('No training id in route')
       this.$toast({
-        message: messages.errors.congressDetail,
+        message: messages.errors.trainingDetail,
         color: 'danger'
       })
-      this.$router.push('/congresses')
+      this.$router.push('/training')
     }
   }
 }

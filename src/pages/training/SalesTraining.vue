@@ -1,7 +1,7 @@
 <template>
   <Page
-    :back="backLink"
-    :label="updatedCategory.category_name"
+    label="Sales Training"
+    back="/home"
     :filters="filters"
     :filtersOptions="options"
     @onFiltersChange="updateFilters"
@@ -9,30 +9,34 @@
     <ion-list class="bg-transparent">
       <div
         class="flex flex-row justify-between items-center bg-transparent pb-4 mb-4"
-        v-for="(item, i) in updatedCategory.list"
+        v-for="(item, i) in list"
         :key="i"
-        @click="routeTo(item)"
+        @click="routeToTraining(item)"
       >
         <div
-          class="flex flex-start items-center pointer-events-none px-8 w-full"
+          class="flex flex-start items-start pointer-events-none px-8 w-full"
         >
           <square-container
             bgClass="bg-white"
             squareSize="64"
             rounded="12"
-            classes="mr-4 bg-no-repeat bg-contain bg-center"
+            classes="mr-4 bg-no-repeat bg-cover"
             :styles="`background-image:url('${item.preview}')`"
-          >
-            <!-- <ion-img :src="item.preview" /> -->
-          </square-container>
+          ></square-container>
           <div class="flex flex-col justify-between py-2">
             <span
               class="font-helvetica-medium text-black text-16 spacing-5 line-28"
-              >{{ item.name }}</span
-            >
-            <span class="font-helvetica text-grey text-14 spacing-44 line-24">
-              {{ item.category }}
+              >{{ item.name }}
             </span>
+            <span class="font-helvetica text-grey text-14 spacing-44 line-24">
+              {{ item.subtitle }}
+            </span>
+            <div class="bg-light-red rounded-6 px-2 mr-auto">
+              <span
+                class="font-helvetica-medium text-12 text-red spacing-8 line-30 pointer-events-none"
+                >{{ item.dates }}
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -54,70 +58,52 @@ export default {
   },
   data () {
     return {
-      category: {
-        parent_id: '0',
-        parent_name: 'Segment',
-        category_name: 'Category',
-        list: [],
-        filters: {}
-      },
+      list: [],
       filtersOptions: {},
       filters: {
-        order: '',
-        subcategory: ''
+        year: 2022
       }
-    }
-  },
-  created () {
-    if (this.$route.params.category) {
-      this.categoryID = this.$route.params.category
-      this.getCategoryProducts()
-    } else {
-      console.error('No category id in route')
-      this.$toast({
-        message: messages.errors.categoryProducts,
-        color: 'danger'
-      })
-      this.$router.push('/products')
     }
   },
   computed: {
-    backLink () {
-      if (this.updatedCategory.parent_id) {
-        return '/products/' + this.updatedCategory.parent_id
-      } else {
-        return '/products'
-      }
-    },
-    updatedCategory () {
-      return this.category
+    segmentPath () {
+      return this.category.segment_id
     },
     options () {
       return this.filtersOptions
     }
   },
+  created () {
+    if (this.$route.query && this.$route.query.year) {
+      this.filters.year = parseInt(this.$route.query.year)
+    }
+    this.getTrainingList()
+  },
   methods: {
-    routeTo (item) {
-      const link = `/products/detail/${item.id}`
+    routeToTraining (item) {
+      const link = `/training/${item.id}`
       this.$router.push(link)
     },
     updateFilters (filterObj) {
       this.filters = Object.assign({}, filterObj)
     },
-    async getCategoryProducts () {
+    async getTrainingList () {
+      this.$router.push({
+        path: this.$route.path,
+        query: this.filters
+      })
       try {
-        const id = this.categoryID || this.$route.params.category
         const results = await this.$http({
           method: 'GET',
-          url: urls.products.products + '/' + id,
+          url: urls.training.list,
           params: this.filters
         })
-        this.category = results
-        this.filtersOptions = results.filters
+        this.list = results.list
+        this.filtersOptions = results.filters || {}
       } catch (e) {
         console.error(e)
         this.$toast({
-          message: messages.errors.categoryProducts,
+          message: messages.errors.training,
           color: 'danger'
         })
       }
@@ -125,7 +111,11 @@ export default {
   },
   watch: {
     filters: function (newFilters) {
-      this.getCategoryProducts(newFilters)
+      this.$router.push({
+        path: this.$route.path,
+        query: newFilters
+      })
+      this.getTrainingList(newFilters)
     }
   }
 }

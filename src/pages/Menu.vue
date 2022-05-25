@@ -17,7 +17,13 @@
               classes="mr-2"
               squareSize="44"
             >
-              <ion-img :src="'/assets/menu/' + item.img" />
+              <ion-img
+                :src="
+                  item.img
+                    ? '/assets/menu/' + item.img
+                    : '/assets/' + item.fallbackImg
+                "
+              />
             </square-container>
             <span class="font-helvetica-medium text-black text-16">{{
               item.name
@@ -36,9 +42,9 @@
             rounded="6"
             classes="flex text-center justify-center items-center"
           >
-            <span class="font-helvetica-bold text-white text-12">{{
-              item.notifications
-            }}</span>
+            <span class="font-helvetica-bold text-white text-12">
+              {{ item.notifications }}
+            </span>
           </square-container>
         </div>
       </ion-list>
@@ -86,6 +92,11 @@ export default {
           img: 'congresses.svg'
         },
         {
+          name: 'Sales Training',
+          href: '/training',
+          img: 'congresses.svg'
+        },
+        {
           name: 'News',
           href: '/news',
           img: 'news.svg'
@@ -110,6 +121,11 @@ export default {
           name: 'Privacy',
           href: '/privacy',
           img: 'privacy.svg'
+        },
+        {
+          name: 'Terms and Conditions',
+          href: '/terms?accepted=true',
+          fallbackImg: 'button-icons/info.svg'
         },
         {
           name: 'Contacts',

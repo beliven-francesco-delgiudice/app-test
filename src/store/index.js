@@ -122,6 +122,10 @@ const master = {
     gotNotifications: state => {
       return state.notifications
     },
+    showUS: state =>
+      (!!Object.keys(state.user.data).length &&
+        state.user.data.certificate === 'US') ||
+      false,
     areNotificationsNotRead: state => {
       let notRead = 0
       if (state.notifications && state.notifications.length) {
@@ -171,7 +175,8 @@ const master = {
       }
       return {
         my: [],
-        shared: []
+        shared: [],
+        us: []
       }
     },
     documents: state => {

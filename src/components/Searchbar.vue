@@ -13,7 +13,6 @@
     <ion-input
       required
       class="mx-2"
-      minlength="3"
       placeholder="Search"
       v-model="search"
       @keydown.enter.prevent="submitSearch"
@@ -50,10 +49,8 @@ export default {
       this.$emit('cancel')
     },
     submitSearch () {
-      if (this.search && this.search.length > 2) {
+      if (this.search) {
         this.$emit('submit', this.search)
-      } else {
-        alert('Insert at least 3 characters')
       }
     }
   }

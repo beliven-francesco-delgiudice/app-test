@@ -11,8 +11,8 @@
     >
       <square-container
         rounded="8"
-        :bgClass="imageBackround"
         squareSize="44"
+        :bgClass="imageBackround"
         :classes="[small ? 'mr-2 ' : 'mr-4 ', ' pointer-events-none flex']"
       >
         <ion-img :src="image" class="m-auto" />
@@ -35,6 +35,17 @@
               ? updatedDocument.subtitle
               : updatedDocument.size || updatedDocument.subtitle
           }}
+          {{
+            updatedDocument.languages_in_file
+              ? ' - ' + updatedDocument.languages_in_file
+              : ''
+          }}
+        </span>
+        <span
+          v-if="updatedDocument.code_points"
+          class="font-helvetica text-12 text-grey spacing-44 line-14"
+        >
+          {{ updatedDocument.code_points }}
         </span>
       </div>
     </div>

@@ -1,5 +1,10 @@
 <template>
-  <Page back withMargin :label="updatedActivity.title" :aboveTitle="aboveTitle">
+  <Page
+    withMargin
+    :label="updatedActivity.title"
+    :aboveTitle="aboveTitle"
+    :back="backPath"
+  >
     <div
       class="bg-white rounded-12 relative mr-4 gallery-container elevated-shadow overflow-hidden bg-cover bg-no-repeat bg-center"
       :style="`background-image:url('${updatedActivity.image}'`"
@@ -182,7 +187,7 @@ export default {
     },
     backPath () {
       const id = this.updatedActivity.parent_id
-      return `/congresses/${id}?section=activities`
+      return `/training/${id}?section=activities`
     },
     isFaculty () {
       return this.faculty
@@ -208,7 +213,7 @@ export default {
       try {
         const results = await this.$http({
           method: 'GET',
-          url: urls.congresses.activity + '/' + activityID,
+          url: urls.training.activity + '/' + activityID,
           params: {}
         })
         if (results && Object.keys(results).length) {
@@ -225,12 +230,12 @@ export default {
         })
       }
     } else {
-      console.error('No congress id in route')
+      console.error('No training id in route')
       this.$toast({
         message: messages.errors.activityDetail,
         color: 'danger'
       })
-      this.$router.push('/congresses')
+      this.$router.push('/training')
     }
   }
 }

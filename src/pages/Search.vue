@@ -98,7 +98,7 @@
               @click="route(item, 'congress')"
             >
               <div
-                class="flex flex-start items-start pointer-events-none px-8 w-full"
+                class="flex flex-start items-start pointer-events-none w-full"
               >
                 <square-container
                   bgClass="bg-white"
@@ -117,6 +117,39 @@
                     class="font-helvetica text-grey text-14 spacing-44 line-24"
                   >
                     {{ item.subtitle }}
+                  </span>
+                  <div
+                    v-if="item.date"
+                    class="bg-light-red rounded-6 px-2 mr-auto"
+                  >
+                    <span
+                      class="font-helvetica-medium text-12 text-red spacing-8 line-30 pointer-events-none"
+                      >{{ item.date }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="flex flex-row justify-between items-center bg-transparent pb-4 mb-4"
+              v-if="item.type === 'news'"
+              @click="route(item, 'news')"
+            >
+              <div
+                class="flex flex-start items-start pointer-events-none w-full"
+              >
+                <square-container
+                  bgClass="bg-white"
+                  squareSize="64"
+                  rounded="12"
+                  classes="mr-4 overflow-hidden"
+                >
+                  <ion-img :src="item.preview" class="h-full w-auto" />
+                </square-container>
+                <div class="flex flex-col justify-between py-2">
+                  <span
+                    class="font-helvetica-medium text-black text-16 spacing-5 line-28"
+                    >{{ item.name }}
                   </span>
                   <div
                     v-if="item.date"
@@ -207,20 +240,25 @@ export default {
           this.filter === '*' ||
           (this.filter !== '*' && this.filter === keys[i])
         ) {
-          resultini.push({
-            name: this.getLabel(keys[i]),
-            childs: this.results[keys[i]].map(item => ({
-              ...item,
-              type: keys[i]
-            })),
-            count: this.results[keys[i]].length
-          })
+          const childs = this.results[keys[i]].map(item => ({
+            ...item,
+            type: keys[i]
+          }))
+          if (childs && childs.length) {
+            resultini.push({
+              name: this.getLabel(keys[i]),
+              childs,
+              count: this.results[keys[i]].length
+            })
+          }
         }
       }
       return resultini
     },
     parsedSections () {
-      const keys = Object.keys(this.results)
+      const keys = Object.keys(this.results).filter(
+        key => !!(this.results[key] && this.results[key].length)
+      )
       const array = [
         {
           label: 'All',

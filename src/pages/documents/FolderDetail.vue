@@ -4,7 +4,7 @@
       <div class="mb-4" v-for="(doc, i) in updatedDocuments.list" :key="i">
         <document-list-item
           :document="doc"
-          :type="updatedDocuments.type"
+          :type="documentsType"
           :actions="doc.actions"
         />
       </div>
@@ -42,6 +42,12 @@ export default {
     updatedDocuments () {
       const obj = Object.assign({}, this.documents)
       return obj
+    },
+    documentsType () {
+      if (!this.updatedDocuments.type && this.$route.query.type === 'us') {
+        return 'us'
+      }
+      return this.updatedDocuments.type || ''
     }
   },
   methods: {
