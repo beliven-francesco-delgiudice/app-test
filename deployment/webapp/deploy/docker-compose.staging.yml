@@ -1,29 +1,32 @@
 ---
-  version: "2.2"
-  
-  services:
-    # Webapp
-    webapp:
-      image: ${CI_PROJECT_NAME}/webapp:$CI_COMMIT_SHORT_SHA
-      container_name: ${CI_PROJECT_NAME}-webapp
-      restart: always
-      mem_limit: ${MEM_LIMIT_WEBAPP}
-      logging:
-        driver: "json-file"
-        options:
-          max-file: "${LOGS_MAX_FILE}"
-          max-size: "${LOGS_MAX_SIZE}"
-      labels:
-        - traefik.enable=true
-        - traefik.webapp=${CI_PROJECT_NAME}-webapp
-        - traefik.frontend.rule=Host:${DOMAIN}
-        - traefik.docker.network=web
-        - traefik.port=80
-        - traefik.frontend.headers.customResponseHeaders=X-Robots-Tag :noindex,nofollow,nosnippet,noarchive,notranslate,noimageindex
-        - "traefik.frontend.auth.basic.users=heply:$$apr1$$jlxVnLzz$$.DvFktmT6517Zqcs3ZZeF."
-      networks:
-        - web
+version: "2.4"
 
-  networks:
-    web:
-      external: true
+services:
+  # Webapp
+  webapp:
+    image: ${CI_PROJECT_NAME}/webapp:$CI_COMMIT_SHORT_SHA
+    container_name: ${CI_PROJECT_NAME}-webapp
+    restart: always
+    mem_limit: ${MEM_LIMIT_WEBAPP}
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "${LOGS_MAX_FILE}"
+        max-size: "${LOGS_MAX_SIZE}"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.${CI_PROJECT_NAME}-backend.tls=true"
+      - "traefik.http.routers.${CI_PROJECT_NAME}-backend.entrypoints=websecure"
+      - "traefik.http.routers.${CI_PROJECT_NAME}-backend.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.${CI_PROJECT_NAME}-backend.middlewares=gzip,appHeaders,traefik-auth,redirect-to-https"
+      - "traefik.http.routers.${CI_PROJECT_NAME}-backend.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.middlewares.appHeaders.headers.customrequestheaders.X-Robots-Tag=noindex,nofollow,nosnippet,noarchive,notranslate,noimageindex"
+      - "traefik.http.middlewares.traefik-auth.basicauth.users=heply:$$apr1$$jlxVnLzz$$.DvFktmT6517Zqcs3ZZeF."
+      - "traefik.docker.network=web"
+      - "traefik.http.services.${CI_PROJECT_NAME}-backend.loadbalancer.server.port=80"
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
