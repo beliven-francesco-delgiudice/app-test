@@ -5,7 +5,11 @@
     :title="title"
     @changeSection="selectSection"
   >
-    <Info v-if="updatedSection === 'info'" :congress="updatedTraining.info" />
+    <Info v-if="updatedSection === 'info'" :instance="updatedTraining.info" />
+    <Testimonials
+      v-if="updatedSection === 'testimonials'"
+      :instance="updatedTraining.testimonials"
+    />
     <Details
       v-if="updatedSection === 'details'"
       :congress="updatedTraining.details"
@@ -19,33 +23,20 @@
       v-if="section === 'activities'"
       :congress="updatedTraining.activities"
     />
-    <KeyMessages
-      v-if="section === 'messages'"
-      :congress="updatedTraining.messages"
-    />
-    <Downloads
-      v-if="section === 'download'"
-      :congress="updatedTraining.download"
-    />
-    <Contacts
-      v-if="section === 'contacts'"
-      :congress="updatedTraining.contacts"
-    />
   </congress-layout>
 </template>
 
 <script>
 import CongressLayout from '../../components/congressdetails/CongressLayout.vue'
-import Info from '../../components/congressdetails/Info.vue'
+import Info from '../../components/training/Info.vue'
 import Details from '../../components/congressdetails/Details.vue'
 import Hotels from '../../components/congressdetails/Hotels.vue'
 import DayByDay from '../../components/congressdetails/DayByDay.vue'
+import Testimonials from '../../components/training/Testimonials.vue'
 import Activities from '../../components/congressdetails/Activities.vue'
-import KeyMessages from '../../components/congressdetails/KeyMessages.vue'
-import Downloads from '../../components/congressdetails/Downloads.vue'
-import Contacts from '../../components/congressdetails/Contacts.vue'
 import messages from '@/messages'
 import urls from '@/urls'
+
 export default {
   components: {
     CongressLayout,
@@ -54,10 +45,9 @@ export default {
     Hotels,
     DayByDay,
     Activities,
-    KeyMessages,
-    Downloads,
-    Contacts
+    Testimonials
   },
+
   data () {
     return {
       section: 'info',
@@ -107,6 +97,7 @@ export default {
       }
     }
   },
+
   computed: {
     title () {
       if (
@@ -119,13 +110,16 @@ export default {
       }
       return 'Congress details'
     },
+
     updatedTraining () {
       const object = Object.assign({}, this.training.tabs)
       return object
     },
+
     updatedSection () {
       return this.section
     },
+
     sectionsList () {
       const newSections = Object.keys(this.updatedTraining)
       const array = []
@@ -139,11 +133,13 @@ export default {
       return array
     }
   },
+
   methods: {
     selectSection (path) {
       this.section = path
     }
   },
+
   async created () {
     if (this.$route.params.id) {
       const trainingID = this.$route.params.id
