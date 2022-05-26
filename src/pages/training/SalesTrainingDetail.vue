@@ -12,7 +12,7 @@
     />
     <Details
       v-if="updatedSection === 'details'"
-      :congress="updatedTraining.details"
+      :instance="updatedTraining.details"
     />
     <Hotels
       v-if="updatedSection === 'hotel'"
@@ -29,7 +29,7 @@
 <script>
 import CongressLayout from '../../components/congressdetails/CongressLayout.vue'
 import Info from '../../components/training/Info.vue'
-import Details from '../../components/congressdetails/Details.vue'
+import Details from '../../components/training/Details.vue'
 import Hotels from '../../components/congressdetails/Hotels.vue'
 import DayByDay from '../../components/congressdetails/DayByDay.vue'
 import Testimonials from '../../components/training/Testimonials.vue'
