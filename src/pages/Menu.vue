@@ -94,7 +94,7 @@ export default {
         {
           name: 'Sales Training',
           href: '/training',
-          img: 'congresses.svg'
+          img: 'sales-training.svg'
         },
         {
           name: 'News',
