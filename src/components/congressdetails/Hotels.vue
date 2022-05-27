@@ -40,7 +40,7 @@
           <div class="flex flex-col">
             <span
               class="font-helvetica text-14 text-grey spacing-44 line-28 mb-2"
-              >Check-in</span
+              >In</span
             >
             <!-- <span
               class="font-helvetica text-12 text-grey spacing-44 line-28 mb-2"
@@ -57,7 +57,7 @@
           <div class="flex flex-col">
             <span
               class="font-helvetica text-14 text-grey spacing-44 line-28 mb-2"
-              >Check-out</span
+              >Out</span
             >
             <!-- <span
               class="font-helvetica text-12 text-grey spacing-44 line-28 mb-2"
