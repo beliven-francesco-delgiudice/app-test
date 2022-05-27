@@ -9,8 +9,9 @@
     <detail-section :label="training.name">
       <span
         class="font-helvetica text-16 text-mid-dark-grey spacing-2 line-26 px-8 mb-4"
-        >{{ training.subtitle }}</span
       >
+        {{ training.subtitle }}
+      </span>
 
       <div class="flex flex-col bg-light-red rounded-12 p-6 mx-8">
         <div class="flex justify-between items-start mb-4">
@@ -62,6 +63,13 @@
       label="Website"
       noSeparator
     >
+      <span
+        class="font-helvetica text-16 text-mid-dark-grey spacing-2 line-26 px-8 mt-4"
+      >
+        <!-- TODO: no subtitle but link label -->
+        {{ training.subtitle }}
+      </span>
+
       <div class="flex mt-4 items-center relative mx-8" @click="openLink">
         <square-container
           bgClass="bg-light-grey"

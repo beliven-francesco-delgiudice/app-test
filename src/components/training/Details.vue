@@ -49,34 +49,11 @@
       </div>
     </detail-section>
 
-    <detail-section v-if="isLimaBooth" label="Lima Booth">
-      <image-gallery
-        v-if="
-          training.lima_booth &&
-            training.lima_booth.gallery &&
-            training.lima_booth.gallery.length
-        "
-        id="booth"
-        :gallery="
-          training.lima_booth && training.lima_booth.gallery
-            ? training.lima_booth.gallery
-            : []
-        "
+    <detail-section label="Main topics and Trainers">
+      <p
+        class="px-8 font-helvetica text-mid-dark-grey text-16 spacing-1 line-24 mb-4 mt-0"
+        v-html="mainTopics"
       />
-      <div
-        :class="
-          training.lima_booth &&
-          training.lima_booth.gallery &&
-          training.lima_booth.gallery.length
-            ? 'mt-8'
-            : ''
-        "
-      >
-        <p
-          class="px-8 font-helvetica text-mid-dark-grey text-16 spacing-1 line-24 mb-4 mt-0"
-          v-html="formattedDescriptionBooth"
-        />
-      </div>
     </detail-section>
     <detail-section
       v-if="formattedDescriptionInfo && formattedDescriptionInfo.length"
@@ -84,7 +61,7 @@
     >
       <p
         class="px-8 font-helvetica text-mid-dark-grey text-16 spacing-1 line-24 mb-4 mt-0"
-        v-html="formattedDescriptionInfo"
+        v-html="training.useful_information.description"
       />
     </detail-section>
   </div>
@@ -107,14 +84,6 @@ export default {
     instance: Object
   },
 
-  data () {
-    return {
-      isReadMore: {
-        useful: false
-      }
-    }
-  },
-
   computed: {
     training () {
       if (this.instance && this.instance.content) {
@@ -135,10 +104,6 @@ export default {
       return []
     },
 
-    updatedReadMore () {
-      return this.isReadMore
-    },
-
     congressDescription () {
       if (
         this.training.congress_venue &&
@@ -149,14 +114,15 @@ export default {
       return ''
     },
 
-    formattedDescriptionBooth () {
-      if (this.training.lima_booth) {
-        return this.training.lima_booth.description
-      }
-      return ''
+    formattedDescriptionInfo () {
+      return this.training.useful_information &&
+        this.training.useful_information.description
+        ? this.training.useful_information.description
+        : ''
     },
 
-    formattedDescriptionInfo () {
+    mainTopics () {
+      // TODO: no useful_information but main topics field
       return this.training.useful_information &&
         this.training.useful_information.description
         ? this.training.useful_information.description
@@ -189,37 +155,12 @@ export default {
         }
       }
       return false
-    },
-
-    isLimaBooth () {
-      if (this.training.lima_booth) {
-        if (
-          this.training.lima_booth.gallery &&
-          this.training.lima_booth.gallery.length
-        ) {
-          return true
-        }
-        if (
-          this.training.lima_booth.description &&
-          this.training.lima_booth.description.length
-        ) {
-          return true
-        }
-        return false
-      }
-      return false
     }
   },
 
   methods: {
     openLink (link) {
       window.open(link)
-    },
-
-    readMore (param) {
-      const obj = Object.assign({}, this.isReadMore)
-      obj[param] = !obj[param]
-      this.isReadMore = obj
     }
   }
 }
