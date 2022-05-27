@@ -49,12 +49,32 @@
       </div>
     </detail-section>
 
-    <detail-section label="Main topics and Trainers">
-      <p
-        class="px-8 font-helvetica text-mid-dark-grey text-16 spacing-1 line-24 mb-4 mt-0"
-        v-html="mainTopics"
+    <detail-section label="Main Topics & Trainers">
+      <image-gallery
+        v-if="
+          training.lima_booth &&
+          training.lima_booth &&
+          updatedCongress.lima_booth.gallery
+            ? updatedCongress.lima_booth.gallery
+            : []
+        "
       />
+      <div
+        :class="
+          training.lima_booth &&
+          training.lima_booth.gallery &&
+          training.lima_booth.gallery.length
+            ? 'mt-8'
+            : ''
+        "
+      >
+        <p
+          class="px-8 font-helvetica text-mid-dark-grey text-16 spacing-1 line-24 mb-4 mt-0"
+          v-html="training.lima_booth.description"
+        />
+      </div>
     </detail-section>
+
     <detail-section
       v-if="formattedDescriptionInfo && formattedDescriptionInfo.length"
       label="Useful information"

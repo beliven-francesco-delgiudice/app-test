@@ -350,15 +350,6 @@ const routes = [
     path: '/training',
     component: MainLayout,
     children: [
-      // sales training activity detail
-      {
-        path: '/training/activities/:id',
-        name: 'Sales Training Activity Detail',
-        component: SalesTrainingActivityDetail,
-        meta: {
-          showBack: true
-        }
-      },
       // sales training detail
       {
         path: '/training/:id/',

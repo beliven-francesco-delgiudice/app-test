@@ -23,6 +23,14 @@
       v-if="section === 'activities'"
       :congress="updatedTraining.activities"
     />
+    <Downloads
+      v-if="section === 'download'"
+      :congress="updatedCongress.download"
+    />
+    <Contacts
+      v-if="section === 'contacts'"
+      :congress="updatedCongress.contacts"
+    />
   </congress-layout>
 </template>
 
@@ -33,7 +41,9 @@ import Details from '../../components/training/Details.vue'
 import Hotels from '../../components/congressdetails/Hotels.vue'
 import DayByDay from '../../components/training/DayByDay.vue'
 import Testimonials from '../../components/training/Testimonials.vue'
-import Activities from '../../components/congressdetails/Activities.vue'
+import Downloads from '../../components/congressdetails/Downloads.vue'
+import Contacts from '../../components/training/Contacts.vue'
+import Activities from '../../components/training/Activities.vue'
 import messages from '@/messages'
 import urls from '@/urls'
 
@@ -45,7 +55,9 @@ export default {
     Hotels,
     DayByDay,
     Activities,
-    Testimonials
+    Testimonials,
+    Downloads,
+    Contacts
   },
 
   data () {

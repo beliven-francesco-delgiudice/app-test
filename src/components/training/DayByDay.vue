@@ -28,9 +28,9 @@
               class="font-helvetica-medium text-dark-grey text-16 spacing-4 line-24 mb-2"
               >{{ event.title }}</span
             >
-            <span class="font-helvetica text-grey text-14 spacing-44 line-20">{{
-              event.subtitle
-            }}</span>
+            <span class="font-helvetica text-grey text-14 spacing-44 line-20">
+              {{ event.subtitle }}
+            </span>
           </div>
           <p
             class="mmt-0 mb-0 mr-0 ml-8 font-helvetica text-16 text-mid-dark-grey spacing-1 line-24"

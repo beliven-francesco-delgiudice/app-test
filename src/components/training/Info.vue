@@ -66,8 +66,7 @@
       <span
         class="font-helvetica text-16 text-mid-dark-grey spacing-2 line-26 px-8 mt-4"
       >
-        <!-- TODO: no subtitle but link label -->
-        {{ training.subtitle }}
+        {{ training.text_over_website }}
       </span>
 
       <div class="flex mt-4 items-center relative mx-8" @click="openLink">
