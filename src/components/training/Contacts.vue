@@ -78,12 +78,12 @@
       </div>
 
       <span
-        class="font-helvetica text-16 text-mid-dark-grey spacing-2 line-26 px-8 mt-4"
+        class="font-helvetica text-16 text-mid-dark-grey spacing-2 line-26 mt-4"
       >
         {{ training.text_over_website }}
       </span>
 
-      <div @click="openLink(training.website)" class="relative flex mb-4">
+      <div @click="openLink(training.website)" class="relative flex mt-2 mb-4">
         <square-container
           bgClass="bg-black"
           squareSize="44"
