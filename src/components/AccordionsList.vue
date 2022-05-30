@@ -3,7 +3,7 @@
     <span
       v-if="!updatedList || !updatedList.length"
       class="font-helvetica text-grey text-14 spacing-44 line-24 text-center"
-      >No components found.
+      >No items found.
     </span>
     <div
       v-if="updatedList && updatedList.length"
