@@ -365,7 +365,9 @@ const routes = [
         component: SalesTrainingIndex
       }
     ]
-  }
+  },
+  // 404 to home
+  { path: '/:catchAll(.*)', redirect: '/home' }
 ]
 
 const router = createRouter({

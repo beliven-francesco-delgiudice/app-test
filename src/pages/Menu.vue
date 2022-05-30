@@ -91,11 +91,11 @@ export default {
           href: '/congresses',
           img: 'congresses.svg'
         },
-        {
-          name: 'Sales Training',
-          href: '/training',
-          img: 'sales-training.svg'
-        },
+        // {
+        //   name: 'Sales Training',
+        //   href: '/training',
+        //   img: 'sales-training.svg'
+        // },
         {
           name: 'News',
           href: '/news',
