@@ -58,6 +58,7 @@
             ? training.lima_booth.gallery
             : []
         "
+        :gallery="training.lima_booth.gallery"
       />
       <div
         :class="
