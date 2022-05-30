@@ -38,5 +38,10 @@
     "span": "Year",
     "placeholder": "Select year",
     "name": "year"
+  },
+  "country": {
+    "span": "Country",
+    "placeholder": "Select country",
+    "name": "country"
   }
 }
