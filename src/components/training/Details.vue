@@ -54,8 +54,8 @@
         v-if="
           training.lima_booth &&
           training.lima_booth &&
-          updatedCongress.lima_booth.gallery
-            ? updatedCongress.lima_booth.gallery
+          training.lima_booth.gallery
+            ? training.lima_booth.gallery
             : []
         "
       />
