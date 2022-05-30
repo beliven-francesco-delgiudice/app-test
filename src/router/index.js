@@ -44,7 +44,6 @@ import ActivityDetail from '../pages/congresses/ActivityDetail.vue'
 
 import SalesTrainingIndex from '../pages/training/SalesTraining.vue'
 import SalesTrainingDetail from '../pages/training/SalesTrainingDetail.vue'
-import SalesTrainingActivityDetail from '../pages/training/SalesTrainingActivityDetail.vue'
 
 import masterStore from '../store'
 
