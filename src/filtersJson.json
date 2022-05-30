@@ -42,7 +42,7 @@
   "country": {
     "span": "Country",
     "placeholder": "Select country",
-    "name": "country"
+    "name": "region"
   },
   "segments": {
     "span": "Segment",
