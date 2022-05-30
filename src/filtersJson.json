@@ -43,5 +43,10 @@
     "span": "Country",
     "placeholder": "Select country",
     "name": "country"
+  },
+  "segments": {
+    "span": "Segment",
+    "placeholder": "Select segment",
+    "name": "segment"
   }
 }
