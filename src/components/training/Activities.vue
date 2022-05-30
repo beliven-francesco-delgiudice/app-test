@@ -32,20 +32,20 @@
           </div>
         </div>
         <div
-          class="flex mt-4 items-center relative mx-8"
+          class="flex mt-4 items-center relative"
           @click="openLink(item.googlemaps)"
         >
           <square-container
-            bgClass="bg-light-grey"
+            bgClass="bg-black"
             squareSize="44"
             classes="pointer-events-none flex"
           >
-            <ion-img src="/assets/button-icons/open-link.svg" class="m-auto" />
+            <ion-img src="/assets/button-icons/pin.svg" class="m-auto" />
           </square-container>
           <span
             class="pointer-events-none ml-2 font-helvetica-medium text-black text-16 spacing-5 line-28"
           >
-            {{ item.googlemaps }}
+            Open in Maps
           </span>
         </div>
       </div>
