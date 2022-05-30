@@ -7,8 +7,8 @@
   >
     <Info v-if="updatedSection === 'info'" :instance="updatedTraining.info" />
     <Testimonials
-      v-if="updatedSection === 'testimonials'"
-      :instance="updatedTraining.testimonials"
+      v-if="updatedSection === 'messages'"
+      :instance="updatedTraining.messages"
     />
     <Details
       v-if="updatedSection === 'details'"
@@ -18,10 +18,10 @@
       v-if="updatedSection === 'hotel'"
       :congress="updatedTraining.hotel"
     />
-    <DayByDay v-if="section === 'day'" :congress="updatedTraining.day" />
+    <DayByDay v-if="section === 'day'" :instance="updatedTraining.day" />
     <Activities
       v-if="section === 'activities'"
-      :congress="updatedTraining.activities"
+      :instance="updatedTraining.activities"
     />
     <Downloads
       v-if="section === 'download'"
