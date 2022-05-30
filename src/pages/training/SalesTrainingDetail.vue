@@ -25,11 +25,11 @@
     />
     <Downloads
       v-if="section === 'download'"
-      :congress="updatedCongress.download"
+      :congress="updatedTraining.download"
     />
     <Contacts
       v-if="section === 'contacts'"
-      :congress="updatedCongress.contacts"
+      :instance="updatedTraining.contacts"
     />
   </congress-layout>
 </template>
