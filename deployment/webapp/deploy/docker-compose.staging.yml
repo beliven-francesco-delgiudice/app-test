@@ -17,7 +17,6 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.${CI_PROJECT_NAME}-webapp.tls=true"
       - "traefik.http.routers.${CI_PROJECT_NAME}-webapp.entrypoints=websecure"
-      - "traefik.http.routers.${CI_PROJECT_NAME}-webapp.tls.certresolver=letsencrypt"
       - "traefik.http.routers.${CI_PROJECT_NAME}-webapp.middlewares=gzip,appHeaders,heply-auth,redirect-to-https"
       - "traefik.http.routers.${CI_PROJECT_NAME}-webapp.rule=Host(`${DOMAIN}`)"
       - "traefik.http.middlewares.appHeaders.headers.customrequestheaders.X-Robots-Tag=noindex,nofollow,nosnippet,noarchive,notranslate,noimageindex"
