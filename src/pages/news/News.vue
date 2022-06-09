@@ -20,7 +20,7 @@
             bgClass="bg-white"
             squareSize="64"
             rounded="12"
-            classes="mr-4 bg-no-repeat bg-cover"
+            classes="mr-4 bg-no-repeat bg-cover bg-center"
             :styles="`background-image:url('${item.preview}')`"
           ></square-container>
           <div class="flex flex-col justify-between py-2">

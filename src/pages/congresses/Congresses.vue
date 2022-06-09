@@ -20,10 +20,10 @@
             bgClass="bg-white"
             squareSize="64"
             rounded="12"
-            classes="mr-4 bg-no-repeat bg-cover"
+            classes="mr-4 bg-no-repeat bg-cover bg-center"
             :styles="`background-image:url('${item.preview}')`"
           ></square-container>
-          <div class="flex flex-col justify-between py-2">
+          <div class="flex flex-col justify-between pb-2">
             <span
               class="font-helvetica-medium text-black text-16 spacing-5 line-28"
               >{{ item.name }}

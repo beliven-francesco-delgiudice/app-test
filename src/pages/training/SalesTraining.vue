@@ -20,7 +20,7 @@
             bgClass="bg-white"
             squareSize="64"
             rounded="12"
-            classes="mr-4 bg-no-repeat bg-cover"
+            classes="mr-4 bg-no-repeat bg-cover bg-center"
             :styles="`background-image:url('${item.preview}')`"
           ></square-container>
           <div class="flex flex-col justify-between py-2">
@@ -50,12 +50,14 @@ import { IonList } from '@ionic/vue'
 import SquareContainer from '../../components/containers/SquareContainer.vue'
 import messages from '@/messages'
 import urls from '@/urls'
+
 export default {
   components: {
     Page,
     IonList,
     SquareContainer
   },
+
   data () {
     return {
       list: [],
@@ -65,28 +67,34 @@ export default {
       }
     }
   },
+
   computed: {
     segmentPath () {
       return this.category.segment_id
     },
+
     options () {
       return this.filtersOptions
     }
   },
+
   created () {
     if (this.$route.query && this.$route.query.year) {
       this.filters.year = parseInt(this.$route.query.year)
     }
     this.getTrainingList()
   },
+
   methods: {
     routeToTraining (item) {
       const link = `/training/${item.id}`
       this.$router.push(link)
     },
+
     updateFilters (filterObj) {
       this.filters = Object.assign({}, filterObj)
     },
+
     async getTrainingList () {
       this.$router.push({
         path: this.$route.path,
@@ -109,6 +117,7 @@ export default {
       }
     }
   },
+
   watch: {
     filters: function (newFilters) {
       this.$router.push({
