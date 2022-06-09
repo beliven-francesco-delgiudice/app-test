@@ -32,6 +32,7 @@
           </div>
         </div>
         <div
+          v-if="item.type !== 'lunch'"
           class="flex mt-4 items-center relative"
           @click="openLink(item.googlemaps)"
         >
