@@ -7,10 +7,10 @@
       <!-- <ion-img :src="training.image" class="w-full pointer-events-none m" /> -->
     </div>
     <detail-section :label="training.name">
-      <p
+      <span
         class="font-helvetica text-16 text-mid-dark-grey spacing-2 line-26 px-8 mb-4"
         v-html="training.subtitle"
-      ></p>
+      ></span>
 
       <div class="flex flex-col bg-light-red rounded-12 p-6 mx-8">
         <div class="flex justify-between items-start mb-4">

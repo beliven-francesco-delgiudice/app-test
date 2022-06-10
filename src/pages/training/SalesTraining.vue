@@ -28,9 +28,10 @@
               class="font-helvetica-medium text-black text-16 spacing-5 line-28"
               >{{ item.name }}
             </span>
-            <span class="font-helvetica text-grey text-14 spacing-44 line-24">
-              {{ item.subtitle }}
-            </span>
+            <span
+              class="font-helvetica text-grey text-14 spacing-44 line-24"
+              v-html="item.subtitle"
+            ></span>
             <div class="bg-light-red rounded-6 px-2 mr-auto">
               <span
                 class="font-helvetica-medium text-12 text-red spacing-8 line-30 pointer-events-none"
