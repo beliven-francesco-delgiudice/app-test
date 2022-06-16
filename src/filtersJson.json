@@ -44,6 +44,11 @@
     "placeholder": "Select country",
     "name": "region"
   },
+  "regions": {
+    "span": "Region",
+    "placeholder": "Select region",
+    "name": "region"
+  },
   "segments": {
     "span": "Segment",
     "placeholder": "Select segment",
