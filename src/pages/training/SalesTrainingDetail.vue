@@ -120,7 +120,7 @@ export default {
       ) {
         return this.updatedTraining.info.content.name
       }
-      return 'Congress details'
+      return 'Training details'
     },
 
     updatedTraining () {
