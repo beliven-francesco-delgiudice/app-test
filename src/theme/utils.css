@@ -112,10 +112,11 @@ ion-content {
   display: block;
 }
 
-p > br:only-child,
+/* They want the spaces */
+/* p > br:only-child,
 ul > br:only-child {
   display: none;
-}
+} */
 
 
 ion-slides {
