@@ -7,23 +7,20 @@ export default {
     let init = false
     const $firebase = {
       initialize: async function (userId) {
-        if (
-          !init &&
-          Capacitor.getPlatform() &&
-          Capacitor.getPlatform() === 'web'
-        ) {
-          await FirebaseAnalytics.initializeFirebase(config.firebaseConfig)
+        if (Capacitor.getPlatform() && Capacitor.getPlatform() === 'web') {
+          const res = await FirebaseAnalytics.initializeFirebase(
+            config.firebaseConfig
+          )
+          console.log('Initialize res:', res)
         }
 
         if (!init) {
-          init = true
           await FirebaseAnalytics.setCollectionEnabled({
             enabled: true
           })
-          if (userId) {
-            return this.setUserId(userId)
-          }
-          return
+        }
+        if (userId) {
+          return this.setUserId(userId)
         }
         return
       },
@@ -47,6 +44,7 @@ export default {
             name,
             params
           })
+          console.log('Log res:', res)
         } catch (err) {
           console.log('Log Event error:', err)
         }
