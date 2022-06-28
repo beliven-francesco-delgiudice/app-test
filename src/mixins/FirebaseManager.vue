@@ -2,10 +2,6 @@
 export default {
   name: 'FirebaseManager',
 
-  mounted () {
-    this.logScreen(this.$route.name)
-  },
-
   methods: {
     async logEvent (name, params = {}) {
       try {
@@ -19,7 +15,6 @@ export default {
 
     logScreen (screen) {
       return this.logEvent('screen_view', {
-        firebase_screen: screen,
         screen_name: screen
       })
     }
