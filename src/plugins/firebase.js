@@ -5,6 +5,7 @@ import config from '@/config'
 export default {
   async install (app, conf = {}) {
     let init = false
+
     const $firebase = {
       initialize: async function (userId) {
         if (Capacitor.getPlatform() && Capacitor.getPlatform() === 'web') {
@@ -24,12 +25,36 @@ export default {
         }
         return
       },
+
       setUserId: async function (userId) {
         return FirebaseAnalytics.setUserId({ userId })
       },
+
       reset: async function () {
         return FirebaseAnalytics.reset()
       },
+
+      setScreenName: async function (screenName, nameOverride, userId) {
+        try {
+          await this.initialize(userId)
+        } catch (err) {
+          console.log('Initialize error:', err)
+        }
+
+        let res = ''
+
+        try {
+          res = await FirebaseAnalytics.setScreenName({
+            screenName,
+            nameOverride
+          })
+          console.log('Log res:', res)
+        } catch (err) {
+          console.log('Log Event error:', err)
+        }
+        return res
+      },
+
       logEvent: async function (name, params = {}, userId) {
         try {
           await this.initialize(userId)
