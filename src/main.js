@@ -51,6 +51,7 @@ import $docviewer from '@/plugins/docviewer-native'
 import $docsaver from '@/plugins/docsaver'
 import $onesignal from '@/plugins/onesignal-native'
 import $clipboard from '@/plugins/clipboard'
+import $firebase from '@/plugins/firebase'
 
 // import $backgroundmode from '@/plugins/backgroundmode'
 import { Capacitor } from '@capacitor/core'
@@ -85,6 +86,7 @@ async function init () {
     .use($docviewer)
     .use($docsaver)
     .use($clipboard)
+    .use($firebase, { autoload: true })
     .use($toast, {
       duration: 3000,
       color: 'primary'

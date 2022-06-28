@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.limacorporate.sales">
+    package="com.limacorporate.sales"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <application
         android:allowBackup="true"
@@ -48,6 +49,18 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths"></meta-data>
         </provider>
+
+        <meta-data
+            tools:replace="android:value"
+            android:name="firebase_analytics_collection_enabled"
+            android:value="true"
+            />
+
+        <meta-data
+            tools:replace="android:value"
+            android:name="google_analytics_automatic_screen_reporting_enabled"
+            android:value="true"
+            />
     </application>
 
     <!-- Permissions -->

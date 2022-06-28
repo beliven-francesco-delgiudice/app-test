@@ -84,14 +84,20 @@ import {
 import { Capacitor } from '@capacitor/core'
 
 export default {
-  methods: {
-    openWizard () {
-      this.$router.push('/wizard')
-    },
-    backButton () {
-      this.$router.push('/home')
-    }
+  components: {
+    IonContent,
+    // IonHeader,
+    IonPage,
+    // IonToolbar,
+    // IonButtons,
+    // IonButton,
+    // IonImg,
+    IonRefresher,
+    IonRefresherContent,
+    Tabs
+    // ShadowButton
   },
+
   computed: {
     isApp () {
       return this.checkIsApp(Capacitor.getPlatform())
@@ -106,18 +112,14 @@ export default {
       return this.$route.meta.refreshAction || false
     }
   },
-  components: {
-    IonContent,
-    // IonHeader,
-    IonPage,
-    // IonToolbar,
-    // IonButtons,
-    // IonButton,
-    // IonImg,
-    IonRefresher,
-    IonRefresherContent,
-    Tabs
-    // ShadowButton
+
+  methods: {
+    openWizard () {
+      this.$router.push('/wizard')
+    },
+    backButton () {
+      this.$router.push('/home')
+    }
   }
 }
 </script>

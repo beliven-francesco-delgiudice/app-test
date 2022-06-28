@@ -45,8 +45,30 @@ export async function alreadyLoggedRouting (context) {
   )
 }
 
+export async function logScreenView (context, route) {
+  try {
+    const userId = context.getters.userData.id
+    await this.$app.$firebase.logEvent(
+      'screen_view',
+      {
+        firebase_screen: route.name,
+        screen_name: route.name,
+        ...route.params
+      },
+      userId
+    )
+  } catch (err) {
+    console.error('STORE FIREBASE ERROR', err)
+  }
+}
+
 export async function logout (context) {
   context.commit('setUserData', false)
+  try {
+    await this.$app.$firebase.logEvent('logout')
+  } catch (err) {
+    console.log('FirebaseError', err)
+  }
   window.localStorage.setItem('JWT', '')
   this.$app.$router.push('/login')
 }
