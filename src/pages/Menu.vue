@@ -60,7 +60,6 @@
 import Page from '../components/Page.vue'
 import SquareContainer from '../components/containers/SquareContainer.vue'
 import { IonList, IonImg } from '@ionic/vue'
-import FirebaseManagerVue from '../mixins/FirebaseManager.vue'
 
 export default {
   components: {
@@ -69,8 +68,6 @@ export default {
     IonList,
     IonImg
   },
-
-  mixins: [FirebaseManagerVue],
 
   data () {
     return {
