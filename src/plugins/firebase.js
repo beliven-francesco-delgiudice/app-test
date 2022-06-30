@@ -15,11 +15,10 @@ export default {
           console.log('Initialize res:', res)
         }
 
-        if (!init) {
-          await FirebaseAnalytics.setCollectionEnabled({
-            enabled: true
-          })
-        }
+        await FirebaseAnalytics.setCollectionEnabled({
+          enabled: true
+        })
+
         if (userId) {
           return this.setUserId(userId)
         }
