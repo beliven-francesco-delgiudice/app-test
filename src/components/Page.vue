@@ -3,7 +3,8 @@
     :class="[
       withMargin ? 'px-8' : '',
       noTopSpace ? '' : 'pt-20',
-      'min-h-screen gradient-background max-h-screen overflow-y-auto relative pb-24'
+      customGradient || 'gradient-background',
+      'min-h-screen max-h-screen overflow-y-auto relative pb-24'
     ]"
   >
     <!-- <IonScroll direction="y"> -->
@@ -113,6 +114,7 @@
     <contacts-support v-if="isSupportModalOpen" @onClose="closeSupport" />
   </div>
 </template>
+
 <script>
 import Title from '../components/Title'
 import ShadowButton from '../components/containers/ShadowButton.vue'
@@ -133,16 +135,49 @@ export default {
   },
 
   props: {
-    label: String,
-    aboveTitle: String,
-    withMargin: Boolean,
-    noTopSpace: Boolean,
-    info: Boolean,
-    support: Boolean,
-    back: [Boolean, String, Object],
-    mail: String,
-    filters: [Boolean, Object],
-    filtersOptions: Object
+    label: {
+      type: String
+    },
+
+    aboveTitle: {
+      type: String
+    },
+
+    withMargin: {
+      type: Boolean
+    },
+
+    noTopSpace: {
+      type: Boolean
+    },
+
+    info: {
+      type: Boolean
+    },
+
+    support: {
+      type: Boolean
+    },
+
+    back: {
+      type: [Boolean, String, Object]
+    },
+
+    mail: {
+      type: String
+    },
+
+    filters: {
+      type: [Boolean, Object]
+    },
+
+    filtersOptions: {
+      type: Object
+    },
+
+    customGradient: {
+      type: String
+    }
   },
 
   computed: {
@@ -156,15 +191,18 @@ export default {
       }
       return false
     },
+
     isHeaderNecessary () {
       if (this.info || this.back || this.filters || this.mail) {
         return true
       }
       return false
     },
+
     computedFilters () {
       return this.filters
     },
+
     options () {
       return this.filtersOptions
     }
@@ -186,22 +224,28 @@ export default {
       }
       // this.$router.push('/home')
     },
+
     routeToWizard () {
       this.$router.push('/new?section=updates')
     },
+
     openFilters () {
       this.isFiltersOpened = true
     },
+
     closeFilters () {
       this.isFiltersOpened = false
     },
+
     onSubmit (payload) {
       this.$emit('onFiltersChange', payload)
       this.closeFilters()
     },
+
     openSupport () {
       this.isSupportModalOpen = true
     },
+
     closeSupport () {
       this.isSupportModalOpen = false
     }

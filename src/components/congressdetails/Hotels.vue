@@ -175,12 +175,14 @@
     </detail-section>
   </div>
 </template>
+
 <script>
 import SectionButton from '../containers/SectionButton.vue'
 import DetailSection from '../DetailSection.vue'
 import { IonImg } from '@ionic/vue'
 import BigButton from '../containers/BigButton.vue'
 import SquareContainer from '../containers/SquareContainer.vue'
+
 export default {
   components: {
     SectionButton,
@@ -189,9 +191,11 @@ export default {
     BigButton,
     SquareContainer
   },
+
   props: {
     congress: Object
   },
+
   data () {
     return {
       isReadMore: {
@@ -200,23 +204,27 @@ export default {
       }
     }
   },
+
   computed: {
     updatedCongress () {
       const newCongress = Object.assign({}, this.congress.content)
       return newCongress
     },
+
     updatedHotel () {
       if (this.updatedCongress && this.updatedCongress.hotel) {
         return this.updatedCongress.hotel
       }
       return {}
     },
+
     updatedTransfer () {
       if (this.updatedCongress && this.updatedCongress.transfer) {
         return this.updatedCongress.transfer
       }
       return {}
     },
+
     showTransferTime () {
       if (
         this.updatedTransfer &&
@@ -227,15 +235,18 @@ export default {
       }
       return false
     },
+
     updatedReadMore () {
       return this.isReadMore
     },
+
     hotelDescription () {
       if (this.updatedHotel.info && this.updatedHotel.info.length) {
         return this.sanitizeManageText(this.updatedHotel.info)
       }
       return ''
     },
+
     transferDescription () {
       if (this.updatedTransfer.info && this.updatedTransfer.info.length) {
         return this.sanitizeManageText(this.updatedTransfer.info)
@@ -243,15 +254,18 @@ export default {
       return ''
     }
   },
+
   methods: {
     openLink (link) {
       window.open(link)
     },
+
     readMore (param) {
       const obj = Object.assign({}, this.isReadMore)
       obj[param] = !obj[param]
       this.isReadMore = obj
     },
+
     saveEvent (string) {
       if (string === 'transfer') {
         window.open(this.updatedTransfer.save_event)
@@ -260,6 +274,7 @@ export default {
       }
     }
   },
+
   mounted () {
     setTimeout(() => {
       this.cleanParagraphs()
@@ -267,6 +282,7 @@ export default {
   }
 }
 </script>
+
 <style scoped>
 .gallery-container {
   width: calc(100% - 4rem);

@@ -22,15 +22,17 @@
           >
             <span
               class="font-helvetica text-red text-14 spacing-2 line-24 mb-2"
-              >{{ event.time }}</span
             >
+              {{ event.time }}
+            </span>
             <span
               class="font-helvetica-medium text-dark-grey text-16 spacing-4 line-24 mb-2"
-              >{{ event.title }}</span
             >
-            <span class="font-helvetica text-grey text-14 spacing-44 line-20">{{
-              event.subtitle
-            }}</span>
+              {{ event.title }}
+            </span>
+            <span class="font-helvetica text-grey text-14 spacing-44 line-20">
+              {{ event.subtitle }}
+            </span>
 
             <big-button
               bgClass="bg-black mt-4 "

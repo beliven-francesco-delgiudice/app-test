@@ -1,5 +1,9 @@
 <template>
-  <Page :label="course.title || 'Course'" :back="'/learn'">
+  <Page
+    :back="'/learn'"
+    :customGradient="gradient"
+    :label="course.title || 'Course'"
+  >
     <carousel
       v-if="sections && sections.length"
       id="sections-carousel"
@@ -8,9 +12,9 @@
       <section-button
         v-for="(theSection, i) in sections"
         :key="i"
+        :label="theSection.label"
         :active="section === theSection.path"
         :classes="[i === 0 ? 'ml-8' : '', ' mr-4']"
-        :label="theSection.label"
         @onClick="routeToSection(theSection.path)"
       />
       <div>&nbsp;</div>
@@ -38,6 +42,12 @@ export default {
       course: {},
       section: 'info',
       sections: []
+    }
+  },
+
+  computed: {
+    gradient () {
+      return ''
     }
   },
 
