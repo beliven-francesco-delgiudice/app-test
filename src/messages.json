@@ -39,6 +39,10 @@
     "training": "An error occurred while retrieving the training",
     "trainingDetail": "An error occurred while retrieving the training information",
 
+    "learn": "An error occurred while retrieving the courses",
+    "learnDetail": "An error occurred while retrieving the course information",
+
+
     "documents": "An error occurred while retrieving the documents. Retry later",
     "folderDetail": "An error occurred while retrieving the folder",
     "file": "An error occurred while obtaining the file",

@@ -1,0 +1,140 @@
+<template>
+  <Page
+    back="/menu"
+    label="Learn"
+    :filters="filters"
+    :filtersOptions="filtersOptions"
+    @onFiltersChange="updateFilters"
+  >
+    <ion-list class="bg-transparent">
+      <div
+        class="flex flex-row justify-between items-center bg-transparent pb-4 mb-4"
+        v-for="(course, i) in list"
+        :key="i"
+        @click="routeTo(course)"
+      >
+        <div
+          class="flex flex-start items-center pointer-events-none px-8 w-full"
+        >
+          <CourseCard :instance="course" />
+        </div>
+      </div>
+    </ion-list>
+  </Page>
+</template>
+
+<script>
+import Page from '../../components/Page.vue'
+import CourseCard from '../../components/learn/CourseCard.vue'
+import { IonList } from '@ionic/vue'
+import messages from '@/messages'
+import urls from '@/urls'
+
+export default {
+  components: {
+    Page,
+    IonList,
+    CourseCard
+  },
+
+  data () {
+    return {
+      list: [
+        {
+          id: 1,
+          title: 'Bla bla bla',
+          category: 'SkillsLab',
+          type: 1,
+          segments: [
+            {
+              img: '',
+              name: 'Shoulder'
+            }
+          ],
+          speakers: [
+            {
+              img: '',
+              name: 'gatto'
+            },
+            {
+              img: '',
+              name: 'cane'
+            }
+          ]
+        },
+        {
+          id: 2,
+          title: 'Bla bla bla',
+          category: 'Altro',
+
+          type: 2,
+          segments: [
+            {
+              img: '',
+              name: 'Shoulder'
+            }
+          ],
+          speakers: [
+            {
+              img: '',
+              name: 'gatto'
+            },
+            {
+              img: '',
+              name: 'cane'
+            }
+          ]
+        }
+      ],
+      filtersOptions: {},
+      filters: {
+        year: 2022
+      }
+    }
+  },
+
+  created () {
+    this.fetchCourses()
+  },
+
+  methods: {
+    routeTo (item) {
+      this.$router.push(`/learn/${item.id}`)
+    },
+
+    async fetchCourses () {
+      this.$router.push({
+        path: this.$route.path,
+        query: this.filters
+      })
+      try {
+        const results = await this.$http({
+          method: 'GET',
+          url: urls.products.learn,
+          params: this.filters
+        })
+        if (results && results.length) {
+          this.list = results.list
+          this.filtersOptions = results.filters || {}
+        }
+      } catch (e) {
+        console.error(e)
+        this.$toast({
+          message: messages.errors.learn,
+          color: 'danger'
+        })
+      }
+    }
+  },
+
+  watch: {
+    filters: function (newFilters) {
+      this.$router.push({
+        path: this.$route.path,
+        query: newFilters
+      })
+      this.getCongressesList(newFilters)
+    }
+  }
+}
+</script>

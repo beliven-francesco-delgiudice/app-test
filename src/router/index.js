@@ -45,6 +45,9 @@ import ActivityDetail from '../pages/congresses/ActivityDetail.vue'
 import SalesTrainingIndex from '../pages/training/SalesTraining.vue'
 import SalesTrainingDetail from '../pages/training/SalesTrainingDetail.vue'
 
+import CoursesList from '../pages/learn/CoursesList.vue'
+import CourseDetail from '../pages/learn/CourseDetail.vue'
+
 import masterStore from '../store'
 
 const routes = [
@@ -366,6 +369,29 @@ const routes = [
       }
     ]
   },
+  // Learn
+  {
+    path: '/learn',
+    component: MainLayout,
+    children: [
+      // course detail
+      {
+        path: '/learn/:id/',
+        name: 'Course Detail',
+        component: CourseDetail,
+        meta: {
+          showBack: true
+        }
+      },
+      // courses list
+      {
+        path: '',
+        name: 'Course List',
+        component: CoursesList
+      }
+    ]
+  },
+
   // 404 to home
   { path: '/:catchAll(.*)', redirect: '/home' }
 ]

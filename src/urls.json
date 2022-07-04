@@ -27,6 +27,9 @@
     "list":"/training",
     "activity": "/training/activity"
   },
+  "learn": {
+    "list":"/learn"
+  },
   "documents": {
     "list": "/documents",
     "list_my":"/documents/my",

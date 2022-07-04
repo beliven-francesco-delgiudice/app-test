@@ -1,4 +1,4 @@
-.bg-white {
+ .bg-white {
   background-color: white;
   --background: white;
 }
@@ -29,6 +29,18 @@
 .bg-light-red {
   background: rgba(227,5,19,0.05);
 }
+
+.bg-light-orange {
+  background: rgba(243, 127, 90, 0.2);
+}
+.bg-light-green {
+  background: rgba(0, 150, 135, 0.2);
+}
+.bg-light-cyan {
+  background: rgba(85, 182, 214, 0.2);
+}
+
+
 .login-background {
   background: #F6F6F6;
   --background: #F6F6F6;
@@ -68,6 +80,17 @@
 .text-red {
   color: #E30513;
 }
+
+.text-orange {
+  color: #f37f5a;
+}
+.text-green {
+  color: #009687;
+}
+.text-cyan {
+  color: #55b6d6;
+}
+
 
 .antialised {
   -webkit-font-smoothing: antialiased;
