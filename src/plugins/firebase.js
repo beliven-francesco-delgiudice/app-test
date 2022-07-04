@@ -4,8 +4,6 @@ import config from '@/config'
 
 export default {
   async install (app, conf = {}) {
-    let init = false
-
     const $firebase = {
       initialize: async function (userId) {
         if (Capacitor.getPlatform() && Capacitor.getPlatform() === 'web') {
