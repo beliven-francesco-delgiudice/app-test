@@ -8,9 +8,9 @@
     </div>
     <detail-section :label="updatedHotel.name">
       <div class="flex flex-col justify-start items-start mb-8 px-8">
-        <span class="font-helvetica text-14 text-grey spacing-44 line-20"
-          >Location</span
-        >
+        <span class="font-helvetica text-14 text-grey spacing-44 line-20">
+          Location
+        </span>
         <span
           class="font-helvetica text-16 text-mid-dark-grey spacing-2 line-26"
           v-html="updatedHotel.address"
@@ -40,16 +40,18 @@
           <div class="flex flex-col">
             <span
               class="font-helvetica text-14 text-grey spacing-44 line-28 mb-2"
-              >In</span
             >
+              In
+            </span>
             <!-- <span
               class="font-helvetica text-12 text-grey spacing-44 line-28 mb-2"
               >From</span
             > -->
             <span
               class="font-helvetica-medium text-16 text-red spacing-23 line-24 mb-2"
-              >{{ updatedHotel.checkin_date }}</span
             >
+              {{ updatedHotel.checkin_date }}
+            </span>
             <!-- <span class="font-helvetica text-14 text-red spacing-2 line-24"
               >{{ updatedHotel.checkin_time }}
             </span> -->
@@ -57,16 +59,18 @@
           <div class="flex flex-col">
             <span
               class="font-helvetica text-14 text-grey spacing-44 line-28 mb-2"
-              >Out</span
             >
+              Out
+            </span>
             <!-- <span
               class="font-helvetica text-12 text-grey spacing-44 line-28 mb-2"
               >Until</span
             > -->
             <span
               class="font-helvetica-medium text-16 text-red spacing-23 line-24 mb-2"
-              >{{ updatedHotel.checkout_date }}</span
             >
+              {{ updatedHotel.checkout_date }}
+            </span>
             <!-- <span class="font-helvetica text-14 text-red spacing-2 line-24"
               >{{ updatedHotel.checkout_time }}
             </span> -->

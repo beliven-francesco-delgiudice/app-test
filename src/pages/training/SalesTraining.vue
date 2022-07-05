@@ -70,10 +70,6 @@ export default {
   },
 
   computed: {
-    segmentPath () {
-      return this.category.segment_id
-    },
-
     options () {
       return this.filtersOptions
     }
