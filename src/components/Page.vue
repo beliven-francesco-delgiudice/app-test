@@ -105,8 +105,12 @@
       <span
         v-if="aboveTitle"
         class="font-helvetica text-14 text-grey spacing-44 line-24 pb-2"
-        >{{ aboveTitle }} </span
-      ><br />
+      >
+        <slot name="above-title">
+          {{ aboveTitle }}
+        </slot>
+      </span>
+      <br />
       {{ label }}
     </Title>
     <slot></slot>

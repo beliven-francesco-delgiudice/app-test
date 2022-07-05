@@ -168,6 +168,7 @@ export default {
   methods: {
     onRegister (id) {
       // TODO show modal
+      console.log(id)
     }
   }
 }

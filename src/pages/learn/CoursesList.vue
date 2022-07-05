@@ -45,6 +45,7 @@ export default {
           title: 'Bla bla bla',
           category: 'SkillsLab',
           type: 1,
+          lang: ['en'],
           segments: [
             {
               img: '',

@@ -33,7 +33,7 @@
       </span>
     </div>
     <div class="flex no-wrap overflow-hidden">
-      <div v-if="instance.lang" class="flex no-wrap py-2 px-2">
+      <div v-if="instance.lang" class="flex no-wrap py-2 pr-2">
         <square-container
           v-for="lang in instance.lang"
           classes="bg-white elevated-shadow flex"
