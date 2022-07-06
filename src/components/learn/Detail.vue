@@ -243,6 +243,19 @@
     <detail-section v-if="imageGallery && imageGallery.length" label="Images">
       <image-gallery :gallery="imageGallery" />
     </detail-section>
+
+    <!-- documents -->
+    <detail-section v-if="course.files && course.files" label="Images">
+      <div class="flex flex-col pt-8">
+        <div class="mb-4" v-for="(doc, i) in course.files" :key="i">
+          <document-list-item
+            type="my"
+            :document="doc"
+            :actions="doc.actions"
+          />
+        </div>
+      </div>
+    </detail-section>
   </div>
 </template>
 
@@ -251,6 +264,7 @@ import Separator from '../Separator.vue'
 import ImageGallery from '../ImageGallery.vue'
 import VideoGallery from '../VideoGallery.vue'
 import DetailSection from '../DetailSection.vue'
+import DocumentListItem from '../DocumentListItem'
 import BigButton from '../containers/BigButton.vue'
 import SectionButton from '../containers/SectionButton.vue'
 import SquareContainer from '../containers/SquareContainer.vue'
@@ -266,7 +280,8 @@ export default {
     VideoGallery,
     SectionButton,
     DetailSection,
-    SquareContainer
+    SquareContainer,
+    DocumentListItem
   },
 
   props: {
