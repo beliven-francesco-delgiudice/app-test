@@ -10,7 +10,7 @@
       @click="expandAll"
       :class="[
         isExpandable ? '' : 'pointer-events-none opacity-50',
-        ' bg-black rounded-6 px-2 mb-8 mr-auto'
+        ' bg-black rounded-6 px-2 mb-8 mr-auto cursor-pointer'
       ]"
     >
       <span
@@ -22,7 +22,10 @@
     <div v-for="(item, i) in updatedList" :key="i" class="flex flex-col">
       <!-- if is category -->
       <div v-if="item.childs" class="flex flex-col">
-        <div @click="expand(i)" class="flex justify-between items-center mb-8">
+        <div
+          @click="expand(i)"
+          class="flex justify-between items-center mb-8 cursor-pointer"
+        >
           <div class="flex justify-start items-center">
             <ion-img
               :src="

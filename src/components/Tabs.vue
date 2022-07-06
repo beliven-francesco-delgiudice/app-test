@@ -34,7 +34,7 @@
         :key="i"
         :tab="tab.name"
         :class="[
-          tab.disabled ? 'pointer-events-none' : '',
+          tab.disabled ? 'pointer-events-none' : 'cursor-pointer',
           ' flex flex-grow justify-center items-center'
         ]"
         @click="$router.push(tab.href)"

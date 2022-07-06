@@ -15,7 +15,7 @@
       <div
         v-for="(sub, k) in sectionToShow.voices"
         :key="k"
-        class="flex flex-row pb-4 mb-4 items-center justify-between"
+        class="flex flex-row pb-4 mb-4 items-center justify-between cursor-pointer"
         @click="openModal(sub)"
       >
         <div class="flex flex-col justify-between">

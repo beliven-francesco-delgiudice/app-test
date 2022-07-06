@@ -4,7 +4,7 @@
       <ion-list class="bg-transparent">
         <div
           :class="[
-            item.disabled ? 'opacity-50 pointer-events-none' : '',
+            item.disabled ? 'opacity-50 pointer-events-none' : 'cursor-pointer',
             ' flex flex-row justify-between items-center bg-transparent py-2'
           ]"
           v-for="(item, i) in updatedList"
