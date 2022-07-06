@@ -39,54 +39,7 @@ export default {
 
   data () {
     return {
-      list: [
-        {
-          id: 1,
-          title: 'Bla bla bla',
-          category: 'SkillsLab',
-          type: 1,
-          lang: ['en'],
-          segments: [
-            {
-              img: '',
-              name: 'Shoulder'
-            }
-          ],
-          speakers: [
-            {
-              img: '',
-              name: 'gatto'
-            },
-            {
-              img: '',
-              name: 'cane'
-            }
-          ]
-        },
-        {
-          id: 2,
-          title: 'Bla bla bla',
-          category: 'Altro',
-
-          type: 2,
-          segments: [
-            {
-              img: '',
-              name: 'Shoulder'
-            }
-          ],
-          speakers: [
-            {
-              img: '',
-              name: 'gatto'
-            },
-            {
-              img: '',
-              name: 'cane'
-            }
-          ]
-        }
-      ],
+      list: [],
       filtersOptions: {},
       filters: {
         year: 2022
@@ -111,10 +64,10 @@ export default {
       try {
         const results = await this.$http({
           method: 'GET',
-          url: urls.products.learn,
+          url: urls.learn.list,
           params: this.filters
         })
-        if (results && results.length) {
+        if (results) {
           this.list = results.list
           this.filtersOptions = results.filters || {}
         }

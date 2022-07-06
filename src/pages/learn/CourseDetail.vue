@@ -1,17 +1,19 @@
 <template>
   <Page
-    :aboveTitle="typeName"
     :back="'/learn'"
+    :share="shareObject"
+    :aboveTitle="typeName"
     :customGradient="gradient"
     :label="course.title || 'Course'"
   >
     <template #above-title>
       <span
-        class="inline-block font-helvetica-medium text-12 py-1 px-2 rounded-6 text-white whitespace-nowrap spacing-34 line-18"
+        class="font-helvetica-medium text-12 py-1 px-2 rounded-6 text-white whitespace-nowrap spacing-34 line-18"
         :class="bgColor"
       >
         {{ typeName }}
       </span>
+      <div class="mb-2"></div>
     </template>
     <carousel
       v-if="course.show_tabs"
@@ -29,69 +31,55 @@
       <div>&nbsp;</div>
     </carousel>
     <Detail v-if="section === 'info'" :course="course" @register="onRegister" />
+    <Agenda
+      v-if="section === 'agenda'"
+      :course="course"
+      @register="onRegister"
+    />
   </Page>
 </template>
 
 <script>
 import Page from '../../components/Page.vue'
-import SectionButton from '../../components/containers/SectionButton.vue'
-import messages from '@/messages'
-import urls from '@/urls'
+import Carousel from '../../components/Carousel.vue'
 import Detail from '../../components/learn/Detail.vue'
+import Agenda from '../../components/learn/Agenda.vue'
+import SectionButton from '../../components/containers/SectionButton.vue'
+import urls from '@/urls'
+import messages from '@/messages'
 
 export default {
   components: {
     Page,
-    SectionButton,
-    Detail
+    Detail,
+    Agenda,
+    Carousel,
+    SectionButton
   },
 
   data () {
     return {
-      course: {
-        id: 1,
-        title:
-          'Smart SPACE: your digital companion from pre-op planning to inter-op solutions',
-        category: 'Reverse S2S',
-        type: 2,
-        location: 'San Diego, California - USA',
-        date: '30 Jun - 2 Jul 2022',
-        lang: ['en'],
-        segments: [
-          {
-            img: '',
-            name: 'Shoulder'
-          }
-        ],
-        speakers: [
-          {
-            img: '',
-            name: 'gatto'
-          },
-          {
-            img: '',
-            name: 'cane'
-          }
-        ],
-        checkin_date: 'Thu, 30 Jun',
-        checkout_date: 'Thu, 29 Jun',
-        checkin_time: '10:30  utc',
-        checkout_time: '10:30  utc'
-      },
+      course: {},
       section: 'info',
-      sections: []
+      sections: [
+        { label: 'Info', path: 'info' },
+        {
+          label: 'Agenda',
+          path: 'agenda'
+        }
+      ]
     }
   },
 
   computed: {
     gradient () {
-      if (this.course && this.course.type) {
-        switch (this.course.type) {
-          case 1:
+      if (this.course && this.course.category) {
+        switch (this.course.category.class) {
+          case 'course':
             return 'gradient-background-orange'
-          case 2:
+          case 'online':
             return 'gradient-background-green'
-          case 3:
+          case 'third':
             return 'gradient-background-cyan'
           default:
             return ''
@@ -101,13 +89,13 @@ export default {
     },
 
     typeName () {
-      if (this.course && this.course.type) {
-        switch (this.course.type) {
-          case 1:
+      if (this.course && this.course.category) {
+        switch (this.course.category.class) {
+          case 'course':
             return 'Course'
-          case 2:
+          case 'online':
             return 'Online course'
-          case 3:
+          case 'third':
             return '3rd-Party event'
           default:
             return 'Other'
@@ -117,13 +105,13 @@ export default {
     },
 
     bgColor () {
-      if (this.course && this.course.type) {
-        switch (this.course.type) {
-          case 1:
+      if (this.course && this.course.category) {
+        switch (this.course.category.class) {
+          case 'course':
             return 'bg-orange'
-          case 2:
+          case 'online':
             return 'bg-green'
-          case 3:
+          case 'third':
             return 'bg-cyan'
           default:
             return 'bg-light-grey'
@@ -169,6 +157,10 @@ export default {
     onRegister (id) {
       // TODO show modal
       console.log(id)
+    },
+
+    routeToSection (value) {
+      this.section = value
     }
   }
 }

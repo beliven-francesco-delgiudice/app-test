@@ -12,7 +12,7 @@
           <span
             class="block font-helvetica text-16 spacing-2 line-26 text-mid-dark-grey mr-4"
           >
-            {{ course.category }}
+            {{ course.category ? course.category.label : '' }}
           </span>
         </div>
         <div class="w-1/2">
@@ -25,8 +25,8 @@
             class="block font-helvetica text-16 spacing-2 line-26 text-mid-dark-grey"
           >
             {{
-              course.segments && course.segments.length
-                ? course.segments.map(segment => segment.name).join(', ')
+              course.segment && course.segment.length
+                ? course.segment.join(', ')
                 : ''
             }}
           </span>
@@ -52,17 +52,18 @@
             Language
           </span>
           <span
-            class="block font-helvetica text-16 spacing-2 line-26 text-mid-dark-grey uppercase"
+            class="block font-helvetica text-16 spacing-2 line-26 text-mid-dark-grey"
           >
-            {{
-              course.lang && course.lang.length ? course.lang.join(', ') : ''
-            }}
+            {{ course.language || '' }}
           </span>
         </div>
       </div>
     </div>
     <!-- time -->
-    <div class="mx-8 flex flex-col bg-light-red rounded-12 p-6">
+    <div
+      v-if="course.save_outlook"
+      class="mx-8 flex flex-col bg-light-red rounded-12 p-6"
+    >
       <div class="flex justify-between items-start">
         <div class="flex flex-col">
           <span
@@ -73,10 +74,10 @@
           <span
             class="font-helvetica-medium text-16 text-red spacing-23 line-24 mb-2"
           >
-            {{ course.checkin_date }}
+            {{ course.save_outlook.start_date.date }}
           </span>
           <span class="font-helvetica text-14 text-red spacing-2 line-24">
-            {{ course.checkin_time }}
+            {{ course.save_outlook.start_date.time }}
           </span>
         </div>
         <div class="flex flex-col">
@@ -88,16 +89,16 @@
           <span
             class="font-helvetica-medium text-16 text-red spacing-23 line-24 mb-2"
           >
-            {{ course.checkout_date }}
+            {{ course.save_outlook.end_date.date }}
           </span>
           <span class="font-helvetica text-14 text-red spacing-2 line-24">
-            {{ course.checkout_time }}
+            {{ course.save_outlook.end_date.time }}
           </span>
         </div>
       </div>
 
       <big-button
-        v-if="course.save_event && course.save_event.length"
+        v-if="course.save_outlook && course.save_outlook.link"
         bgClass="bg-black mt-4"
         label="Save in calendar"
         @onClick="saveEvent()"
@@ -107,6 +108,7 @@
     <div class="mx-8 mt-4">
       <ion-list class="bg-transparent">
         <div
+          v-if="course.show_register"
           class=" flex flex-row justify-between items-center bg-transparent py-2"
           @click="$emit('register')"
         >
@@ -116,7 +118,7 @@
               classes="mr-2"
               squareSize="44"
             >
-              <ion-img src="/assets/" />
+              <ion-img src="/assets/button-icons/register-black.svg" />
             </square-container>
             <span class="font-helvetica-medium text-black text-16">
               Register to this course
@@ -124,6 +126,7 @@
           </div>
         </div>
         <div
+          v-if="course.evenium"
           class=" flex flex-row justify-between items-center bg-transparent py-2"
         >
           <div class="flex flex-start items-center pointer-events-none">
@@ -132,7 +135,7 @@
               classes="mr-2"
               squareSize="44"
             >
-              <ion-img src="/assets/" />
+              <ion-img src="/assets/button-icons/evenium-black.svg" />
             </square-container>
             <span class="font-helvetica-medium text-black text-16">
               Slot available on Evenium
@@ -140,11 +143,13 @@
           </div>
         </div>
         <div
+          v-if="course.show_learn_contact"
           class="relative flex flex-row justify-between items-center bg-transparent py-2"
         >
           <a
             href="mailto:learn@limacorporate.com"
             class="absolute top-0 left-0 w-full h-full"
+            target="_blank"
           ></a>
           <div class="flex flex-start items-center pointer-events-none">
             <square-container
@@ -152,7 +157,7 @@
               classes="mr-2"
               squareSize="44"
             >
-              <ion-img src="/assets/" />
+              <ion-img src="/assets/button-icons/letter-black.svg" />
             </square-container>
             <span class="font-helvetica-medium text-black text-16">
               Ask for more information
@@ -189,10 +194,13 @@
       </div>
     </detail-section>
     <!-- speakers -->
-    <detail-section label="Speakers">
-      <ion-list class="bg-transparent">
+    <detail-section
+      v-if="course.speakers && course.speakers.length"
+      label="Speakers"
+    >
+      <ion-list class="bg-transparent pb-0 mb-0">
         <div
-          class="flex flex-row justify-between items-center bg-transparent pb-4 mb-4"
+          class="flex flex-row justify-between items-center bg-transparent mb-4"
           v-for="(item, i) in course.speakers"
           :key="i"
         >
@@ -203,15 +211,20 @@
               bgClass="bg-white"
               squareSize="64"
               rounded="12"
-              classes="mr-4 p-2"
+              classes="mr-4 overflow-hidden"
             >
-              <ion-img :src="item.preview" />
+              <ion-img :src="item.preview" class="w-full h-full" />
             </square-container>
-            <span
-              class="font-helvetica-medium text-black text-16 spacing-5 line-28"
-            >
-              {{ item.name }}
-            </span>
+            <div class="flex flex-col justify-between items-start">
+              <span
+                class="font-helvetica-medium text-dark-grey text-16 spacing-5 line-28"
+              >
+                {{ item.name }}
+              </span>
+              <span class="font-helvetica text-grey text-14 spacing-44 line-24">
+                {{ item.country }}
+              </span>
+            </div>
           </div>
         </div>
       </ion-list>
@@ -280,7 +293,7 @@ export default {
 
   methods: {
     saveEvent () {
-      window.open(this.course.save_event)
+      window.open(this.course.save_outlook.link)
     }
   }
 }

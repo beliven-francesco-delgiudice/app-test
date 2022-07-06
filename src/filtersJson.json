@@ -19,6 +19,11 @@
     "placeholder": "Select cat.",
     "name": "category"
   },
+  "category": {
+    "span": "Category",
+    "placeholder": "Select cat.",
+    "name": "category"
+  },
   "faculties": {
     "span": "Faculty",
     "placeholder": "Select faculty",
@@ -34,7 +39,17 @@
     "placeholder": "Select month",
     "name": "month"
   },
+  "month": {
+    "span": "Month",
+    "placeholder": "Select month",
+    "name": "month"
+  },
   "years": {
+    "span": "Year",
+    "placeholder": "Select year",
+    "name": "year"
+  },
+  "year": {
     "span": "Year",
     "placeholder": "Select year",
     "name": "year"
@@ -49,9 +64,29 @@
     "placeholder": "Select region",
     "name": "region"
   },
+  "segment": {
+    "span": "Segment",
+    "placeholder": "Select segment",
+    "name": "segment"
+  },
   "segments": {
     "span": "Segment",
     "placeholder": "Select segment",
     "name": "segment"
+  },
+  "language": {
+    "span": "Language",
+    "placeholder": "Select language",
+    "name": "language"
+  },
+  "typology": {
+    "span": "Typology",
+    "placeholder": "Select typology",
+    "name": "typology"
+  },
+  "speaker": {
+    "span": "Speaker",
+    "placeholder": "Select speaker",
+    "name": "speaker"
   }
 }

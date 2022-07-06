@@ -5,27 +5,28 @@
         class="inline-block font-helvetica-medium text-12 py-1 px-2 rounded-6 text-white mr-2 whitespace-nowrap  spacing-34 line-18"
         :class="bgColor"
       >
-        {{ typeName }}
+        {{ categoryName }}
       </span>
       <span
+        v-if="instance.typology"
         class="inline-block font-helvetica-medium text-12 py-1 px-2 rounded-6 border border-grey text-grey whitespace-nowrap spacing-34 line-18"
       >
-        {{ instance.category }}
+        {{ instance.typology }}
       </span>
     </div>
 
     <span
-      class="block font-helvetica-medium text-black mb-2 text-16 spacing-22 line-24"
+      class="block font-helvetica-medium text-black text-16 spacing-22 line-24"
     >
       {{ instance.title }}
     </span>
     <span
-      v-if="instance.location && instance.location.length"
-      class="block font-helvetica text-grey mb-2 text-14 spacing-44 line-24"
+      v-if="instance.subtitle && instance.subtitle.length"
+      class="block font-helvetica text-grey mt-2 text-14 spacing-44 line-24"
     >
-      {{ instance.location }}
+      {{ instance.subtitle }}
     </span>
-    <div v-if="instance.date && instance.date.length" class="mr-auto mb-2">
+    <div v-if="instance.date && instance.date.length" class="mr-auto mt-2">
       <span
         class="block font-helvetica-medium bg-light-red py-1 px-2 text-red text-12 spacing-34 line-18"
       >
@@ -33,46 +34,44 @@
       </span>
     </div>
     <div class="flex no-wrap overflow-hidden">
-      <div v-if="instance.lang" class="flex no-wrap py-2 pr-2">
+      <div v-if="instance.language" class="flex no-wrap py-4 pr-2">
         <square-container
-          v-for="lang in instance.lang"
-          classes="bg-white elevated-shadow flex"
-          :key="lang"
+          classes="bg-white course-card-internal-shadow flex"
           :squareSize="24"
         >
           <span class="uppercase text-grey text-10 m-auto">
-            {{ lang }}
+            {{ instance.language }}
           </span>
         </square-container>
       </div>
       <div
-        v-if="instance.lang"
-        class="border-l border-grey py-1"
+        v-if="instance.language"
+        class="border-l border-grey my-2"
         style="width:1px;"
       ></div>
-      <div v-if="instance.segments" class="flex no-wrap py-2 px-2">
+      <div v-if="instance.segment" class="flex no-wrap py-4 px-2">
         <square-container
-          v-for="segment in instance.segments"
-          classes="bg-white elevated-shadow overflow-hidden"
+          v-for="segment in instance.segment"
+          classes="bg-white course-card-internal-shadow overflow-hidden"
           :key="segment.id"
           :squareSize="24"
         >
-          <img :src="segment.img" class="w-full h-full" />
+          <img :src="segment.image" class="w-full h-full" />
         </square-container>
       </div>
       <div
-        v-if="instance.speakers"
-        class="border-l border-grey py-1"
+        v-if="instance.segment && instance.speakers && instance.speakers.length"
+        class="border-l border-grey my-2"
         style="width:1px;"
       ></div>
-      <div v-if="instance.speakers" class="flex no-wrap py-2 px-2">
+      <div v-if="instance.speakers" class="flex no-wrap py-4 px-2">
         <square-container
           v-for="speaker in instance.speakers"
-          classes="bg-white elevated-shadow overflow-hidden"
+          classes="bg-white course-card-internal-shadow overflow-hidden mr-2"
           :key="speaker"
           :squareSize="24"
         >
-          <img :src="speaker.img" class="w-full h-full" />
+          <img :src="speaker.image" class="w-full h-full" />
         </square-container>
       </div>
     </div>
@@ -97,13 +96,13 @@ export default {
 
   computed: {
     bgColor () {
-      if (this.instance && this.instance.type) {
-        switch (this.instance.type) {
-          case 1:
+      if (this.instance && this.instance.category) {
+        switch (this.instance.category.class) {
+          case 'course':
             return 'bg-orange'
-          case 2:
+          case 'online':
             return 'bg-green'
-          case 3:
+          case 'third':
             return 'bg-cyan'
           default:
             return 'bg-light-grey'
@@ -112,14 +111,14 @@ export default {
       return 'bg-light-grey'
     },
 
-    typeName () {
-      if (this.instance && this.instance.type) {
-        switch (this.instance.type) {
-          case 1:
+    categoryName () {
+      if (this.instance && this.instance.category) {
+        switch (this.instance.category.class) {
+          case 'course':
             return 'Course'
-          case 2:
+          case 'online':
             return 'Online course'
-          case 3:
+          case 'third':
             return '3rd-Party event'
           default:
             return 'Other'

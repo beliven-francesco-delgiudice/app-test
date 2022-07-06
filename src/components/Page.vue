@@ -81,6 +81,21 @@
         />
       </shadow-button>
 
+      <!-- Support button -->
+      <shadow-button
+        square
+        styles="position:relative;"
+        bgClass="my-auto bg-white ml-auto"
+        v-if="share"
+        @onClick="openSupport"
+        @click="openSupport"
+      >
+        <ion-img
+          src="/assets/button-icons/share.svg"
+          className="width-24 height-24 pointer-events-none m-auto"
+        />
+      </shadow-button>
+
       <!-- Filters button -->
       <shadow-button
         square
@@ -95,6 +110,13 @@
         />
       </shadow-button>
     </div>
+    <div :class="withMargin ? '' : 'px-8'" v-if="aboveTitle">
+      <slot name="above-title">
+        <span class="font-helvetica text-14 text-grey spacing-44 line-24">
+          {{ aboveTitle }}
+        </span>
+      </slot>
+    </div>
     <Title
       v-if="label"
       :titleClass="[
@@ -102,15 +124,6 @@
         'pb-4 text-black font-helvetica-bold text-28 block'
       ]"
     >
-      <span
-        v-if="aboveTitle"
-        class="font-helvetica text-14 text-grey spacing-44 line-24 pb-2"
-      >
-        <slot name="above-title">
-          {{ aboveTitle }}
-        </slot>
-      </span>
-      <br />
       {{ label }}
     </Title>
     <slot></slot>
@@ -169,6 +182,10 @@ export default {
 
     mail: {
       type: String
+    },
+
+    share: {
+      type: Object
     },
 
     filters: {

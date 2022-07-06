@@ -656,6 +656,9 @@
 .elevated-shadow {
   box-shadow: 0 10px 25px 0 rgba(106,115,119,0.15);
 }
+.course-card-internal-shadow {
+  box-shadow: 0px 5px 14px rgba(106,115,119, 0.15);
+}
 .top-shadow {
   box-shadow: 0 -10px 25px 0 rgba(106,115,119,0.15);
 }
