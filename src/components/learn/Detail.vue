@@ -245,8 +245,11 @@
     </detail-section>
 
     <!-- documents -->
-    <detail-section v-if="course.files && course.files" label="Images">
-      <div class="flex flex-col pt-8">
+    <detail-section
+      v-if="course.files && course.files.length"
+      label="Documents"
+    >
+      <div class="mx-8 flex flex-col pt-8">
         <div class="mb-4" v-for="(doc, i) in course.files" :key="i">
           <document-list-item
             type="my"
