@@ -2,7 +2,7 @@
   <div class="flex flex-col">
     <!-- info -->
     <div class="mx-8 my-4 flex flex-col">
-      <div class="mb-4 flex no-wrap">
+      <div class="mb-2 flex no-wrap">
         <div class="w-1/2">
           <span
             class="block font-helvetica text-14 spacing-44 line-20 text-grey"
@@ -59,6 +59,9 @@
         </div>
       </div>
     </div>
+    <div v-if="videoGallery && videoGallery.length" class="mb-8">
+      <video-gallery :gallery="videoGallery" />
+    </div>
     <!-- time -->
     <div
       v-if="course.save_outlook"
@@ -108,6 +111,7 @@
     <div class="mx-8 mt-4">
       <ion-list class="bg-transparent">
         <div
+          v-if="course.show_register"
           class=" flex flex-row justify-between items-center bg-transparent py-2"
           @click="$emit('register')"
         >
@@ -127,6 +131,7 @@
         <div
           v-if="course.evenium"
           class=" flex flex-row justify-between items-center bg-transparent py-2"
+          @click="openLink"
         >
           <div class="flex flex-start items-center pointer-events-none">
             <square-container
@@ -200,7 +205,7 @@
       <ion-list class="bg-transparent pb-0 mb-0">
         <div
           class="flex flex-row justify-between items-center bg-transparent mb-4"
-          v-for="(item, i) in course.speakers"
+          v-for="(item, i) in speakersArray"
           :key="i"
         >
           <div
@@ -227,14 +232,16 @@
           </div>
         </div>
       </ion-list>
+      <div v-if="showViewAll" class="mx-8 mt-2 flex justify-start">
+        <section-button
+          :label="isViewAll ? 'View less' : 'View all'"
+          @onClick="isViewAll = !isViewAll"
+        />
+      </div>
     </detail-section>
     <!-- images -->
     <detail-section v-if="imageGallery && imageGallery.length" label="Images">
       <image-gallery :gallery="imageGallery" />
-    </detail-section>
-    <!-- videos -->
-    <detail-section v-if="videoGallery && videoGallery.length" label="Videos">
-      <video-gallery :gallery="videoGallery" />
     </detail-section>
   </div>
 </template>
@@ -270,7 +277,8 @@ export default {
 
   data () {
     return {
-      isReadMore: false
+      isReadMore: false,
+      isViewAll: false
     }
   },
 
@@ -282,9 +290,21 @@ export default {
       return ''
     },
 
+    showViewAll () {
+      return this.course.speakers && this.course.speakers.length > 3
+    },
+
+    speakersArray () {
+      if (this.showViewAll && !this.isViewAll) {
+        return this.course.speakers.slice(0, 3)
+      }
+      return this.course.speakers || []
+    },
+
     imageGallery () {
       return this.course.images || []
     },
+
     videoGallery () {
       return this.course.videos || []
     }
@@ -293,6 +313,10 @@ export default {
   methods: {
     saveEvent () {
       window.open(this.course.save_outlook.link)
+    },
+
+    openLink () {
+      window.open(this.course.evenium)
     }
   }
 }
