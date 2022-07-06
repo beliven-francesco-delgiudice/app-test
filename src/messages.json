@@ -1,9 +1,8 @@
 {
-  "loginSuccessful": "Login successful",
+  "loginSuccessful": "Ruccessful login!",
   "messageSent": "Reply sent",
   "recoverMailSent": "Recover mail sent successfully",
-  "newPasswordSet": "New password set",
-  "userAdded": "User added to team",
+  "learnRegisterSuccessful": "You have been registered to the course",
   "errors": {
     "checkEmail": "An error occurred while checking the email domain. Retry later",
     "cannotLogin": "Login failed",
@@ -41,7 +40,7 @@
 
     "learn": "An error occurred while retrieving the courses",
     "learnDetail": "An error occurred while retrieving the course information",
-
+    "learnRegister": "An error occurred while registering",
 
     "documents": "An error occurred while retrieving the documents. Retry later",
     "folderDetail": "An error occurred while retrieving the folder",
