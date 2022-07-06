@@ -7,8 +7,7 @@
       style="z-index: 10;"
     ></div>
     <form
-      class="relative z-10 bg-white rounded-8 p-6 mx-auto "
-      style="min-width:300px; max-width:300px"
+      class="relative z-10 bg-white rounded-8 p-6 mx-auto dialog-width"
       @submit="saveName"
     >
       <span
@@ -23,7 +22,7 @@
         required
         type="email"
         placeholder="Search or add email"
-        class="font-helvetica text-16 spacing-5 line-28 text-black my-2"
+        class="input-filled font-helvetica text-16 spacing-5 line-28 text-black my-2"
         v-model="email"
       ></ion-input>
 

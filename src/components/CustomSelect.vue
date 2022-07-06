@@ -1,46 +1,76 @@
 <template>
-  <ion-select
-    interface="action-sheet"
-    class="custom-select"
-    cssClass="custom-select-sheet"
-    :value="selectValue"
-    :name="name"
-    :disabled="isDisabled"
-    :placeholder="placeholder"
-    @ionChange="onChange"
-  >
-    <ion-select-option
-      v-for="(option, i) in selectOptions"
-      :key="i"
-      :value="option.value"
+  <div class="select-wrapper" :class="classes">
+    <ion-select
+      interface="action-sheet"
+      class="custom-select"
+      cssClass="custom-select-sheet"
+      :name="name"
+      :value="selectValue"
+      :disabled="isDisabled"
+      :placeholder="placeholder"
+      @ionChange="onChange"
     >
-      {{ option.label }}
-    </ion-select-option>
-  </ion-select>
+      <ion-select-option
+        v-for="(option, i) in selectOptions"
+        :key="i"
+        :value="option.value"
+      >
+        {{ option.label }}
+      </ion-select-option>
+    </ion-select>
+  </div>
 </template>
+
 <script>
 import { IonSelect, IonSelectOption } from '@ionic/vue'
+
 export default {
-  props: {
-    name: String,
-    placeholder: String,
-    disabled: Boolean,
-    options: Array,
-    value: [String, Number, Object]
-  },
   components: {
     IonSelect,
     IonSelectOption
   },
+
+  props: {
+    name: {
+      type: String
+    },
+
+    classes: {
+      type: String
+    },
+
+    placeholder: {
+      type: String
+    },
+
+    disabled: {
+      type: Boolean
+    },
+
+    options: {
+      type: Array
+    },
+
+    value: {
+      type: [String, Number, Object]
+    },
+
+    filled: {
+      type: Boolean
+    }
+  },
+
   data () {
     return {
       selectValue: this.value
     }
   },
+
   computed: {
     isDisabled () {
       return this.disabled || false
     },
+
     selectOptions () {
       return this.options.map(opt => ({
         value: opt.value || opt.id,
@@ -48,11 +78,13 @@ export default {
       }))
     }
   },
+
   methods: {
     onChange (e) {
       this.$emit('onChange', e.target.value)
     }
   },
+
   watch: {
     value: function (newValue) {
       if (this.selectValue !== newValue) {
@@ -62,12 +94,13 @@ export default {
   }
 }
 </script>
+
 <style>
 .custom-select {
   --color: #1c1c1b;
   color: #1c1c1b;
   font-family: 'Helvetica Neue', sans-serif;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: 0.5px;
   line-height: 28px;
 }

@@ -1,5 +1,7 @@
 <template>
-  <div class="flex flex-col rounded-12 w-full p-6 elevated-shadow bg-white">
+  <div
+    class="flex flex-col rounded-12 w-full p-6 pb-4 elevated-shadow bg-white"
+  >
     <div class="flex no-wrap mb-2 overflow-hidden">
       <span
         class="inline-block font-helvetica-medium text-12 py-1 px-2 rounded-6 text-white mr-2 whitespace-nowrap  spacing-34 line-18"

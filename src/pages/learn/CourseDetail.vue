@@ -36,6 +36,12 @@
       :course="course"
       @register="onRegister"
     />
+    <register-modal
+      :course="course"
+      :open="isRegisterOpened"
+      :selected-day="selectedDay"
+      @onClose="onClose"
+    />
   </Page>
 </template>
 
@@ -44,6 +50,7 @@ import Page from '../../components/Page.vue'
 import Carousel from '../../components/Carousel.vue'
 import Detail from '../../components/learn/Detail.vue'
 import Agenda from '../../components/learn/Agenda.vue'
+import RegisterModal from '../../components/learn/RegisterModal.vue'
 import SectionButton from '../../components/containers/SectionButton.vue'
 import urls from '@/urls'
 import messages from '@/messages'
@@ -54,6 +61,7 @@ export default {
     Detail,
     Agenda,
     Carousel,
+    RegisterModal,
     SectionButton
   },
 
@@ -67,7 +75,9 @@ export default {
           label: 'Agenda',
           path: 'agenda'
         }
-      ]
+      ],
+      selectedDay: null,
+      isRegisterOpened: false
     }
   },
 
@@ -118,6 +128,19 @@ export default {
         }
       }
       return 'bg-light-grey'
+    },
+
+    shareObject () {
+      return {
+        title: this.course.title,
+        text:
+          this.course.description || this.course.category
+            ? this.course.category.class
+            : '',
+        url:
+          'https://limacorporate.com/it/professionisti-sanitari/meded_courses.html',
+        dialogTitle: 'Share course'
+      }
     }
   },
 
@@ -154,9 +177,13 @@ export default {
   },
 
   methods: {
-    onRegister (id) {
-      // TODO show modal
-      console.log(id)
+    onRegister (day) {
+      this.selectedDay = day
+      this.isRegisterOpened = true
+    },
+
+    onClose () {
+      this.isRegisterOpened = false
     },
 
     routeToSection (value) {

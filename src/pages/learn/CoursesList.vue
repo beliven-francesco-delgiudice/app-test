@@ -8,7 +8,7 @@
   >
     <ion-list class="bg-transparent">
       <div
-        class="flex flex-row justify-between items-center bg-transparent pb-4 mb-4"
+        class="flex flex-row justify-between items-center bg-transparent pb-4 mb-2"
         v-for="(course, i) in list"
         :key="i"
         @click="routeTo(course)"

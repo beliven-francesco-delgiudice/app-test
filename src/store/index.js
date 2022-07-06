@@ -18,13 +18,14 @@ const master = {
       congresses: [],
       news: []
     },
+    messages: [],
     documents: {},
     notifications: [],
     appUpdates: null,
-    notificationToShow: null,
-    need_accept_terms: null,
     onboarding: null,
-    messages: []
+    isModalOpen: false,
+    notificationToShow: null,
+    need_accept_terms: null
   },
   mutations: {
     setUserData (store, userData) {
@@ -79,6 +80,10 @@ const master = {
 
     setDocuments (store, docs) {
       store.documents = docs
+    },
+
+    setModalOpen (store, flag) {
+      store.isModalOpen = flag
     },
 
     // Android does not need any check for notifications, are allowed by default

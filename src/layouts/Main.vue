@@ -63,7 +63,7 @@
         <router-view />
       </div>
     </ion-content>
-    <Tabs />
+    <Tabs v-if="modalNotOpen" />
   </ion-page>
 </template>
 
@@ -104,6 +104,9 @@ export default {
     },
     refreshAction () {
       return this.$route.meta.refreshAction || false
+    },
+    modalNotOpen () {
+      return !this.$store.state.isModalOpen
     }
   },
   components: {

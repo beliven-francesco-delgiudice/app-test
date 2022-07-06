@@ -54,7 +54,7 @@
             v-if="course.show_register"
             bgClass="bg-black mt-4"
             label="Register to this course"
-            @onClick="$emit('register', item.id)"
+            @onClick="$emit('register', item)"
           />
         </div>
         <p

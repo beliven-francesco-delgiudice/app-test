@@ -81,17 +81,17 @@
         />
       </shadow-button>
 
-      <!-- Support button -->
+      <!-- Share button -->
       <shadow-button
         square
         styles="position:relative;"
         bgClass="my-auto bg-white ml-auto"
         v-if="share"
-        @onClick="openSupport"
-        @click="openSupport"
+        @onClick="onShare"
+        @click="onShare"
       >
         <ion-img
-          src="/assets/button-icons/share.svg"
+          src="/assets/button-icons/share-black.svg"
           className="width-24 height-24 pointer-events-none m-auto"
         />
       </shadow-button>
@@ -244,6 +244,15 @@ export default {
         this.$router.back()
       }
       // this.$router.push('/home')
+    },
+
+    onShare () {
+      console.log(this.share)
+      try {
+        this.$share.share(this.share)
+      } catch (err) {
+        console.log(err)
+      }
     },
 
     routeToWizard () {

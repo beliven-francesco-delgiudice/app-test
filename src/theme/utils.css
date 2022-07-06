@@ -144,3 +144,54 @@ ion-slides {
 ion-select {
   width: 100%;
 }
+
+.dialog-width {
+  min-width: 90vw;
+  max-width: 90vw;
+}
+@media screen and (min-width:1024px) {
+  .dialog-width {
+    min-width: 90%;
+    max-width: 90%;
+  }
+}
+
+.custom-select {
+  padding-top: var(--padding-top);
+  padding-bottom: var(--padding-bottom);
+}
+
+.input-filled {
+  background-color: #F5F4F4;
+  border-radius: 8px;
+  padding-left: 0.5rem !important;
+  height: 48px;
+}
+.input-filled.select-wrapper {
+  padding-right: 0.5rem !important;
+}
+
+.input-filled > .custom-select {
+  height: 100%;
+}
+
+.checkbox > .square {
+  border: 1px solid #D4D3D4;
+}
+
+.checkbox.selected > .square {
+  border: none;
+  background-color: #1C1C1B;
+  position: relative;
+}
+
+.checkbox > .square > .check {
+  opacity: 0;
+  width: 80%;
+  margin:auto;
+  transition: opacity 0.2s ease-in;
+}
+
+.checkbox.selected > .square > .check {
+  opacity: 1;
+}

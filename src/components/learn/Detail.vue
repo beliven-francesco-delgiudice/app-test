@@ -108,7 +108,6 @@
     <div class="mx-8 mt-4">
       <ion-list class="bg-transparent">
         <div
-          v-if="course.show_register"
           class=" flex flex-row justify-between items-center bg-transparent py-2"
           @click="$emit('register')"
         >
@@ -138,7 +137,7 @@
               <ion-img src="/assets/button-icons/evenium-black.svg" />
             </square-container>
             <span class="font-helvetica-medium text-black text-16">
-              Slot available on Evenium
+              Registration open on Evenium Platform
             </span>
           </div>
         </div>

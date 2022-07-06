@@ -1,5 +1,5 @@
 <template>
-  <Page withMargin label="Privacy Policy" back="/menu">
+  <Page withMargin label="Privacy Policy" back>
     <p
       class="font-helvetica text-mid-dark-grey text-16 spacing-1 line-24 mb-4"
       v-html="formattedPrivacy"

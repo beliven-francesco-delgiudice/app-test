@@ -8,7 +8,7 @@
 export default {
   props: {
     bgClass: String,
-    squareSize: String,
+    squareSize: [String, Number],
     rounded: String,
     classes: [String, Array],
     styles: [String, Array]
