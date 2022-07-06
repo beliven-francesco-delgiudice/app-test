@@ -28,7 +28,8 @@
     "activity": "/training/activity"
   },
   "learn": {
-    "list":"/learn"
+    "list":"/learn",
+    "register": "/learn/register"
   },
   "documents": {
     "list": "/documents",
