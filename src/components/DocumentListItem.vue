@@ -52,7 +52,7 @@
     <div
       v-if="documentActions && documentActions.length"
       @click="openDocumentMenu"
-      class="height-44 w-44 flex pl-4"
+      class="height-44 w-44 flex pl-4 cursor-pointer"
     >
       <ion-img
         src="/assets/button-icons/threedots.svg"

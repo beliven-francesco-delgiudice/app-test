@@ -1,5 +1,5 @@
 <template>
-  <div class="relative">
+  <div class="relative cursor-grab">
     <ion-scroll
       overflow-scroll="false"
       direction="x"

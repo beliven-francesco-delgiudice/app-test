@@ -4,6 +4,7 @@
     :disabled="isDisabled"
     :class="[
       bgClass || 'bg-black',
+      isDisabled || 'cursor-pointer',
       'small-shadow rounded-12 flex justify-center items-center height-56 w-full normal-case'
     ]"
     :style="styles || ''"

@@ -28,6 +28,10 @@ p {
   left: -1rem;
 }
 
+ion-button {
+  cursor: pointer;
+}
+
 .transparent-button {
   --background: transparent;
   --background-activated: transparent;

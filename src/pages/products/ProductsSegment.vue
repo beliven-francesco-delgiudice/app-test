@@ -2,7 +2,7 @@
   <Page back="/products" :label="updatedSegment.category_name">
     <ion-list class="bg-transparent">
       <div
-        class="flex flex-row justify-between items-center bg-transparent pb-4 mb-4"
+        class="flex flex-row justify-between items-center bg-transparent pb-4 mb-4 cursor-pointer"
         v-for="(item, i) in updatedSegment.categories"
         :key="i"
         @click="routeTo(item)"

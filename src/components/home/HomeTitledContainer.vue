@@ -2,11 +2,14 @@
   <div :class="divClass">
     <div
       @click="routeToPath"
-      :class="[headClass, 'px-8 flex justify-between items-center pb-4']"
+      :class="[
+        headClass,
+        'px-8 flex justify-between items-center cursor-pointer pb-4'
+      ]"
     >
-      <span :class="[titleClass, 'font-helvetica-bold text-black text-20']">{{
-        label
-      }}</span>
+      <span :class="[titleClass, 'font-helvetica-bold text-black text-20']">
+        {{ label }}
+      </span>
       <ion-img
         src="/assets/button-icons/forward.svg"
         className="width-12 height-12 pointer-events-none"

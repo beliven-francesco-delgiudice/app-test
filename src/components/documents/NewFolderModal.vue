@@ -19,7 +19,7 @@
         type="text"
         placeholder="Untitled folder"
         v-model="name"
-        class="font-helvetica text-16 spacing-5 line-28 text-black mt-2 mb-4 pb-4 border-grey border-b"
+        class="input-filled font-helvetica text-16 spacing-5 line-28 text-black mt-2 mb-4 pb-4"
         required
       ></ion-input>
       <div class="mt-2 w-full flex justify-end items-center">

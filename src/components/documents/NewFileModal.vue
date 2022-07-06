@@ -19,10 +19,10 @@
         type="text"
         placeholder="Untitled file"
         v-model="name"
-        class="font-helvetica text-16 spacing-5 line-28 text-black mt-2 pb-4"
+        class="input-filled font-helvetica text-16 spacing-5 line-28 text-black pb-4 mt-4"
       ></ion-input>
       <div
-        class="relative w-full bg-white border-2 border-dashed border-grey rounded-8 flex flex-col justify-center items-center mt-2 mb-8 py-4 px-2"
+        class="relative w-full bg-white border-2 border-dashed border-grey rounded-8 flex flex-col justify-center items-center my-4 py-8 px-2"
       >
         <ion-input
           id="fileInput"
@@ -47,7 +47,7 @@
       <div class="mt-2 w-full flex justify-end items-center">
         <div
           class="bg-white
-            rounded-12 flex justify-center items-center height-56 w-auto px-2 ml-auto normal-case mr-4 shadow-none
+            rounded-12 flex justify-center items-center height-56 w-auto px-2 ml-auto normal-case mr-4 shadow-none cursor-pointer
           "
           @click="cancel"
         >
@@ -60,7 +60,7 @@
           :disabled="!file"
           type="submit"
           class="bg-black
-            rounded-12 flex justify-center items-center height-56 w-auto normal-case px-2'
+            rounded-12 flex justify-center items-center height-56 w-auto normal-case px-2 cursor-pointer'
           "
         >
           <span
