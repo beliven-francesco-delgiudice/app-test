@@ -83,19 +83,18 @@ export default {
         {
           name: 'L.E.A.R.N.',
           href: '/learn',
-          img: 'meded.svg',
-          disabled: true
+          img: 'meded.svg'
         },
         {
           name: 'Congresses',
           href: '/congresses',
           img: 'congresses.svg'
         },
-        // {
-        //   name: 'Sales Training',
-        //   href: '/training',
-        //   img: 'sales-training.svg'
-        // },
+        {
+          name: 'Sales Training',
+          href: '/training',
+          img: 'sales-training.svg'
+        },
         {
           name: 'News',
           href: '/news',
