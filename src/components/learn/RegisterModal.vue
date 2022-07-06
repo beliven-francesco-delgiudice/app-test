@@ -178,8 +178,10 @@ import Title from '../Title.vue'
 import CustomSelect from '../CustomSelect.vue'
 import CustomCheckbox from '../CustomCheckbox.vue'
 import BigButton from '../containers/BigButton.vue'
-import { IonImg, IonButton, IonInput } from '@ionic/vue'
+import urls from '@/urls'
+import messages from '@/messages'
 import { Capacitor } from '@capacitor/core'
+import { IonImg, IonButton, IonInput } from '@ionic/vue'
 
 export default {
   components: {
@@ -248,13 +250,6 @@ export default {
     },
 
     canSubmitForm () {
-      console.log(
-        this.form.days,
-        this.form.name,
-        this.form.email,
-        this.privacy,
-        this.audio
-      )
       return (
         this.form.days &&
         this.form.days.length &&
@@ -277,9 +272,31 @@ export default {
       this.$emit('onClose')
     },
 
-    onSubmit (e) {
+    async onSubmit (e) {
       e.preventDefault()
-      console.log(this.form)
+      const payload = {
+        ...this.form,
+        id: this.course
+      }
+      try {
+        const saveResult = await this.$http({
+          method: 'POST',
+          url: urls.learn.register,
+          data: payload
+        })
+        console.debug(saveResult)
+        this.$toast({
+          message: messages.learnRegisterSuccessful,
+          color: 'dark'
+        })
+        this.close()
+      } catch (e) {
+        console.error(e)
+        this.$toast({
+          message: messages.errors.learnRegister,
+          color: 'danger'
+        })
+      }
     },
 
     selectDay (day) {
