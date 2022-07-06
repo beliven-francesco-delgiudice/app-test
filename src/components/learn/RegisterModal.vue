@@ -46,7 +46,7 @@
                     ? 'bg-white course-card-internal-shadow selected'
                     : 'bg-light-grey'
                 "
-                class="mr-2 mb-2 px-4 py-2 rounded-8 flex no-wrap items-center checkbox"
+                class="mr-2 mb-2 px-4 py-2 rounded-8 flex no-wrap items-center checkbox cursor-pointer"
                 @click="selectDay(day)"
               >
                 <div
@@ -276,7 +276,7 @@ export default {
       e.preventDefault()
       const payload = {
         ...this.form,
-        id: this.course
+        id: this.course.id
       }
       try {
         const saveResult = await this.$http({
@@ -319,6 +319,9 @@ export default {
     open: function (newValue) {
       this.$store.commit('setModalOpen', newValue)
       this.isOpened = newValue
+      if (newValue && this.selectedDay && this.selectedDay.date_value) {
+        this.form.days = [this.selectedDay.date_value]
+      }
     }
   }
 }
