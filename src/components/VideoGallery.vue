@@ -34,15 +34,18 @@
 import Carousel from './Carousel.vue'
 import { IonImg } from '@ionic/vue'
 import VideoModal from './modals/VideoModal.vue'
+
 export default {
   components: {
     Carousel,
     IonImg,
     VideoModal
   },
+
   props: {
     gallery: Array
   },
+
   data () {
     return {
       video: null,
