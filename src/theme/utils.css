@@ -20,6 +20,10 @@ p {
   display: none !important;
 }
 
+.big-button .button-native {
+  background: inherit !important;
+}
+
 .back-button {
   --background: transparent;
   --background-activated: transparent;

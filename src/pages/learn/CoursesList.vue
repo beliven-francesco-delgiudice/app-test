@@ -1,6 +1,6 @@
 <template>
   <Page
-    back="/menu"
+    back="/learn"
     label="Learn"
     :filters="filters"
     :filtersOptions="filtersOptions"

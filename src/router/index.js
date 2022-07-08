@@ -45,6 +45,7 @@ import ActivityDetail from '../pages/congresses/ActivityDetail.vue'
 import SalesTrainingIndex from '../pages/training/SalesTraining.vue'
 import SalesTrainingDetail from '../pages/training/SalesTrainingDetail.vue'
 
+import Learn from '../pages/learn/LearnIndex.vue'
 import CoursesList from '../pages/learn/CoursesList.vue'
 import CourseDetail from '../pages/learn/CourseDetail.vue'
 
@@ -385,9 +386,15 @@ const routes = [
       },
       // courses list
       {
-        path: '',
+        path: '/learn/list',
         name: 'Course List',
         component: CoursesList
+      },
+      // landing
+      {
+        path: '/learn',
+        name: 'Learn Landing',
+        component: Learn
       }
     ]
   },
