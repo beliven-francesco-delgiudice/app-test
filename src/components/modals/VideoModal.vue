@@ -38,35 +38,55 @@
     </div>
   </ion-modal>
 </template>
+
 <script>
 import { IonImg, IonModal } from '@ionic/vue'
+
 export default {
   components: {
     IonImg,
     IonModal
   },
+
   props: {
-    open: Boolean,
-    video: Object
+    open: {
+      type: Boolean
+    },
+
+    video: {
+      type: Object
+    },
+
+    direct: {
+      type: Boolean,
+      default: false
+    }
   },
+
   data () {
     return {
       isOpened: false
     }
   },
+
   methods: {
     closeVideo () {
       this.$emit('onClose')
     }
   },
+
   computed: {
     videoEmbedUrl () {
-      const url = this.video.url
-      const urlCodeArray = url.split('/')
-      const code = urlCodeArray[urlCodeArray.length - 1]
-      return 'https://www.youtube.com/embed/' + code
+      if (!this.direct) {
+        const url = this.video.url
+        const urlCodeArray = url.split('/')
+        const code = urlCodeArray[urlCodeArray.length - 1]
+        return 'https://www.youtube.com/embed/' + code
+      }
+      return this.video.url
     }
   },
+
   watch: {
     open: function (newValue) {
       this.isOpened = newValue
