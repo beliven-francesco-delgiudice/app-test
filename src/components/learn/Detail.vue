@@ -102,7 +102,7 @@
 
       <big-button
         v-if="course.save_outlook && course.save_outlook.link"
-        bgClass="bg-black mt-4"
+        bgClass="mt-4"
         label="Save in calendar"
         @onClick="saveEvent()"
       />

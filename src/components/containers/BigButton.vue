@@ -5,7 +5,7 @@
     :class="[
       bgClass || 'bg-black',
       isDisabled || 'cursor-pointer',
-      'small-shadow rounded-12 flex justify-center items-center height-56 w-full normal-case'
+      'big-button small-shadow rounded-12 flex justify-center items-center height-56 w-full normal-case'
     ]"
     :style="styles || ''"
     @click="emitClick"
@@ -18,26 +18,47 @@
     <slot></slot>
   </ion-button>
 </template>
+
 <script>
 import { IonButton } from '@ionic/vue'
+
 export default {
   emits: ['onClick'],
   components: {
     IonButton
   },
   props: {
-    bgClass: String,
-    styles: String,
-    square: Boolean,
-    disabled: Boolean,
-    type: String,
-    label: String
+    bgClass: {
+      type: String
+    },
+
+    styles: {
+      type: String
+    },
+
+    square: {
+      type: Boolean
+    },
+
+    disabled: {
+      type: Boolean
+    },
+
+    type: {
+      type: String
+    },
+
+    label: {
+      type: String
+    }
   },
+
   computed: {
     isDisabled () {
       return this.disabled
     }
   },
+
   methods: {
     emitClick () {
       this.$emit('onClick')

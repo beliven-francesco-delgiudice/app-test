@@ -35,7 +35,7 @@
         <div
           class="flex justify-between items-center w-full pointer-events-none mt-4"
         >
-          <big-button bgClass="bg-black " label="Read more" />
+          <big-button label="Read more" />
         </div>
       </div>
     </template>

@@ -28,11 +28,7 @@
             style="visibility:visible; width:14px; height:14px;"
           />
         </ion-button>
-        <big-button
-          bgClass="bg-black"
-          :label="buttonLabel"
-          @onClick="buttonClick"
-        />
+        <big-button :label="buttonLabel" @onClick="buttonClick" />
         <ion-button
           type="button"
           class="pointer-events-none opacity-0 ml-4 elevated-shadow"

@@ -35,7 +35,7 @@
             </span>
 
             <big-button
-              bgClass="bg-black mt-4 "
+              bgClass="mt-4 "
               label="Save in calendar"
               v-if="event.save_event && event.save_event.length"
               @onClick="saveEvent(event)"
