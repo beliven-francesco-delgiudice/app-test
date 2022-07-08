@@ -3,7 +3,7 @@
     :type="type || 'button'"
     :disabled="isDisabled"
     :class="[
-      bgClass || 'bg-black',
+      bgClass,
       isDisabled || 'cursor-pointer',
       'big-button small-shadow rounded-12 flex justify-center items-center height-56 w-full normal-case'
     ]"
@@ -24,9 +24,11 @@ import { IonButton } from '@ionic/vue'
 
 export default {
   emits: ['onClick'],
+
   components: {
     IonButton
   },
+
   props: {
     bgClass: {
       type: String
