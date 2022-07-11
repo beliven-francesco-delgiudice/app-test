@@ -12,6 +12,22 @@ p {
   margin-block-end: 0;
 }
 
+p.clamped b,
+p.clamped a,
+p.clamped ul,
+p.clamped ol {
+  display: inline-block;
+}
+
+p.clamped,
+p.clamped > p {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .ion-activated {
   --ripple-color: transparent;
 }
