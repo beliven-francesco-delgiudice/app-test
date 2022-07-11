@@ -5,12 +5,12 @@
       :key="i"
       :class="[
         i === 0 ? margin : '',
-        'bg-white rounded-12 relative mr-4 gallery-container overflow-hidden'
+        'bg-white rounded-12 relative mr-4 gallery-container overflow-hidden flex'
       ]"
     >
-      <ion-img
+      <img
         :src="image.image ? image.image : image.preview"
-        class="h-full w-auto pointer-events-none"
+        class="h-full w-auto pointer-events-none mx-auto"
       />
       <div
         v-if="gallery.length && gallery.length > 1"
@@ -18,8 +18,9 @@
       >
         <span
           class="font-helvetica-medium text-12 text-white spacing-38 line-24"
-          >{{ `${i + 1} / ${gallery.length}` }}</span
         >
+          {{ `${i + 1} / ${gallery.length}` }}
+        </span>
       </div>
     </div>
     <div>
@@ -35,32 +36,36 @@
 </template>
 <script>
 import Carousel from './Carousel.vue'
-import { IonImg } from '@ionic/vue'
 import ImageModal from './modals/ImageModal.vue'
+
 export default {
   components: {
     Carousel,
-    IonImg,
     ImageModal
   },
+
   props: {
     gallery: Array,
     initMargin: String,
     id: String
   },
+
   data () {
     return {
       isOpenImage: false,
       index: 0
     }
   },
+
   computed: {
     margin () {
       return this.initMargin || 'ml-8'
     },
+
     computedIndex () {
       return this.index
     },
+
     updatedGallery () {
       const array = this.gallery
         ? this.gallery.map(galleryItem => {
@@ -78,11 +83,13 @@ export default {
       return array
     }
   },
+
   methods: {
     openImage (i) {
       this.index = i
       this.isOpenImage = true
     },
+
     closeImage () {
       this.index = 0
       this.isOpenImage = false
@@ -90,6 +97,7 @@ export default {
   }
 }
 </script>
+
 <style scoped>
 .gallery-container {
   width: calc(100% - 4rem);
