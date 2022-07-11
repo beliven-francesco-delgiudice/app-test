@@ -1,6 +1,6 @@
 <template>
   <Page
-    :back="'/learn'"
+    :back="'/learn/list'"
     :share="shareObject"
     :aboveTitle="typeName"
     :customGradient="gradient"
