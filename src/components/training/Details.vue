@@ -49,7 +49,7 @@
       </div>
     </detail-section>
 
-    <detail-section label="Main Topics & Trainers">
+    <detail-section label="Main Topics">
       <image-gallery
         v-if="
           training.lima_booth &&
