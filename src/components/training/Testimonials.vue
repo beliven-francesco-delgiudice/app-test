@@ -17,8 +17,9 @@
       <div class="flex flex-col mx-16 mt-8 pt-8 relative z-10">
         <span
           class="font-helvetica-bold text-20 text-black spacing-2 line-28 mb-4"
-          >{{ msg.title }}</span
         >
+          {{ msg.title }}
+        </span>
         <p
           class="m-0 font-helvetica text-16 text-mid-dark-grey spacing-1 line-24"
           v-html="msg.description"
