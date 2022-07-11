@@ -83,7 +83,10 @@
         {{ training.text_over_website }}
       </span>
 
-      <div @click="openLink(training.website)" class="relative flex mt-2 mb-4">
+      <div
+        @click="openLink(training.website)"
+        class="relative flex items-center mt-2 mb-4"
+      >
         <square-container
           bgClass="bg-black"
           squareSize="44"
