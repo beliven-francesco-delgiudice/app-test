@@ -60,6 +60,7 @@
 import Page from '../components/Page.vue'
 import SquareContainer from '../components/containers/SquareContainer.vue'
 import { IonList, IonImg } from '@ionic/vue'
+
 export default {
   components: {
     Page,
@@ -67,6 +68,7 @@ export default {
     IonList,
     IonImg
   },
+
   data () {
     return {
       list: [
@@ -83,18 +85,19 @@ export default {
         {
           name: 'L.E.A.R.N.',
           href: '/learn',
-          img: 'meded.svg'
+          img: 'meded.svg',
+          disabled: true
         },
         {
           name: 'Congresses',
           href: '/congresses',
           img: 'congresses.svg'
         },
-        {
-          name: 'Sales Training',
-          href: '/training',
-          img: 'sales-training.svg'
-        },
+        // {
+        //   name: 'Sales Training',
+        //   href: '/training',
+        //   img: 'sales-training.svg'
+        // },
         {
           name: 'News',
           href: '/news',
@@ -134,6 +137,7 @@ export default {
       ]
     }
   },
+
   computed: {
     updatedList () {
       const newList = this.list.map(item => {
@@ -148,10 +152,12 @@ export default {
       return newList
     }
   },
+
   methods: {
     routeTo (href) {
       this.$router.push(href)
     },
+
     logout () {
       this.$store.dispatch('logout')
     }
