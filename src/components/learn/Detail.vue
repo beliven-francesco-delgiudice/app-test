@@ -108,7 +108,10 @@
       />
     </div>
     <!-- buttons -->
-    <div class="mx-8 mt-4">
+    <div
+      v-if="course.show_register || course.evenium || course.show_learn_contact"
+      class="mx-8 mt-4"
+    >
       <ion-list class="bg-transparent">
         <div
           v-if="course.show_register"
@@ -180,11 +183,7 @@
     >
       <p
         class="px-8 font-helvetica text-mid-dark-grey text-16 spacing-1 line-24 mb-4"
-        :style="
-          !isReadMore
-            ? 'display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;'
-            : ''
-        "
+        :class="isReadMore || 'clamped'"
         v-html="formattedDescription"
       />
       <div
