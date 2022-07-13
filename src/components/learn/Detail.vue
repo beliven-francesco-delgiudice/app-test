@@ -60,7 +60,7 @@
       </div>
     </div>
     <div v-if="videoGallery && videoGallery.length" class="mb-8">
-      <video-gallery :gallery="videoGallery" />
+      <video-gallery no-text :gallery="videoGallery" />
     </div>
     <!-- time -->
     <div
