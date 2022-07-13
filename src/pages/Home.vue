@@ -170,6 +170,7 @@ import HomeCongress from '../components/home/HomeCongress.vue'
 import HomeDocuments from '../components/home/HomeDocuments.vue'
 import ShadowButton from '../components/containers/ShadowButton.vue'
 import { Capacitor } from '@capacitor/core'
+
 export default {
   components: {
     IonImg,
@@ -184,6 +185,7 @@ export default {
     // HomeMeded,
     HomeDocuments
   },
+
   data () {
     return {
       products: [
@@ -279,6 +281,7 @@ export default {
       ]
     }
   },
+
   computed: {
     isIos () {
       if (
@@ -291,10 +294,20 @@ export default {
       return false
     }
   },
+
+  mounted () {
+    // In case a external routing is implemented
+    if (window.pathToReach || window.localStorage.getItem('PATH')) {
+      const path = window.pathToReach || window.localStorage.getItem('PATH')
+      this.$router.push(path)
+    }
+  },
+
   methods: {
     openNotifications () {
       this.$router.push({ path: '/new', meta: { section: 'notifications' } })
     },
+
     updateState (payload) {
       const { products, documents, news, meded, congresses } = payload
       this.products = products || []
@@ -303,10 +316,12 @@ export default {
       this.documents = documents || {}
       this.congresses = congresses || []
     },
+
     routeToSegment (segment) {
       const link = `/products/${segment.id}`
       this.$router.push({ path: link })
     },
+
     routeToSearch (searchText) {
       const text = searchText ? '?string=' + searchText : ''
       this.$router.push('/search' + text)
