@@ -78,6 +78,10 @@ export default {
           color: 'danger'
         })
       }
+    },
+
+    updateFilters (filters) {
+      this.filters = filters
     }
   },
 
@@ -87,7 +91,7 @@ export default {
         path: this.$route.path,
         query: newFilters
       })
-      this.getCongressesList(newFilters)
+      this.fetchCourses(newFilters)
     }
   }
 }
