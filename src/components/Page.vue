@@ -247,7 +247,6 @@ export default {
     },
 
     onShare () {
-      console.log(this.share)
       try {
         this.$share.share(this.share)
       } catch (err) {
