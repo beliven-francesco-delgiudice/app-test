@@ -133,6 +133,7 @@ import messages from '@/messages'
 import urls from '@/urls'
 import config from '@/config'
 import { Capacitor } from '@capacitor/core'
+
 export default {
   components: {
     IonInput,
@@ -167,15 +168,21 @@ export default {
       return false
     }
   },
+
   created () {
     if (this.$store.getters.loggedIn) {
-      if (Capacitor.getPlatform() !== 'web') {
-        // user is already logged in
-        this.$store.dispatch('alreadyLoggedRouting')
-      } else {
-        window.localStorage.clear()
-      }
+      // user is already logged in
+      this.$store.dispatch('alreadyLoggedRouting')
     }
+
+    // if (this.$store.getters.loggedIn) {
+    //   if (Capacitor.getPlatform() !== 'web') {
+    //     // user is already logged in
+    //     this.$store.dispatch('alreadyLoggedRouting')
+    //   } else {
+    //     window.localStorage.clear()
+    //   }
+    // }
 
     if (this.$route.query.token && Capacitor.getPlatform() === 'web') {
       window.azureToken = this.$route.query.token
@@ -183,6 +190,7 @@ export default {
       this.$store.dispatch('loginWithToken')
     }
   },
+
   methods: {
     onBack () {
       this.step = 1
