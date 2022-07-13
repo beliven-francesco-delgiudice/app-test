@@ -57,11 +57,20 @@ import $share from '@/plugins/share'
 import { Capacitor } from '@capacitor/core'
 
 function getTokenFromURL (url = '') {
-  if (url) {
+  if (url && url.includes('token')) {
     const token = url.split('token=')[1].split('#')[0]
     window.azureToken = token
     console.log('received url: ' + url, token)
     window.localStorage.setItem('JWT', token)
+  }
+}
+
+function getPathFromURL (url = '') {
+  if (url && url.includes('path')) {
+    const path = url.split('path=')[1]
+    window.pathToReach = path
+    console.log('received url: ' + url, path)
+    window.localStorage.setItem('PATH', path)
   }
 }
 
@@ -70,6 +79,7 @@ async function init () {
 
   window.handleOpenURL = function (url) {
     getTokenFromURL(url)
+    getPathFromURL(url)
   }
 
   const app = createApp(App)
@@ -127,5 +137,6 @@ CapacitorApp.addListener('appUrlOpen', data => {
   const { url } = data
   if (url) {
     getTokenFromURL(url)
+    getPathFromURL(url)
   }
 })
