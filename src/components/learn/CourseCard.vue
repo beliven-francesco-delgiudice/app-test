@@ -28,19 +28,19 @@
     >
       {{ instance.subtitle }}
     </span>
-    <div v-if="instance.date && instance.date.length" class="mr-auto mt-2">
+    <div
+      v-if="instance.print_date && instance.print_date.length"
+      class="mr-auto my-2"
+    >
       <span
         class="block font-helvetica-medium bg-light-red py-1 px-2 text-red text-12 spacing-34 line-18"
       >
-        {{ instance.date }}
+        {{ instance.print_date }}
       </span>
     </div>
     <div class="flex no-wrap overflow-hidden">
-      <div v-if="instance.language" class="flex no-wrap py-4 pr-2">
-        <square-container
-          classes="bg-white course-card-internal-shadow flex"
-          :squareSize="24"
-        >
+      <div v-if="instance.language" class="flex no-wrap py-2 pr-2">
+        <square-container classes="bg-white flex" :squareSize="24">
           <span class="uppercase text-grey text-10 m-auto">
             {{ instance.language }}
           </span>
@@ -51,10 +51,10 @@
         class="border-l border-grey my-2"
         style="width:1px;"
       ></div>
-      <div v-if="instance.segment" class="flex no-wrap py-4 px-2">
+      <div v-if="instance.segment" class="flex no-wrap py-2 px-2">
         <square-container
           v-for="segment in instance.segment"
-          classes="bg-white course-card-internal-shadow overflow-hidden"
+          classes="bg-white overflow-hidden"
           :key="segment.id"
           :squareSize="24"
         >
@@ -66,10 +66,10 @@
         class="border-l border-grey my-2"
         style="width:1px;"
       ></div>
-      <div v-if="instance.speakers" class="flex no-wrap py-4 px-2">
+      <div v-if="instance.speakers" class="flex no-wrap py-2 px-2">
         <square-container
           v-for="speaker in instance.speakers"
-          classes="bg-white course-card-internal-shadow overflow-hidden mr-2"
+          classes="bg-white overflow-hidden mr-2"
           :key="speaker"
           :squareSize="24"
         >
