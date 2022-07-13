@@ -5,7 +5,8 @@
       :key="i"
       :class="[
         i === 0 ? 'ml-8' : '',
-        'bg-white rounded-12 relative mr-4 videogallery-container overflow-hidden elevated-shadow'
+        !noText || 'no-text image-container',
+        'bg-white rounded-12 relative mr-4 videogallery-container  overflow-hidden elevated-shadow'
       ]"
       @click="openVideo(obj)"
     >
@@ -19,6 +20,7 @@
         />
       </div>
       <p
+        v-if="!noText"
         class="px-8 py-4 font-helvetica text-16 text-mid-dark-grey spacing-1 line-24 m-0"
       >
         {{ obj.label }}
@@ -43,7 +45,14 @@ export default {
   },
 
   props: {
-    gallery: Array
+    gallery: {
+      type: Array
+    },
+
+    noText: {
+      type: Boolean,
+      default: false
+    }
   },
 
   data () {
@@ -52,11 +61,13 @@ export default {
       isVideoOpen: false
     }
   },
+
   methods: {
     openVideo (video) {
       this.video = video
       this.isVideoOpen = true
     },
+
     closeVideo () {
       this.isVideoOpen = false
       this.video = null
@@ -64,14 +75,19 @@ export default {
   }
 }
 </script>
+
 <style scoped>
 .videogallery-container {
   width: 240px;
   min-width: 240px;
+}
+.videogallery-container:not(.no-text) {
   height: 258px;
 }
-.image-container {
+.image-container:not(.videogallery-container) {
   width: 100%;
+}
+.image-container {
   height: 180px;
 }
 </style>
