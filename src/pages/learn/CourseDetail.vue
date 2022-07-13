@@ -54,6 +54,7 @@ import RegisterModal from '../../components/learn/RegisterModal.vue'
 import SectionButton from '../../components/containers/SectionButton.vue'
 import urls from '@/urls'
 import messages from '@/messages'
+// import { Capacitor } from '@capacitor/core'
 
 export default {
   components: {
@@ -80,6 +81,16 @@ export default {
       isRegisterOpened: false
     }
   },
+
+  // async mounted () {
+  //   if (Capacitor) {
+  //     // FIND THE WAY TO UNDERSTAND IF IS WEBAPP OPENED IN MOBILE
+  //     // window.open('limasales://path=learn/list/' + this.course.id)
+  //     console.log(Capacitor)
+  //     const a = await this.$device.getInfo()
+  //     console.log(a)
+  //   }
+  // },
 
   computed: {
     gradient () {
@@ -133,12 +144,8 @@ export default {
     shareObject () {
       return {
         title: this.course.title,
-        text:
-          this.course.description || this.course.category
-            ? this.course.category.class
-            : '',
-        url:
-          'https://limacorporate.com/it/professionisti-sanitari/meded_courses.html',
+        text: `Look at the course "${this.course.title}"`,
+        url: 'https://app.limacorporate.com/#/learn/list/' + this.course.id,
         dialogTitle: 'Share course'
       }
     }
