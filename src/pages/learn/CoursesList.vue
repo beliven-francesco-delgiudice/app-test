@@ -1,7 +1,7 @@
 <template>
   <Page
     back="/learn"
-    label="Learn"
+    label="L.E.A.R.N."
     :filters="filters"
     :filtersOptions="filtersOptions"
     @onFiltersChange="updateFilters"
