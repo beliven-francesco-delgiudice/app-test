@@ -1,14 +1,9 @@
 <template>
-  <div class="flex flex-col">
-    <detail-section
-      v-for="(day, i) in computedInstance"
-      :key="i"
-      :label="day.date"
-      noSeparator
-    >
-      <div class="flex flex-col relative border-l border-grey mx-8 mb-4 mt-2">
+  <accordions-list classes="mt-4 px-8" :list="computedInstance">
+    <template v-slot="{ item }">
+      <div class="flex flex-col relative border-l border-grey mx-4 mb-4 mt-2">
         <div
-          v-for="(event, j) in day.events"
+          v-for="(event, j) in item"
           :key="j"
           :class="[j > 0 ? 'mt-8' : '', 'relative']"
         >
@@ -38,16 +33,16 @@
           ></p>
         </div>
       </div>
-    </detail-section>
-  </div>
+    </template>
+  </accordions-list>
 </template>
 <script>
-import DetailSection from '../DetailSection.vue'
+import AccordionsList from '../AccordionsList.vue'
 import { IonImg } from '@ionic/vue'
 
 export default {
   components: {
-    DetailSection,
+    AccordionsList,
     IonImg
   },
 
@@ -58,7 +53,12 @@ export default {
   computed: {
     computedInstance () {
       if (this.instance && this.instance.content) {
-        return this.instance.content
+        const array = this.instance.content.map(a => ({
+          name: a.date,
+          childs: [a.events],
+          count: a.events.length
+        }))
+        return array
       }
       return []
     }
