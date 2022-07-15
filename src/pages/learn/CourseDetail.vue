@@ -142,10 +142,14 @@ export default {
     },
 
     shareObject () {
+      const slugifiedTitle = (this.course.title || 'course')
+        .toLowerCase()
+        .replace(/[^\w ]+/g, '')
+        .replace(/ +/g, '-')
       return {
         title: this.course.title,
         text: `Look at the course "${this.course.title}"`,
-        url: 'https://app.limacorporate.com/#/learn/list/' + this.course.id,
+        url: `https://limacorporate.com/en/learn-event/${this.course.id}/${slugifiedTitle}.html`,
         dialogTitle: 'Share course'
       }
     }
