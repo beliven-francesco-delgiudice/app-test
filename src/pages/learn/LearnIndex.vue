@@ -61,7 +61,7 @@ export default {
     return {
       video: {
         url:
-          'https://limacorporate.com/video/learn/learn_for_surgeon_limacorporate_web.mp4'
+          'https://limacorporate.com/video/learn/learn_for_surgeon_limacorporate_web_app.mp4'
       },
       subtitle:
         "WHAT IS L.E.A.R.N.?<br/>LimaCorporate's Education and Resource Network is a new medical education experience.",
