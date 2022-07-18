@@ -12,6 +12,8 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@awesome-cordova-plugins/firebase-analytics": "^5.43.0",
+    "@capacitor-community/firebase-analytics": "^1.0.1",
     "@capacitor/android": "3.0.2",
     "@capacitor/app": "^1.0.2",
     "@capacitor/browser": "^1.0.2",
@@ -37,6 +39,8 @@
     "cordova-plugin-doze-optimize": "^0.5.4",
     "cordova-plugin-file": "6.0.2",
     "cordova-plugin-file-opener2": "3.0.5",
+    "cordova-plugin-firebase-analytics": "^6.1.0",
+    "cordova-support-android-plugin": "^1.0.2",
     "core-js": "3.8.2",
     "jetifier": "^1.6.6",
     "onesignal-cordova-plugin": "2.11.2",

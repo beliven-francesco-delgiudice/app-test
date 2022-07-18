@@ -52,6 +52,7 @@ import $docsaver from '@/plugins/docsaver'
 import $onesignal from '@/plugins/onesignal-native'
 import $clipboard from '@/plugins/clipboard'
 import $share from '@/plugins/share'
+import $firebase from '@/plugins/firebase'
 
 // import $backgroundmode from '@/plugins/backgroundmode'
 import { Capacitor } from '@capacitor/core'
@@ -97,6 +98,7 @@ async function init () {
     .use($docsaver)
     .use($clipboard)
     .use($share)
+    .use($firebase, { autoload: true })
     .use($toast, {
       duration: 3000,
       color: 'primary'

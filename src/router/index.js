@@ -88,7 +88,7 @@ const routes = [
     children: [
       {
         path: '',
-        name: 'TermsAndConditions',
+        name: 'Terms And Conditions',
         component: TermsAndConditions
       }
     ]
@@ -183,7 +183,7 @@ const routes = [
     children: [
       {
         path: '',
-        name: 'LimApp',
+        name: 'Menu',
         component: Menu,
         meta: {
           showWizard: true
@@ -258,7 +258,7 @@ const routes = [
       // products detail (details, components, documents)
       {
         path: '/products/detail/:id/components',
-        name: 'ProductsDetailComponents',
+        name: 'Products Detail Components',
         component: ProductsDetail,
         meta: {
           showBack: true,
@@ -267,7 +267,7 @@ const routes = [
       },
       {
         path: '/products/detail/:id/documents',
-        name: 'ProductsDetailDocuments',
+        name: 'Products Detail Documents',
         component: ProductsDetail,
         meta: {
           showBack: true,
@@ -276,7 +276,7 @@ const routes = [
       },
       {
         path: '/products/detail/:id',
-        name: 'ProductsDetail',
+        name: 'Products Detail',
         component: ProductsDetail,
         meta: {
           showBack: true
@@ -285,7 +285,7 @@ const routes = [
       // component detail
       {
         path: '/products/detail/component/:id',
-        name: 'ComponentDetail',
+        name: 'Component Detail',
         component: ComponentDetail,
         meta: {
           showBack: true
@@ -294,7 +294,7 @@ const routes = [
       // products category (products list)
       {
         path: '/products/category/:category',
-        name: 'ProductCategory',
+        name: 'Product Category',
         component: ProductsCategory,
         meta: {
           showBack: true
@@ -303,7 +303,7 @@ const routes = [
       // products segment (categories/products list)
       {
         path: '/products/:segment',
-        name: 'ProductSegment',
+        name: 'Product Segment',
         component: ProductsSegment,
         meta: {
           showBack: true
@@ -334,7 +334,7 @@ const routes = [
       // congress detail
       {
         path: '/congresses/:id/',
-        name: 'CongressDetail',
+        name: 'Congress Detail',
         component: CongressDetail,
         meta: {
           showBack: true
@@ -418,6 +418,8 @@ router.beforeEach((to, from, next) => {
   ) {
     masterStore.dispatch('logout')
   }
+
+  masterStore.dispatch('logScreenView', to)
   next()
 })
 

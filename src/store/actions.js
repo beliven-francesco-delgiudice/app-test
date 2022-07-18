@@ -45,11 +45,33 @@ export async function alreadyLoggedRouting (context) {
   )
 }
 
+export async function logScreenView (context, route) {
+  try {
+    const userId = context.getters.userData.id
+    await this.$app.$firebase.logEvent(
+      'screen_view',
+      {
+        screen_name: route.name,
+        ...route.params
+      },
+      userId
+    )
+  } catch (err) {
+    console.error('STORE FIREBASE ERROR', err)
+  }
+}
+
 export async function logout (context) {
   context.commit('setUserData', false)
+  try {
+    await this.$app.$firebase.logEvent('logout')
+  } catch (err) {
+    console.log('FirebaseError', err)
+  }
   window.localStorage.setItem('JWT', '')
   this.$app.$router.push('/login')
 }
+
 export async function login (context, data) {
   try {
     // Decouple data from Vue as we will do modifications that user should not see
@@ -71,6 +93,13 @@ export async function login (context, data) {
     context.commit('setAppUpdates', loggedData.update_id)
 
     window.localStorage.setItem('JWT', loggedData.jwt)
+
+    try {
+      const userId = userData.id
+      await this.$app.$firebase.logEvent('login', {}, userId)
+    } catch (err) {
+      console.error('LOGIN FIREBASE ERROR', err)
+    }
 
     // No OneSignal if WebApp
     try {
@@ -101,6 +130,7 @@ export async function login (context, data) {
     throw e
   }
 }
+
 export async function loginWithToken (context) {
   try {
     // Decouple data from Vue as we will do modifications that user should not see
@@ -122,6 +152,13 @@ export async function loginWithToken (context) {
     context.commit('setAppUpdates', loggedData.update_id)
 
     window.localStorage.setItem('JWT', loggedData.jwt)
+
+    try {
+      const userId = userData.id
+      await this.$app.$firebase.logEvent('login', {}, userId)
+    } catch (err) {
+      console.error('LOGIN FIREBASE ERROR', err)
+    }
 
     // No OneSignal if WebApp
     try {
