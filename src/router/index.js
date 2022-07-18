@@ -158,7 +158,7 @@ const routes = [
   // new
   {
     path: '/new',
-    component: MainLayout,
+    component: CleanLayout,
     children: [
       {
         path: '/new/update/:id',
