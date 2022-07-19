@@ -63,7 +63,14 @@ export default {
       this.$router.push('/home')
     },
     onRefresh (refreshAction, $event) {
-      this.$store.dispatch(refreshAction, $event)
+      if (Array.isArray(refreshAction)) {
+        refreshAction.forEach(action => {
+          this.$store.dispatch(action, $event)
+        })
+      } else {
+        this.$store.dispatch(refreshAction, $event)
+      }
+
       $event.target.complete()
     }
   },

@@ -296,6 +296,8 @@ export default {
   },
 
   mounted () {
+    this.$store.dispatch('loginWithToken')
+
     // In case a external routing is implemented
     if (window.pathToReach || window.localStorage.getItem('PATH')) {
       const path = window.pathToReach || window.localStorage.getItem('PATH')
