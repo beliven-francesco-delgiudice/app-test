@@ -72,7 +72,7 @@ const routes = [
   {
     path: '/home',
     component: HomeLayout,
-    meta: { refreshAction: 'getHome' },
+    meta: { refreshAction: ['getHome', 'loginWithToken'] },
     children: [
       {
         path: '',
@@ -157,15 +157,21 @@ const routes = [
   },
   // new
   {
-    path: '/new',
+    path: '/new/update/:id',
     component: CleanLayout,
     children: [
       {
-        path: '/new/update/:id',
+        path: '',
         name: 'Update',
         component: UpdateWizard,
         meta: {}
-      },
+      }
+    ]
+  },
+  {
+    path: '/new',
+    component: MainLayout,
+    children: [
       {
         path: '',
         name: "What's New",
@@ -376,6 +382,14 @@ const routes = [
     component: MainLayout,
     children: [
       // course detail
+      {
+        path: '/learn/list/:id/',
+        name: 'Course Detail',
+        component: CourseDetail,
+        meta: {
+          showBack: true
+        }
+      },
       {
         path: '/learn/:id/',
         name: 'Course Detail',
