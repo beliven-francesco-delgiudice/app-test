@@ -131,7 +131,7 @@ export async function login (context, data) {
   }
 }
 
-export async function loginWithToken (context) {
+export async function loginWithToken (context, isRefresh = false) {
   try {
     // Decouple data from Vue as we will do modifications that user should not see
 
@@ -153,16 +153,21 @@ export async function loginWithToken (context) {
 
     window.localStorage.setItem('JWT', loggedData.jwt)
 
-    try {
-      const userId = userData.id
-      await this.$app.$firebase.logEvent('login', {}, userId)
-    } catch (err) {
-      console.error('LOGIN FIREBASE ERROR', err)
+    if (!isRefresh) {
+      try {
+        const userId = userData.id
+        await this.$app.$firebase.logEvent('login', {}, userId)
+      } catch (err) {
+        console.error('LOGIN FIREBASE ERROR', err)
+      }
     }
 
     // No OneSignal if WebApp
     try {
-      if (!Capacitor.getPlatform() || Capacitor.getPlatform() !== 'web') {
+      if (
+        !isRefresh &&
+        (!Capacitor.getPlatform() || Capacitor.getPlatform() !== 'web')
+      ) {
         // Now that we have user id we can proceed wit OneSignal sync with server
         await context.dispatch('syncOneSignal', context)
       }
@@ -215,46 +220,6 @@ export async function syncOneSignal () {
       color: 'danger'
     })
   }
-}
-
-export async function getMessages (context, event) {
-  try {
-    const messagesList = await this.$app.$http({
-      method: 'GET',
-      url: `${urls.list.messages}${
-        context.getters.roundId ? `?roundId=${context.getters.roundId}` : ''
-      }`,
-      loader: !!context.getters.roundId
-    })
-    context.commit('setMessages', (messagesList || {}).data || {})
-  } catch (e) {
-    this.$app.$toast({
-      message: messages.errors.cannotGetMessages,
-      color: 'danger'
-    })
-  }
-  if (event && event.target.complete) event.target.complete()
-}
-export async function setMessageAs (context, { id, status = 1 }) {
-  await this.$app.$http({
-    method: 'POST',
-    url: urls.list.messages,
-    loader: false,
-    data: {
-      messageId: id,
-      status
-    }
-  })
-}
-export async function sendMessageResponse (context, { id, reply }) {
-  await this.$app.$http({
-    method: 'POST',
-    url: urls.list.reply,
-    data: {
-      messageId: id,
-      reply
-    }
-  })
 }
 
 export async function getNotifications (context) {
@@ -374,4 +339,45 @@ export async function getHome (context) {
   context.commit('setHome', homeObject)
   context.commit('setDocuments', documents)
   context.commit('setNotifications', notifications)
+}
+
+// OLD
+export async function getMessages (context, event) {
+  try {
+    const messagesList = await this.$app.$http({
+      method: 'GET',
+      url: `${urls.list.messages}${
+        context.getters.roundId ? `?roundId=${context.getters.roundId}` : ''
+      }`,
+      loader: !!context.getters.roundId
+    })
+    context.commit('setMessages', (messagesList || {}).data || {})
+  } catch (e) {
+    this.$app.$toast({
+      message: messages.errors.cannotGetMessages,
+      color: 'danger'
+    })
+  }
+  if (event && event.target.complete) event.target.complete()
+}
+export async function setMessageAs (context, { id, status = 1 }) {
+  await this.$app.$http({
+    method: 'POST',
+    url: urls.list.messages,
+    loader: false,
+    data: {
+      messageId: id,
+      status
+    }
+  })
+}
+export async function sendMessageResponse (context, { id, reply }) {
+  await this.$app.$http({
+    method: 'POST',
+    url: urls.list.reply,
+    data: {
+      messageId: id,
+      reply
+    }
+  })
 }
