@@ -78,12 +78,14 @@
       </div>
 
       <span
+        v-if="training.text_over_website && training.text_over_website.length"
         class="font-helvetica text-16 text-mid-dark-grey spacing-2 line-26 mt-4"
       >
         {{ training.text_over_website }}
       </span>
 
       <div
+        v-if="training.website && training.website.length"
         @click="openLink(training.website)"
         class="relative flex items-center mt-2 mb-4"
       >
@@ -102,8 +104,9 @@
         >
           <span
             class="font-helvetica-medium text-16 text-black spacing-5 line-28"
-            >{{ training.website }}</span
           >
+            {{ training.website }}
+          </span>
         </div>
       </div>
     </detail-section>
