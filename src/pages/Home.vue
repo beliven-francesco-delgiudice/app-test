@@ -303,6 +303,12 @@ export default {
       const path = window.pathToReach || window.localStorage.getItem('PATH')
       this.$router.push(path)
     }
+
+    if (this.$store.getters.formattedLaunchUrl) {
+      const url = this.$store.getters.formattedLaunchUrl
+      this.$store.commit('setLaunchUrl', null)
+      this.$router.push(url)
+    }
   },
 
   methods: {
@@ -327,6 +333,16 @@ export default {
     routeToSearch (searchText) {
       const text = searchText ? '?string=' + searchText : ''
       this.$router.push('/search' + text)
+    }
+  },
+
+  watch: {
+    '$store.getters.formattedLaunchUrl': function () {
+      if (this.$store.getters.formattedLaunchUrl) {
+        const url = this.$store.getters.formattedLaunchUrl
+        this.$store.commit('setLaunchUrl', null)
+        this.$router.push(url)
+      }
     }
   }
 }

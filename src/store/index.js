@@ -20,6 +20,7 @@ const master = {
     },
     messages: [],
     documents: {},
+    launchUrl: null,
     notifications: [],
     appUpdates: null,
     onboarding: null,
@@ -84,6 +85,10 @@ const master = {
 
     setModalOpen (store, flag) {
       store.isModalOpen = flag
+    },
+
+    setLaunchUrl (store, url) {
+      store.launchUrl = url
     },
 
     // Android does not need any check for notifications, are allowed by default
@@ -203,6 +208,12 @@ const master = {
       if (terminatedRound) return terminatedRound
 
       return rounds[0]
+    },
+    formattedLaunchUrl: state => {
+      if (state.launchUrl) {
+        return state.launchUrl.split('limasales:/')[1]
+      }
+      return null
     }
   }
 }

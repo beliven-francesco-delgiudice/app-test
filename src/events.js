@@ -54,10 +54,12 @@ export async function onOnesignalNotificationOpened (plugins, e) {
   const notification = e.notification
   if (notification.payload && notification.payload.launchURL) {
     let path = notification.payload.launchURL
-    path = path.split('limapp:/')[1]
+    // Use custom url scheme, limasales://
+    path = path.split('limasales:/')[1]
     if (plugins.$store.getters.loggedIn) {
       plugins.$router.push(path)
     } else {
+      plugins.$store.commit('setLaunchUrl', notification.payload.launchURL)
       plugins.$store.commit('setNotificationToShow', path)
     }
   }
