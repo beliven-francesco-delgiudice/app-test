@@ -46,9 +46,11 @@
     </div>
   </div>
 </template>
+
 <script>
 import { IonSlides, IonSlide, IonImg, IonButton } from '@ionic/vue'
 import BigButton from './containers/BigButton.vue'
+
 export default {
   components: {
     IonSlide,
@@ -57,12 +59,29 @@ export default {
     IonButton,
     BigButton
   },
+
   props: {
-    slides: Array,
-    finalLabel: String,
-    mainButtonLabel: String,
-    back: Boolean
+    slides: {
+      type: Array
+    },
+
+    finalLabel: {
+      type: String
+    },
+
+    mainButtonLabel: {
+      type: String
+    },
+
+    back: {
+      type: Boolean
+    },
+
+    url: {
+      type: String
+    }
   },
+
   data () {
     return {
       active: 0,
@@ -72,19 +91,23 @@ export default {
       }
     }
   },
+
   computed: {
     computedSlides () {
       return this.slides
     },
+
     activeSlide () {
       return this.active
     },
+
     isLastSlide () {
       if (this.active === this.slides.length - 1) {
         return true
       }
       return false
     },
+
     buttonLabel () {
       if (this.isLastSlide) {
         return this.finalLabel || 'Lets’s start'
@@ -96,21 +119,27 @@ export default {
     onClose () {
       this.$router.back()
     },
+
     async previousSlide () {
       const swiper = await this.$refs.slides.$el.getSwiper()
       swiper.slidePrev()
     },
+
     async buttonClick () {
-      if (this.isLastSlide) {
+      if (this.isLastSlide && !!this.url) {
+        this.$router.push(this.url)
+      } else if (this.isLastSlide) {
         this.$emit('onEnd')
       } else {
         const swiper = await this.$refs.slides.$el.getSwiper()
         swiper.slideNext()
       }
     },
+
     onNextEnd () {
       this.active = this.active + 1
     },
+
     onPrevEnd () {
       this.active = this.active - 1
     }

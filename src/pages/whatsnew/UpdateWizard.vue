@@ -1,9 +1,10 @@
 <template>
   <slider
     back
-    finalLabel="Close"
     :pager="true"
     :slides="formattedSlides"
+    :url="formattedUrl || null"
+    :finalLabel="!!formattedUrl ? 'Discover more' : 'Close'"
     v-if="formattedSlides && formattedSlides.length"
     @onEnd="resolveRouting"
   >
@@ -35,6 +36,13 @@ export default {
   computed: {
     formattedSlides () {
       return this.results.gallery || []
+    },
+
+    formattedUrl () {
+      if (this.results && this.results.url) {
+        return this.results.url.split('limasales:/')[1]
+      }
+      return null
     }
   },
   async created () {
