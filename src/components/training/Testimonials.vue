@@ -25,8 +25,8 @@
           v-html="msg.description"
         ></p>
       </div>
-      <div v-if="msg.images && msg.images.length" class="mt-8">
-        <image-gallery :gallery="msg.images" initMargin="ml-16" />
+      <div v-if="msg.images && msg.images.length" class="mt-4">
+        <image-gallery chatGallery :gallery="msg.images" initMargin="ml-16" />
       </div>
     </div>
   </div>

@@ -1,11 +1,12 @@
 <template>
-  <carousel :id="id" classes="-my-8 py-8">
+  <carousel :id="id" classes="-my-4 py-8">
     <div
       v-for="(image, i) in updatedGallery"
       :key="i"
       :class="[
         i === 0 ? margin : '',
-        'bg-white rounded-12 relative mr-4 gallery-container overflow-hidden flex'
+        chatGallery ? 'chat-gallery mr-8' : 'mr-4',
+        'bg-white rounded-12 relative gallery-container overflow-hidden flex'
       ]"
     >
       <img
@@ -45,9 +46,21 @@ export default {
   },
 
   props: {
-    gallery: Array,
-    initMargin: String,
-    id: String
+    gallery: {
+      type: Array
+    },
+
+    initMargin: {
+      type: String
+    },
+
+    id: {
+      type: String
+    },
+
+    chatGallery: {
+      type: Boolean
+    }
   },
 
   data () {
@@ -104,10 +117,18 @@ export default {
   min-width: calc(100% - 4rem);
   height: 221px;
 }
+.gallery-container.chat-gallery {
+  width: calc(100% - 8rem);
+  min-width: calc(100% - 8rem);
+}
 @media screen and (min-width: 1024px) {
   .gallery-container {
     width: calc(100% - 4rem);
     min-width: calc(100% - 4rem);
+  }
+  .gallery-container.chat-gallery {
+    width: calc(100% - 8rem);
+    min-width: calc(100% - 8rem);
   }
 }
 .bg-black-50 {
