@@ -11,6 +11,7 @@ export default {
         if (canShare) {
           return Share.share(options)
         }
+        return false
       }
     }
 

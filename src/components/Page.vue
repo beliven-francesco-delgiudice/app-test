@@ -246,11 +246,18 @@ export default {
       // this.$router.push('/home')
     },
 
-    onShare () {
+    async onShare () {
       try {
-        this.$share.share(this.share)
+        await this.$share.share(this.share)
       } catch (err) {
-        console.log(err)
+        console.error('Share not supported!', err)
+        window.navigator.clipboard.writeText(
+          `${this.share.text}: ${this.share.url}`
+        )
+        this.$toast({
+          message: 'Link copied!',
+          color: 'dark'
+        })
       }
     },
 
