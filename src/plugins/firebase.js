@@ -5,7 +5,7 @@ import config from '@/config'
 export default {
   async install (app, conf = {}) {
     const $firebase = {
-      initialize: async function (userId) {
+      initialize: async function () {
         if (Capacitor.getPlatform() && Capacitor.getPlatform() === 'web') {
           const res = await FirebaseAnalytics.initializeFirebase(
             config.firebaseConfig
@@ -17,9 +17,9 @@ export default {
           enabled: true
         })
 
-        if (userId) {
-          return this.setUserId(userId)
-        }
+        // if (userId) {
+        //   return this.setUserId(userId)
+        // }
         return
       },
 
