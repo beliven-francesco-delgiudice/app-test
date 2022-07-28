@@ -5,7 +5,9 @@
       :key="i"
       :class="[
         i === 0 ? margin : '',
-        chatGallery ? 'chat-gallery mr-8' : 'mr-4',
+        chatGallery
+          ? 'chat-gallery mr-8 flex justify-center items-center'
+          : 'mr-4',
         'bg-white rounded-12 relative gallery-container overflow-hidden flex'
       ]"
     >
@@ -134,5 +136,9 @@ export default {
 .bg-black-50 {
   background-color: #1c1c1b80;
   --background: #1c1c1b80;
+}
+
+.gallery-container.chat-gallery img {
+  max-width: none !important;
 }
 </style>
