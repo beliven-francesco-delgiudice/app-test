@@ -12,8 +12,9 @@
         red ? 'text-white' : 'text-black',
         'font-helvetica-medium spacing-5 line-30 pointer-events-none'
       ]"
-      >{{ label }}</span
     >
+      {{ label }}
+    </span>
   </div>
 </template>
 <script>
