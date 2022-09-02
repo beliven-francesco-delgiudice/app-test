@@ -28,11 +28,12 @@
         </ion-button>
       </div>
       <form class="flex h-full flex-col justify-between" @submit="onSubmit">
-        <div class="flex flex-col px-8">
-          <Title titleClass="pb-4 text-black font-helvetica-bold text-28 block">
-            Filters & Sort
-          </Title>
-
+        <Title
+          titleClass="pb-2 text-black font-helvetica-bold text-28 block px-8"
+        >
+          Filters & Sort
+        </Title>
+        <div class="flex flex-col px-8" style="flex:1;overflow-y: scroll;">
           <div
             v-for="(option, optKey) in arrayOfOptions"
             :key="optKey"
