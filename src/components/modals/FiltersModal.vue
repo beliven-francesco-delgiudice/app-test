@@ -31,7 +31,7 @@
         <Title
           titleClass="pb-2 text-black font-helvetica-bold text-28 block px-8"
         >
-          Filters & Sort
+          Filters
         </Title>
         <div class="flex flex-col px-8" style="flex:1;overflow-y: scroll;">
           <div
