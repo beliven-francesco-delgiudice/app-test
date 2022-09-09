@@ -99,7 +99,7 @@ export default {
         this.notification.link.type === 'congress'
           ? 'congresses'
           : this.notification.link.type
-      }/${this.notification.link.id}`
+      }${this.notification.link.id ? '/' + this.notification.link.id : ''}`
 
       this.$router.push(link)
     },
