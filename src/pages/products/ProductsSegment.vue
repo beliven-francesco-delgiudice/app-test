@@ -25,6 +25,14 @@
         </div>
       </div>
     </ion-list>
+    
+    <separator />
+
+    <accordions-list v-if="segment.thinkclinical.length" classes="mt-4 px-8" :list="thinkClinical">
+      <template v-slot="{ item }">
+        <document-list-item :document="item" />
+      </template>
+    </accordions-list>
   </Page>
 </template>
 
@@ -32,26 +40,42 @@
 import Page from '../../components/Page.vue'
 import { IonList, IonImg } from '@ionic/vue'
 import SquareContainer from '../../components/containers/SquareContainer.vue'
+import DocumentListItem from '../../components/DocumentListItem'
+import AccordionsList from '../../components/AccordionsList.vue'
+import Separator from '../../components/Separator.vue'
 import messages from '@/messages'
 import urls from '@/urls'
+
 export default {
   components: {
     Page,
     IonList,
     IonImg,
-    SquareContainer
+    SquareContainer,
+    Separator,
+    DocumentListItem,
+    AccordionsList,
   },
   data () {
     return {
       segment: {
         category_name: 'Segment',
-        categories: []
+        categories: [],
+        thinkclinical:[]
       }
     }
   },
   computed: {
     updatedSegment () {
       return this.segment
+    },
+    thinkClinical () {
+      return [
+        {
+          name: 'Think Clinical',
+          childs: this.segment.thinkclinical
+        }
+      ]
     }
   },
   async created () {
