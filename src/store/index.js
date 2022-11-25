@@ -197,21 +197,13 @@ const master = {
     },
     username: state => state.user.data.username || '',
     userTypes: state => state.user.types || [],
-    defaultRound: state => {
-      const rounds = state.rounds.list
-      if (!rounds || !rounds.length) return undefined
 
-      const progressRound = rounds.find(round => round.status === 2)
-      if (progressRound) return progressRound
-
-      const terminatedRound = rounds.reverse().find(round => round.status === 3)
-      if (terminatedRound) return terminatedRound
-
-      return rounds[0]
-    },
     formattedLaunchUrl: state => {
       if (state.launchUrl) {
-        return state.launchUrl.split('limasales:/')[1]
+        if (state.launchUrl.includes('limasales')) {
+          return state.launchUrl.split('limasales:/')[1]
+        }
+        return state.launchUrl
       }
       return null
     }

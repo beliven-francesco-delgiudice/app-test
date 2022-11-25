@@ -46,6 +46,7 @@ export async function onOnesignalNotificationOpened (plugins, e) {
       path = path.split('limasales:/')[1]
       if (plugins.$store.getters.loggedIn) {
         plugins.$router.push(path)
+        plugins.$store.commit('setLaunchUrl', path)
       } else {
         plugins.$store.commit('setLaunchUrl', notification.launchURL)
         plugins.$store.commit('setNotificationToShow', path)

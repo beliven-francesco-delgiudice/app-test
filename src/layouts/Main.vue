@@ -123,6 +123,14 @@ export default {
     backButton () {
       this.$router.push('/home')
     }
+  },
+
+  mounted () {
+    if (this.$store.getters.formattedLaunchUrl) {
+      if (this.$store.getters.formattedLaunchUrl.includes(this.$route.path)) {
+        this.$store.commit('setLaunchUrl', null)
+      }
+    }
   }
 }
 </script>

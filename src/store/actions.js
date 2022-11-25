@@ -7,6 +7,7 @@ function resolveRouting (
   needToAcceptTerms,
   needOnboarding,
   isUpdateToShow,
+  isLaunchUrl,
   isNotificationToShow
 ) {
   if (needToAcceptTerms) {
@@ -15,7 +16,11 @@ function resolveRouting (
     app.$router.push('/onboarding')
   } else if (isUpdateToShow) {
     app.$router.push('/new/update/' + isUpdateToShow)
-  } else if (isNotificationToShow) {
+  } else if (isLaunchUrl) {
+    const url = isLaunchUrl
+    app.$store.commit('setLaunchUrl', null)
+    app.$router.push(url)
+  }else if (isNotificationToShow) {
     const path = isNotificationToShow
     app.$store.commit('setNotificationToShow', null)
     app.$router.push(path)
@@ -41,6 +46,7 @@ export async function alreadyLoggedRouting (context) {
     context.getters.needToAcceptTerms,
     context.getters.needOnboarding,
     context.getters.gotUpdatesToShow,
+    context.getters.formattedLaunchUrl,
     context.getters.gotNotificationToShow
   )
 }
@@ -117,6 +123,7 @@ export async function login (context, data) {
       context.getters.needToAcceptTerms,
       context.getters.needOnboarding,
       context.getters.gotUpdatesToShow,
+      context.getters.formattedLaunchUrl,
       context.getters.gotNotificationToShow
     )
   } catch (e) {
@@ -177,6 +184,7 @@ export async function loginWithToken (context, isRefresh = false) {
       context.getters.needToAcceptTerms,
       context.getters.needOnboarding,
       context.getters.gotUpdatesToShow,
+      context.getters.formattedLaunchUrl,
       context.getters.gotNotificationToShow
     )
   } catch (e) {
