@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="152px" height="152px" viewBox="0 0 152 152" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group 7</title>
+    <g id="limAPP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="search-&gt;-no-results" transform="translate(-112.000000, -134.000000)">
+            <g id="Group-7" transform="translate(112.000000, 134.000000)">
+                <rect id="Rectangle" fill="#E30513" style="mix-blend-mode: multiply;" opacity="0.05" x="0" y="0" width="152" height="152" rx="76"></rect>
+                <g id="Group-4" transform="translate(42.229356, 47.924570)">
+                    <path d="M32.8634693,51.8570165 L12.6977816,51.8570165 C8.87202904,51.8570165 5.7706438,48.7341377 5.7706438,44.8818714 L5.7706438,7.05057539 C5.7706438,3.19830908 8.87202904,0.0754302013 12.6977816,0.0754302013 L40.4063329,0.0754302013 C44.2320854,0.0754302013 47.3334707,3.19830908 47.3334707,7.05057539 L47.3334707,21.790723" id="Path" stroke="#F7CDD0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <ellipse id="Oval-Copy" stroke="#E30513" stroke-width="2" cx="47.6798276" cy="40.8800296" rx="11.1224912" ry="11.2065041"></ellipse>
+                    <line x1="55.843506" y1="49.100285" x2="62.5731739" y2="55.8765917" id="Path-5" stroke="#E30513" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></line>
+                    <g id="help">
+                        <ellipse id="Oval" fill="#F7CDD0" cx="26.3934186" cy="35.395029" rx="1.39341861" ry="1.39502904"></ellipse>
+                        <ellipse id="Oval-Copy-2" fill="#F8D8DA" cx="66.3934186" cy="1.39502904" rx="1.39341861" ry="1.39502904"></ellipse>
+                        <ellipse id="Oval-Copy-3" fill="#F7CDD0" cx="1.39341861" cy="57.395029" rx="1.39341861" ry="1.39502904"></ellipse>
+                        <path d="M26.3934186,30.6392482 C26.3934186,26.8346236 29.3880057,26.1979164 30.419168,25.1681059 C31.4536696,24.1349605 32.0937675,22.7061614 32.0937675,21.1276866 C32.0937675,17.9758323 29.5416343,15.4207496 26.3934186,15.4207496 C24.6910729,15.4207496 23.1630174,16.1678372 22.1185164,17.3523906 C21.6355485,17.9001176 21.2559672,18.5413772 21.010347,19.2455596" id="Path" stroke="#F7CDD0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </g>
+                </g>
+                <g id="Group-5" transform="translate(98.031675, 39.274869) rotate(-315.000000) translate(-98.031675, -39.274869) translate(94.389928, 35.633122)" stroke="#F7CDD0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                    <line x1="3.64174672" y1="0" x2="3.64174672" y2="7.28349344" id="Path-6"></line>
+                    <line x1="7.28349344" y1="3.64174672" x2="0" y2="3.64174672" id="Path-6-Copy"></line>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

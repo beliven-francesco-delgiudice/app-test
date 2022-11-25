@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="contact" transform="translate(-309.000000, -34.000000)">
+            <g id="Group-15" transform="translate(299.000000, 24.000000)">
+                <g id="Group" transform="translate(10.000000, 10.000000)">
+                    <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+                    <circle id="Oval" stroke="#1C1C1B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" cx="12" cy="12" r="9"></circle>
+                    <circle id="Oval" fill="#1C1C1B" fill-rule="nonzero" cx="12" cy="16.875" r="1.125"></circle>
+                    <path d="M12,13.5 L12,12.75 C13.4497475,12.75 14.625,11.5747475 14.625,10.125 C14.625,8.67525253 13.4497475,7.5 12,7.5 C10.5502525,7.5 9.375,8.67525253 9.375,10.125" id="Path" stroke="#1C1C1B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="27px" height="24px" viewBox="0 0 27 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group</title>
+    <g id="limAPP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="L.E.A.R.N.-Calendar-&gt;-Online-course-detail-&gt;-Info" transform="translate(-40.000000, -835.000000)">
+            <g id="Group-19" transform="translate(31.750000, 575.000000)">
+                <g id="Group-24" transform="translate(0.000000, 250.000000)">
+                    <g id="Group" transform="translate(9.250000, 10.000000)">
+                        <rect id="Rectangle" x="1" y="0" width="24" height="24"></rect>
+                        <g id="Group-10" transform="translate(0.000000, 7.000000)" stroke="#1C1C1B" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8">
+                            <path d="M0,11 C10.4114516,11.5096327 12.4555214,9.31081163 6.13220959,4.40353679 C12.1256407,8.91743483 12.5,8.00060661 12.5,0" id="Path-4"></path>
+                            <path d="M12.5,11 C22.9114516,11.5096327 24.9555214,9.31081163 18.6322096,4.40353679 C24.6256407,8.91743483 25,8.00060661 25,0" id="Path-4-Copy" transform="translate(18.750000, 5.535960) scale(-1, 1) translate(-18.750000, -5.535960) "></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

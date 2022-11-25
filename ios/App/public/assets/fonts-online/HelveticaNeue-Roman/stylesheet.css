@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('HelveticaNeue-Roman.eot');
+    src: url('HelveticaNeue-Roman.eot?#iefix') format('embedded-opentype'),
+        url('HelveticaNeue-Roman.woff2') format('woff2'),
+        url('HelveticaNeue-Roman.woff') format('woff'),
+        url('HelveticaNeue-Roman.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group</title>
+    <g id="limAPP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="contact-&gt;-detail" transform="translate(-42.000000, -461.000000)">
+            <g id="Group-11" transform="translate(-93.000000, -135.000000)">
+                <g id="Group-27" transform="translate(124.750000, 430.000000)">
+                    <g id="Group-25" transform="translate(0.250000, 152.000000)">
+                        <g id="Group" transform="translate(0.000000, 4.000000)">
+                            <g transform="translate(10.000000, 10.000000)">
+                                <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+                                <circle id="Oval" stroke="#1C1C1B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" cx="12.0002747" cy="11.9995425" r="3.75"></circle>
+                                <path d="M16.9766681,19.4997412 C13.5389405,21.781257 8.99017889,21.4332653 5.93950885,18.6553709 C2.88883882,15.8774765 2.11753645,11.3810976 4.06801333,7.74531359 C6.01849021,4.10952961 10.1912295,2.26546423 14.1927884,3.27085549 C18.1943473,4.27624675 20.9999272,7.87361412 21.0002747,11.9995425 C21.0002747,14.0706103 20.2502747,15.7495425 18.3752747,15.7495425 C16.5002747,15.7495425 15.7502747,14.0706103 15.7502747,11.9995425 L15.7502747,8.2495425" id="Path" stroke="#1C1C1B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

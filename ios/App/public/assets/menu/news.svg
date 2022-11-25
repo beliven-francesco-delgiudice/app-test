@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="44px" height="44px" viewBox="0 0 44 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group Copy 2</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="menu" transform="translate(-32.000000, -358.000000)" stroke="#1C1C1B" stroke-width="2">
+            <g id="Group-9" transform="translate(31.750000, 178.000000)">
+                <g id="Group-16" transform="translate(0.250000, 180.000000)">
+                    <g id="Group" transform="translate(11.000000, 10.000000)">
+                        <line x1="9" y1="10.503125" x2="16.5" y2="10.503125" id="Path"></line>
+                        <line x1="9" y1="14" x2="16.5" y2="14" id="Path"></line>
+                        <path d="M2.49050805,18.75 C4.5,18.75 4.5,18.0784271 4.5,17.25 L4.5,6 C4.5,5.58578644 4.83578644,5.25 5.25,5.25 L20.25,5.25 C20.6642136,5.25 21,5.58578644 21,6 L21,17.25 C21,18.0784271 20.3284271,18.75 19.5,18.75 L2.49050805,18.75 Z" id="Path"></path>
+                        <path d="M2,18.75 C1.17157288,18.75 0.5,18.0784271 0.5,17.25 L0.5,8.25" id="Path"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="18px" viewBox="0 0 24 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Path</title>
+    <g id="limAPP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="home" transform="translate(-66.000000, -564.000000)" fill="#898B8C" stroke="#898B8C" stroke-width="2.21848739">
+            <g id="Group-17" transform="translate(32.000000, 481.538462)">
+                <g id="Group-12" transform="translate(24.000000, 65.461538)">
+                    <g id="Group-11" transform="translate(0.000000, 4.000000)">
+                        <path d="M32.2142857,17.4511278 L32.2142857,29.1219717 C32.2142857,29.5279955 31.8755382,29.8571429 31.4576721,29.8571429 L12.6369048,29.8571429 C12.1668052,29.8571429 11.7857143,29.486852 11.7857143,29.0300752 L11.7857143,14.9699248 C11.7857143,14.513148 12.1668052,14.1428571 12.6369048,14.1428571 L18.3115076,14.1428571 C18.4956798,14.1428571 18.6748841,14.200899 18.8222219,14.3082707 L21.7730162,16.4586466 C21.920354,16.5660183 22.0995582,16.6240602 22.2837305,16.6240602 L31.3630952,16.6240602 C31.8331948,16.6240602 32.2142857,16.994351 32.2142857,17.4511278 Z" id="Path"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

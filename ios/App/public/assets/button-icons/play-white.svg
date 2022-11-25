@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="18px" viewBox="0 0 16 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Path</title>
+    <g id="limAPP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="products-&gt;-...-&gt;-detail---details" transform="translate(-146.000000, -1447.000000)" stroke="#FFFFFF" stroke-width="2">
+            <g id="Group-2" transform="translate(32.000000, 1371.000000)">
+                <g id="Group-15" transform="translate(98.000000, 63.000000)">
+                    <g id="Group" transform="translate(10.000000, 10.000000)">
+                        <path d="M20.6649753,11.4310835 L8.06517937,4.09782893 C7.84909006,3.97206201 7.57852867,3.96723681 7.35764665,4.08521077 C7.13676464,4.20318472 7,4.4255643 7,4.66674542 L7,19.3332546 C7,19.5744357 7.13676464,19.7968153 7.35764665,19.9147892 C7.57852867,20.0327632 7.84909006,20.027938 8.06517937,19.9021711 L20.6649753,12.5689165 C20.8730787,12.4477973 21,12.232268 21,12 C21,11.767732 20.8730787,11.5522027 20.6649753,11.4310835 Z" id="Path"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
