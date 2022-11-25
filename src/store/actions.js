@@ -105,15 +105,12 @@ export async function login (context, data) {
     try {
       if (!Capacitor.getPlatform() || Capacitor.getPlatform() !== 'web') {
         // Now that we have user id we can proceed wit OneSignal sync with server
-        await context.dispatch('syncOneSignal', context)
+          await context.dispatch('syncOneSignal', context)
+
       }
     } catch (e) {
       console.error(e)
     }
-
-    // Check OneSignal permissions status
-    // const subscriptionData = await this.$app.$onesignal.getPermissionState()
-    // await context.dispatch('newNotificationsState', subscriptionData)
 
     resolveRouting(
       this.$app,
@@ -193,7 +190,7 @@ export async function loginWithToken (context, isRefresh = false) {
 
 export async function syncOneSignal () {
   try {
-    const playerId = await this.$app.$onesignal.getUID()
+    const pushId = await this.$app.$onesignal.getUID()
     const deviceInfo = await this.$app.$device.getInfo()
     const deviceId = await this.$app.$device.getId()
     const appInfo = await this.$app.$device.getAppInfo()
@@ -206,7 +203,7 @@ export async function syncOneSignal () {
         uuid: deviceId.uuid,
         os: deviceInfo.platform,
         device: `${deviceInfo.platform} ${deviceInfo.osVersion} - ${deviceInfo.model}`,
-        push_id: playerId,
+        push_id: pushId,
         browser: window.navigator.userAgent || window.navigator.appVersion,
         app_version: appInfo.version
       }

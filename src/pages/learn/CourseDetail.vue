@@ -82,16 +82,6 @@ export default {
     }
   },
 
-  // async mounted () {
-  //   if (Capacitor) {
-  //     // FIND THE WAY TO UNDERSTAND IF IS WEBAPP OPENED IN MOBILE
-  //     // window.open('limasales://path=learn/list/' + this.course.id)
-  //     console.log(Capacitor)
-  //     const a = await this.$device.getInfo()
-  //     console.log(a)
-  //   }
-  // },
-
   computed: {
     gradient () {
       if (this.course && this.course.category) {

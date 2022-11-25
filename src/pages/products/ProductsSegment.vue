@@ -20,12 +20,12 @@
           </square-container>
           <span
             class="font-helvetica-medium text-black text-16 spacing-5 line-28"
-            >{{ item.name }}</span
-          >
+            >
+            {{ item.name }} </span>
         </div>
       </div>
     </ion-list>
-    
+
     <separator />
 
     <accordions-list v-if="segment.thinkclinical.length" classes="mt-4 px-8" :list="thinkClinical">
@@ -69,10 +69,11 @@ export default {
     updatedSegment () {
       return this.segment
     },
+
     thinkClinical () {
       return [
         {
-          name: 'Think Clinical',
+          name: '#ThinkClinical',
           childs: this.segment.thinkclinical
         }
       ]

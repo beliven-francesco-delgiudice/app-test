@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.384a973597225f1d5c92c45f89358c74.js"
+  "/precache-manifest.81f9627ba37f89f4335691250379c903.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "limapp"});

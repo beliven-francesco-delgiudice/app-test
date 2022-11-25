@@ -16,22 +16,16 @@ export async function onOnesignalPermissionChange (plugins, permissionChange) {
  * @param {*} e Raw event
  */
 export async function onOnesignalNotificationReceived (plugins, e) {
-  // console.log('Notification received', e)
+  console.log('Notification received', plugins, e)
 
-  const data = e.payload.additionalData
-  plugins.$bg.wakeUp()
+  if (e.notification && e.notification && e.notification.launchURL) {
+    let path = e.notification.launchURL
+    path = path.split('limasales:/')[1]
+    plugins.$router.push(path)
+  } else {
+    plugins.$bg.wakeUp()
+  }
 
-  // Set message as read
-  await plugins.$store.dispatch('setMessageAs', {
-    id: data.messageId,
-    status: 2
-  })
-
-  // // Set round of the message and fetch it
-  // plugins.$router.push('/hub')
-  // await plugins.$store.commit('setRoundId', data.roundId)
-
-  await plugins.$store.dispatch('getMessages')
 }
 
 /**
@@ -40,27 +34,22 @@ export async function onOnesignalNotificationReceived (plugins, e) {
  * @param {*} e Raw event
  */
 export async function onOnesignalNotificationOpened (plugins, e) {
-  // console.log('Opened notification', e)
+  console.log('Opened notification', plugins, e)
 
-  // const data = e.notification.payload.additionalData
+  if (e.notification) {
+    const notification = e.notification
+    if (notification && notification.launchURL) {
+      let path = notification.launchURL
+      // Use custom url scheme, limasales://
 
-  // Set round of the message and redirect directly to message
-  // plugins.$store.commit('setRoundId', data.roundId)
-
-  // await plugins.$router.push('/hub')
-
-  // await plugins.$store.dispatch('getMessages')
-  // await plugins.$router.push(`/hub/message/${data.messageId}`)
-  const notification = e.notification
-  if (notification.payload && notification.payload.launchURL) {
-    let path = notification.payload.launchURL
-    // Use custom url scheme, limasales://
-    path = path.split('limasales:/')[1]
-    if (plugins.$store.getters.loggedIn) {
-      plugins.$router.push(path)
-    } else {
-      plugins.$store.commit('setLaunchUrl', notification.payload.launchURL)
-      plugins.$store.commit('setNotificationToShow', path)
+      console.log('NOTIFICATION', notification, plugins.$store.getters.loggedIn, path)
+      path = path.split('limasales:/')[1]
+      if (plugins.$store.getters.loggedIn) {
+        plugins.$router.push(path)
+      } else {
+        plugins.$store.commit('setLaunchUrl', notification.launchURL)
+        plugins.$store.commit('setNotificationToShow', path)
+      }
     }
   }
 }
