@@ -12,8 +12,6 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@capacitor-community/file-opener": "^1.0.3",
-    "@capacitor-community/firebase-analytics": "^4.0.0",
     "@capacitor/android": "^4.0.0",
     "@capacitor/app": "^4.0.0",
     "@capacitor/browser": "^4.0.0",
