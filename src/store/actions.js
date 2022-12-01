@@ -54,7 +54,7 @@ export async function alreadyLoggedRouting (context) {
 export async function logScreenView (context, route) {
   try {
     const userId = context.getters.userData.id
-    await this.$app.$firebase.logEvent(
+    await this.$app.$matomo.logEvent(
       'screen_view',
       {
         screen_name: route.name,
@@ -70,7 +70,7 @@ export async function logScreenView (context, route) {
 export async function logout (context) {
   context.commit('setUserData', false)
   try {
-    await this.$app.$firebase.logEvent('logout')
+    await this.$app.$matomo.logEvent('logout')
   } catch (err) {
     console.log('FirebaseError', err)
   }
@@ -100,6 +100,12 @@ export async function login (context, data) {
 
     window.localStorage.setItem('JWT', loggedData.jwt)
 
+    try {
+      const userId = userData.id
+      await this.$app.$matomo.logEvent('login', {}, userId)
+    } catch (err) {
+      console.error('LOGIN FIREBASE ERROR', err)
+    }
 
     // No OneSignal if WebApp
     try {
@@ -157,7 +163,14 @@ export async function loginWithToken (context, isRefresh = false) {
 
     window.localStorage.setItem('JWT', loggedData.jwt)
 
-
+    if (!isRefresh) {
+      try {
+        const userId = userData.id
+        await this.$app.$matomo.logEvent('login', {}, userId)
+      } catch (err) {
+        console.error('LOGIN FIREBASE ERROR', err)
+      }
+    }
 
     // No OneSignal if WebApp
     try {

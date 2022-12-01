@@ -51,7 +51,7 @@ import $docviewer from '@/plugins/docviewer-native'
 import $onesignal from '@/plugins/onesignal-native'
 import $clipboard from '@/plugins/clipboard'
 import $share from '@/plugins/share'
-import $firebase from '@/plugins/firebase'
+import $matomo from '@/plugins/matomo'
 
 // import $backgroundmode from '@/plugins/backgroundmode'
 import { Capacitor } from '@capacitor/core'
@@ -96,6 +96,7 @@ async function init () {
     .use($docviewer)
     .use($clipboard)
     .use($share)
+    .use($matomo)
     .use($toast, {
       duration: 3000,
       color: 'primary'
