@@ -9,31 +9,21 @@ export default {
         return window._paq.push(['resetUserId']);
       },
 
-      setScreenName: async function (screenName, nameOverride, userId) {
-        try {
-          await this.initialize(userId)
-        } catch (err) {
-          console.log('Initialize error:', err)
-        }
-
+      setScreenName: async function (screenName, nameOverride) {
         let res = ''
 
         try {
-          res = window._paq.push(['setDocumentTitle', screenName]);
-          console.log('Log res:', res)
+          console.log('Overriding name:', screenName, nameOverride)
+
+          window._paq.push(['setDocumentTitle', screenName]);
+          // window._paq.push(['setCustomUrl', nameOverride]);
         } catch (err) {
           console.log('Log Event error:', err)
         }
         return res
       },
 
-      logEvent: async function (name, params = {}, userId) {
-        try {
-          await this.initialize(userId)
-        } catch (err) {
-          console.log('Initialize error:', err)
-        }
-
+      logEvent: async function (name, params = {}) {
         let res = ''
 
         try {
