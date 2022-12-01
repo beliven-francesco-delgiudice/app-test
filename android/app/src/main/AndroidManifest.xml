@@ -55,13 +55,6 @@
 
         <meta-data
             tools:replace="android:value"
-            android:name="firebase_analytics_collection_enabled"
-            android:value="true"
-            android:exported="true"
-            />
-
-        <meta-data
-            tools:replace="android:value"
             android:name="google_analytics_automatic_screen_reporting_enabled"
             android:value="true"
             android:exported="true"
