@@ -9,31 +9,31 @@ export default {
         return window._paq.push(['resetUserId']);
       },
 
-      setScreenName: async function (screenName, nameOverride) {
-        let res = ''
+      setScreen: async function (route) {
+        console.log('[matomo] overriding :', route)
 
-        try {
-          console.log('Overriding name:', screenName, nameOverride)
-
-          window._paq.push(['setDocumentTitle', screenName]);
-          // window._paq.push(['setCustomUrl', nameOverride]);
-        } catch (err) {
-          console.log('Log Event error:', err)
-        }
-        return res
+        window._paq.push(['setCustomUrl', route.path]);
+        window._paq.push(['setDocumentTitle', route.name]);
       },
 
       logEvent: async function (name, params = {}) {
-        let res = ''
+        console.log('[matomo] triggering event', name, params)
 
-        try {
-          window._paq.push(['trackEvent', name, params]);
+        return window._paq.push(['trackEvent', 'page', 'action', name, params]);
+      },
 
-          console.log('Log res:', res)
-        } catch (err) {
-          console.log('Log Event error:', err)
-        }
-        return res
+      trackView: function () {
+        console.log('[matomo] triggering page view')
+
+        return window._paq.push(['trackPageView']);
+      },
+
+      trackSearch: function (searchQuery, numberResults = 0, category = false) {
+        return window._paq.push(['trackSiteSearch',
+          searchQuery,
+          category,
+          numberResults
+        ]);
       }
     }
 

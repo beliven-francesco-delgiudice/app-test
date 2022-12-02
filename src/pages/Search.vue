@@ -284,6 +284,14 @@ export default {
             term: searchText
           }
         })
+
+        let resultsCount = 0
+        for (const category in results) {
+          resultsCount += results[category].length
+        }
+
+        this.$matomo.trackSearch(searchText, resultsCount)
+
         this.results = results
         this.isSearched = searchText
       } catch (e) {
