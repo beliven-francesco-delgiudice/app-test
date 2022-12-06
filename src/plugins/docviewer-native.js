@@ -1,5 +1,5 @@
-import { File } from '@ionic-native/file'
-import { FileOpener } from '@ionic-native/file-opener'
+import { Directory, Filesystem } from '@capacitor/filesystem'
+import {FileOpener} from '@capacitor-community/file-opener'
 
 export const docviewer = $app =>
   async function (url, name = 'Document') {
@@ -15,18 +15,17 @@ export const docviewer = $app =>
     })
 
     if (!doc) throw new Error('Cannot open pdf')
-    const pdf = new Blob([doc], { type: 'application/pdf' })
+    const pdf = window.btoa(doc)
 
-    await File.writeFile(File.dataDirectory, `${name}.pdf`, pdf, {
-      replace: true
+    const {uri} = await Filesystem.writeFile({
+      data: pdf,
+      path: `${name}.pdf`,
+      directory: Directory.Data
     })
 
     await $app.$loading.hide()
-    return new Promise((resolve, reject) => {
-      FileOpener.open(`${File.dataDirectory}${name}.pdf`, 'application/pdf', {
-        error: reject,
-        success: resolve
-      })
+    return new Promise(() => {
+      FileOpener.open({filePath: uri, contentType: 'application/pdf', openWithDefault: true})
     })
   }
 
