@@ -13,9 +13,9 @@ Mobile app for teams to receive notifications from race direction
 
 ## Pre-requisites
 
-- **NodeJS** >= 12 (https://nodejs.org/en/download/)
-- **Xcode** (https://ionicframework.com/docs/developing/ios)
-- **Android Studio** (https://ionicframework.com/docs/developing/android)
+- **NodeJS** >= 12 (<https://nodejs.org/en/download/>)
+- **Xcode** (<https://ionicframework.com/docs/developing/ios>)
+- **Android Studio** (<https://ionicframework.com/docs/developing/android>)
 
 ## Getting started
 
@@ -56,16 +56,16 @@ Please keep the version and the build number equally updated:
 File:
 
 - Android: `build.gradle`
-- iOS: da XCode
+- iOS: `/ios/App/App.xcodeproj/project.pbxproj`
 
 Version number:
 
-- iOS: "Version"
+- iOS: "MARKETING_VERSION"
 - Android: "versionName"
 
 Build number:
 
-- iOs: "Build"
+- iOs: "CURRENT_PROJECT_VERSION"
 - Android: "versionCode"
 
 ## Play Store
