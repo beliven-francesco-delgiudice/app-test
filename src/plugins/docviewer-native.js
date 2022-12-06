@@ -39,7 +39,7 @@ async function (url, name = 'Document') {
     return await Filesystem.writeFile({
       path: `${name}.pdf`,
       data: pdf,
-      directory: Directory.Data
+      directory: Directory.Cache
     })
   }
 
