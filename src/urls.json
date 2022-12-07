@@ -3,7 +3,6 @@
     "dev": "https://app-api-staging.limacorporate.com/api",
     "prod": "https://app-api.limacorporate.com/api"
   },
-  "webapp": "https://app.limacorporate.com/#/",
   "contacts": "/contacts",
   "auth" : {
     "loginCheck": "/users/check-domain",

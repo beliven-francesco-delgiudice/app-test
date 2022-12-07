@@ -414,22 +414,6 @@ const routes = [
       }
     ]
   },
-  // download
-  {
-    path: '/download',
-    component: MainLayout,
-    children: [
-      {
-        path: '',
-        name: 'Download Document',
-        component: DownloadDocument,
-        meta: {
-          showBack: false
-        }
-      },
-
-    ]
-  },
 
   // 404 to home
   { path: '/:catchAll(.*)', redirect: '/home' }
