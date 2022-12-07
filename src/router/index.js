@@ -49,8 +49,6 @@ import Learn from '../pages/learn/LearnIndex.vue'
 import CoursesList from '../pages/learn/CoursesList.vue'
 import CourseDetail from '../pages/learn/CourseDetail.vue'
 
-import DownloadDocument from '../pages/DownloadDocument.vue'
-
 import masterStore from '../store'
 
 const routes = [
