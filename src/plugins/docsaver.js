@@ -38,7 +38,7 @@ export const docsaver = $app =>
       await Filesystem.writeFile({
         path: `${name}.pdf`,
         data: pdf,
-        directory: Directory.Documents
+        directory: Directory.External
       })
     }
 

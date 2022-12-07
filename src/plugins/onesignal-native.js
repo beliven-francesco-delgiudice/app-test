@@ -35,6 +35,7 @@ export default {
       getUID: async function () {
         return new Promise((resolve, reject) => {
           OneSignal.getDeviceState(function (state) {
+            console.log(state)
             if (!state.userId) return reject(new Error('NO_USERID'))
             resolve(state.userId)
           })

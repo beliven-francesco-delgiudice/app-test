@@ -49,6 +49,8 @@ import Learn from '../pages/learn/LearnIndex.vue'
 import CoursesList from '../pages/learn/CoursesList.vue'
 import CourseDetail from '../pages/learn/CourseDetail.vue'
 
+import DownloadDocument from '../pages/DownloadDocument.vue'
+
 import masterStore from '../store'
 
 const routes = [
@@ -410,6 +412,22 @@ const routes = [
         name: 'Learn Landing',
         component: Learn
       }
+    ]
+  },
+  // download
+  {
+    path: '/download',
+    component: MainLayout,
+    children: [
+      {
+        path: '',
+        name: 'Download Document',
+        component: DownloadDocument,
+        meta: {
+          showBack: false
+        }
+      },
+
     ]
   },
 

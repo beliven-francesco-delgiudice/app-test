@@ -48,7 +48,6 @@ import $alert from '@/plugins/alert'
 import $device from '@/plugins/device'
 
 import $docviewer from '@/plugins/docviewer-native'
-import $docsaver from '@/plugins/docsaver'
 import $onesignal from '@/plugins/onesignal-native'
 import $clipboard from '@/plugins/clipboard'
 import $share from '@/plugins/share'
@@ -95,7 +94,6 @@ async function init () {
     .use($alert)
     .use($loading)
     .use($docviewer)
-    .use($docsaver)
     .use($clipboard)
     .use($share)
     .use($firebase, { autoload: true })

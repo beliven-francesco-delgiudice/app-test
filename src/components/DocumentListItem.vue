@@ -246,27 +246,7 @@ export default {
         buttonsArray.push({
           text: 'Download',
           handler: async () => {
-            if (this.isApp) {
-              const path = this.getDocumentPath(this.updatedDocument)
-              try {
-                await this.$loading.show()
-                await this.$docsaver(path, this.updatedDocument.title)
-                await this.$loading.hide()
-                this.$toast({
-                  message: 'Document successfully saved in "Documents"',
-                  color: 'dark'
-                })
-              } catch (e) {
-                await this.$loading.hide()
-                console.log(e)
-                this.$toast({
-                  message: 'Cannot download document',
-                  color: 'danger'
-                })
-              }
-            } else {
-              this.openFile(this.updatedDocument)
-            }
+            this.openFile(this.updatedDocument)
           }
         })
       }

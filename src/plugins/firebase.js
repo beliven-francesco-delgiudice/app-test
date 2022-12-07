@@ -68,7 +68,7 @@ export default {
           })
           console.log('Log res:', res)
         } catch (err) {
-          console.log('Log Event error:', err)
+          console.log('[LOG EVENT ERROR]:', err)
         }
         return res
       }
