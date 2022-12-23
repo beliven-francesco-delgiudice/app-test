@@ -83,7 +83,7 @@ export default {
       ],
       filtersOptions: {},
       filters: {
-        year: 2022
+        year: new Date().getFullYear()
       }
     }
   },
