@@ -96,7 +96,6 @@ async function init () {
     .use($docviewer)
     .use($clipboard)
     .use($share)
-    .use($firebase, { autoload: true })
     .use($toast, {
       duration: 3000,
       color: 'primary'
@@ -111,6 +110,8 @@ async function init () {
       },
       ...config.oneSignal
     })
+
+    app.use($firebase, { autoload: true })
   }
 
   app.use($device, {

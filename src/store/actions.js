@@ -100,16 +100,16 @@ export async function login (context, data) {
 
     window.localStorage.setItem('JWT', loggedData.jwt)
 
-    try {
-      const userId = userData.id
-      await this.$app.$firebase.logEvent('login', {}, userId)
-    } catch (err) {
-      console.error('LOGIN FIREBASE ERROR', err)
-    }
 
     // No OneSignal if WebApp
     try {
       if (!Capacitor.getPlatform() || Capacitor.getPlatform() !== 'web') {
+        try {
+          await this.$app.$firebase.logEvent('login', {})
+        } catch (err) {
+          console.error('LOGIN FIREBASE ERROR', err)
+        }
+
         // Now that we have user id we can proceed wit OneSignal sync with server
           await context.dispatch('syncOneSignal', context)
 
@@ -157,14 +157,7 @@ export async function loginWithToken (context, isRefresh = false) {
 
     window.localStorage.setItem('JWT', loggedData.jwt)
 
-    if (!isRefresh) {
-      try {
-        const userId = userData.id
-        await this.$app.$firebase.logEvent('login', {}, userId)
-      } catch (err) {
-        console.error('LOGIN FIREBASE ERROR', err)
-      }
-    }
+
 
     // No OneSignal if WebApp
     try {
@@ -172,6 +165,14 @@ export async function loginWithToken (context, isRefresh = false) {
         !isRefresh &&
         (!Capacitor.getPlatform() || Capacitor.getPlatform() !== 'web')
       ) {
+        if (!isRefresh) {
+          try {
+            await this.$app.$firebase.logEvent('login', {})
+          } catch (err) {
+            console.error('LOGIN FIREBASE ERROR', err)
+          }
+        }
+
         // Now that we have user id we can proceed wit OneSignal sync with server
         await context.dispatch('syncOneSignal', context)
       }

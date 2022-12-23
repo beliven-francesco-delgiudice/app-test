@@ -4,6 +4,7 @@ import {
   createWebHistory
 } from '@ionic/vue-router'
 import { isPlatform } from '@ionic/vue'
+import { Capacitor } from '@capacitor/core'
 
 import MainLayout from '../layouts/Main'
 import HomeLayout from '../layouts/Home.vue'
@@ -433,7 +434,9 @@ router.beforeEach((to, from, next) => {
     masterStore.dispatch('logout')
   }
 
-  masterStore.dispatch('logScreenView', to)
+  if (!Capacitor.getPlatform() || Capacitor.getPlatform() !== 'web') {
+    masterStore.dispatch('logScreenView', to)
+  }
   next()
 })
 
