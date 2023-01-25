@@ -133,15 +133,19 @@
 import { IonImg } from '@ionic/vue'
 import Page from '../../components/Page.vue'
 import Separator from '../../components/Separator.vue'
+import MatomoManager from '../../mixins/MatomoManager.vue'
 import DetailSection from '../../components/DetailSection.vue'
-import SquareContainer from '../../components/containers/SquareContainer.vue'
-import DocumentListItem from '../../components/DocumentListItem.vue'
-import SectionButton from '../../components/containers/SectionButton.vue'
 import BigButton from '../../components/containers/BigButton.vue'
 import FacultyModal from '../../components/modals/FacultyModal.vue'
-import messages from '@/messages'
+import DocumentListItem from '../../components/DocumentListItem.vue'
+import SectionButton from '../../components/containers/SectionButton.vue'
+import SquareContainer from '../../components/containers/SquareContainer.vue'
 import urls from '@/urls'
+import messages from '@/messages'
+
 export default {
+  name: 'ActivityDetail',
+
   components: {
     IonImg,
     Page,
@@ -153,6 +157,9 @@ export default {
     BigButton,
     FacultyModal
   },
+
+  mixins: [MatomoManager],
+
   data () {
     return {
       isReadMore: false,
@@ -160,16 +167,20 @@ export default {
       activity: {}
     }
   },
+
   computed: {
     updatedActivity () {
       return this.activity
     },
+
     updatedReadMore () {
       return this.isReadMore
     },
+
     aboveTitle () {
       return this.updatedActivity.parent_name + ' /'
     },
+
     formattedDescription () {
       if (
         this.updatedActivity &&
@@ -180,28 +191,35 @@ export default {
       }
       return ''
     },
+
     backPath () {
       const id = this.updatedActivity.parent_id
       return `/congresses/${id}?section=activities`
     },
+
     isFaculty () {
       return this.faculty
     }
   },
+
   methods: {
     readMore () {
       this.isReadMore = !this.isReadMore
     },
+
     openFaculty (faculty) {
       this.faculty = Object.assign({}, faculty)
     },
+
     closeFaculty () {
       this.faculty = null
     },
+
     openLink (link) {
       window.open(link)
     }
   },
+
   async created () {
     if (this.$route.params.id) {
       const activityID = this.$route.params.id
@@ -217,6 +235,7 @@ export default {
         setTimeout(() => {
           this.cleanParagraphs()
         }, 500)
+        this.logPage(results.title)
       } catch (e) {
         console.error(e)
         this.$toast({
@@ -235,6 +254,7 @@ export default {
   }
 }
 </script>
+
 <style scoped>
 .gallery-container {
   width: 100%;

@@ -23,32 +23,44 @@
 import Page from '../../components/Page.vue'
 import messages from '@/messages'
 import urls from '@/urls'
+import MatomoManager from '../../mixins/MatomoManager.vue'
+
 export default {
+
+  name: 'NewsDetail',
+
   components: {
     Page
   },
+
+  mixins: [MatomoManager],
+
   data () {
     return {
       news: {}
     }
   },
+
   computed: {
     updatedNews () {
       return this.news
     },
+
     backPath () {
       return `/news/`
     }
   },
+
   async created () {
     if (this.$route.params.id) {
       try {
-        const resNews = await this.$http({
+        const instance = await this.$http({
           method: 'GET',
           url: urls.news.list + '/' + this.$route.params.id,
           params: {}
         })
-        this.news = resNews
+        this.news = instance
+        this.logPage(instance.title)
       } catch (e) {
         console.error(e)
         this.$toast({
@@ -67,6 +79,7 @@ export default {
   }
 }
 </script>
+
 <style scoped>
 .gallery-container {
   width: 100%;

@@ -54,9 +54,11 @@ import RegisterModal from '../../components/learn/RegisterModal.vue'
 import SectionButton from '../../components/containers/SectionButton.vue'
 import urls from '@/urls'
 import messages from '@/messages'
-// import { Capacitor } from '@capacitor/core'
+import MatomoManager from '../../mixins/MatomoManager.vue'
 
 export default {
+  name: 'CourseDetail',
+
   components: {
     Page,
     Detail,
@@ -65,6 +67,8 @@ export default {
     RegisterModal,
     SectionButton
   },
+
+  mixins: [MatomoManager],
 
   data () {
     return {
@@ -155,11 +159,11 @@ export default {
         })
         if (res) {
           this.course = res
-
           setTimeout(() => {
             this.cleanParagraphs()
           }, 500)
         }
+        this.logPage(res?.title || 'Course')
       } catch (e) {
         console.error(e)
         this.$toast({

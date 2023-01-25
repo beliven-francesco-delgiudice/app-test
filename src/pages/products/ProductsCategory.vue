@@ -42,16 +42,23 @@
 
 <script>
 import Page from '../../components/Page.vue'
-import { IonList } from '@ionic/vue'
+import MatomoManager from '../../mixins/MatomoManager.vue'
 import SquareContainer from '../../components/containers/SquareContainer.vue'
-import messages from '@/messages'
 import urls from '@/urls'
+import messages from '@/messages'
+import { IonList } from '@ionic/vue'
+
 export default {
+  name: 'ProductsCategory',
+
   components: {
     Page,
     IonList,
     SquareContainer
   },
+
+  mixins: [MatomoManager],
+
   data () {
     return {
       category: {
@@ -68,6 +75,7 @@ export default {
       }
     }
   },
+
   created () {
     if (this.$route.params.category) {
       this.categoryID = this.$route.params.category
@@ -81,6 +89,7 @@ export default {
       this.$router.push('/products')
     }
   },
+
   computed: {
     backLink () {
       if (this.updatedCategory.parent_id) {
@@ -89,21 +98,26 @@ export default {
         return '/products'
       }
     },
+
     updatedCategory () {
       return this.category
     },
+
     options () {
       return this.filtersOptions
     }
   },
+
   methods: {
     routeTo (item) {
       const link = `/products/detail/${item.id}`
       this.$router.push(link)
     },
+
     updateFilters (filterObj) {
       this.filters = Object.assign({}, filterObj)
     },
+
     async getCategoryProducts () {
       try {
         const id = this.categoryID || this.$route.params.category
@@ -114,6 +128,7 @@ export default {
         })
         this.category = results
         this.filtersOptions = results.filters
+        this.logPage(results.category_name)
       } catch (e) {
         console.error(e)
         this.$toast({
@@ -123,6 +138,7 @@ export default {
       }
     }
   },
+
   watch: {
     filters: function (newFilters) {
       this.getCategoryProducts(newFilters)

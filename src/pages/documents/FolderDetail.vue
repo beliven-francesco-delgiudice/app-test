@@ -20,15 +20,22 @@
 <script>
 import Page from '../../components/Page'
 import DocumentListItem from '../../components/DocumentListItem'
-import messages from '@/messages'
-import urls from '@/urls'
 import AddButtonAndModal from '../../components/documents/AddButtonAndModal'
+import MatomoManager from '../../mixins/MatomoManager.vue'
+import urls from '@/urls'
+import messages from '@/messages'
+
 export default {
+  name: 'FolderDetail',
+
   components: {
     Page,
     DocumentListItem,
     AddButtonAndModal
   },
+
+  mixins: [MatomoManager],
+
   data () {
     return {
       documents: {
@@ -38,11 +45,13 @@ export default {
       }
     }
   },
+
   computed: {
     updatedDocuments () {
       const obj = Object.assign({}, this.documents)
       return obj
     },
+
     documentsType () {
       if (!this.updatedDocuments.type && this.$route.query.type === 'us') {
         return 'us'
@@ -50,6 +59,7 @@ export default {
       return this.updatedDocuments.type || ''
     }
   },
+
   methods: {
     async getDocuments () {
       if (this.$route.params.id && this.$route.query.type) {
@@ -58,12 +68,13 @@ export default {
 
         try {
           const endpoint = 'list_' + folderType
-          const results = await this.$http({
+          const instance = await this.$http({
             method: 'GET',
             url: urls.documents[endpoint] + '/' + folderID,
             params: this.filters
           })
-          this.documents = results
+          this.documents = instance
+          this.logPage(instance?.back?.name || 'Folder detail')
         } catch (e) {
           console.error(e)
           this.$toast({
@@ -81,9 +92,11 @@ export default {
       }
     }
   },
+
   async mounted () {
     this.getDocuments()
   },
+
   watch: {
     '$route.params.id' () {
       if (

@@ -35,19 +35,22 @@
 </template>
 
 <script>
-import CongressLayout from '../../components/congressdetails/CongressLayout.vue'
 import Info from '../../components/training/Info.vue'
 import Details from '../../components/training/Details.vue'
-import Hotels from '../../components/congressdetails/Hotels.vue'
+import Contacts from '../../components/training/Contacts.vue'
 import DayByDay from '../../components/training/DayByDay.vue'
+import Hotels from '../../components/congressdetails/Hotels.vue'
+import Activities from '../../components/training/Activities.vue'
 import Testimonials from '../../components/training/Testimonials.vue'
 import Downloads from '../../components/congressdetails/Downloads.vue'
-import Contacts from '../../components/training/Contacts.vue'
-import Activities from '../../components/training/Activities.vue'
-import messages from '@/messages'
+import CongressLayout from '../../components/congressdetails/CongressLayout.vue'
 import urls from '@/urls'
+import messages from '@/messages'
+import MatomoManager from '../../mixins/MatomoManager.vue'
 
 export default {
+  name: 'SalesTrainingDetail',
+
   components: {
     CongressLayout,
     Info,
@@ -59,6 +62,8 @@ export default {
     Downloads,
     Contacts
   },
+
+  mixins: [MatomoManager],
 
   data () {
     return {
@@ -162,6 +167,7 @@ export default {
           params: this.filters
         })
         this.training = results
+        this.logPage(results?.tabs?.info?.content?.name?.title || 'Sales Training Detail')
       } catch (e) {
         console.error(e)
         this.$toast({

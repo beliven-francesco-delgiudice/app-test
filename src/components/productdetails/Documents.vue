@@ -13,27 +13,37 @@
     </accordions-list>
   </product-layout>
 </template>
+
 <script>
+import ProductLayout from './ProductLayout.vue'
 import AccordionsList from '../AccordionsList.vue'
 import DocumentListItem from '../DocumentListItem.vue'
-import ProductLayout from './ProductLayout.vue'
+import MatomoManager from '../../mixins/MatomoManager.vue'
 import messages from '@/messages'
 import urls from '@/urls'
+
 export default {
+  name: 'Documents',
+
   components: {
     ProductLayout,
     AccordionsList,
     DocumentListItem
   },
+
+  mixins: [MatomoManager],
+
   data () {
     return {
       product: {}
     }
   },
+
   computed: {
     updatedProduct () {
       return this.product
     },
+
     computedAttachments () {
       return this.updatedProduct && this.updatedProduct.attachments
         ? this.updatedProduct.attachments.map(docCategory => ({
@@ -44,10 +54,11 @@ export default {
         : []
     }
   },
+
   async created () {
     if (this.$route.params.id) {
       try {
-        const resProduct = await this.$http({
+        const instance = await this.$http({
           method: 'GET',
           url:
             urls.products.product +
@@ -56,7 +67,9 @@ export default {
             '/attachments',
           params: {}
         })
-        this.product = resProduct
+        this.product = instance
+        this.logPage(instance.name + ' documents')
+
       } catch (e) {
         console.error(e)
         this.$toast({

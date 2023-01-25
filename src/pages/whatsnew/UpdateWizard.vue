@@ -18,21 +18,30 @@
     </template>
   </slider>
 </template>
+
 <script>
-import messages from '@/messages'
-import urls from '@/urls'
 import Slider from '../../components/Slider.vue'
+import MatomoManager from '../../mixins/MatomoManager.vue'
+import urls from '@/urls'
+import messages from '@/messages'
 import { IonImg } from '@ionic/vue'
+
 export default {
+  name: 'UpdateWizard',
+
   components: {
     Slider,
     IonImg
   },
+
+  mixins: [MatomoManager],
+
   data () {
     return {
       results: {}
     }
   },
+
   computed: {
     formattedSlides () {
       return this.results.gallery || []
@@ -45,6 +54,7 @@ export default {
       return null
     }
   },
+
   async created () {
     if (this.$route.params.id) {
       try {
@@ -56,6 +66,7 @@ export default {
         if (this.$store.getters.gotUpdatesToShow) {
           this.$store.commit('setAppUpdates', null)
         }
+        this.logPage('Last App Update')
       } catch (e) {
         console.error(e)
         this.$router.push('/home')
@@ -68,6 +79,7 @@ export default {
       this.resolveRouting()
     }
   },
+
   methods: {
     resolveRouting () {
       // check if user has clicked a notification

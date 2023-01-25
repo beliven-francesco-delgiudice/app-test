@@ -4,7 +4,6 @@ import {
   createWebHistory
 } from '@ionic/vue-router'
 import { isPlatform } from '@ionic/vue'
-import { Capacitor } from '@capacitor/core'
 
 import MainLayout from '../layouts/Main'
 import HomeLayout from '../layouts/Home.vue'
@@ -131,7 +130,8 @@ const routes = [
         name: 'News Detail',
         component: NewsDetail,
         meta: {
-          showBack: true
+          showBack: true,
+          customName: true
         }
       },
       {
@@ -165,7 +165,9 @@ const routes = [
         path: '',
         name: 'Update',
         component: UpdateWizard,
-        meta: {}
+        meta: {
+          customName: true
+        }
       }
     ]
   },
@@ -244,7 +246,8 @@ const routes = [
         name: 'Folder',
         component: FolderDetail,
         meta: {
-          showBack: true
+          showBack: true,
+          customName: true
         }
       },
       {
@@ -269,6 +272,7 @@ const routes = [
         component: ProductsDetail,
         meta: {
           showBack: true,
+          customName: true,
           section: 'components'
         }
       },
@@ -278,6 +282,7 @@ const routes = [
         component: ProductsDetail,
         meta: {
           showBack: true,
+          customName: true,
           section: 'documents'
         }
       },
@@ -286,7 +291,8 @@ const routes = [
         name: 'Products Detail',
         component: ProductsDetail,
         meta: {
-          showBack: true
+          showBack: true,
+          customName: true
         }
       },
       // component detail
@@ -295,7 +301,8 @@ const routes = [
         name: 'Component Detail',
         component: ComponentDetail,
         meta: {
-          showBack: true
+          showBack: true,
+          customName: true
         }
       },
       // products category (products list)
@@ -304,7 +311,8 @@ const routes = [
         name: 'Product Category',
         component: ProductsCategory,
         meta: {
-          showBack: true
+          showBack: true,
+          customName: true
         }
       },
       // products segment (categories/products list)
@@ -313,7 +321,8 @@ const routes = [
         name: 'Product Segment',
         component: ProductsSegment,
         meta: {
-          showBack: true
+          showBack: true,
+          customName: true
         }
       },
       // products (segments list)
@@ -335,7 +344,8 @@ const routes = [
         name: 'Activity Detail',
         component: ActivityDetail,
         meta: {
-          showBack: true
+          showBack: true,
+          customName: true
         }
       },
       // congress detail
@@ -344,7 +354,8 @@ const routes = [
         name: 'Congress Detail',
         component: CongressDetail,
         meta: {
-          showBack: true
+          showBack: true,
+          customName: true
         }
       },
       // congresses list
@@ -366,7 +377,8 @@ const routes = [
         name: 'Sales Training Detail',
         component: SalesTrainingDetail,
         meta: {
-          showBack: true
+          showBack: true,
+          customName: true
         }
       },
       // sales training list
@@ -388,7 +400,8 @@ const routes = [
         name: 'Course Detail',
         component: CourseDetail,
         meta: {
-          showBack: true
+          showBack: true,
+          customName: true
         }
       },
       {
@@ -396,7 +409,8 @@ const routes = [
         name: 'Course Detail',
         component: CourseDetail,
         meta: {
-          showBack: true
+          showBack: true,
+          customName: true
         }
       },
       // courses list
@@ -434,9 +448,10 @@ router.beforeEach((to, from, next) => {
     masterStore.dispatch('logout')
   }
 
-  if (!Capacitor.getPlatform() || Capacitor.getPlatform() !== 'web') {
+  if (!to?.meta?.customName) {
     masterStore.dispatch('logScreenView', to)
   }
+
   next()
 })
 

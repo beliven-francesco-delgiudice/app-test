@@ -38,15 +38,18 @@
 
 <script>
 import Page from '../../components/Page.vue'
-import { IonList, IonImg } from '@ionic/vue'
-import SquareContainer from '../../components/containers/SquareContainer.vue'
+import Separator from '../../components/Separator.vue'
 import DocumentListItem from '../../components/DocumentListItem'
 import AccordionsList from '../../components/AccordionsList.vue'
-import Separator from '../../components/Separator.vue'
-import messages from '@/messages'
+import SquareContainer from '../../components/containers/SquareContainer.vue'
+import MatomoManager from '../../mixins/MatomoManager.vue'
 import urls from '@/urls'
+import messages from '@/messages'
+import { IonList, IonImg } from '@ionic/vue'
 
 export default {
+  name: 'ProductsSegment',
+
   components: {
     Page,
     IonList,
@@ -56,6 +59,9 @@ export default {
     DocumentListItem,
     AccordionsList,
   },
+
+  mixins: [MatomoManager],
+
   data () {
     return {
       segment: {
@@ -65,6 +71,7 @@ export default {
       }
     }
   },
+
   computed: {
     updatedSegment () {
       return this.segment
@@ -79,6 +86,7 @@ export default {
       ]
     }
   },
+
   async created () {
     if (this.$route.params.segment) {
       try {
@@ -88,6 +96,8 @@ export default {
           params: {}
         })
         this.segment = results
+        this.logPage(results.category_name)
+
       } catch (e) {
         console.error(e)
         this.$toast({
@@ -104,6 +114,7 @@ export default {
       this.$router.push('/products')
     }
   },
+
   methods: {
     routeTo (item) {
       // if category push to category
@@ -115,6 +126,7 @@ export default {
       }
       this.$router.push(link)
     },
+
     isCategory (item) {
       if (item && item.type === 'category') {
         return true

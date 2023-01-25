@@ -101,42 +101,54 @@ import Separator from '../../components/Separator.vue'
 import DetailSection from '../../components/DetailSection.vue'
 import messages from '@/messages'
 import urls from '@/urls'
+import MatomoManager from '../../mixins/MatomoManager.vue'
+
 export default {
+  name: 'ComponentDetail',
+
   components: {
     IonImg,
     Page,
     Separator,
     DetailSection
   },
+
+  mixins:[MatomoManager],
+
   data () {
     return {
       product: {}
     }
   },
+
   computed: {
     updatedProduct () {
       return this.product
     },
+
     aboveTitle () {
       return this.updatedProduct.parent_name &&
         this.updatedProduct.parent_name.length
         ? this.updatedProduct.parent_name + ' /'
         : null
     },
+
     backPath () {
       const id = this.updatedProduct.parent_id
       return `/products/detail/${id}/components`
     }
   },
+
   async created () {
     if (this.$route.params.id) {
       try {
-        const resProduct = await this.$http({
+        const instance = await this.$http({
           method: 'GET',
           url: urls.products.component + '/' + this.$route.params.id,
           params: {}
         })
-        this.product = resProduct
+        this.product = instance
+        this.logPage(instance.title)
       } catch (e) {
         console.error(e)
         this.$toast({
@@ -145,7 +157,7 @@ export default {
         })
       }
     } else {
-      console.error('No product id in route')
+      console.error('No component id in route')
       this.$toast({
         message: messages.errors.componentDetail,
         color: 'danger'

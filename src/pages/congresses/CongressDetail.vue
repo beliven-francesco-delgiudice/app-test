@@ -38,18 +38,22 @@
 </template>
 
 <script>
-import CongressLayout from '../../components/congressdetails/CongressLayout.vue'
 import Info from '../../components/congressdetails/Info.vue'
-import Details from '../../components/congressdetails/Details.vue'
 import Hotels from '../../components/congressdetails/Hotels.vue'
+import Details from '../../components/congressdetails/Details.vue'
+import Contacts from '../../components/congressdetails/Contacts.vue'
 import DayByDay from '../../components/congressdetails/DayByDay.vue'
+import Downloads from '../../components/congressdetails/Downloads.vue'
 import Activities from '../../components/congressdetails/Activities.vue'
 import KeyMessages from '../../components/congressdetails/KeyMessages.vue'
-import Downloads from '../../components/congressdetails/Downloads.vue'
-import Contacts from '../../components/congressdetails/Contacts.vue'
-import messages from '@/messages'
+import CongressLayout from '../../components/congressdetails/CongressLayout.vue'
 import urls from '@/urls'
+import messages from '@/messages'
+import MatomoManager from '../../mixins/MatomoManager.vue'
+
 export default {
+  name: 'CongressDetail',
+
   components: {
     CongressLayout,
     Info,
@@ -61,6 +65,9 @@ export default {
     Downloads,
     Contacts
   },
+
+  mixins: [MatomoManager],
+
   data () {
     return {
       section: 'info',
@@ -110,6 +117,7 @@ export default {
       }
     }
   },
+
   computed: {
     title () {
       if (
@@ -122,13 +130,16 @@ export default {
       }
       return 'Congress details'
     },
+
     updatedCongress () {
       const congressObj = Object.assign({}, this.congress.tabs)
       return congressObj
     },
+
     updatedSection () {
       return this.section
     },
+
     sectionsList () {
       const newSections = Object.keys(this.updatedCongress)
       const array = []
@@ -142,11 +153,13 @@ export default {
       return array
     }
   },
+
   methods: {
     selectSection (path) {
       this.section = path
     }
   },
+
   async created () {
     if (this.$route.params.id) {
       const congressID = this.$route.params.id
@@ -157,6 +170,7 @@ export default {
           params: this.filters
         })
         this.congress = results
+        this.logPage(results?.tabs?.info?.content?.name?.title || 'Congress Detail')
       } catch (e) {
         console.error(e)
         this.$toast({

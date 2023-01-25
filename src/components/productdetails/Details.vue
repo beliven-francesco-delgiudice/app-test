@@ -74,37 +74,48 @@
     </detail-section>
   </product-layout>
 </template>
+
 <script>
-import SectionButton from '../containers/SectionButton.vue'
-import DetailSection from '../DetailSection.vue'
+import VideoGallery from '../VideoGallery.vue'
 import ImageGallery from '../ImageGallery.vue'
 import ProductLayout from './ProductLayout.vue'
-import { IonImg } from '@ionic/vue'
-import VideoGallery from '../VideoGallery.vue'
-import messages from '@/messages'
+import DetailSection from '../DetailSection.vue'
+import SectionButton from '../containers/SectionButton.vue'
+import MatomoManager from '../../mixins/MatomoManager.vue'
 import urls from '@/urls'
+import messages from '@/messages'
+import { IonImg } from '@ionic/vue'
+
 export default {
+  name: 'Details',
+
   components: {
-    ProductLayout,
+    IonImg,
     ImageGallery,
+    VideoGallery,
     SectionButton,
     DetailSection,
-    IonImg,
-    VideoGallery
+    ProductLayout
   },
+
+  mixins: [MatomoManager],
+
   data () {
     return {
       isReadMore: false,
       product: {}
     }
   },
+
   computed: {
     updatedProduct () {
       return this.product
     },
+
     updatedReadMore () {
       return this.isReadMore
     },
+
     formattedDescription () {
       if (
         this.updatedProduct.description &&
@@ -114,6 +125,7 @@ export default {
       }
       return ''
     },
+
     showDisclaimer () {
       return (
         this.updatedProduct.disclaimers &&
@@ -121,18 +133,20 @@ export default {
       )
     }
   },
+
   async created () {
     if (this.$route.params.id) {
       try {
-        const resProduct = await this.$http({
+        const instance = await this.$http({
           method: 'GET',
           url: urls.products.product + '/' + this.$route.params.id + '/details',
           params: {}
         })
-        this.product = resProduct
+        this.product = instance
         setTimeout(() => {
           this.cleanParagraphs()
         }, 500)
+        this.logPage(instance.name + ' details')
       } catch (e) {
         console.error(e)
         this.$toast({
@@ -149,6 +163,7 @@ export default {
       this.$router.back()
     }
   },
+
   methods: {
     readMore () {
       this.isReadMore = !this.updatedReadMore

@@ -19,7 +19,13 @@ export default {
       logEvent: async function (name, params = {}) {
         console.log('[matomo] triggering event', name, params)
 
-        return window._paq.push(['trackEvent', 'page', 'action', name, params]);
+        return window._paq.push(['trackEvent', 'page', 'action', name, JSON.stringify(params)]);
+      },
+
+      logPage: async function (name, id) {
+        console.log('[matomo] triggering pageView', name, id)
+
+        return window._paq.push(['trackEvent', 'page', 'view', name, id]);
       },
 
       trackView: function () {

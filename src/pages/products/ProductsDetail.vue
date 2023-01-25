@@ -5,21 +5,26 @@
 </template>
 
 <script>
-import Details from '../../components/productdetails/Details.vue'
-import Documents from '../../components/productdetails/Documents.vue'
-import Components from '../../components/productdetails/Components.vue'
+import Details from '../../components/productdetails/Details'
+import Documents from '../../components/productdetails/Documents'
+import Components from '../../components/productdetails/Components'
 
 export default {
+  name: 'ProductsDetail',
+
   components: {
     Details,
     Documents,
     Components
   },
+
+
   data () {
     return {
       initSection: 'details'
     }
   },
+
   computed: {
     section () {
       if (this.$route.meta && this.$route.meta.section) {
