@@ -116,7 +116,7 @@
         v-html="updatedVenue"
       ></p>
     </detail-section>
-    <!-- <detail-section noPadding label="Hotel">
+    <detail-section noPadding label="Hotel">
       <p
         class="font-helvetica text-16 text-mid-dark-grey spacing-1 line-24 mb-4"
         v-html="updatedHotel"
@@ -127,7 +127,7 @@
         class="font-helvetica text-16 text-mid-dark-grey spacing-1 line-24 mb-4 staff"
         v-html="updatedStaff"
       ></p>
-    </detail-section> -->
+    </detail-section>
   </div>
 </template>
 
