@@ -97,9 +97,9 @@ export async function login (context, data) {
     try {
       if (!Capacitor.getPlatform() || Capacitor.getPlatform() !== 'web') {
         try {
-          await this.$app.$firebase.logEvent('login', {})
+          await this.$app.$matomo.logEvent('login', {})
         } catch (err) {
-          console.error('LOGIN FIREBASE ERROR', err)
+          console.error('LOGIN MATOMO ERROR', err)
         }
 
         // Now that we have user id we can proceed wit OneSignal sync with server
@@ -163,9 +163,9 @@ export async function loginWithToken (context, isRefresh = false) {
       ) {
         if (!isRefresh) {
           try {
-            await this.$app.$firebase.logEvent('login', {})
+            await this.$app.$matomo.logEvent('login', {})
           } catch (err) {
-            console.error('LOGIN FIREBASE ERROR', err)
+            console.error('LOGIN MATOMO ERROR', err)
           }
         }
 

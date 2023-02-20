@@ -111,8 +111,6 @@ async function init () {
       },
       ...config.oneSignal
     })
-
-    app.use($firebase, { autoload: true })
   }
 
   app.use($device, {
