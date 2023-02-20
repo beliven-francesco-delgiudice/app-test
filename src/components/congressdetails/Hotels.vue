@@ -245,17 +245,11 @@ export default {
     },
 
     hotelDescription () {
-      if (this.updatedHotel.info && this.updatedHotel.info.length) {
-        return this.sanitizeManageText(this.updatedHotel.info)
-      }
-      return ''
+      return this.updatedHotel.info || ''
     },
 
     transferDescription () {
-      if (this.updatedTransfer.info && this.updatedTransfer.info.length) {
-        return this.sanitizeManageText(this.updatedTransfer.info)
-      }
-      return ''
+      return this.updatedTransfer.info || ''
     }
   },
 
@@ -278,12 +272,6 @@ export default {
       }
     }
   },
-
-  mounted () {
-    setTimeout(() => {
-      this.cleanParagraphs()
-    }, 500)
-  }
 }
 </script>
 
