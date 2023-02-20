@@ -4,14 +4,5 @@
     "appId": "3bc8b116-7b53-4e1d-8e5b-fa2a785113e0",
     "firebaseId": "517810307555"
   },
-  "userDataBlacklist": [],
-  "firebaseConfig": {
-    "apiKey": "AIzaSyB5lzCAeDrYt8Q5y6TnFjW06jpK-cLRN54",
-    "authDomain": "limapp-a3d9b.firebaseapp.com",
-    "projectId": "limapp-a3d9b",
-    "storageBucket": "limapp-a3d9b.appspot.com",
-    "messagingSenderId": "554506099933",
-    "appId": "1:554506099933:web:285e68d7df465ca3250f34",
-    "measurementId": "G-FK01HXF6BC"
-  }
+  "userDataBlacklist": []
 }
