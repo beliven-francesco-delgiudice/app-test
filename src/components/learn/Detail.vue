@@ -32,7 +32,7 @@
           </span>
         </div>
       </div>
-      <div class="flex no-wrap">
+      <div class="mb-2 flex no-wrap">
         <div class="w-1/2">
           <span
             class="block font-helvetica text-14 spacing-44 line-20 text-grey"
@@ -56,6 +56,22 @@
           >
             {{ course.language || '' }}
           </span>
+        </div>
+      </div>
+      <div v-if="course.course_level" class="flex no-wrap">
+        <div class="w-1/2">
+          <span
+            class="block font-helvetica text-14 spacing-44 line-20 text-grey"
+          >
+            Level
+          </span>
+          <span
+            class="block font-helvetica text-16 spacing-2 line-26 text-mid-dark-grey mr-4"
+          >
+            {{ course.course_level || '' }}
+          </span>
+        </div>
+        <div class="w-1/2">
         </div>
       </div>
     </div>
