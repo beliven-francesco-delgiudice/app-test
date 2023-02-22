@@ -59,7 +59,7 @@ export default {
       },
       filtersOptions: {},
       filters: {
-        order: ''
+        year: new Date().getFullYear()
       }
     }
   },
