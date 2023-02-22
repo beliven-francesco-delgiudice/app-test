@@ -116,13 +116,13 @@
         v-html="updatedVenue"
       ></p>
     </detail-section>
-    <detail-section noPadding label="Hotel">
+    <detail-section noPadding v-if="updatedHotel" label="Hotel">
       <p
         class="font-helvetica text-16 text-mid-dark-grey spacing-1 line-24 mb-4"
         v-html="updatedHotel"
       ></p>
     </detail-section>
-    <detail-section noPadding label="Staff" noSeparator>
+    <detail-section noPadding v-if="updatedStaff" label="Staff" noSeparator>
       <p
         class="font-helvetica text-16 text-mid-dark-grey spacing-1 line-24 mb-4 staff"
         v-html="updatedStaff"
@@ -173,7 +173,7 @@ export default {
       if (this.training && this.training.hotel) {
         return this.training.hotel
       }
-      return {}
+      return ''
     },
 
     updatedStaff () {
