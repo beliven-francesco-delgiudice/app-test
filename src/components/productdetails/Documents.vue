@@ -68,7 +68,7 @@ export default {
           params: {}
         })
         this.product = instance
-        this.logPage(instance.name + ' documents')
+        this.logPage(instance.name + ' (documents)')
 
       } catch (e) {
         console.error(e)
