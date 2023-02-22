@@ -163,7 +163,7 @@ export default {
             this.cleanParagraphs()
           }, 500)
         }
-        this.logPage(res?.title || 'Course')
+        this.logPage(res&&res.title ? res.title + ' (Learn detail)' : 'Learn detail')
       } catch (e) {
         console.error(e)
         this.$toast({

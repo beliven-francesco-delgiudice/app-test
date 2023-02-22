@@ -167,7 +167,7 @@ export default {
           params: this.filters
         })
         this.training = results
-        this.logPage(results?.tabs?.info?.content?.name?.title || 'Sales Training Detail')
+        this.logPage(results?.tabs?.info?.content?.name + ' (Sales Training details)' || 'Sales Training Detail')
       } catch (e) {
         console.error(e)
         this.$toast({

@@ -170,7 +170,7 @@ export default {
           params: this.filters
         })
         this.congress = results
-        this.logPage(results?.tabs?.info?.content?.name?.title || 'Congress Detail')
+        this.logPage(results?.tabs?.info?.content?.name + ' (Congress details)' || 'Congress Detail')
       } catch (e) {
         console.error(e)
         this.$toast({

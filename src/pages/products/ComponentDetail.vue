@@ -148,7 +148,7 @@ export default {
           params: {}
         })
         this.product = instance
-        this.logPage(instance.title)
+        this.logPage(instance.title + ' (Component detail)')
       } catch (e) {
         console.error(e)
         this.$toast({

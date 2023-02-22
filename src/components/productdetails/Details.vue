@@ -146,7 +146,7 @@ export default {
         setTimeout(() => {
           this.cleanParagraphs()
         }, 500)
-        this.logPage(instance.name + ' (details)')
+        this.logPage(instance.name + ' (Product details)')
       } catch (e) {
         console.error(e)
         this.$toast({
