@@ -55,7 +55,7 @@ Please keep the version and the build number equally updated:
 
 File:
 
-- Android: `build.gradle`
+- Android: `android/app/build.gradle`
 - iOS: `ios/App/App.xcodeproj/project.pbxproj`
 
 Version number:
