@@ -464,20 +464,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/assets/test/video_thumb.jpg"
   },
   {
-    "revision": "212af5a8cedd91a7b33c",
-    "url": "/css/app.55c370e4.css"
+    "revision": "55d6cc8d40ff644ad506",
+    "url": "/css/app.e7a0c56f.css"
   },
   {
     "revision": "fedd793ac34cb8e2c190",
     "url": "/css/chunk-vendors.190e707f.css"
   },
   {
-    "revision": "8ae73028a52f90b0da70f37dda988144",
+    "revision": "3fc1457e5d70f471c6473f705cd08f14",
     "url": "/index.html"
   },
   {
-    "revision": "212af5a8cedd91a7b33c",
-    "url": "/js/app.90ae9162.js"
+    "revision": "55d6cc8d40ff644ad506",
+    "url": "/js/app.877a9d3d.js"
   },
   {
     "revision": "df20601ed3be71143c46",
