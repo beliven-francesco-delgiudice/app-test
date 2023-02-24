@@ -2,7 +2,7 @@
   <ion-modal
     animated
     showBackdrop
-    css-class="custom-modal"
+    css-class="custom-modal no-modal-shadow"
     :is-open="isOpened"
     @didDismiss="closeNotification"
   >
@@ -155,3 +155,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.no-modal-shadow .modal-shadow.sc-ion-modal-ios {
+  z-index: -1 !important;
+}
+</style>

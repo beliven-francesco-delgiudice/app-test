@@ -2,7 +2,7 @@
   <ion-modal
     animated
     showBackdrop
-    css-class="custom-modal"
+    css-class="custom-modal no-modal-shadow"
     :is-open="isOpened"
     @didDismiss="$emit('onClose')"
   >
@@ -91,5 +91,8 @@ p > p {
   color: inherit;
   letter-spacing: inherit;
   line-height: inherit;
+}
+.no-modal-shadow .modal-shadow.sc-ion-modal-ios {
+  z-index: -1 !important;
 }
 </style>
