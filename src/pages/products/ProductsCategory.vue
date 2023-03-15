@@ -128,7 +128,7 @@ export default {
         })
         this.category = results
         this.filtersOptions = results.filters
-        this.logPage(results.category_name)
+        this.logPage(results.category_name + ' (Product category)')
       } catch (e) {
         console.error(e)
         this.$toast({

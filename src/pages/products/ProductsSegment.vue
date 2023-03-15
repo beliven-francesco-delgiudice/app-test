@@ -96,7 +96,7 @@ export default {
           params: {}
         })
         this.segment = results
-        this.logPage(results.category_name)
+        this.logPage(results.category_name + ' (Segment)')
 
       } catch (e) {
         console.error(e)
