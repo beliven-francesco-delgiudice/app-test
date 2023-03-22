@@ -1,11 +1,24 @@
 <template>
   <div class="flex flex-col">
     <div
+      v-if="introVideo"
+      class="bg-black rounded-12 relative mx-8 gallery-container elevated-shadow overflow-hidden flex justify-center items-center cursor-pointer"
+      @click="openVideo"
+    >
+      <ion-img
+        :src="introVideo.preview_image"
+        class="w-full opacity-50 pointer-events-none"
+      />
+      <ion-img
+        src="/assets/button-icons/play-white.svg"
+        class="m-auto absolute z-10 elevated-shadow pointer-events-none"
+      />
+    </div>
+    <div
+      v-else
       class="ml-8 bg-white rounded-12 relative mr-4 gallery-container elevated-shadow overflow-hidden bg-contain bg-no-repeat bg-center"
       :style="`background-image:url('${updatedCongress.image}')`"
-    >
-      <!-- <ion-img :src="updatedCongress.image" class="w-full pointer-events-none m" /> -->
-    </div>
+    />
     <detail-section :label="updatedCongress.name">
       <span
         class="font-helvetica text-16 text-mid-dark-grey spacing-2 line-26 px-8 mb-4"
@@ -83,6 +96,12 @@
       </div> -->
     </detail-section>
   </div>
+    <video-modal
+      direct
+      :video="videoId"
+      :open="isVideoOpen"
+      @onClose="closeVideo"
+    />
 </template>
 <script>
 // import SectionButton from '../containers/SectionButton.vue'
@@ -122,6 +141,10 @@ export default {
         return this.updatedCongress.description
       }
       return this.updatedCongress.description_short
+    },
+
+    introVideo () {
+      return this.congress?.content?.intro_video
     }
   },
   methods: {
@@ -133,6 +156,12 @@ export default {
     },
     openLink () {
       window.open(this.updatedCongress.link)
+    },
+    openVideo () {
+      this.isVideoOpen = true
+    },
+    closeVideo () {
+      this.isVideoOpen = false
     }
   }
 }
