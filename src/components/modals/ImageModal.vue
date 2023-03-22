@@ -32,9 +32,11 @@
       />
       <ion-slides
         v-else
-        ref="slides"
         mode="ios"
-        :options="options"
+        ref="slides"
+        pager="true"
+        style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:0"
+        :options="slideOpts"
         @ionSlidesDidLoad="updateIndex"
       >
         <ion-slide v-for="(slide, i) in updatedGallery" :key="i">
@@ -46,8 +48,10 @@
     </div>
   </ion-modal>
 </template>
+
 <script>
 import { IonImg, IonModal, IonSlides, IonSlide, IonButton } from '@ionic/vue'
+
 export default {
   components: {
     IonImg,
@@ -56,12 +60,25 @@ export default {
     IonSlide,
     IonButton
   },
+
   props: {
-    open: Boolean,
-    image: Number,
-    gallery: Array,
-    index: Number
+    open: {
+      type: Boolean,
+    },
+
+    image: {
+      type: Number,
+    },
+
+    gallery: {
+      type: Array,
+    },
+
+    index: {
+      type: Number
+    }
   },
+
   data () {
     return {
       options: {
@@ -70,13 +87,14 @@ export default {
       }
     }
   },
+
   methods: {
     closeImage () {
       this.$emit('onClose')
     },
+
     async updateIndex () {
-      console.log(this.index)
-      if (this.$refs.slides) {
+      if (this.index && this.$refs.slides) {
         const swiper = await this.$refs.slides.$el.getSwiper()
         if (this.index) {
           swiper.slideTo(this.index)
@@ -84,10 +102,12 @@ export default {
       }
     }
   },
+
   computed: {
     computedOpen () {
       return this.open
     },
+
     updatedGallery () {
       if (this.gallery && this.gallery.length) {
         return this.gallery.map(item => {

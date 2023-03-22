@@ -25,6 +25,10 @@
       v-if="section === 'messages'"
       :congress="updatedCongress.messages"
     />
+    <Media
+      v-if="section === 'media'"
+      :congress="updatedCongress.media"
+    />
     <Downloads
       v-if="section === 'download'"
       :congress="updatedCongress.download"
@@ -39,6 +43,7 @@
 
 <script>
 import Info from '../../components/congressdetails/Info.vue'
+import Media from '../../components/congressdetails/Media.vue'
 import Hotels from '../../components/congressdetails/Hotels.vue'
 import Details from '../../components/congressdetails/Details.vue'
 import Contacts from '../../components/congressdetails/Contacts.vue'
@@ -55,15 +60,16 @@ export default {
   name: 'CongressDetail',
 
   components: {
-    CongressLayout,
     Info,
-    Details,
+    Media,
     Hotels,
+    Details,
+    Contacts,
     DayByDay,
+    Downloads,
     Activities,
     KeyMessages,
-    Downloads,
-    Contacts
+    CongressLayout,
   },
 
   mixins: [MatomoManager],
@@ -128,7 +134,7 @@ export default {
       ) {
         return this.updatedCongress.info.content.name
       }
-      return 'Congress details'
+      return 'Details'
     },
 
     updatedCongress () {
