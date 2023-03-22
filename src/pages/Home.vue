@@ -139,7 +139,7 @@
       v-if="
         $store.getters.homeCongresses && $store.getters.homeCongresses.length
       "
-      label="Congresses"
+      label="Congresses and Events"
       path="/congresses"
     >
       <carousel id="congresses-carousel" classes="py-4 -mt-4">

@@ -88,7 +88,7 @@ export default {
           img: 'meded.svg'
         },
         {
-          name: 'Congresses',
+          name: 'Congresses and Events',
           href: '/congresses',
           img: 'congresses.svg'
         },
