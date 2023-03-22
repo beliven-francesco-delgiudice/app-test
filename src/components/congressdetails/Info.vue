@@ -120,6 +120,10 @@ export default {
   props: {
     congress: {
       type: Object
+    },
+
+    congressType: {
+      type: String
     }
   },
 
@@ -161,7 +165,7 @@ export default {
     },
 
     saveEvent () {
-      this.logEvent('save in Calendar', `Congress ${this.updatedCongress.name}`)
+      this.logEvent(this.congressType, 'save in Calendar', `Congress ${this.updatedCongress.name}`)
       window.open(this.updatedCongress.save_event)
     },
 

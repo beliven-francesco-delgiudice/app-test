@@ -81,7 +81,7 @@ export default {
     },
 
     openLink (item) {
-      this.logEvent('open Useful Link', `Link ${item.title}`)
+      this.logEvent('Link', 'open Useful Link', `Link ${item.title}`)
       window.open(item.link)
     },
 

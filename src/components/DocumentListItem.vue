@@ -132,9 +132,8 @@ export default {
       type: String
     },
 
-    thinkClinical: {
-      type: Boolean,
-      default: false
+    documentType: {
+      type: String,
     },
 
   },
@@ -184,8 +183,8 @@ export default {
       return this.document
     },
 
-    isThinkClinical () {
-      return this.thinkClinical ? '#ThinkClinical' : ''
+    itemType () {
+      return this.document.type === 'folder' ? 'folder' : 'document'
     }
   },
 
@@ -255,6 +254,10 @@ export default {
       }
     },
 
+    logAction (action) {
+      this.logEvent(this.documentType || 'Doc', `${action} ${this.itemType}`, this.document.title || this.document.name || this.document.label)
+    },
+
     async openDocumentMenu () {
       const buttonsArray = []
       const actionsList = this.documentActions.map(i => i) || []
@@ -263,7 +266,7 @@ export default {
         buttonsArray.push({
           text: 'Open',
           handler: async () => {
-            this.logEvent(`open document ${this.isThinkClinical}`, `${this.document.type} ${this.document.title || this.document.name}`)
+            this.logAction('open')
 
             if (this.isApp) {
               const path = this.getDocumentPath(this.updatedDocument)
@@ -287,7 +290,7 @@ export default {
         buttonsArray.push({
           text: 'Download',
           handler: async () => {
-            this.logEvent(`download document ${this.isThinkClinical}`, `${this.document.type} ${this.document.title || this.document.name}`)
+            this.logAction('download')
             this.openFile(this.updatedDocument)
           }
         })
@@ -299,7 +302,7 @@ export default {
             buttonsArray.push({
               text: 'Rename',
               handler: async () => {
-                this.logEvent(`rename ${this.isThinkClinical}`, `${this.document.type} ${this.document.title || this.document.name}`)
+                this.logAction('rename')
                 this.toggleModal('rename')
               }
             })
@@ -308,7 +311,7 @@ export default {
             buttonsArray.push({
               text: 'Delete',
               handler: async () => {
-                this.logEvent(`delete ${this.isThinkClinical}`, `${this.document.type} ${this.document.title || this.document.name}`)
+                this.logAction('delete')
                 this.toggleModal('delete')
               }
             })
@@ -317,7 +320,7 @@ export default {
             buttonsArray.push({
               text: 'Move',
               handler: async () => {
-                this.logEvent(`move ${this.isThinkClinical}`, `${this.document.type} ${this.document.title || this.document.name}`)
+                this.logAction('move')
                 this.toggleModal('move')
               }
             })
@@ -326,7 +329,7 @@ export default {
             buttonsArray.push({
               text: 'Share internal',
               handler: async () => {
-                this.logEvent(`internal_share ${this.isThinkClinical}` , `${this.document.type} ${this.document.title || this.document.name}`)
+                this.logAction('internal share')
                 this.toggleModal('internal_share')
               }
             })
@@ -335,7 +338,7 @@ export default {
             buttonsArray.push({
               text: 'Share internal',
               handler: async () => {
-                this.logEvent(`internal_share ${this.isThinkClinical}`, `${this.document.type} ${this.document.title || this.document.name}`)
+                this.logAction('internal share storage')
                 this.isStorageShare = true
                 this.toggleModal('internal_share')
               }
@@ -346,7 +349,7 @@ export default {
               text: 'Share external',
               handler: async () => {
                 const path = this.getDocumentPath(this.updatedDocument)
-                this.logEvent(`external_share ${this.isThinkClinical}`, `${this.document.type} ${this.document.title || this.document.name}`)
+                this.logAction('external share')
                 if (this.isApp) {
                   await Share.share({
                     title:
@@ -377,7 +380,7 @@ export default {
             buttonsArray.push({
               text: 'Save in My Docs',
               handler: async () => {
-                this.logEvent(`save_to_mydocs ${this.isThinkClinical}`, `${this.document.type} ${this.document.title || this.document.name}`)
+                this.logAction('save to mydocs')
                 if (this.document && this.document.id) {
                   try {
                     const saveResult = await this.$http({
@@ -415,7 +418,7 @@ export default {
             buttonsArray.push({
               text: 'Move To My Docs',
               handler: async () => {
-                this.logEvent(`move_to_mydocs ${this.isThinkClinical}`, `${this.document.type} ${this.document.title || this.document.name}`)
+                this.logAction('move to mydocs')
                 let errorMessage = messages.errors.folderDetail
                 if (this.document && this.document.type === 'file') {
                   errorMessage = messages.errors.file

@@ -220,7 +220,7 @@ export default {
     },
 
     saveEvent (link) {
-      this.logEvent('save in Calendar', `Congress activity ${this.updatedActivity.title}`)
+      this.logEvent('Congress Activity', 'save in Calendar', `Congress activity ${this.updatedActivity.title}`)
       this.openLink(link)
     }
   },

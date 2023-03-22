@@ -8,7 +8,7 @@
   >
     <accordions-list classes="mt-4 px-8" :list="computedAttachments">
       <template v-slot="{ item }">
-        <document-list-item :document="item" />
+        <document-list-item document-type="Product Doc" :document="item" />
       </template>
     </accordions-list>
   </product-layout>

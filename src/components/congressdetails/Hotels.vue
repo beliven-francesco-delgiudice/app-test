@@ -200,7 +200,13 @@ export default {
   mixins: [MatomoManager],
 
   props: {
-    congress: Object
+    congress: {
+      type: Object
+    },
+
+    congressType: {
+      type: String
+    }
   },
 
   data () {
@@ -268,7 +274,7 @@ export default {
     },
 
     saveEvent (string) {
-      this.logEvent('save in Calendar', `Congress ${string || 'hotel'}`)
+      this.logEvent(this.congressType, 'save in Calendar', `Congress ${string || 'hotel'}`)
       if (string === 'transfer') {
         window.open(this.updatedTransfer.save_event)
       } else {

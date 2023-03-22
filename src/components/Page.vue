@@ -250,9 +250,10 @@ export default {
     },
 
     async onShare () {
-      this.logEvent(this.share.dialogTitle, this.share.dialogTitle + ' ' + this.share.title)
+      const {actionCategory, ...shareObject} = this.share
+      this.logEvent(actionCategory, 'share', this.share.dialogTitle + ' ' + this.share.title)
       try {
-        await this.$share.share(this.share)
+        await this.$share.share(shareObject)
       } catch (err) {
         console.error('Share not supported!', err)
         window.navigator.clipboard.writeText(

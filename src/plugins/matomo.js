@@ -16,10 +16,10 @@ export default {
         window._paq.push(['setDocumentTitle', route.name]);
       },
 
-      logEvent: async function (name, params = {}) {
-        console.log('[matomo] triggering event', name, params)
+      logEvent: async function (category, name, params = {}) {
+        console.log('[matomo] triggering event', category, name, params)
 
-        return window._paq.push(['trackEvent', 'page', 'action', name, JSON.stringify(params)]);
+        return window._paq.push(['trackEvent', category, name, JSON.stringify(params)]);
       },
 
       logPage: async function (name, id) {

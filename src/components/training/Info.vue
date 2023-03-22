@@ -118,11 +118,11 @@ export default {
 
   methods: {
     saveEvent () {
-      this.logEvent('save in Calendar', `Training ${this.training.name}`)
+      this.logEvent('Sales Training', 'save in Calendar', `Training ${this.training.name}`)
       window.open(this.training.save_event)
     },
     openLink () {
-      this.logEvent('register Sales Training', `Training ${this.training.name}`)
+      this.logEvent('Sales Training', 'register', `Training ${this.training.name}`)
       window.open(this.training.link)
     }
   }

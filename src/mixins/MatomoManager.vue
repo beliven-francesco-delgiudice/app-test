@@ -13,8 +13,8 @@ export default {
       this.$matomo.trackView()
     },
 
-    logEvent (name, params) {
-      this.$matomo.logEvent(name, params)
+    logEvent (category, name, params) {
+      this.$matomo.logEvent(category, name, params)
     },
   }
 }

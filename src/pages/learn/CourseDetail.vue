@@ -141,6 +141,7 @@ export default {
         .replace(/[^\w ]+/g, '')
         .replace(/ +/g, '-')
       return {
+        actionCategory: 'Course',
         title: this.course.title,
         text: `Look at the course "${this.course.title}"`,
         url: `https://limacorporate.com/en/learn-event/${this.course.id}/${slugifiedTitle}.html`,

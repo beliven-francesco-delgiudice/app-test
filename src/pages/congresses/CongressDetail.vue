@@ -5,37 +5,44 @@
     :title="title"
     @changeSection="selectSection"
   >
-    <Info v-if="updatedSection === 'info'" :congress="updatedCongress.info" />
+    <Info v-if="updatedSection === 'info'" :congressType="congressType" :congress="updatedCongress.info" />
     <Details
       v-if="updatedSection === 'details'"
       isCongress
+      :congressType="congressType"
       :congress="updatedCongress.details"
     />
     <Hotels
       v-if="updatedSection === 'hotel'"
       isCongress
+      :congressType="congressType"
       :congress="updatedCongress.hotel"
     />
-    <DayByDay v-if="section === 'day'" :congress="updatedCongress.day" />
+    <DayByDay v-if="section === 'day'"  :congressType="congressType" :congress="updatedCongress.day" />
     <Activities
       v-if="section === 'activities'"
+      :congressType="congressType"
       :congress="updatedCongress.activities"
     />
     <KeyMessages
       v-if="section === 'messages'"
+      :congressType="congressType"
       :congress="updatedCongress.messages"
     />
     <Media
       v-if="section === 'media'"
+      :congressType="congressType"
       :congress="updatedCongress.media"
     />
     <Downloads
       v-if="section === 'download'"
+      :congressType="congressType"
       :congress="updatedCongress.download"
     />
     <Contacts
       v-if="section === 'contacts'"
       isCongress
+      :congressType="congressType"
       :congress="updatedCongress.contacts"
     />
   </congress-layout>
@@ -144,6 +151,10 @@ export default {
 
     updatedSection () {
       return this.section
+    },
+
+    congressType () {
+      return this.updatedCongress.info.content.type === 'event' ? 'Event' : 'Congress'
     },
 
     sectionsList () {

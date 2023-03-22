@@ -30,7 +30,7 @@
 
     <accordions-list v-if="segment.thinkclinical.length" classes="mt-4 px-8" :list="thinkClinical">
       <template v-slot="{ item }">
-        <document-list-item thinkClinical :document="item" />
+        <document-list-item document-type="#ThinkClinical" :document="item" />
       </template>
     </accordions-list>
   </Page>

@@ -348,7 +348,7 @@ export default {
 
   methods: {
     saveEvent () {
-      this.logEvent('save in Calendar', `Learn detail ${this.course.title}`)
+      this.logEvent('Course', 'save in Calendar', `Learn detail ${this.course.title}`)
       window.open(this.course.save_outlook.link)
     },
 

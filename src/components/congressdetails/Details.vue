@@ -165,6 +165,10 @@ export default {
     isCongress: {
       type: Boolean
     },
+
+    congressType: {
+      type: String
+    }
   },
 
   data () {
@@ -336,7 +340,7 @@ export default {
     },
 
     saveInCalendar (dates) {
-      this.logEvent('save in Calendar', `Congress dates ${dates.from_date} ${dates.to_date}`)
+      this.logEvent(this.congressType, 'save in Calendar', `Congress dates ${dates.from_date} ${dates.to_date}`)
       this.openLink(dates.save_event)
     },
 
