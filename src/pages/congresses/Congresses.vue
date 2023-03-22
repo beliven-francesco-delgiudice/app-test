@@ -1,6 +1,6 @@
 <template>
   <Page
-    label="Congresses"
+    label="Congresses and Events"
     back="/home"
     :filters="filters"
     :filtersOptions="options"
@@ -31,11 +31,23 @@
             <span class="font-helvetica text-grey text-14 spacing-44 line-24">
               {{ item.subtitle }}
             </span>
-            <div class="bg-light-red rounded-6 px-2 mr-auto">
-              <span
-                class="font-helvetica-medium text-12 text-red spacing-8 line-30 pointer-events-none"
-                >{{ item.dates }}
-              </span>
+            <div class="flex flex-row">
+              <div class="bg-light-red rounded-6 px-2 mr-2">
+                <span
+                  class="font-helvetica-medium text-12 text-red spacing-8 line-30 pointer-events-none"
+                  > {{ item.dates }}
+                </span>
+              </div>
+              <div v-if="item.type === 'event'" class="bg-red rounded-6 px-2">
+                <span
+                  class="font-helvetica-medium text-12 text-white spacing-8 line-30 mt-auto pointer-events-none"
+                  > Event </span>
+              </div>
+              <div v-else class="bg-black rounded-6 px-2">
+                <span
+                  class="font-helvetica-medium text-12 text-white spacing-8 line-30 mt-auto pointer-events-none"
+                  > Congress </span>
+              </div>
             </div>
           </div>
         </div>
@@ -58,29 +70,7 @@ export default {
   },
   data () {
     return {
-      congresses: [
-        {
-          id: 1,
-          image: '/assets/test/congress-small.jpg',
-          title: 'ESSKA Congress',
-          location: 'Virtual event',
-          date: '11 - 15 May'
-        },
-        {
-          id: 1,
-          image: '/assets/test/congress-small.jpg',
-          title: 'ESSKA Congress',
-          location: 'Virtual event',
-          date: '11 - 15 May'
-        },
-        {
-          id: 1,
-          image: '/assets/test/congress-small.jpg',
-          title: 'ESSKA Congress',
-          location: 'Virtual event',
-          date: '11 - 15 May'
-        }
-      ],
+      congresses: [],
       filtersOptions: {},
       filters: {
         year: new Date().getFullYear()

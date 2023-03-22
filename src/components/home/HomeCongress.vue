@@ -20,11 +20,23 @@
       >
         {{ congress.subtitle }}
       </p>
-      <div class="mr-auto">
+      <div class="flex flex-row mr-auto">
         <div
-          class="p-1 bg-light-red rounded-6 font-helvetica-medium text-12 text-red"
+          class="p-1 bg-light-red rounded-6 font-helvetica-medium text-12 text-red mr-2"
         >
           {{ congress.dates }}
+        </div>
+        <div
+        v-if="congress.type === 'event'"
+          class="p-1 px-2 bg-red rounded-6 font-helvetica-medium text-12 text-white"
+        >
+          Event
+        </div>
+        <div
+        v-else
+          class="p-1 px-2 bg-black rounded-6 font-helvetica-medium text-12 text-white"
+        >
+          Congress
         </div>
       </div>
     </div>
@@ -45,7 +57,7 @@ export default {
 </script>
 <style scoped>
 .congress {
-  height: 160px;
-  min-height: 160px;
+  height: 165px;
+  min-height: 165px;
 }
 </style>
