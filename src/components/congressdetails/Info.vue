@@ -88,43 +88,48 @@
         class="px-8 font-helvetica text-mid-dark-grey text-16 spacing-1 line-24 mb-4 mt-0"
         v-html="formattedDescription"
       ></p>
-      <!-- <div class="mx-8 flex justify-start">
-        <section-button
-          :label="updatedReadMore ? 'Read less' : 'Read more'"
-          @onClick="readMore"
-        />
-      </div> -->
     </detail-section>
   </div>
     <video-modal
-      direct
-      :video="videoId"
+      code
+      :video="introVideo"
       :open="isVideoOpen"
       @onClose="closeVideo"
     />
 </template>
+
 <script>
-// import SectionButton from '../containers/SectionButton.vue'
-import DetailSection from '../DetailSection.vue'
 import { IonImg } from '@ionic/vue'
+import DetailSection from '../DetailSection.vue'
+import VideoModal from '../modals/VideoModal.vue'
 import BigButton from '../containers/BigButton.vue'
 import SquareContainer from '../containers/SquareContainer.vue'
+import MatomoManager from '../../mixins/MatomoManager.vue'
+
 export default {
   components: {
-    // SectionButton,
-    DetailSection,
     IonImg,
     BigButton,
+    VideoModal,
+    DetailSection,
     SquareContainer
   },
+
+  mixins: [MatomoManager],
+
   props: {
-    congress: Object
-  },
-  data () {
-    return {
-      isReadMore: true
+    congress: {
+      type: Object
     }
   },
+
+  data () {
+    return {
+      isReadMore: true,
+      isVideoOpen: false
+    }
+  },
+
   computed: {
     updatedCongress () {
       if (this.congress && this.congress.content) {
@@ -133,9 +138,11 @@ export default {
       }
       return {}
     },
+
     updatedReadMore () {
       return this.isReadMore
     },
+
     formattedDescription () {
       if (this.updatedReadMore) {
         return this.updatedCongress.description
@@ -147,25 +154,33 @@ export default {
       return this.congress?.content?.intro_video
     }
   },
+
   methods: {
     readMore () {
       this.isReadMore = !this.updatedReadMore
     },
+
     saveEvent () {
+      this.logEvent('save in Calendar', `Congress ${this.updatedCongress.name}`)
       window.open(this.updatedCongress.save_event)
     },
+
     openLink () {
       window.open(this.updatedCongress.link)
     },
+
     openVideo () {
+      console.log('here')
       this.isVideoOpen = true
     },
+
     closeVideo () {
       this.isVideoOpen = false
     }
   }
 }
 </script>
+
 <style scoped>
 .gallery-container {
   width: calc(100% - 4rem);

@@ -85,16 +85,17 @@
 </template>
 
 <script>
-import SquareContainer from './containers/SquareContainer'
-import { IonImg, actionSheetController } from '@ionic/vue'
 import { Capacitor } from '@capacitor/core'
 import { Share } from '@capacitor/share'
+import { IonImg, actionSheetController } from '@ionic/vue'
 import RenameModal from './documents/RenameModal'
 import DeleteModal from './documents/DeleteModal'
 import IntShareModal from './documents/IntShareModal'
+import SquareContainer from './containers/SquareContainer'
+import FoldersTreeModal from './documents/FoldersTreeModal'
+import MatomoManager from '../mixins/MatomoManager'
 import messages from '@/messages'
 import urls from '@/urls'
-import FoldersTreeModal from './documents/FoldersTreeModal.vue'
 
 export default {
   components: {
@@ -105,14 +106,41 @@ export default {
     IntShareModal,
     FoldersTreeModal
   },
+
   props: {
-    bgClass: String,
-    classes: [String, Array],
-    document: Object,
-    small: Boolean,
-    actions: Array,
-    type: String
+    bgClass: {
+      type: String,
+    },
+
+    classes: {
+      type: [String, Array],
+    },
+
+    document: {
+      type: Object,
+    },
+
+    small: {
+      type: Boolean,
+    },
+
+    actions: {
+      type: Array,
+    },
+
+    type: {
+      type: String
+    },
+
+    thinkClinical: {
+      type: Boolean,
+      default: false
+    },
+
   },
+
+  mixins: [MatomoManager],
+
   data () {
     return {
       action: null,
@@ -123,33 +151,44 @@ export default {
       isMoveModalOpen: false
     }
   },
+
   computed: {
     isApp () {
       return this.checkIsApp(Capacitor.getPlatform())
     },
+
     documentActions () {
       const actions = this.actions || this.updatedDocument.actions || []
       return this.sortActions(actions)
     },
+
     divClass () {
       return `${this.bgClass || 'bg-white'} ${this.classes || ''}`
     },
+
     imageBackround () {
       if (this.document.type === 'folder') {
         return 'bg-light-grey2'
       }
       return 'bg-light-red'
     },
+
     image () {
       if (this.document.type === 'folder') {
         return '/assets/button-icons/folder.svg'
       }
       return '/assets/button-icons/pdf.svg'
     },
+
     updatedDocument () {
       return this.document
+    },
+
+    isThinkClinical () {
+      return this.thinkClinical ? '#ThinkClinical' : ''
     }
   },
+
   methods: {
     async getAppInfo () {
       return await this.$device.getAppInfo()
@@ -224,6 +263,8 @@ export default {
         buttonsArray.push({
           text: 'Open',
           handler: async () => {
+            this.logEvent(`open document ${this.isThinkClinical}`, `${this.document.type} ${this.document.title || this.document.name}`)
+
             if (this.isApp) {
               const path = this.getDocumentPath(this.updatedDocument)
               try {
@@ -246,6 +287,7 @@ export default {
         buttonsArray.push({
           text: 'Download',
           handler: async () => {
+            this.logEvent(`download document ${this.isThinkClinical}`, `${this.document.type} ${this.document.title || this.document.name}`)
             this.openFile(this.updatedDocument)
           }
         })
@@ -257,6 +299,7 @@ export default {
             buttonsArray.push({
               text: 'Rename',
               handler: async () => {
+                this.logEvent(`rename ${this.isThinkClinical}`, `${this.document.type} ${this.document.title || this.document.name}`)
                 this.toggleModal('rename')
               }
             })
@@ -265,6 +308,7 @@ export default {
             buttonsArray.push({
               text: 'Delete',
               handler: async () => {
+                this.logEvent(`delete ${this.isThinkClinical}`, `${this.document.type} ${this.document.title || this.document.name}`)
                 this.toggleModal('delete')
               }
             })
@@ -273,6 +317,7 @@ export default {
             buttonsArray.push({
               text: 'Move',
               handler: async () => {
+                this.logEvent(`move ${this.isThinkClinical}`, `${this.document.type} ${this.document.title || this.document.name}`)
                 this.toggleModal('move')
               }
             })
@@ -281,6 +326,7 @@ export default {
             buttonsArray.push({
               text: 'Share internal',
               handler: async () => {
+                this.logEvent(`internal_share ${this.isThinkClinical}` , `${this.document.type} ${this.document.title || this.document.name}`)
                 this.toggleModal('internal_share')
               }
             })
@@ -289,6 +335,7 @@ export default {
             buttonsArray.push({
               text: 'Share internal',
               handler: async () => {
+                this.logEvent(`internal_share ${this.isThinkClinical}`, `${this.document.type} ${this.document.title || this.document.name}`)
                 this.isStorageShare = true
                 this.toggleModal('internal_share')
               }
@@ -299,6 +346,7 @@ export default {
               text: 'Share external',
               handler: async () => {
                 const path = this.getDocumentPath(this.updatedDocument)
+                this.logEvent(`external_share ${this.isThinkClinical}`, `${this.document.type} ${this.document.title || this.document.name}`)
                 if (this.isApp) {
                   await Share.share({
                     title:
@@ -329,6 +377,7 @@ export default {
             buttonsArray.push({
               text: 'Save in My Docs',
               handler: async () => {
+                this.logEvent(`save_to_mydocs ${this.isThinkClinical}`, `${this.document.type} ${this.document.title || this.document.name}`)
                 if (this.document && this.document.id) {
                   try {
                     const saveResult = await this.$http({
@@ -366,6 +415,7 @@ export default {
             buttonsArray.push({
               text: 'Move To My Docs',
               handler: async () => {
+                this.logEvent(`move_to_mydocs ${this.isThinkClinical}`, `${this.document.type} ${this.document.title || this.document.name}`)
                 let errorMessage = messages.errors.folderDetail
                 if (this.document && this.document.type === 'file') {
                   errorMessage = messages.errors.file

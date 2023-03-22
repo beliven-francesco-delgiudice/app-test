@@ -72,11 +72,14 @@
     </detail-section>
   </div>
 </template>
+
 <script>
 // import SquareContainer from '../containers/SquareContainer.vue'
 import DetailSection from '../DetailSection.vue'
-import { IonImg } from '@ionic/vue'
 import BigButton from '../containers/BigButton.vue'
+import { IonImg } from '@ionic/vue'
+import MatomoManager from '../../mixins/MatomoManager.vue'
+
 export default {
   components: {
     // SquareContainer,
@@ -84,9 +87,15 @@ export default {
     IonImg,
     BigButton
   },
+
+  mixins: [MatomoManager],
+
   props: {
-    congress: Object
+    congress: {
+      type: Object
+    }
   },
+
   computed: {
     updatedCongress () {
       if (this.congress && this.congress.content) {
@@ -95,8 +104,10 @@ export default {
       return []
     }
   },
+
   methods: {
     saveEvent (event) {
+      this.logEvent('save in Calendar', `Congress event ${event.title}`)
       window.open(event.save_event)
     }
   }

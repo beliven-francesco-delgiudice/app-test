@@ -40,12 +40,13 @@
 </template>
 
 <script>
-import { IonImg, IonModal } from '@ionic/vue'
+import { IonImg, IonModal, IonButton } from '@ionic/vue'
 
 export default {
   components: {
     IonImg,
-    IonModal
+    IonModal,
+    IonButton
   },
 
   props: {
@@ -58,6 +59,11 @@ export default {
     },
 
     direct: {
+      type: Boolean,
+      default: false
+    },
+
+    code: {
       type: Boolean,
       default: false
     }
@@ -77,6 +83,9 @@ export default {
 
   computed: {
     videoEmbedUrl () {
+      if (this.code) {
+        return 'https://www.youtube.com/embed/' + this.video.code
+      }
       if (!this.direct) {
         const url = this.video.url
         const urlCodeArray = url.split('/')

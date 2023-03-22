@@ -12,6 +12,10 @@ export default {
       // this.$matomo.logPage(name, id)
       this.$matomo.trackView()
     },
+
+    logEvent (name, params) {
+      this.$matomo.logEvent(name, params)
+    },
   }
 }
 </script>

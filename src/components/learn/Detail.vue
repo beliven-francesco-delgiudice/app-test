@@ -287,6 +287,7 @@ import BigButton from '../containers/BigButton.vue'
 import SectionButton from '../containers/SectionButton.vue'
 import SquareContainer from '../containers/SquareContainer.vue'
 import { IonList, IonImg } from '@ionic/vue'
+import MatomoManager from '../../mixins/MatomoManager.vue'
 
 export default {
   components: {
@@ -301,6 +302,8 @@ export default {
     SquareContainer,
     DocumentListItem
   },
+
+  mixins: [MatomoManager],
 
   props: {
     course: {
@@ -345,6 +348,7 @@ export default {
 
   methods: {
     saveEvent () {
+      this.logEvent('save in Calendar', `Learn detail ${this.course.title}`)
       window.open(this.course.save_outlook.link)
     },
 

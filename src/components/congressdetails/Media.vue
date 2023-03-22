@@ -3,7 +3,7 @@
     <accordions-list classes="px-8 w-full" :list="accordions">
       <template #childs="props">
         <multimedia-images :images="props.item.childs.images" class="mb-4"/>
-        <multimedia-videos :videos="props.item.childs.videos" />
+        <multimedia-videos code :videos="props.item.childs.videos" />
       </template>
     </accordions-list>
     <div v-if="showImages||showVideos" class="px-8 flex flex-col">
@@ -11,7 +11,7 @@
       <multimedia-images v-if="showImages" :images="generalImages" class="mb-2"/>
       <separator v-if="showImages&&showVideos" bottomMargin />
       <span v-if="showVideos" class="font-helvetica-bold text-20 spacing-22 line-30 text-black block mb-2"> Videos </span>
-      <multimedia-videos v-if="showVideos" :videos="generalVideos" />
+      <multimedia-videos v-if="showVideos" code :videos="generalVideos" />
     </div>
   </div>
 </template>

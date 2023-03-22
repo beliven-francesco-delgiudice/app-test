@@ -58,7 +58,7 @@
         <big-button
           v-if="updatedActivity.save_event && updatedActivity.save_event.length"
           label="Save in calendar"
-          @onClick="openLink(updatedActivity.save_event)"
+          @onClick="saveEvent(link)"
         />
       </div>
     </div>
@@ -217,6 +217,11 @@ export default {
 
     openLink (link) {
       window.open(link)
+    },
+
+    saveEvent (link) {
+      this.logEvent('save in Calendar', `Congress activity ${this.updatedActivity.title}`)
+      this.openLink(link)
     }
   },
 

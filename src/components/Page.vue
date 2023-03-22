@@ -139,6 +139,7 @@ import FiltersModal from './modals/FiltersModal.vue'
 import ContactsSupport from '../components/ContactsSupport.vue'
 import { IonImg, IonButton } from '@ionic/vue'
 import { Capacitor } from '@capacitor/core'
+import MatomoManager from '../mixins/MatomoManager.vue'
 
 export default {
   components: {
@@ -150,6 +151,8 @@ export default {
     ContactsSupport
     // IonScroll
   },
+
+  mixins: [MatomoManager],
 
   props: {
     label: {
@@ -247,6 +250,7 @@ export default {
     },
 
     async onShare () {
+      this.logEvent(this.share.dialogTitle, this.share.dialogTitle + ' ' + this.share.title)
       try {
         await this.$share.share(this.share)
       } catch (err) {

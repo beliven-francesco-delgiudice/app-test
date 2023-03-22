@@ -40,7 +40,7 @@
         class="font-helvetica-medium text-black text-15 spacing-4 line-24 pointer-events-none flex items-center "
         > {{ singleVideo.label || singleVideo.title }} </div>
     </div>
-    <video-modal :open="isVideoOpen" :video="video" @onClose="closeVideo" />
+    <video-modal :code="code" :direct="direct" :open="isVideoOpen" :video="video" @onClose="closeVideo" />
   </div>
 </template>
 
@@ -60,6 +60,16 @@ export default {
     },
 
     hero: {
+      type: Boolean,
+      default: false
+    },
+
+    direct: {
+      type: Boolean,
+      default: false
+    },
+
+    code: {
       type: Boolean,
       default: false
     }

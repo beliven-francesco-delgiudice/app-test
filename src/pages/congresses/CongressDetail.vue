@@ -176,7 +176,7 @@ export default {
           params: this.filters
         })
         this.congress = results
-        this.logPage(results?.tabs?.info?.content?.name + ' (Congress details)' || 'Congress Detail')
+        this.logPage(`${results?.tabs?.info?.content?.name || 'Congress Detail'} (${results?.tabs?.info?.content?.type === 'event' ? 'Event' : 'Congress'} details)`)
       } catch (e) {
         console.error(e)
         this.$toast({

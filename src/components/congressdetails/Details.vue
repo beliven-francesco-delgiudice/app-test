@@ -81,7 +81,7 @@
         <big-button
           v-if="congressDates.save_event && congressDates.save_event.length"
           label="Save in calendar"
-          @onClick="openLink(congressDates.save_event)"
+          @onClick="saveInCalendar(congressDates)"
         />
       </div>
       <div class="mt-8">
@@ -137,12 +137,15 @@
     </detail-section>
   </div>
 </template>
+
 <script>
 import DetailSection from '../DetailSection.vue'
 import ImageGallery from '../ImageGallery.vue'
 import { IonImg } from '@ionic/vue'
 import SquareContainer from '../containers/SquareContainer.vue'
 import BigButton from '../containers/BigButton.vue'
+import MatomoManager from '../../mixins/MatomoManager.vue'
+
 export default {
   components: {
     ImageGallery,
@@ -151,10 +154,19 @@ export default {
     SquareContainer,
     BigButton
   },
+
+  mixins: [MatomoManager],
+
   props: {
-    congress: Object,
-    isCongress: Boolean
+    congress: {
+      type: Object,
+    },
+
+    isCongress: {
+      type: Boolean
+    },
   },
+
   data () {
     return {
       isReadMore: {
@@ -192,6 +204,7 @@ export default {
       }
     }
   },
+
   computed: {
     updatedCongress () {
       if (this.congress && this.congress.content) {
@@ -199,6 +212,7 @@ export default {
       }
       return this.detailsObject
     },
+
     updatedVenueGallery () {
       if (
         this.updatedCongress &&
@@ -210,9 +224,11 @@ export default {
       }
       return []
     },
+
     updatedReadMore () {
       return this.isReadMore
     },
+
     congressDescription () {
       if (
         this.updatedCongress.congress_venue &&
@@ -222,6 +238,7 @@ export default {
       }
       return ''
     },
+
     formattedDescriptionDates () {
       if (this.updatedReadMore.dates) {
         return this.updatedCongress.lima_booth && this.congressDates.description
@@ -232,18 +249,21 @@ export default {
         ? this.congressDates.description_short
         : ''
     },
+
     formattedDescriptionBooth () {
       if (this.updatedCongress.lima_booth) {
         return this.updatedCongress.lima_booth.description
       }
       return ''
     },
+
     formattedDescriptionInfo () {
       return this.updatedCongress.useful_information &&
         this.updatedCongress.useful_information.description
         ? this.updatedCongress.useful_information.description
         : ''
     },
+
     congressMaps () {
       if (
         this.updatedCongress.congress_venue &&
@@ -257,6 +277,7 @@ export default {
       }
       return false
     },
+
     congressDownloadMaps () {
       if (
         this.updatedCongress.congress_venue &&
@@ -270,12 +291,14 @@ export default {
       }
       return false
     },
+
     congressDates () {
       if (this.updatedCongress && this.updatedCongress.timing_dates) {
         return this.updatedCongress.timing_dates
       }
       return {}
     },
+
     areThereCongressDates () {
       if (
         this.congressDates &&
@@ -286,6 +309,7 @@ export default {
       }
       return false
     },
+
     isLimaBooth () {
       if (this.updatedCongress.lima_booth) {
         if (
@@ -305,10 +329,17 @@ export default {
       return false
     }
   },
+
   methods: {
     openLink (link) {
       window.open(link)
     },
+
+    saveInCalendar (dates) {
+      this.logEvent('save in Calendar', `Congress dates ${dates.from_date} ${dates.to_date}`)
+      this.openLink(dates.save_event)
+    },
+
     readMore (param) {
       const obj = Object.assign({}, this.isReadMore)
       obj[param] = !obj[param]

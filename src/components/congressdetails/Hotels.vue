@@ -186,6 +186,7 @@ import DetailSection from '../DetailSection.vue'
 import { IonImg } from '@ionic/vue'
 import BigButton from '../containers/BigButton.vue'
 import SquareContainer from '../containers/SquareContainer.vue'
+import MatomoManager from '../../mixins/MatomoManager.vue'
 
 export default {
   components: {
@@ -195,6 +196,8 @@ export default {
     BigButton,
     SquareContainer
   },
+
+  mixins: [MatomoManager],
 
   props: {
     congress: Object
@@ -265,6 +268,7 @@ export default {
     },
 
     saveEvent (string) {
+      this.logEvent('save in Calendar', `Congress ${string || 'hotel'}`)
       if (string === 'transfer') {
         window.open(this.updatedTransfer.save_event)
       } else {

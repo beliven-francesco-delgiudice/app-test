@@ -78,6 +78,7 @@
         </square-container>
         <span
           class="pointer-events-none ml-2 font-helvetica-medium text-black text-16 spacing-5 line-28"
+          style="word-break:break-all;"
         >
           {{ training.link }}
         </span>
@@ -90,6 +91,7 @@ import DetailSection from '../DetailSection.vue'
 import { IonImg } from '@ionic/vue'
 import BigButton from '../containers/BigButton.vue'
 import SquareContainer from '../containers/SquareContainer.vue'
+import MatomoManager from '../../mixins/MatomoManager.vue'
 export default {
   components: {
     DetailSection,
@@ -97,6 +99,8 @@ export default {
     BigButton,
     SquareContainer
   },
+
+  mixins: [MatomoManager],
 
   props: {
     instance: Object
@@ -114,9 +118,11 @@ export default {
 
   methods: {
     saveEvent () {
+      this.logEvent('save in Calendar', `Training ${this.training.name}`)
       window.open(this.training.save_event)
     },
     openLink () {
+      this.logEvent('register Sales Training', `Training ${this.training.name}`)
       window.open(this.training.link)
     }
   }

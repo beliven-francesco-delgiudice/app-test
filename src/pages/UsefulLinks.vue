@@ -5,7 +5,7 @@
         class="flex flex-row justify-between items-center bg-transparent pb-4 mb-4"
         v-for="(item, i) in linksArray"
         :key="i"
-        @click="openLink(item.link)"
+        @click="openLink(item)"
       >
         <div
           class="flex flex-start items-start pointer-events-none px-8 w-full"
@@ -39,17 +39,23 @@ import { IonList } from '@ionic/vue'
 import SquareContainer from '../components/containers/SquareContainer.vue'
 import messages from '@/messages'
 import urls from '@/urls'
+import MatomoManager from '../mixins/MatomoManager.vue'
+
 export default {
   components: {
     Page,
     IonList,
     SquareContainer
   },
+
+  mixins: [MatomoManager],
+
   data () {
     return {
       links: []
     }
   },
+
   computed: {
     linksArray () {
       if (this.links && this.links.length) {
@@ -61,9 +67,11 @@ export default {
       return this.links
     }
   },
+
   created () {
     this.getUsefulLinks()
   },
+
   methods: {
     cutLink (string) {
       if (string && string.length > 30) {
@@ -71,9 +79,12 @@ export default {
       }
       return string
     },
-    openLink (link) {
-      window.open(link)
+
+    openLink (item) {
+      this.logEvent('open Useful Link', `Link ${item.title}`)
+      window.open(item.link)
     },
+
     async getUsefulLinks () {
       try {
         const results = await this.$http({
