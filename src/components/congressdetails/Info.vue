@@ -174,7 +174,6 @@ export default {
     },
 
     openVideo () {
-      console.log('here')
       this.isVideoOpen = true
     },
 
