@@ -37,11 +37,16 @@
         pager="true"
         style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:0"
         :options="slideOpts"
-        @ionSlidesDidLoad="updateIndex"
+        @ionSlidesDidLoad="onLoad"
       >
         <ion-slide v-for="(slide, i) in updatedGallery" :key="i">
           <div class="flex w-full h-full">
-            <img :src="slide" class="w-full mx-auto my-auto" />
+            <img :src="slide.img" class="w-full mx-auto my-auto pointer-events-none" />
+            <div class="absolute bottom-0 left-0 p-2 w-full" style="background: rgba(0,0,0,0.7); min-height:100px;">
+              <p class="font-helvetica text-white text-14 spacing-44 line-24">
+              {{ slide.text }}
+              </p>
+            </div>
           </div>
         </ion-slide>
       </ion-slides>
@@ -81,7 +86,7 @@ export default {
 
   data () {
     return {
-      options: {
+      slideOpts: {
         initialSlide: 0,
         speed: 400
       }
@@ -93,11 +98,14 @@ export default {
       this.$emit('onClose')
     },
 
-    async updateIndex () {
-      if (this.index && this.$refs.slides) {
+    async onLoad () {
+      if (this.$refs.slides) {
         const swiper = await this.$refs.slides.$el.getSwiper()
-        if (this.index) {
-          swiper.slideTo(this.index)
+        if (swiper) {
+          swiper.update()
+          if (this.index) {
+            swiper.slideTo(this.index)
+          }
         }
       }
     }
@@ -110,17 +118,11 @@ export default {
 
     updatedGallery () {
       if (this.gallery && this.gallery.length) {
-        return this.gallery.map(item => {
-          if (item.hd) {
-            return item.hd
-          } else if (item.image) {
-            return item.image
-          } else if (item.preview) {
-            return item.preview
-          } else {
-            return item
-          }
-        })
+
+        return this.gallery.map(item => ({
+          img: item.hd || item.image || item.preview || item.img,
+          text: item.label || item.text
+        }))
       }
       return []
     }
