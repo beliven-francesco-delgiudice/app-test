@@ -13,6 +13,7 @@
       </div>
     </div>
     <image-modal
+      v-if="isOpenImage"
       :open="isOpenImage"
       :gallery="images"
       @onClose="closeImage"
