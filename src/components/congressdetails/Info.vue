@@ -16,7 +16,7 @@
     </div>
     <div
       v-else
-      class="ml-8 bg-white rounded-12 relative mr-4 gallery-container elevated-shadow overflow-hidden bg-cover bg-no-repeat bg-center"
+      class="ml-8 bg-white rounded-12 relative mr-4 gallery-container elevated-shadow overflow-hidden bg-contain bg-no-repeat bg-center"
       :style="`background-image:url('${updatedCongress.image}')`"
     />
     <detail-section :label="updatedCongress.name">
