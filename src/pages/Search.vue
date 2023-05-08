@@ -324,6 +324,9 @@ export default {
         case 'congress':
           this.$router.push(`/congresses/${item.id}`)
           break
+        case 'news':
+        this.$router.push(`/news/${item.id}`)
+          break
         default:
           this.$router.push('/home')
           break
