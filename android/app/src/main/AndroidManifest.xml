@@ -30,14 +30,14 @@
               <action android:name="android.intent.action.VIEW" />
               <category android:name="android.intent.category.DEFAULT" />
               <category android:name="android.intent.category.BROWSABLE" />
-              <data android:scheme="limasales"/>
+              <data android:scheme="sales"/>
             </intent-filter>
 
             <intent-filter>
               <action android:name="android.intent.action.VIEW"/>
               <category android:name="android.intent.category.DEFAULT"/>
               <category android:name="android.intent.category.BROWSABLE"/>
-              <data android:scheme="limasales" android:host="$ANDROID_HOST" android:pathPrefix="$ANDROID_PATHPREFIX"/>
+              <data android:scheme="sales" android:host="$ANDROID_HOST" android:pathPrefix="$ANDROID_PATHPREFIX"/>
             </intent-filter>
 
         </activity>

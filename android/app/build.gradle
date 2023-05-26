@@ -3,10 +3,10 @@ apply plugin: 'com.google.gms.google-services'
 
 android {
 
-    namespace 'com.limacorporate.sales'
+    namespace 'com.corporate.sales'
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "com.limacorporate.sales"
+        applicationId "com.corporate.sales"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 18

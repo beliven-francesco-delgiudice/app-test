@@ -20,7 +20,7 @@ export async function onOnesignalNotificationReceived (plugins, e) {
 
   if (e.notification && e.notification && e.notification.launchURL) {
     let path = e.notification.launchURL
-    path = path.split('limasales:/')[1]
+    path = path.split('sales:/')[1]
     plugins.$router.push(path)
   } else {
     plugins.$bg.wakeUp()
@@ -40,10 +40,10 @@ export async function onOnesignalNotificationOpened (plugins, e) {
     const notification = e.notification
     if (notification && notification.launchURL) {
       let path = notification.launchURL
-      // Use custom url scheme, limasales://
+      // Use custom url scheme, sales://
 
       console.log('NOTIFICATION', notification, plugins.$store.getters.loggedIn, path)
-      path = path.split('limasales:/')[1]
+      path = path.split('sales:/')[1]
       if (plugins.$store.getters.loggedIn) {
         plugins.$router.push(path)
         plugins.$store.commit('setLaunchUrl', path)

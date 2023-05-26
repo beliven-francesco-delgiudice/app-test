@@ -24,20 +24,20 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.limacorporate</string>
+			<string>com.corporate</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>limasales</string>
+				<string>sales</string>
 			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>CFBundleURLName</key>
-			<string>com.limacorporate</string>
+			<string>com.corporate</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>limasales</string>
+				<string>sales</string>
 			</array>
 		</dict>
 	</array>
@@ -45,7 +45,7 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string>limasales</string>
+		<string>sales</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

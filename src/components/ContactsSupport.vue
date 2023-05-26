@@ -31,14 +31,14 @@
       </div>
       <p class="font-helvetica text-grey text-14 spacing-44 line-24 mb-2">
         Contact
-        <a href="appsupport@limacorporate.com" title="" class="text-black">
-          appsupport@limacorporate.com
+        <a href="appsupport@corporate.com" title="" class="text-black">
+          appsupport@corporate.com
         </a>
         for anything related to the app: Account activation, login or
         navigation problems, material updates requests. <br />
         When contacting
-        <a href="appsupport@limacorporate.com" title="" class="text-black">
-          appsupport@limacorporate.com
+        <a href="appsupport@corporate.com" title="" class="text-black">
+          appsupport@corporate.com
         </a>
         for any kind of problem always remember to attach screenshot, specify
         browser and operating system.
@@ -46,7 +46,7 @@
       <div class="mt-4 w-full flex justify-center items-center">
         <div class="relative">
           <a
-            href="mailto:appsupport@limacorporate.com"
+            href="mailto:appsupport@corporate.com"
             title=""
             class="absolute top-0 left-0 w-full h-full z-10"
           >

@@ -297,7 +297,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   },
   {
     "revision": "89d3ee744ba79b227be934b91621b902",
-    "url": "/assets/limapp.svg"
+    "url": "/assets/app.svg"
   },
   {
     "revision": "bcd9cbfc399824e4a2853c68d47bad62",

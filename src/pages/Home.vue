@@ -247,7 +247,7 @@ export default {
           course_id: 13,
           date: '17-18 June',
           title: 'Smart SPACE: your digital companion from pre-op planning to…',
-          category: 'limaonlineeducation',
+          category: 'education',
           pillar: {
             image: '/assets/test/shoulder.jpg',
             name: 'Shoulder'
