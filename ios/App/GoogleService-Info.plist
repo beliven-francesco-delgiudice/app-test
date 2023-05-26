@@ -15,9 +15,9 @@
 	<key>BUNDLE_ID</key>
 	<string>com.limacorporate.sales</string>
 	<key>PROJECT_ID</key>
-	<string>limapp-a3d9b</string>
+	<string>app-a3d9b</string>
 	<key>STORAGE_BUCKET</key>
-	<string>limapp-a3d9b.appspot.com</string>
+	<string>app-a3d9b.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>

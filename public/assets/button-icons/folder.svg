@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="24px" height="18px" viewBox="0 0 24 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <title>Path</title>
-    <g id="limAPP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+    <g id="app" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
         <g id="home" transform="translate(-66.000000, -564.000000)" fill="#898B8C" stroke="#898B8C" stroke-width="2.21848739">
             <g id="Group-17" transform="translate(32.000000, 481.538462)">
                 <g id="Group-12" transform="translate(24.000000, 65.461538)">

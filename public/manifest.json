@@ -1,6 +1,6 @@
 {
-  "name": "LimAPP",
-  "short_name": "LimAPP",
+  "name": "app",
+  "short_name": "app",
   "start_url": "",
   "display": "standalone",
   "icons": [

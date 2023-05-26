@@ -15,7 +15,7 @@
         <span
           class="font-helvetica-bold text-20 spacing-22 line-30 text-black block"
         >
-          LimAPP Support
+          app Support
         </span>
         <ion-button
           type="button"
@@ -31,14 +31,14 @@
       </div>
       <p class="font-helvetica text-grey text-14 spacing-44 line-24 mb-2">
         Contact
-        <a href="limappsupport@limacorporate.com" title="" class="text-black">
-          limappsupport@limacorporate.com
+        <a href="appsupport@limacorporate.com" title="" class="text-black">
+          appsupport@limacorporate.com
         </a>
-        for anything related to the LimApp: Account activation, login or
+        for anything related to the app: Account activation, login or
         navigation problems, material updates requests. <br />
         When contacting
-        <a href="limappsupport@limacorporate.com" title="" class="text-black">
-          limappsupport@limacorporate.com
+        <a href="appsupport@limacorporate.com" title="" class="text-black">
+          appsupport@limacorporate.com
         </a>
         for any kind of problem always remember to attach screenshot, specify
         browser and operating system.
@@ -46,7 +46,7 @@
       <div class="mt-4 w-full flex justify-center items-center">
         <div class="relative">
           <a
-            href="mailto:limappsupport@limacorporate.com"
+            href="mailto:appsupport@limacorporate.com"
             title=""
             class="absolute top-0 left-0 w-full h-full z-10"
           >
@@ -62,7 +62,7 @@
             <span
               class="font-helvetica-medium text-white text-16 spacing-5 line-24 ml-4 normal-case"
             >
-              LimAPP Support
+              app Support
             </span>
           </ion-button>
         </div>

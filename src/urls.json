@@ -1,7 +1,7 @@
 {
   "baseUrl": {
-    "dev": "https://app-api-staging.limacorporate.com/api",
-    "prod": "https://app-api.limacorporate.com/api"
+    "dev": "https://test.com/api",
+    "prod": "https://test.com/api"
   },
   "contacts": "/contacts",
   "auth" : {
