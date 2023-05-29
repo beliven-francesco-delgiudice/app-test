@@ -12,7 +12,7 @@ Mobile app
 
 ## Pre-requisites
 
-- **NodeJS** >= 14 (<https://nodejs.org/en/download/>)
+- **NodeJS** >= 16 (<https://nodejs.org/en/download/>)
 - **Xcode** (<https://ionicframework.com/docs/developing/ios>)
 - **Android Studio** (<https://ionicframework.com/docs/developing/android>)
 
